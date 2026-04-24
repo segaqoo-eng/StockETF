@@ -100,7 +100,45 @@ function escapeHtml(s) {
 }
 
 function wireRowClicks() {
-  // Filled in Task 10.
+  document.querySelectorAll("table.cross tbody tr[data-stock-id]").forEach(row => {
+    row.addEventListener("click", () => toggleDetail(row));
+  });
+}
+
+function toggleDetail(row) {
+  const stockId = row.dataset.stockId;
+  const existing = row.nextElementSibling;
+
+  // If the detail row for *this* stock is already open, close it
+  if (existing && existing.classList.contains("detail") && existing.dataset.for === stockId) {
+    existing.remove();
+    state.expandedStockId = null;
+    return;
+  }
+  // Close any other open detail row first
+  document.querySelectorAll("tr.detail").forEach(r => r.remove());
+
+  const holding = state.payload.holdings.find(h => h.stock_id === stockId);
+  if (!holding) return;
+
+  const etfMeta = Object.fromEntries(state.payload.etfs.map(e => [e.ticker, e]));
+  const items = [...holding.held_by]
+    .sort((a, b) => b.weight_pct - a.weight_pct)
+    .map(b => {
+      const meta = etfMeta[b.etf] || {};
+      const name = meta.name ? ` ${escapeHtml(meta.name)}` : "";
+      return `<li>
+        <span class="etf-name">${b.etf}${name}</span>
+        <span class="weight">${b.weight_pct.toFixed(2)}%</span>
+      </li>`;
+    }).join("");
+
+  const detailRow = document.createElement("tr");
+  detailRow.className = "detail";
+  detailRow.dataset.for = stockId;
+  detailRow.innerHTML = `<td colspan="4"><ul>${items}</ul></td>`;
+  row.after(detailRow);
+  state.expandedStockId = stockId;
 }
 
 // Wire filter controls
