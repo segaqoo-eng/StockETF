@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockETF — 台灣 ETF 交叉持股分析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>📊 Stock<span>ETF</span></h1>
+    <div class="header-sub">台灣 ETF 交叉持股分析 · 更新於 <b id="updated-at">—</b></div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="cross">交叉持股</button>
+    <button class="tab-btn" data-tab="etfs" disabled title="v2 規劃中">ETF 總覽</button>
+    <button class="tab-btn" data-tab="changes" disabled title="v3 規劃中">持股變動</button>
+  </nav>
+
+  <main class="container">
+    <section id="tab-cross" class="tab-panel active">
+      <div class="filters">
+        <label>最少被持有 <select id="filter-min-etfs">
+          <option value="1">1 檔以上</option>
+          <option value="2" selected>2 檔以上</option>
+          <option value="3">3 檔以上</option>
+          <option value="4">4 檔以上</option>
+        </select></label>
+        <label>產業 <select id="filter-industry"><option value="">全部</option></select></label>
+        <input type="search" id="filter-search" placeholder="搜尋股票代號或名稱…">
+      </div>
+
+      <div id="cross-holdings-table" class="table-wrap">
+        <p class="loading">載入中…</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>資訊僅供參考，不構成投資建議。資料來源：各 ETF 發行商官網。</p>
+    <p><a href="https://github.com/your-user/StockETF" target="_blank" rel="noopener">GitHub 原始碼</a></p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
