@@ -40,9 +40,67 @@ function populateIndustryFilter() {
 }
 
 function render() {
-  // Stub — filled in next task.
-  document.getElementById("cross-holdings-table").innerHTML =
-    `<p class="loading">已載入 ${state.payload.holdings.length} 筆股票資料 · 渲染邏輯待實作</p>`;
+  const container = document.getElementById("cross-holdings-table");
+  const rows = filteredHoldings();
+
+  if (rows.length === 0) {
+    container.innerHTML = `<p class="loading">沒有符合條件的股票</p>`;
+    return;
+  }
+
+  const html = `
+    <table class="cross">
+      <thead>
+        <tr>
+          <th>股票</th>
+          <th>產業</th>
+          <th class="center">被幾檔 ETF 持有</th>
+          <th class="num">最高權重</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(renderRow).join("")}
+      </tbody>
+    </table>
+  `;
+  container.innerHTML = html;
+  wireRowClicks();
+}
+
+function filteredHoldings() {
+  const { holdings } = state.payload;
+  const q = state.search.toLowerCase();
+  return holdings.filter(h => {
+    if (h.held_by.length < state.minEtfs) return false;
+    if (state.industry && h.industry !== state.industry) return false;
+    if (q) {
+      const hay = `${h.stock_id} ${h.stock_name}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function renderRow(h) {
+  const maxWeight = Math.max(...h.held_by.map(b => b.weight_pct));
+  return `
+    <tr data-stock-id="${h.stock_id}">
+      <td><b>${h.stock_id}</b> ${escapeHtml(h.stock_name)}</td>
+      <td>${escapeHtml(h.industry || "—")}</td>
+      <td class="center"><span class="count-badge">${h.held_by.length}</span></td>
+      <td class="num weight">${maxWeight.toFixed(2)}%</td>
+    </tr>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+function wireRowClicks() {
+  // Filled in Task 10.
 }
 
 // Wire filter controls
