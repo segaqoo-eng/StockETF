@@ -1,0 +1,27 @@
+"0050":
+  scraper: yuanta
+  name: 元大台灣50
+  type: passive
+  tags: [市值型]
+  color: "#4a9eff"
+
+"0056":
+  scraper: yuanta
+  name: 元大高股息
+  type: passive
+  tags: [高股息型]
+  color: "#4adfb8"
+
+"00980A":
+  scraper: nomura
+  name: 野村臺灣智慧優選
+  type: active
+  tags: [主動, 台股型]
+  color: "#34d399"
+
+"00981A":
+  scraper: capital
+  name: 統一台股增長
+  type: active
+  tags: [主動, 台股型]
+  color: "#f472b6"
