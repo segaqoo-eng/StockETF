@@ -15,8 +15,6 @@ contains cash/liability line items and is intentionally excluded.
 import json
 from datetime import date
 
-import requests
-
 from scrapers.base import BaseScraper, Holding
 
 HOLDINGS_URL = "https://www.nomurafunds.com.tw/API/ETFAPI/api/Fund/GetFundAssets"
@@ -129,32 +127,6 @@ class NomuraScraper(BaseScraper):
 
     def fetch(self, ticker: str) -> list[Holding]:
         today = date.today().strftime("%Y-%m-%d")
-        payload = json.dumps({"FundID": ticker, "SearchDate": today})
-        # BaseScraper.get() is GET-only; use the session directly for POST.
-        last_err = None
-        for delay in (0, 2, 4, 8):
-            if delay:
-                import time
-                time.sleep(delay)
-            try:
-                r = self.session.post(
-                    HOLDINGS_URL,
-                    data=payload,
-                    headers={
-                        "Content-Type": "application/json",
-                        "Accept": "application/json, text/plain, */*",
-                        "Referer": (
-                            "https://www.nomurafunds.com.tw/ETFWEB/"
-                            f"product-description?fundNo={ticker}&tab=Shareholding"
-                        ),
-                        "Origin": "https://www.nomurafunds.com.tw",
-                    },
-                    timeout=20,
-                )
-                r.raise_for_status()
-                return parse_nomura_holdings(r.text)
-            except requests.RequestException as exc:
-                last_err = exc
-        raise RuntimeError(
-            f"POST {HOLDINGS_URL} failed after retries: {last_err}"
-        )
+        payload = {"FundID": ticker, "SearchDate": today}
+        text = self.post(HOLDINGS_URL, json=payload)
+        return parse_nomura_holdings(text)
