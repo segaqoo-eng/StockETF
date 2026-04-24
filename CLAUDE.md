@@ -11,7 +11,8 @@
 - **分支**：`feat/mvp-v1`（MVP v1 完成，tag `v1.0.0-mvp`）
 - **主線 main**：只有 spec + plan，沒有實作
 - **v1 範圍**：4 檔 ETF（0050、0056、00980A、00981A），手動執行 `python main.py`，靜態前端
-- **v2 範圍（尚未動工）**：GitHub Actions 排程、F4 ETF 總覽、F9 手機 RWD、擴充到 8-10 檔
+- **v1.5（已規劃未動工，下一步）**：**目標修正** — 改成抓市面上主要的主動式 ETF（6 檔）+ 0050 對照。移除 0056。順便清命名 debt（`capital.py`→`president.py`）。詳見 `docs/superpowers/specs/2026-04-24-v1.5-active-etf-focus.md`
+- **v2 範圍（尚未動工）**：GitHub Actions 排程、F4 ETF 總覽、F9 手機 RWD
 - **v3 範圍（尚未動工）**：F5 持股變動歷史、F7 CSV 匯出、F8 FB 分享圖、AdSense
 
 ## 使用者背景（重要）
