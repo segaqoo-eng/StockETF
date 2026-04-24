@@ -58,3 +58,10 @@ def test_build_payload_sorts_holdings_by_held_count():
     # 台積電 (held by 2) should come before 鴻海 (held by 1)
     assert payload["holdings"][0]["stock_id"] == "2330"
     assert payload["holdings"][1]["stock_id"] == "2317"
+
+
+def test_build_payload_uses_override_when_provided():
+    scraped = {"0050": [Holding("2330", "台積電", 48.5, 100)]}
+    etfs_config = {"0050": {"scraper": "yuanta", "name": "A", "type": "passive", "tags": [], "color": "#000"}}
+    payload = build_payload(scraped, etfs_config, {}, updated_at_override="2025-12-01T12:00:00+08:00")
+    assert payload["updated_at"] == "2025-12-01T12:00:00+08:00"

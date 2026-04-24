@@ -19,7 +19,7 @@ async function load() {
     render();
   } catch (err) {
     document.getElementById("cross-holdings-table").innerHTML =
-      `<p class="loading">載入資料失敗：${err.message}</p>`;
+      `<p class="loading">載入資料失敗：${escapeHtml(err.message)}</p>`;
   }
 }
 
@@ -85,7 +85,7 @@ function renderRow(h) {
   const maxWeight = Math.max(...h.held_by.map(b => b.weight_pct));
   return `
     <tr data-stock-id="${h.stock_id}">
-      <td><b>${h.stock_id}</b> ${escapeHtml(h.stock_name)}</td>
+      <td><b>${escapeHtml(h.stock_id)}</b> ${escapeHtml(h.stock_name)}</td>
       <td>${escapeHtml(h.industry || "—")}</td>
       <td class="center"><span class="count-badge">${h.held_by.length}</span></td>
       <td class="num weight">${maxWeight.toFixed(2)}%</td>
@@ -128,7 +128,7 @@ function toggleDetail(row) {
       const meta = etfMeta[b.etf] || {};
       const name = meta.name ? ` ${escapeHtml(meta.name)}` : "";
       return `<li>
-        <span class="etf-name">${b.etf}${name}</span>
+        <span class="etf-name">${escapeHtml(b.etf)}${name}</span>
         <span class="weight">${b.weight_pct.toFixed(2)}%</span>
       </li>`;
     }).join("");

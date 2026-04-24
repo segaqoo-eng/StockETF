@@ -135,6 +135,10 @@ class CapitalScraper(BaseScraper):
     """
 
     def fetch(self, ticker: str) -> list[Holding]:
-        # URL is fixed for 00981A; ticker param kept for interface consistency
+        if ticker != "00981A":
+            raise ValueError(
+                f"CapitalScraper only supports 00981A, got {ticker!r}. "
+                "Extend this scraper with a ticker → FundCode map to support more ETFs."
+            )
         text = self.get(HOLDINGS_URL)
         return parse_capital_holdings(text)

@@ -4,16 +4,34 @@
 
 ## Quickstart
 
+Set up a virtual environment and install dependencies:
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate           # Windows
 # source .venv/bin/activate      # macOS/Linux
 pip install -r requirements.txt
+```
+
+Fetch data once (takes ~15 seconds, hits 3 issuer sites):
+
+```bash
 python main.py
+```
+
+Run tests to confirm everything works:
+
+```bash
+pytest -v
+```
+
+Serve the site locally:
+
+```bash
 python -m http.server 8000
 ```
 
-Then open http://localhost:8000/ in a browser.
+Open http://localhost:8000/ in a browser. (Leave the server running; Ctrl+C to stop.)
 
 ## Deploying to GitHub Pages
 

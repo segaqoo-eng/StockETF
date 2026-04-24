@@ -78,7 +78,17 @@ def main() -> int:
         print("ERROR: no ETF data at all", file=sys.stderr)
         return 1
 
-    payload = build_payload(scraped, etfs_config, stocks_config)
+    used_fallback = bool(failures and any(t in previous for t in failures))
+
+    preserved_updated_at = None
+    if used_fallback and Path("data/latest.json").exists():
+        prev_json = json.loads(Path("data/latest.json").read_text(encoding="utf-8"))
+        preserved_updated_at = prev_json.get("updated_at")
+
+    if used_fallback:
+        print(f"WARN: preserved previous updated_at due to {len(failures)} fallback(s)", file=sys.stderr)
+
+    payload = build_payload(scraped, etfs_config, stocks_config, preserved_updated_at)
     write_payload(payload)
     print(f"\nWrote data/latest.json ({len(payload['etfs'])} ETFs, {len(payload['holdings'])} unique stocks)")
     if failures:

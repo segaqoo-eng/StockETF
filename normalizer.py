@@ -20,11 +20,12 @@ def build_payload(
     scraped: dict[str, list[Holding]],
     etfs_config: dict,
     stocks_config: dict,
+    updated_at_override: str | None = None,
 ) -> dict:
     """Combine per-ETF holdings, ETF metadata, and stock metadata into the
     shape described in the design spec §4.1.
     """
-    now = datetime.now(TAIPEI).isoformat(timespec="seconds")
+    now = updated_at_override or datetime.now(TAIPEI).isoformat(timespec="seconds")
 
     etfs_block = []
     for ticker, holdings in scraped.items():
