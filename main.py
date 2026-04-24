@@ -1,0 +1,90 @@
+"""End-to-end: read config, invoke scrapers, write data/latest.json + snapshot.
+
+Run: python main.py
+"""
+from __future__ import annotations
+import json
+import sys
+import time
+from pathlib import Path
+
+from scrapers.base import BaseScraper, Holding
+from scrapers.yuanta import YuantaScraper
+from scrapers.nomura import NomuraScraper
+from scrapers.capital import CapitalScraper
+from normalizer import build_payload, write_payload, load_config
+
+INTER_REQUEST_DELAY_SEC = 2  # be polite to issuer sites
+
+SCRAPERS: dict[str, BaseScraper] = {
+    "yuanta":  YuantaScraper(),
+    "nomura":  NomuraScraper(),
+    "capital": CapitalScraper(),
+}
+
+
+def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
+    """Recover each ETF's last-known holdings from the previous latest.json,
+    so a failed scrape can fall back to stale-but-present data.
+    """
+    if not latest_path.exists():
+        return {}
+    prev = json.loads(latest_path.read_text(encoding="utf-8"))
+    recovered: dict[str, list[Holding]] = {e["ticker"]: [] for e in prev.get("etfs", [])}
+    for h in prev.get("holdings", []):
+        for b in h["held_by"]:
+            recovered.setdefault(b["etf"], []).append(Holding(
+                stock_id=h["stock_id"],
+                stock_name=h["stock_name"],
+                weight_pct=b["weight_pct"],
+                shares=b["shares"],
+            ))
+    return recovered
+
+
+def main() -> int:
+    etfs_config = load_config("config/etfs.yml")
+    stocks_config = load_config("config/stocks.yml")
+    previous = load_previous_holdings(Path("data/latest.json"))
+
+    scraped: dict[str, list[Holding]] = {}
+    failures: list[str] = []
+
+    for i, (ticker, meta) in enumerate(etfs_config.items()):
+        if i > 0:
+            time.sleep(INTER_REQUEST_DELAY_SEC)
+        scraper_name = meta["scraper"]
+        scraper = SCRAPERS.get(scraper_name)
+        if scraper is None:
+            print(f"[SKIP] {ticker}: unknown scraper '{scraper_name}'", file=sys.stderr)
+            continue
+        try:
+            print(f"[FETCH] {ticker} via {scraper_name}...")
+            holdings = scraper.fetch(ticker)
+            if not holdings:
+                raise RuntimeError("empty holdings")
+            scraped[ticker] = holdings
+            print(f"  ok: {len(holdings)} holdings")
+        except Exception as exc:
+            failures.append(ticker)
+            print(f"  FAIL: {exc}", file=sys.stderr)
+            if ticker in previous and previous[ticker]:
+                print(f"  using previous data ({len(previous[ticker])} holdings)")
+                scraped[ticker] = previous[ticker]
+            else:
+                print(f"  no previous data — skipping {ticker}")
+
+    if not scraped:
+        print("ERROR: no ETF data at all", file=sys.stderr)
+        return 1
+
+    payload = build_payload(scraped, etfs_config, stocks_config)
+    write_payload(payload)
+    print(f"\nWrote data/latest.json ({len(payload['etfs'])} ETFs, {len(payload['holdings'])} unique stocks)")
+    if failures:
+        print(f"Failures: {failures}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
