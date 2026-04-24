@@ -16,6 +16,7 @@ def test_parse_nomura_00980A(fixture_path):
 
     for h in holdings:
         assert h.stock_id
+        assert h.stock_name
         assert h.weight_pct >= 0
         assert h.shares >= 0
 

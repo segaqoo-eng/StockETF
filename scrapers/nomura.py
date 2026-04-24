@@ -13,7 +13,8 @@ contains cash/liability line items and is intentionally excluded.
 """
 
 import json
-from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from scrapers.base import BaseScraper, Holding
 
@@ -24,12 +25,6 @@ _STOCK_ID_COL = 0
 _STOCK_NAME_COL = 1
 _STOCK_SHARES_COL = 2
 _STOCK_WEIGHT_COL = 3
-
-# Column indices for the futures table (TableTitle == "期貨")
-_FUT_ID_COL = 0
-_FUT_NAME_COL = 1
-_FUT_CONTRACTS_COL = 2
-_FUT_WEIGHT_COL = 3
 
 # Tables to include (match on TableTitle)
 _INCLUDED_TABLES = {"股票", "期貨"}
@@ -126,7 +121,7 @@ class NomuraScraper(BaseScraper):
     """Scraper for Nomura ETF holdings (00980A)."""
 
     def fetch(self, ticker: str) -> list[Holding]:
-        today = date.today().strftime("%Y-%m-%d")
+        today = datetime.now(ZoneInfo("Asia/Taipei")).date().strftime("%Y-%m-%d")
         payload = {"FundID": ticker, "SearchDate": today}
         text = self.post(HOLDINGS_URL, json=payload)
         return parse_nomura_holdings(text)
