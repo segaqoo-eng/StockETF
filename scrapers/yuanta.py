@@ -26,8 +26,6 @@ resolver handles both numeric literals and variable references for weights.
 import json
 import re
 
-import requests
-
 from scrapers.base import BaseScraper, Holding
 
 HOLDINGS_URL = "https://www.yuantaetfs.com/product/detail/{ticker}/ratio"
@@ -77,9 +75,9 @@ def _build_param_map(nuxt_script: str) -> dict:
     args_values = _tokenize_js_args(args_raw)
 
     if len(args_values) != len(params):
-        import warnings
-        warnings.warn(
-            f"NUXT param count mismatch: {len(params)} params, {len(args_values)} args"
+        raise ValueError(
+            f"Yuanta parser: parameter count mismatch ({len(params)} params vs "
+            f"{len(args_values)} args) — page structure may have changed"
         )
 
     # Build param -> decoded value mapping
@@ -160,7 +158,13 @@ def _decode_js_value(val: str):
 def _extract_stock_weights_text(nuxt_script: str) -> str:
     """Return the raw text inside StockWeights:[...] from the NUXT body."""
     marker = "StockWeights:["
-    sw_start = nuxt_script.index(marker) + len(marker)
+    try:
+        sw_start = nuxt_script.index(marker) + len(marker)
+    except ValueError as e:
+        raise ValueError(
+            "Yuanta parser: StockWeights block not found in NUXT body — "
+            "page structure may have changed"
+        ) from e
     sw_depth = 1
     sw_end = sw_start
     for i in range(sw_start, len(nuxt_script)):
@@ -228,6 +232,11 @@ def parse_yuanta_holdings(text: str) -> list[Holding]:
         shares = int(qty_str)
         holdings.append(Holding(stock_id, stock_name, weight_pct, shares))
 
+    if not holdings:
+        raise ValueError(
+            "Yuanta parser: StockWeights block found but no entries matched — "
+            "field order or format may have changed"
+        )
     return holdings
 
 

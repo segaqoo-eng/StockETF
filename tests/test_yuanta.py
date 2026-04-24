@@ -27,3 +27,6 @@ def test_parse_yuanta_0056(fixture_path):
     for h in holdings:
         assert h.stock_id and h.stock_name
         assert h.weight_pct > 0
+
+    total = sum(h.weight_pct for h in holdings)
+    assert 95 <= total <= 101, f"weight sum {total} out of range"
