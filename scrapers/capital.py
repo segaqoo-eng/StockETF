@@ -11,7 +11,7 @@ import logging
 
 from bs4 import BeautifulSoup
 
-from scrapers.base import BaseScraper, Holding
+from scrapers.base import BaseScraper, Holding, classify_market
 
 logger = logging.getLogger(__name__)
 
@@ -85,6 +85,7 @@ def parse_capital_holdings(text: str) -> list[Holding]:
                 stock_name=stock_name,
                 weight_pct=weight_pct,
                 shares=shares,
+                market=classify_market(stock_id),
             )
         )
 

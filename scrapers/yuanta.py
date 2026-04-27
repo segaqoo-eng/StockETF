@@ -26,12 +26,17 @@ resolver handles both numeric literals and variable references for weights.
 import json
 import re
 
-from scrapers.base import BaseScraper, Holding
+from scrapers.base import BaseScraper, Holding, classify_market
 
 HOLDINGS_URL = "https://www.yuantaetfs.com/product/detail/{ticker}/ratio"
 
 # JS identifier: word chars + dollar sign (e.g. k$, j_, l$)
 _JS_IDENT = r"[\w$]+"
+# Active ETFs (e.g. 00990A) have foreign holdings whose code/name/ename are
+# inline string literals like "LITE US" / "LUMENTUM HOLDINGS INC" — strings with
+# spaces aren't valid JS identifiers so the build pipeline doesn't compress them.
+# Accept either a quoted string or a JS identifier for these fields.
+_STR_OR_IDENT = r'(?:"[^"]*"|[\w$]+)'
 # A weight token is either a JS identifier (variable ref like mO, e$) or a numeric literal
 # (.99, 62.09, 1.5, 0.53 — note leading dot is valid in JS)
 _WEIGHT_TOK = r"(?:[0-9]*\.[0-9]+|[0-9]+|[\w$]+)"
@@ -179,13 +184,29 @@ def _extract_stock_weights_text(nuxt_script: str) -> str:
     return nuxt_script[sw_start:sw_end]
 
 
-# Each entry: {code:VAR,ym:VAR,name:VAR,ename:VAR,weights:NUMVAR,qty:NUM}
-# VAR is a JS identifier (may include $ and _)
-# weights may be a numeric literal (.53, 62.09, 1.5) or a variable ref (mO, e$)
+# Each entry: {code:VAR_OR_STR,ym:VAR,name:VAR_OR_STR,ename:VAR_OR_STR,weights:NUMVAR,qty:NUM}
+# Passive ETFs (0050/0056) compress everything to JS identifiers; active ETFs
+# with foreign holdings (00990A) inline strings for code/name/ename.
+# weights may be a numeric literal (.53, 62.09, 1.5) or a variable ref (mO, e$).
 _ENTRY_RE = re.compile(
-    r"\{code:(" + _JS_IDENT + r"),ym:(" + _JS_IDENT + r"),name:(" + _JS_IDENT
-    + r"),ename:(" + _JS_IDENT + r"),weights:(" + _WEIGHT_TOK + r"),qty:(\d+)\}"
+    r"\{code:(" + _STR_OR_IDENT + r"),ym:(" + _JS_IDENT + r"),name:(" + _STR_OR_IDENT
+    + r"),ename:(" + _STR_OR_IDENT + r"),weights:(" + _WEIGHT_TOK + r"),qty:(\d+)\}"
 )
+
+
+def _resolve_str_or_var(token: str, param_map: dict) -> str:
+    """A code/name/ename token may be a quoted string literal or a JS identifier.
+
+    Strings come back wrapped in double quotes; identifiers go through the param
+    map. Falls through to the raw token if neither (so a missing variable shows
+    up loudly downstream rather than silently coercing to an empty string)."""
+    if token.startswith('"') and token.endswith('"'):
+        try:
+            return json.loads(token)
+        except Exception:
+            return token[1:-1]
+    val = param_map.get(token, token)
+    return str(val)
 
 
 def parse_yuanta_holdings(text: str) -> list[Holding]:
@@ -216,10 +237,10 @@ def parse_yuanta_holdings(text: str) -> list[Holding]:
 
     holdings = []
     for m in _ENTRY_RE.finditer(sw_text):
-        code_var, _ym_var, name_var, _ename_var, weight_var, qty_str = m.groups()
+        code_tok, _ym_var, name_tok, _ename_tok, weight_var, qty_str = m.groups()
 
-        stock_id = str(resolve(code_var))
-        stock_name = str(resolve(name_var))
+        stock_id = _resolve_str_or_var(code_tok, param_map)
+        stock_name = _resolve_str_or_var(name_tok, param_map)
 
         # weight_var may be a numeric literal or a variable reference
         weight_raw = resolve(weight_var)
@@ -230,7 +251,13 @@ def parse_yuanta_holdings(text: str) -> list[Holding]:
             continue
 
         shares = int(qty_str)
-        holdings.append(Holding(stock_id, stock_name, weight_pct, shares))
+        holdings.append(Holding(
+            stock_id=stock_id,
+            stock_name=stock_name,
+            weight_pct=weight_pct,
+            shares=shares,
+            market=classify_market(stock_id),
+        ))
 
     if not holdings:
         raise ValueError(

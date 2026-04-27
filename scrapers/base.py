@@ -8,12 +8,33 @@ REQUEST_TIMEOUT = 20
 RETRY_BACKOFF = (2, 4, 8)  # seconds between retries
 
 
+def classify_market(stock_id: str) -> str:
+    """Classify a holding's market by stock_id format.
+
+    Per spec: 4-digit numeric → "TW"; suffixed " US" → "US"; suffixed " JP" → "JP";
+    everything else (futures contracts, bonds, foreign stocks on other exchanges,
+    Taiwan emerging-market 5-digit codes, etc.) → "OTHER".
+
+    The cross-holding aggregation in normalizer treats only "TW" as cross-comparable;
+    "OTHER" stocks still appear in per-ETF holdings but not in the main cross-table.
+    """
+    s = stock_id.strip()
+    if s.endswith(" US"):
+        return "US"
+    if s.endswith(" JP"):
+        return "JP"
+    if s.isdigit() and len(s) == 4:
+        return "TW"
+    return "OTHER"
+
+
 @dataclass(frozen=True)
 class Holding:
     stock_id: str
     stock_name: str
     weight_pct: float
     shares: int
+    market: str  # "TW" | "US" | "JP" | "OTHER"; use classify_market(stock_id)
 
 
 class BaseScraper:

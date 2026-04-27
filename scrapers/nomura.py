@@ -16,7 +16,7 @@ import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from scrapers.base import BaseScraper, Holding
+from scrapers.base import BaseScraper, Holding, classify_market
 
 HOLDINGS_URL = "https://www.nomurafunds.com.tw/API/ETFAPI/api/Fund/GetFundAssets"
 
@@ -105,6 +105,7 @@ def parse_nomura_holdings(text: str) -> list[Holding]:
                     stock_name=stock_name,
                     weight_pct=weight_pct,
                     shares=shares,
+                    market=classify_market(stock_id),
                 )
             )
 

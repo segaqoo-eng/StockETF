@@ -12,7 +12,7 @@ import html as html_module
 import json
 import re
 
-from scrapers.base import BaseScraper, Holding
+from scrapers.base import BaseScraper, Holding, classify_market
 
 # The ezmoney.com.tw server sets a session cookie on first hit and redirects
 # to the same URL; the second request (with cookie) returns the full page.
@@ -111,6 +111,7 @@ def parse_president_holdings(text: str) -> list[Holding]:
                 stock_name=stock_name,
                 weight_pct=weight_pct,
                 shares=shares,
+                market=classify_market(stock_id),
             )
         )
 

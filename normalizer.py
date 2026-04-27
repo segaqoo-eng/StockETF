@@ -27,6 +27,8 @@ def build_payload(
     """
     now = updated_at_override or datetime.now(TAIPEI).isoformat(timespec="seconds")
 
+    # Per-ETF block — full holdings list (TW + foreign) so the frontend's
+    # per-ETF expansion can show everything that ETF holds.
     etfs_block = []
     for ticker, holdings in scraped.items():
         meta = etfs_config.get(ticker, {})
@@ -37,13 +39,28 @@ def build_payload(
             "tags": meta.get("tags", []),
             "color": meta.get("color", "#58a6ff"),
             "holdings_count": len(holdings),
+            "holdings": [
+                {
+                    "stock_id": h.stock_id,
+                    "stock_name": h.stock_name,
+                    "weight_pct": h.weight_pct,
+                    "shares": h.shares,
+                    "market": h.market,
+                }
+                for h in holdings
+            ],
         })
 
-    # held_by_map[stock_id] = list of {"etf": ticker, "weight_pct", "shares"}
+    # Cross-aggregation — only TW stocks. Foreign holdings (US/JP) and
+    # non-equities (futures classified as OTHER) are excluded from the main
+    # cross-table because they can't be cross-counted across pure-TW peer ETFs.
+    # See docs/known-issues/holdings-diff-todo.md for the rationale.
     held_by_map: dict[str, list[dict]] = defaultdict(list)
     stock_names: dict[str, str] = {}
     for ticker, holdings in scraped.items():
         for h in holdings:
+            if h.market != "TW":
+                continue
             held_by_map[h.stock_id].append({
                 "etf": ticker,
                 "weight_pct": h.weight_pct,

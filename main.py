@@ -8,7 +8,7 @@ import sys
 import time
 from pathlib import Path
 
-from scrapers.base import BaseScraper, Holding
+from scrapers.base import BaseScraper, Holding, classify_market
 from scrapers.yuanta import YuantaScraper
 from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
@@ -32,7 +32,26 @@ def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
     if not latest_path.exists():
         return {}
     prev = json.loads(latest_path.read_text(encoding="utf-8"))
-    recovered: dict[str, list[Holding]] = {e["ticker"]: [] for e in prev.get("etfs", [])}
+
+    # Prefer the new per-ETF holdings list (preserves foreign holdings on fallback);
+    # fall back to deriving from cross-aggregation (TW-only) for older snapshots.
+    recovered: dict[str, list[Holding]] = {}
+    for etf in prev.get("etfs", []):
+        if "holdings" in etf:
+            recovered[etf["ticker"]] = [
+                Holding(
+                    stock_id=h["stock_id"],
+                    stock_name=h["stock_name"],
+                    weight_pct=h["weight_pct"],
+                    shares=h["shares"],
+                    market=h.get("market") or classify_market(h["stock_id"]),
+                )
+                for h in etf["holdings"]
+            ]
+    if recovered:
+        return recovered
+
+    recovered = {e["ticker"]: [] for e in prev.get("etfs", [])}
     for h in prev.get("holdings", []):
         for b in h["held_by"]:
             recovered.setdefault(b["etf"], []).append(Holding(
@@ -40,6 +59,7 @@ def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
                 stock_name=h["stock_name"],
                 weight_pct=b["weight_pct"],
                 shares=b["shares"],
+                market=classify_market(h["stock_id"]),
             ))
     return recovered
 
