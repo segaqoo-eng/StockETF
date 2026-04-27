@@ -196,23 +196,29 @@ def write_diff(today_payload: dict, data_dir: Path) -> None:
     """Compute today-vs-most-recent-prior-snapshot diff and write latest_diff.json.
 
     The previous snapshot must NOT be today's (write_payload just wrote that one);
-    pick the most recent earlier-dated file. If none exist (first run), the diff
-    is empty and the frontend renders no badges.
+    pick the most recent earlier-dated file. If none exist (first run), by_etf
+    is empty {} and as_of_baseline is null.
+
+    Output shape:
+      { "as_of_today": "YYYY-MM-DD",
+        "as_of_baseline": "YYYY-MM-DD" or null,
+        "by_etf": { ticker: {added, removed, changed}, ... } }
     """
     today_iso = datetime.now(TAIPEI).date().isoformat()
     snapshots_dir = data_dir / "snapshots"
     prev = _find_previous_snapshot(snapshots_dir, today_iso)
     if prev is None:
-        diff = {}
+        result = {"as_of_today": today_iso, "as_of_baseline": None, "by_etf": {}}
         print("Diff: no prior snapshot found; writing empty diff")
     else:
         prev_payload = json.loads(prev.read_text(encoding="utf-8"))
-        diff = compute_diff(today_payload, prev_payload)
-        changed_etfs = sum(1 for d in diff.values() if d["added"] or d["removed"] or d["changed"])
-        print(f"Diff: {prev.name} → today ({changed_etfs}/{len(diff)} ETFs with changes)")
+        by_etf = compute_diff(today_payload, prev_payload)
+        changed_etfs = sum(1 for d in by_etf.values() if d["added"] or d["removed"] or d["changed"])
+        print(f"Diff: {prev.name} → today ({changed_etfs}/{len(by_etf)} ETFs with changes)")
+        result = {"as_of_today": today_iso, "as_of_baseline": prev.stem, "by_etf": by_etf}
 
     diff_path = data_dir / "latest_diff.json"
-    diff_path.write_text(json.dumps(diff, ensure_ascii=False, indent=2), encoding="utf-8")
+    diff_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _find_previous_snapshot(snapshots_dir: Path, today_iso: str) -> Path | None:

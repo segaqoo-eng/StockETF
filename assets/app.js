@@ -54,8 +54,8 @@ async function load() {
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
     populateIndustryFilter();
     renderEtfChipBar();
-    renderLeaderboard();
     renderEtfOverview();
+    renderChanges();
     render();
 
     applyHash();  // honour deep-link hash on first paint
@@ -184,54 +184,101 @@ function toggleDetail(row) {
   state.expandedStockId = stockId;
 }
 
-// --- 過去 N 天 top-movers leaderboard ---
+// --- 持股變化 tab — per-ETF added/removed/changed breakdown ---
 
-function renderLeaderboard() {
-  const container = document.getElementById("leaderboard");
-  const lb = state.leaderboard;
-
-  if (!lb || !lb.as_of_baseline || (lb.top_added.length === 0 && lb.top_removed.length === 0)) {
-    container.innerHTML = `
-      <div class="leaderboard-empty">
-        🔄 過去 ${(lb && lb.window_days) || 7} 天 經理人加減碼排行
-        <span>資料累積中 — 需要 ≥ 2 天的快照才會出現排行（每天 cron 自動累積）</span>
-      </div>`;
+function renderChanges() {
+  const root = document.getElementById("changes-list");
+  if (!state.diff) {
+    root.innerHTML = `<p class="loading">資料載入中…</p>`;
     return;
   }
 
-  const renderList = (items, polarity) => {
-    if (items.length === 0) {
-      return `<li class="lb-empty">本期無顯著${polarity === "added" ? "加碼" : "減碼"}</li>`;
-    }
-    return items.map((it, i) => {
-      const sign = polarity === "added" ? "+" : "";
-      return `<li>
-        <span class="lb-rank">${i + 1}</span>
-        <span class="lb-stock"><b>${escapeHtml(it.stock_id)}</b> ${escapeHtml(it.stock_name)}</span>
-        <span class="lb-meta">
-          <span class="lb-count" title="${it.etf_count} 檔 ETF 同向異動">${it.etf_count} 檔</span>
-          <span class="lb-delta lb-${polarity}">${sign}${it.total_delta.toFixed(2)}%</span>
-        </span>
-      </li>`;
-    }).join("");
-  };
+  // Period header — shows what dates the diff is comparing against.
+  const period = state.diff.as_of_baseline
+    ? `<div class="changes-period">📅 比對期間：<b>${state.diff.as_of_baseline}</b> → <b>${state.diff.as_of_today}</b></div>`
+    : `<div class="changes-period changes-period-empty">尚無歷史快照可比對 — 明天 cron 後自動有資料</div>`;
 
-  container.innerHTML = `
-    <div class="leaderboard-header">
-      🔄 過去 ${lb.window_days} 天 經理人加減碼排行
-      <span class="leaderboard-window">${lb.as_of_baseline} → ${lb.as_of_today}</span>
-    </div>
-    <div class="leaderboard-grid">
-      <div class="lb-col lb-col-added">
-        <h3>🟢 加碼權重 TOP ${lb.top_added.length}</h3>
-        <ol>${renderList(lb.top_added, "added")}</ol>
-      </div>
-      <div class="lb-col lb-col-removed">
-        <h3>🔴 減碼權重 TOP ${lb.top_removed.length}</h3>
-        <ol>${renderList(lb.top_removed, "removed")}</ol>
-      </div>
-    </div>
+  // One card per ETF (ordered by ticker for stability), independent accordion.
+  const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  const cards = sortedEtfs.map(etf => buildChangesCardHtml(etf, state.diff.by_etf || {})).join("");
+
+  root.innerHTML = period + cards;
+}
+
+function buildChangesCardHtml(etf, byEtf) {
+  const ticker = etf.ticker;
+  const diff = byEtf[ticker];
+
+  let summaryNote = "";
+  let body = "";
+
+  if (!diff) {
+    summaryNote = `<span class="card-count card-count-muted">尚無比對資料</span>`;
+    body = `<div class="card-body changes-empty">此 ETF 暫無歷史比對基準（cron 累積中或發行商無歷史 API）</div>`;
+  } else {
+    const total = diff.added.length + diff.removed.length + diff.changed.length;
+    if (total === 0) {
+      summaryNote = `<span class="card-count card-count-muted">本期無變動</span>`;
+      body = `<div class="card-body changes-empty">本期持股無顯著變動（門檻內）</div>`;
+    } else {
+      const counts = [];
+      if (diff.added.length)   counts.push(`新進 ${diff.added.length}`);
+      if (diff.removed.length) counts.push(`移除 ${diff.removed.length}`);
+      if (diff.changed.length) counts.push(`加減碼 ${diff.changed.length}`);
+      summaryNote = `<span class="card-count">${counts.join(" · ")}</span>`;
+      body = `<div class="card-body">
+        ${renderChangesAddRemoveSection("🆕 新進", "added", diff.added, "weight_pct")}
+        ${renderChangesAddRemoveSection("❌ 移除", "removed", diff.removed, "weight_pct", "昨日權重")}
+        ${renderChangesChangedSection(diff.changed)}
+      </div>`;
+    }
+  }
+
+  return `
+    <details class="etf-card-large ${etfBorderClass(ticker)}" name="changes-overview">
+      <summary>
+        <div class="card-head-row">
+          <span class="card-ticker">${escapeHtml(ticker)}</span>
+          <span class="card-name">${escapeHtml(etf.name)}</span>
+          ${summaryNote}
+          <span class="card-toggle" aria-hidden="true">▾</span>
+        </div>
+      </summary>
+      ${body}
+    </details>
   `;
+}
+
+function renderChangesAddRemoveSection(label, kind, items, weightField, weightPrefix = "權重") {
+  if (items.length === 0) return "";
+  const sorted = [...items].sort((a, b) => b[weightField] - a[weightField]);
+  const li = sorted.map(it =>
+    `<li>
+      <b>${escapeHtml(it.stock_id)}</b>
+      <span class="ch-name">${escapeHtml(it.stock_name)}</span>
+      <span class="ch-weight">${weightPrefix} ${it[weightField].toFixed(2)}%</span>
+    </li>`
+  ).join("");
+  return `<h4 class="changes-section-h ch-${kind}">${label} (${items.length})</h4>
+          <ul class="changes-section-list">${li}</ul>`;
+}
+
+function renderChangesChangedSection(items) {
+  if (items.length === 0) return "";
+  // Sort by abs(delta) desc — biggest movers first regardless of direction.
+  const sorted = [...items].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+  const li = sorted.map(c => {
+    const up = c.delta > 0;
+    const sign = up ? "+" : "";
+    return `<li>
+      <b>${escapeHtml(c.stock_id)}</b>
+      <span class="ch-name">${escapeHtml(c.stock_name)}</span>
+      <span class="ch-trans">${c.weight_yesterday.toFixed(2)}% → ${c.weight_today.toFixed(2)}%</span>
+      <span class="diff-badge diff-${up ? "up" : "down"}">${up ? "▲" : "▼"} ${sign}${c.delta.toFixed(2)}</span>
+    </li>`;
+  }).join("");
+  return `<h4 class="changes-section-h ch-changed">📊 加減碼 (${items.length})</h4>
+          <ul class="changes-section-list changes-section-list-changes">${li}</ul>`;
 }
 
 // --- Fund-level metadata strip used in the ETF overview cards ---
@@ -294,7 +341,7 @@ function buildEtfCardHtml(etf) {
   const ticker = etf.ticker;
   const holdings = [...(etf.holdings || [])].sort((a, b) => b.weight_pct - a.weight_pct);
 
-  const diff = (state.diff && state.diff[ticker]) || { added: [], removed: [], changed: [] };
+  const diff = (state.diff && state.diff.by_etf && state.diff.by_etf[ticker]) || { added: [], removed: [], changed: [] };
   const addedIds = new Set(diff.added.map(h => h.stock_id));
   const changedById = Object.fromEntries(diff.changed.map(c => [c.stock_id, c]));
 
