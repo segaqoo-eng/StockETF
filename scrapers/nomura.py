@@ -16,7 +16,7 @@ import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 HOLDINGS_URL = "https://www.nomurafunds.com.tw/API/ETFAPI/api/Fund/GetFundAssets"
 
@@ -121,8 +121,10 @@ def parse_nomura_holdings(text: str) -> list[Holding]:
 class NomuraScraper(BaseScraper):
     """Scraper for Nomura ETF holdings (00980A)."""
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         today = datetime.now(ZoneInfo("Asia/Taipei")).date().strftime("%Y-%m-%d")
         payload = {"FundID": ticker, "SearchDate": today}
         text = self.post(HOLDINGS_URL, json=payload)
-        return parse_nomura_holdings(text)
+        # TODO: nomura's API response has Entries.Data with cash/futures
+        # tables — extract NAV / units / as_of_date once we probe the shape.
+        return ScrapeResult(holdings=parse_nomura_holdings(text), fund_meta={})

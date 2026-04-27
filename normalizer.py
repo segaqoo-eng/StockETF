@@ -21,18 +21,25 @@ def build_payload(
     etfs_config: dict,
     stocks_config: dict,
     updated_at_override: str | None = None,
+    fund_meta_by_ticker: dict[str, dict] | None = None,
 ) -> dict:
     """Combine per-ETF holdings, ETF metadata, and stock metadata into the
     shape described in the design spec §4.1.
+
+    fund_meta_by_ticker — optional per-ETF metadata dict (NAV / units /
+    p_unit / asset_breakdown / as_of_date). Empty/missing entries result in
+    no fund_meta key on that ETF block, so the frontend's optional rendering
+    stays tidy.
     """
     now = updated_at_override or datetime.now(TAIPEI).isoformat(timespec="seconds")
+    fund_meta_by_ticker = fund_meta_by_ticker or {}
 
     # Per-ETF block — full holdings list (TW + foreign) so the frontend's
     # per-ETF expansion can show everything that ETF holds.
     etfs_block = []
     for ticker, holdings in scraped.items():
         meta = etfs_config.get(ticker, {})
-        etfs_block.append({
+        block = {
             "ticker": ticker,
             "name": meta.get("name", ticker),
             "type": meta.get("type", "passive"),
@@ -49,7 +56,11 @@ def build_payload(
                 }
                 for h in holdings
             ],
-        })
+        }
+        fm = fund_meta_by_ticker.get(ticker) or {}
+        if fm:
+            block["fund_meta"] = fm
+        etfs_block.append(block)
 
     # Cross-aggregation — only TW stocks. Foreign holdings (US/JP) and
     # non-equities (futures classified as OTHER) are excluded from the main

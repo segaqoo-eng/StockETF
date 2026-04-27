@@ -37,6 +37,20 @@ class Holding:
     market: str  # "TW" | "US" | "JP" | "OTHER"; use classify_market(stock_id)
 
 
+@dataclass(frozen=True)
+class ScrapeResult:
+    """Scraper return shape: holdings + best-effort fund_meta dict.
+
+    fund_meta uses standardized keys across all scrapers; each scraper fills
+    what its source exposes and omits the rest (no None placeholders, just
+    missing keys). See docs/ROADMAP.md and the per-scraper modules for the
+    canonical keys (as_of_date, nav_total, units_outstanding, p_unit,
+    asset_breakdown).
+    """
+    holdings: list[Holding]
+    fund_meta: dict
+
+
 class BaseScraper:
     """HTTP session with retry. Subclasses implement fetch(ticker)."""
 
@@ -89,5 +103,5 @@ class BaseScraper:
                 last_err = exc
         raise RuntimeError(f"GET {url} failed after retries: {last_err}")
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         raise NotImplementedError

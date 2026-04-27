@@ -8,7 +8,7 @@ import sys
 import time
 from pathlib import Path
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 from scrapers.yuanta import YuantaScraper
 from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
@@ -34,20 +34,27 @@ SCRAPERS: dict[str, BaseScraper] = {
 }
 
 
-def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
-    """Recover each ETF's last-known holdings from the previous latest.json,
-    so a failed scrape can fall back to stale-but-present data.
+def load_previous_payload(latest_path: Path) -> tuple[dict[str, list[Holding]], dict[str, dict]]:
+    """Recover per-ETF holdings AND fund_meta from the previous latest.json,
+    so a failed scrape can fall back to stale-but-present data + meta.
+
+    Returns (holdings_by_ticker, meta_by_ticker). Both empty when no
+    previous payload exists.
     """
     if not latest_path.exists():
-        return {}
+        return {}, {}
     prev = json.loads(latest_path.read_text(encoding="utf-8"))
 
     # Prefer the new per-ETF holdings list (preserves foreign holdings on fallback);
     # fall back to deriving from cross-aggregation (TW-only) for older snapshots.
     recovered: dict[str, list[Holding]] = {}
+    meta_by_ticker: dict[str, dict] = {}
     for etf in prev.get("etfs", []):
+        ticker = etf["ticker"]
+        if "fund_meta" in etf:
+            meta_by_ticker[ticker] = etf["fund_meta"]
         if "holdings" in etf:
-            recovered[etf["ticker"]] = [
+            recovered[ticker] = [
                 Holding(
                     stock_id=h["stock_id"],
                     stock_name=h["stock_name"],
@@ -58,7 +65,7 @@ def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
                 for h in etf["holdings"]
             ]
     if recovered:
-        return recovered
+        return recovered, meta_by_ticker
 
     recovered = {e["ticker"]: [] for e in prev.get("etfs", [])}
     for h in prev.get("holdings", []):
@@ -70,15 +77,16 @@ def load_previous_holdings(latest_path: Path) -> dict[str, list[Holding]]:
                 shares=b["shares"],
                 market=classify_market(h["stock_id"]),
             ))
-    return recovered
+    return recovered, meta_by_ticker
 
 
 def main() -> int:
     etfs_config = load_config("config/etfs.yml")
     stocks_config = load_config("config/stocks.yml")
-    previous = load_previous_holdings(Path("data/latest.json"))
+    previous, previous_meta = load_previous_payload(Path("data/latest.json"))
 
     scraped: dict[str, list[Holding]] = {}
+    fund_meta_by_ticker: dict[str, dict] = {}
     failures: list[str] = []
 
     for i, (ticker, meta) in enumerate(etfs_config.items()):
@@ -91,17 +99,24 @@ def main() -> int:
             continue
         try:
             print(f"[FETCH] {ticker} via {scraper_name}...")
-            holdings = scraper.fetch(ticker)
-            if not holdings:
+            result = scraper.fetch(ticker)
+            if not result.holdings:
                 raise RuntimeError("empty holdings")
-            scraped[ticker] = holdings
-            print(f"  ok: {len(holdings)} holdings")
+            scraped[ticker] = result.holdings
+            if result.fund_meta:
+                fund_meta_by_ticker[ticker] = result.fund_meta
+            print(f"  ok: {len(result.holdings)} holdings"
+                  + (f" (+ fund_meta {sorted(result.fund_meta)})" if result.fund_meta else ""))
         except Exception as exc:
             failures.append(ticker)
             print(f"  FAIL: {exc}", file=sys.stderr)
             if ticker in previous and previous[ticker]:
                 print(f"  using previous data ({len(previous[ticker])} holdings)")
                 scraped[ticker] = previous[ticker]
+                # Carry forward previous fund_meta on fallback so the modal still
+                # shows the issuer's last-known stats (the data hasn't moved).
+                if ticker in previous_meta:
+                    fund_meta_by_ticker[ticker] = previous_meta[ticker]
             else:
                 print(f"  no previous data — skipping {ticker}")
 
@@ -119,7 +134,8 @@ def main() -> int:
     if used_fallback:
         print(f"WARN: preserved previous updated_at due to {len(failures)} fallback(s)", file=sys.stderr)
 
-    payload = build_payload(scraped, etfs_config, stocks_config, preserved_updated_at)
+    payload = build_payload(scraped, etfs_config, stocks_config, preserved_updated_at,
+                            fund_meta_by_ticker=fund_meta_by_ticker)
     write_payload(payload)
     print(f"\nWrote data/latest.json ({len(payload['etfs'])} ETFs, {len(payload['holdings'])} unique stocks)")
 

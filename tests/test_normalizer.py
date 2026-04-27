@@ -69,6 +69,32 @@ def test_build_payload_uses_override_when_provided():
     assert payload["updated_at"] == "2025-12-01T12:00:00+08:00"
 
 
+def test_build_payload_includes_fund_meta_when_present():
+    """fund_meta_by_ticker entries flow into etfs[i].fund_meta; missing/empty → no key."""
+    scraped = {
+        "0050":   [Holding("2330", "台積電", 48.5, 100, "TW")],
+        "00981A": [Holding("2330", "台積電", 32.0, 50, "TW")],
+    }
+    etfs_config = {
+        "0050":   {"scraper": "yuanta", "name": "A", "type": "passive", "tags": [], "color": "#000"},
+        "00981A": {"scraper": "president", "name": "B", "type": "active", "tags": [], "color": "#000"},
+    }
+    fund_meta = {
+        "00981A": {"as_of_date": "2026-04-27T15:33:01", "nav_total": 232148514804.0, "p_unit": 27.74},
+        # 0050 has no entry → expect no fund_meta key on its etf block
+    }
+
+    payload = build_payload(scraped, etfs_config, {}, fund_meta_by_ticker=fund_meta)
+
+    e981 = next(e for e in payload["etfs"] if e["ticker"] == "00981A")
+    assert "fund_meta" in e981
+    assert e981["fund_meta"]["nav_total"] == 232148514804.0
+    assert e981["fund_meta"]["p_unit"] == 27.74
+
+    e0050 = next(e for e in payload["etfs"] if e["ticker"] == "0050")
+    assert "fund_meta" not in e0050, "missing entry should leave fund_meta off entirely"
+
+
 def test_build_payload_excludes_foreign_from_cross_table():
     """Foreign stocks (US/JP) and OTHER must not appear in payload.holdings,
     but should remain in per-ETF holdings."""

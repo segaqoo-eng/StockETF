@@ -237,6 +237,38 @@ function renderLeaderboard() {
   `;
 }
 
+// Fund-level metadata line shown at the top of the per-ETF modal body.
+// Renders only the keys the scraper actually populated — different issuers
+// expose different subsets, by design (see ScrapeResult.fund_meta).
+function renderFundMetaLine(meta) {
+  if (!meta || Object.keys(meta).length === 0) return "";
+  const parts = [];
+  if (meta.as_of_date) {
+    parts.push(`📅 截至 <b>${escapeHtml(formatDateShort(meta.as_of_date))}</b>`);
+  }
+  if (typeof meta.nav_total === "number") {
+    parts.push(`💰 規模 <b>${formatYi(meta.nav_total)} 億</b>`);
+  }
+  if (typeof meta.p_unit === "number") {
+    parts.push(`單位淨值 <b>${meta.p_unit.toFixed(2)}</b>`);
+  }
+  if (typeof meta.units_outstanding === "number") {
+    parts.push(`流通 <b>${formatYi(meta.units_outstanding)} 億</b>`);
+  }
+  if (parts.length === 0) return "";
+  return `<div class="fund-meta">${parts.join(" · ")}</div>`;
+}
+
+function formatYi(n) {
+  // 232,148,514,804 → "2,321"  (integer 億 — Taiwan convention)
+  return (n / 1e8).toLocaleString("en", { maximumFractionDigits: 0 });
+}
+
+function formatDateShort(iso) {
+  // "2026-04-27T15:33:01" → "2026-04-27 15:33"; safe for plain date strings too
+  return String(iso).replace("T", " ").slice(0, 16);
+}
+
 // --- Per-ETF holdings drill-down ---
 
 function renderEtfChipBar() {
@@ -317,6 +349,7 @@ function openEtfModal(ticker) {
     `<span class="ticker">${escapeHtml(etf.ticker)}</span>${escapeHtml(etf.name)}` +
     `<span class="modal-subtitle">· ${etf.holdings_count} 檔持股</span>`;
   document.getElementById("etf-modal-body").innerHTML = `
+    ${renderFundMetaLine(etf.fund_meta)}
     <table class="etf-holdings">
       <thead><tr>
         <th>代號</th><th>名稱</th><th class="num">權重</th><th class="num">股數</th>

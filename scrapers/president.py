@@ -12,7 +12,7 @@ import html as html_module
 import json
 import re
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 # The ezmoney.com.tw server sets a session cookie on first hit and redirects
 # to the same URL; the second request (with cookie) returns the full page.
@@ -124,6 +124,88 @@ def parse_president_holdings(text: str) -> list[Holding]:
     return holdings
 
 
+def parse_president_meta(text: str) -> dict:
+    """Extract fund-level metadata from the same DataAsset JSON the holdings parser uses.
+
+    The DataAsset array has 9 entries keyed by AssetCode (NAV / OUT_UNIT /
+    P_UNIT / GD / ST / CASH / GDM / PAY / APAR). Each carries a Value, an
+    AssetName (display label), and an EditDate. We extract:
+      - as_of_date:        first non-empty EditDate (typically all 9 share the same)
+      - nav_total:         NAV.Value (基金淨資產)
+      - units_outstanding: OUT_UNIT.Value (流通在外單位數)
+      - p_unit:            P_UNIT.Value (每單位淨值)
+      - asset_breakdown:   {AssetName: {value, pct}} for every non-zero entry,
+                           pct computed against nav_total
+
+    Missing fields are simply omitted from the returned dict (no None placeholders).
+    Returns {} if DataAsset can't be parsed at all — silent fallback so a
+    metadata regression doesn't take down the holdings scrape.
+    """
+    m = _DATA_ASSET_RE.search(text)
+    if not m:
+        return {}
+    try:
+        asset_array = json.loads(html_module.unescape(m.group(1)))
+    except (json.JSONDecodeError, Exception):
+        return {}
+    if not isinstance(asset_array, list):
+        return {}
+
+    by_code = {e.get("AssetCode"): e for e in asset_array if isinstance(e, dict)}
+
+    meta: dict = {}
+
+    # as_of_date — prefer ST (equity holdings) timestamp, fall back to any EditDate
+    edit_date = None
+    if "ST" in by_code:
+        edit_date = by_code["ST"].get("EditDate")
+    if not edit_date:
+        for e in asset_array:
+            if e.get("EditDate"):
+                edit_date = e["EditDate"]
+                break
+    if edit_date:
+        meta["as_of_date"] = edit_date
+
+    nav_total = _safe_float(by_code.get("NAV", {}).get("Value")) if "NAV" in by_code else None
+    if nav_total is not None:
+        meta["nav_total"] = nav_total
+    units = _safe_float(by_code.get("OUT_UNIT", {}).get("Value")) if "OUT_UNIT" in by_code else None
+    if units is not None:
+        meta["units_outstanding"] = units
+    p_unit = _safe_float(by_code.get("P_UNIT", {}).get("Value")) if "P_UNIT" in by_code else None
+    if p_unit is not None:
+        meta["p_unit"] = p_unit
+
+    # Asset breakdown — each non-zero entry as {value, pct of NAV}.
+    breakdown: dict = {}
+    for entry in asset_array:
+        code = entry.get("AssetCode")
+        if code in {"NAV", "OUT_UNIT", "P_UNIT"}:  # totals, not categories
+            continue
+        val = _safe_float(entry.get("Value"))
+        if val is None or val == 0:
+            continue
+        name = entry.get("AssetName") or code
+        item = {"value": val}
+        if nav_total:
+            item["pct"] = round(val / nav_total * 100, 2)
+        breakdown[name] = item
+    if breakdown:
+        meta["asset_breakdown"] = breakdown
+
+    return meta
+
+
+def _safe_float(v):
+    if v is None:
+        return None
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
 class PresidentScraper(BaseScraper):
     """Scraper for 統一投信 ETF holdings (00981A).
 
@@ -135,11 +217,14 @@ class PresidentScraper(BaseScraper):
     default in requests) and let the session handle it.
     """
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         if ticker != "00981A":
             raise ValueError(
                 f"PresidentScraper only supports 00981A, got {ticker!r}. "
                 "Extend this scraper with a ticker → FundCode map to support more ETFs."
             )
         text = self.get(HOLDINGS_URL)
-        return parse_president_holdings(text)
+        return ScrapeResult(
+            holdings=parse_president_holdings(text),
+            fund_meta=parse_president_meta(text),
+        )

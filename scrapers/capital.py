@@ -22,7 +22,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 logger = logging.getLogger(__name__)
 
@@ -228,7 +228,7 @@ class CapitalScraper(BaseScraper):
     top-10 when no manual file is present. See docs/known-issues/capital-scraper.md.
     """
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         if ticker not in _TICKER_TO_ID:
             raise ValueError(
                 f"CapitalScraper supports {sorted(_TICKER_TO_ID)}, got {ticker!r}"
@@ -237,7 +237,12 @@ class CapitalScraper(BaseScraper):
         manual = find_latest_manual_xlsx(ticker)
         if manual is not None:
             logger.info("capital %s: using manual xlsx %s", ticker, manual.name)
-            return parse_capital_xlsx(manual.read_bytes())
+            # TODO: capital xlsx has an 投資組合 sheet with PCF metadata;
+            # add parser when we have a real-world xlsx fixture.
+            return ScrapeResult(
+                holdings=parse_capital_xlsx(manual.read_bytes()),
+                fund_meta={},
+            )
 
         logger.warning(
             "capital %s: top-10 only (no data/manual/capital_%s_*.xlsx found), "
@@ -246,4 +251,4 @@ class CapitalScraper(BaseScraper):
         )
         url = PORTFOLIO_URL.format(id=_TICKER_TO_ID[ticker])
         text = self.get(url)
-        return parse_capital_holdings(text)
+        return ScrapeResult(holdings=parse_capital_holdings(text), fund_meta={})

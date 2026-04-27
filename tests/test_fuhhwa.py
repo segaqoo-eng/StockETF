@@ -1,4 +1,4 @@
-from scrapers.fuhhwa import extract_date_from_detail, parse_fuhhwa_xlsx
+from scrapers.fuhhwa import extract_date_from_detail, parse_fuhhwa_xlsx, parse_fuhhwa_meta
 
 
 def test_extract_date_from_detail(fixture_path):
@@ -28,3 +28,20 @@ def test_parse_fuhhwa_xlsx(fixture_path):
     # Stock weights should sum near 100% (cash/derivatives make up the rest)
     total = sum(h.weight_pct for h in holdings)
     assert 95 <= total <= 101, f"weight sum {total} out of expected range"
+
+
+def test_parse_fuhhwa_meta(fixture_path):
+    """Top rows of the xlsx carry as_of_date / nav_total / units_outstanding / p_unit."""
+    content = fixture_path("fuhhwa_00991A.xlsx").read_bytes()
+    meta = parse_fuhhwa_meta(content)
+
+    # The fixture is dated 2026/04/24 per the user's earlier spec
+    assert meta.get("as_of_date") == "2026-04-24"
+    assert meta.get("nav_total") == 33_662_750_937.0
+    assert meta.get("units_outstanding") == 2_072_916_000.0
+    assert meta.get("p_unit") == 16.24
+
+
+def test_parse_fuhhwa_meta_corrupt_returns_empty():
+    """Garbage bytes → empty meta, not exception."""
+    assert parse_fuhhwa_meta(b"not an xlsx") == {}

@@ -44,12 +44,16 @@
 
 建議 **B 先做**，嫌不夠看再考慮 A。
 
-### 各 scraper 補抓 ETF metadata — **S** × 5 家
-**現況**：`payload.etfs[i]` 只有 `holdings_count`，沒有 NAV / 流通在外單位數 / 每單位淨值 / 資料更新時間。
+### 各 scraper 補抓 ETF metadata — **S** × 5 家（2/5 已實作）
+**標準 schema**：`payload.etfs[i].fund_meta = {as_of_date, nav_total, units_outstanding, p_unit, asset_breakdown}`，每家 scraper 抓得到什麼填什麼，缺的就 omit key。框架在 `ScrapeResult.fund_meta`。
 
-統一 `ezmoney.com.tw` 的 `<div id="DataAsset">` JSON 已經有這些欄位（NAV / OUT_UNIT / P_UNIT / EditTime），只是 parser 丟掉了。其他 4 家 scraper 也要對等加。
-
-加完後可以在 modal 標題旁顯示「資料截至 2026-04-27 15:33 · 基金規模 232 億 · 每單位淨值 27.74」。
+| Scraper | 狀態 | 抓到什麼 |
+|---|---|---|
+| president (統一) | ✅ | 5 欄位全套 + asset_breakdown 4 類（股票/現金/期貨保證金/應收付）|
+| fuhhwa (復華) | ✅ | as_of_date + nav_total + units_outstanding + p_unit |
+| yuanta (元大、含 0050/0056/00990A) | ⬜ TODO | 需 probe NUXT param map |
+| nomura (野村) | ⬜ TODO | 需 probe API response 上層欄位 |
+| capital (群益) | ⬜ TODO | SSR 沒、xlsx 投資組合 sheet 應該有 PCF metadata |
 
 ### Cross-table per-stock aggregate diff badge — **S**
 **現況**：diff 只在 ETF modal 內顯示。交叉表上的股票列沒有差異提示。

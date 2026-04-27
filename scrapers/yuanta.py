@@ -26,7 +26,7 @@ resolver handles both numeric literals and variable references for weights.
 import json
 import re
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 HOLDINGS_URL = "https://www.yuantaetfs.com/product/detail/{ticker}/ratio"
 
@@ -268,9 +268,11 @@ def parse_yuanta_holdings(text: str) -> list[Holding]:
 
 
 class YuantaScraper(BaseScraper):
-    """Scraper for Yuanta ETF holdings (0050, 0056)."""
+    """Scraper for Yuanta ETF holdings (0050, 0056, 00990A)."""
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         url = HOLDINGS_URL.format(ticker=ticker)
         text = self.get(url)
-        return parse_yuanta_holdings(text)
+        # TODO: extract NAV / units / as_of_date from the NUXT param map.
+        # The payload has them somewhere — needs a probe pass before adding.
+        return ScrapeResult(holdings=parse_yuanta_holdings(text), fund_meta={})

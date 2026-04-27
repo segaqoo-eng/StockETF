@@ -20,7 +20,7 @@ import re
 
 from openpyxl import load_workbook
 
-from scrapers.base import BaseScraper, Holding, classify_market
+from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 DETAIL_URL = "https://www.fhtrust.com.tw/ETF/etf_detail/{id}"
 EXCEL_URL = "https://www.fhtrust.com.tw/api/assetsExcel/{id}/{date}"
@@ -30,11 +30,25 @@ _TICKER_TO_ID = {
     "00991A": "ETF23",
 }
 
+_XLSX_HDR_STOCK_ID = "證券代號"  # alias used by the meta parser to know where data starts
+
 # Excel header row identifies the column layout
 _HDR_STOCK_ID = "證券代號"
 _HDR_STOCK_NAME = "證券名稱"
 _HDR_SHARES = "股數"
 _HDR_WEIGHT = "權重(%)"
+
+# Pre-header rows carry fund-level metadata as label/value pairs.
+# Layout (0-indexed): row 2 holds "日期: YYYY/MM/DD"; rows 3/4, 5/6, 7/8 are
+# label-then-value for nav / units / p_unit. We match by label substring so
+# row insertions or order shuffles in future xlsx generations don't break us.
+_META_LABELS = {
+    "nav_total":         "基金資產淨值",
+    "units_outstanding": "基金在外流通單位數",
+    "p_unit":            "基金每單位淨值",
+}
+_DATE_LABEL = "日期"
+_DATE_RE = re.compile(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})")
 
 
 def extract_date_from_detail(html: str, internal_id: str) -> str:
@@ -50,6 +64,60 @@ def extract_date_from_detail(html: str, internal_id: str) -> str:
             "page structure may have changed"
         )
     return m.group(1)
+
+
+def parse_fuhhwa_meta(content: bytes) -> dict:
+    """Extract fund-level metadata from the pre-header rows of the xlsx.
+
+    Returns {} on any parse failure — silent fallback so a metadata regression
+    doesn't take down the holdings scrape.
+    """
+    try:
+        wb = load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    except Exception:
+        return {}
+    if not wb.sheetnames:
+        return {}
+    ws = wb[wb.sheetnames[0]]
+    rows = list(ws.iter_rows(values_only=True))
+
+    meta: dict = {}
+
+    for i, row in enumerate(rows):
+        cell0 = row[0] if row and row[0] is not None else ""
+        text = str(cell0).strip()
+        if not text:
+            continue
+
+        # Date row: "日期: 2026/04/24"
+        if _DATE_LABEL in text:
+            m = _DATE_RE.search(text)
+            if m:
+                meta["as_of_date"] = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+
+        # Label rows precede their value row by 1
+        for key, label in _META_LABELS.items():
+            if text == label and i + 1 < len(rows):
+                next_row = rows[i + 1]
+                if next_row and next_row[0] is not None:
+                    val = _safe_float(next_row[0])
+                    if val is not None:
+                        meta[key] = val
+
+        # Stop at the holdings header — no metadata after this point
+        if text == _XLSX_HDR_STOCK_ID:
+            break
+
+    return meta
+
+
+def _safe_float(v):
+    if v is None:
+        return None
+    try:
+        return float(str(v).replace(",", ""))
+    except (TypeError, ValueError):
+        return None
 
 
 def parse_fuhhwa_xlsx(content: bytes) -> list[Holding]:
@@ -149,7 +217,7 @@ class FuhhwaScraper(BaseScraper):
     2-step fetch: detail page (date) → xlsx (holdings).
     """
 
-    def fetch(self, ticker: str) -> list[Holding]:
+    def fetch(self, ticker: str) -> ScrapeResult:
         if ticker not in _TICKER_TO_ID:
             raise ValueError(
                 f"FuhhwaScraper supports {sorted(_TICKER_TO_ID)}, got {ticker!r}"
@@ -160,4 +228,7 @@ class FuhhwaScraper(BaseScraper):
         date = extract_date_from_detail(detail_html, internal_id)
 
         xlsx_bytes = self.get_bytes(EXCEL_URL.format(id=internal_id, date=date))
-        return parse_fuhhwa_xlsx(xlsx_bytes)
+        return ScrapeResult(
+            holdings=parse_fuhhwa_xlsx(xlsx_bytes),
+            fund_meta=parse_fuhhwa_meta(xlsx_bytes),
+        )
