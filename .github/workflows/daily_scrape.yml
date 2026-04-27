@@ -1,0 +1,51 @@
+name: Daily ETF scrape
+
+# Twice-daily run aligned with Taiwan trading info release windows.
+# Cron is in UTC; Taiwan = UTC+8.
+on:
+  schedule:
+    - cron: '0 8 * * *'   # 16:00 Taiwan — primary slot, after most issuers update
+    - cron: '0 10 * * *'  # 18:00 Taiwan — retry slot for late publishers
+  workflow_dispatch:       # manual trigger from the Actions tab
+
+# The job needs to push back to main when data/ changes.
+permissions:
+  contents: write
+
+# Don't let two runs overlap (rare but possible if a manual trigger collides
+# with a scheduled one). Newer run wins; older is cancelled.
+concurrency:
+  group: daily-scrape
+  cancel-in-progress: true
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run scraper pipeline
+        run: python main.py
+
+      - name: Commit and push data updates if changed
+        run: |
+          if [[ -z "$(git status --porcelain data/)" ]]; then
+            echo "No data changes — skipping commit."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/
+          git commit -m "data: auto-update $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
