@@ -159,6 +159,89 @@ def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.00
     return result
 
 
+def compute_leaderboard(
+    today: dict,
+    baseline: dict,
+    *,
+    top_n: int = 5,
+    move_threshold: float = 0.05,
+) -> dict:
+    """Top movers across all ETFs over the today-vs-baseline window.
+
+    For each TW stock, sums per-ETF weight deltas across every ETF that holds
+    it in either snapshot. Stocks fully added in today (absent in baseline)
+    contribute today's weight as positive delta; fully removed stocks
+    contribute baseline's weight as negative delta.
+
+    `etf_count` counts only ETFs whose individual delta has |delta| >= move_threshold —
+    that's the "above noise" tally that makes a "consensus move" badge meaningful.
+    `total_delta` sums every per-ETF contribution regardless of threshold so the
+    magnitude isn't lost.
+
+    Returns:
+      {
+        "top_added":   [{stock_id, stock_name, etf_count, total_delta}, ... up to top_n],
+        "top_removed": [{stock_id, stock_name, etf_count, total_delta}, ... up to top_n],
+      }
+
+    ETFs whose baseline entry lacks etfs[i].holdings (pre-v1.5 snapshots)
+    are skipped — without this guard, every TW stock in those ETFs would
+    register as freshly added.
+    """
+    today_etfs = {e["ticker"]: e for e in today.get("etfs", [])}
+    baseline_etfs = {e["ticker"]: e for e in baseline.get("etfs", [])}
+
+    # stock_id -> {"name": ..., "total_delta": float, "etf_count": int}
+    aggregate: dict[str, dict] = {}
+
+    for ticker in today_etfs.keys() & baseline_etfs.keys():
+        today_etf = today_etfs[ticker]
+        baseline_etf = baseline_etfs[ticker]
+        if "holdings" not in today_etf or "holdings" not in baseline_etf:
+            continue
+
+        today_h = {h["stock_id"]: h for h in today_etf["holdings"] if h.get("market") == "TW"}
+        baseline_h = {h["stock_id"]: h for h in baseline_etf["holdings"] if h.get("market") == "TW"}
+
+        for sid in today_h.keys() | baseline_h.keys():
+            t = today_h.get(sid)
+            b = baseline_h.get(sid)
+            if t and b:
+                delta = t["weight_pct"] - b["weight_pct"]
+                name = t["stock_name"]
+            elif t:
+                delta = t["weight_pct"]            # newly held
+                name = t["stock_name"]
+            else:
+                delta = -b["weight_pct"]           # fully removed
+                name = b["stock_name"]
+
+            if delta == 0:
+                continue
+            entry = aggregate.setdefault(sid, {"name": name, "total_delta": 0.0, "etf_count": 0})
+            entry["total_delta"] += delta
+            if abs(delta) >= move_threshold:
+                entry["etf_count"] += 1
+
+    added = [
+        {"stock_id": sid, "stock_name": v["name"],
+         "etf_count": v["etf_count"], "total_delta": round(v["total_delta"], 4)}
+        for sid, v in aggregate.items()
+        if v["total_delta"] > 0 and v["etf_count"] > 0
+    ]
+    removed = [
+        {"stock_id": sid, "stock_name": v["name"],
+         "etf_count": v["etf_count"], "total_delta": round(v["total_delta"], 4)}
+        for sid, v in aggregate.items()
+        if v["total_delta"] < 0 and v["etf_count"] > 0
+    ]
+
+    added.sort(key=lambda x: (-x["total_delta"], -x["etf_count"]))
+    removed.sort(key=lambda x: (x["total_delta"], -x["etf_count"]))
+
+    return {"top_added": added[:top_n], "top_removed": removed[:top_n]}
+
+
 def write_payload(payload: dict, data_dir: str | Path = "data") -> None:
     """Write latest.json and today's snapshot to data/."""
     data_dir = Path(data_dir)

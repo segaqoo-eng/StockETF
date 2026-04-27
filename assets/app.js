@@ -22,6 +22,7 @@ function renderMarketBadge(market) {
 const state = {
   payload: null,
   diff: null,           // {ticker: {added, removed, changed}} or null on first-ever / fetch failure
+  leaderboard: null,    // {window_days, as_of_today, as_of_baseline, top_added, top_removed}
   minEtfs: 3,
   industry: "",
   search: "",
@@ -39,17 +40,22 @@ async function load() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.payload = await res.json();
 
-    // Diff is optional — fail silently so a missing/empty diff file never
-    // breaks the main view. First daily run + new format takes ~2 cycles
-    // before badges have meaningful data.
+    // Diff and leaderboard are optional — silent failure so a missing/empty
+    // file never breaks the main view. Both need ≥ 2 new-format snapshots
+    // before they have meaningful data.
     try {
       const diffRes = await fetch("data/latest_diff.json", { cache: "no-store" });
       if (diffRes.ok) state.diff = await diffRes.json();
+    } catch (_) { /* swallow */ }
+    try {
+      const lbRes = await fetch("data/leaderboard_7d.json", { cache: "no-store" });
+      if (lbRes.ok) state.leaderboard = await lbRes.json();
     } catch (_) { /* swallow */ }
 
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
     populateIndustryFilter();
     renderEtfChipBar();
+    renderLeaderboard();
     render();
   } catch (err) {
     document.getElementById("cross-holdings-table").innerHTML =
@@ -178,6 +184,57 @@ function toggleDetail(row) {
   detailRow.innerHTML = `<td colspan="4"><ul>${items}</ul></td>`;
   row.after(detailRow);
   state.expandedStockId = stockId;
+}
+
+// --- 過去 N 天 top-movers leaderboard ---
+
+function renderLeaderboard() {
+  const container = document.getElementById("leaderboard");
+  const lb = state.leaderboard;
+
+  // No baseline available yet (first daily-run cycles after the format change)
+  if (!lb || !lb.as_of_baseline || (lb.top_added.length === 0 && lb.top_removed.length === 0)) {
+    container.innerHTML = `
+      <div class="leaderboard-empty">
+        📈 過去 ${(lb && lb.window_days) || 7} 天動向
+        <span>資料累積中 — 需要 ≥ 2 天的新格式 snapshot 才會出現排行（每天 cron 會自動累積）</span>
+      </div>`;
+    return;
+  }
+
+  const renderList = (items, polarity) => {
+    if (items.length === 0) {
+      return `<li class="lb-empty">本期無顯著${polarity === "added" ? "加碼" : "減碼"}</li>`;
+    }
+    return items.map((it, i) => {
+      const sign = polarity === "added" ? "+" : "";
+      return `<li>
+        <span class="lb-rank">${i + 1}</span>
+        <span class="lb-stock"><b>${escapeHtml(it.stock_id)}</b> ${escapeHtml(it.stock_name)}</span>
+        <span class="lb-meta">
+          <span class="lb-count" title="${it.etf_count} 檔 ETF 同向異動">${it.etf_count} 檔</span>
+          <span class="lb-delta lb-${polarity}">${sign}${it.total_delta.toFixed(2)}%</span>
+        </span>
+      </li>`;
+    }).join("");
+  };
+
+  container.innerHTML = `
+    <div class="leaderboard-header">
+      📈 過去 ${lb.window_days} 天動向
+      <span class="leaderboard-window">${lb.as_of_baseline} → ${lb.as_of_today}</span>
+    </div>
+    <div class="leaderboard-grid">
+      <div class="lb-col lb-col-added">
+        <h3>🟢 加碼 TOP ${lb.top_added.length}</h3>
+        <ol>${renderList(lb.top_added, "added")}</ol>
+      </div>
+      <div class="lb-col lb-col-removed">
+        <h3>🔴 減碼 TOP ${lb.top_removed.length}</h3>
+        <ol>${renderList(lb.top_removed, "removed")}</ol>
+      </div>
+    </div>
+  `;
 }
 
 // --- Per-ETF holdings drill-down ---

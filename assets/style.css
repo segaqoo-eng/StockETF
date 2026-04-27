@@ -32,6 +32,27 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
+/* Top-movers leaderboard — first-screen highlights, FB-share friendly. */
+.leaderboard { margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }
+.leaderboard-empty { color: var(--text2); font-size: 13px; text-align: center; padding: 8px; }
+.leaderboard-empty span { display: block; margin-top: 4px; color: var(--text3); font-size: 11px; }
+.leaderboard-header { font-size: 14px; color: var(--text); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.leaderboard-window { font-size: 11px; color: var(--text3); font-family: var(--mono); }
+.leaderboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.lb-col h3 { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.lb-col ol { list-style: none; }
+.lb-col li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 6px 0; font-size: 13px; border-bottom: 1px solid rgba(48, 54, 61, 0.4); }
+.lb-col li:last-child { border-bottom: none; }
+.lb-col li.lb-empty { color: var(--text3); font-size: 12px; padding: 12px 0; text-align: center; grid-template-columns: 1fr; }
+.lb-rank { color: var(--text3); font-family: var(--mono); font-size: 12px; text-align: center; }
+.lb-stock b { font-family: var(--mono); color: var(--text); margin-right: 4px; }
+.lb-stock { color: var(--text2); }
+.lb-meta { display: flex; gap: 8px; align-items: center; font-size: 11px; }
+.lb-count { background: var(--bg3); color: var(--text2); padding: 1px 6px; border-radius: 4px; font-family: var(--mono); }
+.lb-delta { font-family: var(--mono); font-weight: 600; min-width: 60px; text-align: right; }
+.lb-delta.lb-added { color: var(--green); }
+.lb-delta.lb-removed { color: #f85149; }
+
 .filters { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }
 .filters label { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 8px; }
 .filters select, .filters input { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 6px; font-family: var(--sans); font-size: 13px; }

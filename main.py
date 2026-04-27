@@ -14,10 +14,12 @@ from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
 from scrapers.capital import CapitalScraper
 from scrapers.fuhhwa import FuhhwaScraper
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from normalizer import build_payload, write_payload, load_config, compute_diff
+from normalizer import build_payload, write_payload, load_config, compute_diff, compute_leaderboard
+
+LEADERBOARD_WINDOW_DAYS = 7
 
 TAIPEI = ZoneInfo("Asia/Taipei")
 
@@ -122,10 +124,56 @@ def main() -> int:
     print(f"\nWrote data/latest.json ({len(payload['etfs'])} ETFs, {len(payload['holdings'])} unique stocks)")
 
     write_diff(payload, Path("data"))
+    write_leaderboard(payload, Path("data"))
 
     if failures:
         print(f"Failures: {failures}")
     return 0
+
+
+def write_leaderboard(today_payload: dict, data_dir: Path, window_days: int = LEADERBOARD_WINDOW_DAYS) -> None:
+    """Compute the today-vs-N-days-ago top-movers leaderboard.
+
+    Picks the snapshot whose date is closest to (today - window_days) but
+    still within the window — if the user only has 3 days of snapshots,
+    we use the oldest one rather than skipping.
+    """
+    today_iso = datetime.now(TAIPEI).date().isoformat()
+    cutoff_iso = (datetime.now(TAIPEI).date() - timedelta(days=window_days)).isoformat()
+    snapshots_dir = data_dir / "snapshots"
+    baseline = _find_baseline_snapshot(snapshots_dir, today_iso, cutoff_iso)
+
+    if baseline is None:
+        result = {"window_days": window_days, "as_of_today": today_iso, "as_of_baseline": None,
+                  "top_added": [], "top_removed": []}
+        print(f"Leaderboard: no baseline snapshot in past {window_days} days; writing empty")
+    else:
+        baseline_payload = json.loads(baseline.read_text(encoding="utf-8"))
+        lb = compute_leaderboard(today_payload, baseline_payload)
+        result = {"window_days": window_days, "as_of_today": today_iso,
+                  "as_of_baseline": baseline.stem, **lb}
+        print(f"Leaderboard: {baseline.stem} → today "
+              f"({len(lb['top_added'])} added, {len(lb['top_removed'])} removed)")
+
+    (data_dir / "leaderboard_7d.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _find_baseline_snapshot(snapshots_dir: Path, today_iso: str, cutoff_iso: str) -> Path | None:
+    """Snapshot whose date is closest to cutoff_iso but strictly before today.
+
+    Preference order: an exact-cutoff match, else the oldest dated > cutoff,
+    else the oldest available before today.
+    """
+    if not snapshots_dir.exists():
+        return None
+    candidates = sorted(p for p in snapshots_dir.glob("*.json") if p.stem < today_iso)
+    if not candidates:
+        return None
+    in_window = [p for p in candidates if p.stem >= cutoff_iso]
+    if in_window:
+        return in_window[0]  # oldest within window = closest to cutoff
+    return candidates[-1]    # all candidates older than window — use the most recent of those
 
 
 def write_diff(today_payload: dict, data_dir: Path) -> None:
