@@ -63,6 +63,36 @@
 - **單一 commit 一個目的**
 - **v1 的 branch：`feat/mvp-v1`** — 還沒 merge 到 main，等 v1 完全穩定後再 merge
 
+## 當前任務：v1.5-active-etf
+
+### 分支
+`feat/v1.5-active-etf`（從 `feat/mvp-v1` 開）
+
+### 禁止動到的東西
+- `docs/` 下所有文件（除非使用者明確說要改）
+- `tests/fixtures/`（只能新增，不能刪現有）
+- `index.html` 整體結構（只改副標與 ETF 邊框色）
+
+### Scraper 開發規則（照 `docs/SCRAPING.md` 5-step）
+1. 先 `curl` / `requests.get` 確認 URL 回傳格式
+2. 解析出 `stock_id` + `stock_name` + `weight_pct` 三欄（外加 `shares`）
+3. 繼承 `BaseScraper`，實作 `fetch(ticker)` 回傳 `List[Holding]`
+4. 新增 fixture（離線 HTML / JSON）放 `tests/fixtures/`
+5. 新增 pytest，離線跑過才 commit
+
+### ETF 對照表（v1.5）
+| ETF | 發行商 | Scraper 檔案 |
+|---|---|---|
+| 0050 | 元大 | `yuanta.py` |
+| 00980A | 野村 | `nomura.py` |
+| 00981A | 統一 | `president.py`（rename 自 `capital.py`）|
+| 00982A | 群益 | `capital.py`（新建，名字釋出後重用）|
+| 00990A | 元大 | `yuanta.py` 或 `yuanta_active.py`（看 URL pattern 決定）|
+| 00991A | 復華 | `fuhhwa.py`（新建）|
+| 00992A | 群益 | `capital.py` |
+
+詳細階段與順序見 `docs/superpowers/specs/2026-04-24-v1.5-active-etf-focus.md`。
+
 ## 不要做的事（YAGNI / 範圍外）
 
 - ❌ 使用者帳號、留言系統（F6，被刻意排除）
