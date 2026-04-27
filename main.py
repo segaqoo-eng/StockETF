@@ -11,15 +11,15 @@ from pathlib import Path
 from scrapers.base import BaseScraper, Holding
 from scrapers.yuanta import YuantaScraper
 from scrapers.nomura import NomuraScraper
-from scrapers.capital import CapitalScraper
+from scrapers.president import PresidentScraper
 from normalizer import build_payload, write_payload, load_config
 
 INTER_REQUEST_DELAY_SEC = 2  # be polite to issuer sites
 
 SCRAPERS: dict[str, BaseScraper] = {
-    "yuanta":  YuantaScraper(),
-    "nomura":  NomuraScraper(),
-    "capital": CapitalScraper(),
+    "yuanta":    YuantaScraper(),
+    "nomura":    NomuraScraper(),
+    "president": PresidentScraper(),
 }
 
 

@@ -1,4 +1,4 @@
-"""Capital / 統一投信 (Uni-President Asset Management) holdings scraper.
+"""President / 統一投信 (Uni-President Asset Management) holdings scraper.
 
 Supports: 00981A (統一台股增長 active ETF).
 Data source: HTML page with holdings embedded in a `data-content` attribute
@@ -25,7 +25,7 @@ _DATA_ASSET_RE = re.compile(r'id="DataAsset"\s+data-content="([^"]+)"')
 _STOCK_ASSET_CODE = "ST"
 
 
-def parse_capital_holdings(text: str) -> list[Holding]:
+def parse_president_holdings(text: str) -> list[Holding]:
     """Parse 統一投信 holdings data embedded in the ezmoney.com.tw fund page.
 
     The page embeds holdings as a JSON array in the data-content attribute of
@@ -37,7 +37,7 @@ def parse_capital_holdings(text: str) -> list[Holding]:
     m = _DATA_ASSET_RE.search(text)
     if not m:
         raise ValueError(
-            "Capital parser: <div id='DataAsset'> not found — "
+            "President parser: <div id='DataAsset'> not found — "
             "page structure may have changed"
         )
 
@@ -46,13 +46,13 @@ def parse_capital_holdings(text: str) -> list[Holding]:
         asset_array = json.loads(raw_json)
     except (json.JSONDecodeError, Exception) as exc:
         raise ValueError(
-            "Capital parser: DataAsset content is not valid JSON — "
+            "President parser: DataAsset content is not valid JSON — "
             "page structure may have changed"
         ) from exc
 
     if not isinstance(asset_array, list):
         raise ValueError(
-            "Capital parser: DataAsset JSON is not a list — "
+            "President parser: DataAsset JSON is not a list — "
             "page structure may have changed"
         )
 
@@ -65,14 +65,14 @@ def parse_capital_holdings(text: str) -> list[Holding]:
 
     if stock_entry is None:
         raise ValueError(
-            f"Capital parser: no entry with AssetCode='{_STOCK_ASSET_CODE}' found — "
+            f"President parser: no entry with AssetCode='{_STOCK_ASSET_CODE}' found — "
             "page structure may have changed"
         )
 
     details = stock_entry.get("Details")
     if not isinstance(details, list):
         raise ValueError(
-            "Capital parser: stock entry has no Details list — "
+            "President parser: stock entry has no Details list — "
             "page structure may have changed"
         )
 
@@ -83,7 +83,7 @@ def parse_capital_holdings(text: str) -> list[Holding]:
 
         if not stock_id or not stock_name:
             raise ValueError(
-                f"Capital parser: missing DetailCode or DetailName in row {row!r} — "
+                f"President parser: missing DetailCode or DetailName in row {row!r} — "
                 "page structure may have changed"
             )
 
@@ -92,7 +92,7 @@ def parse_capital_holdings(text: str) -> list[Holding]:
             shares = int(float(str(raw_shares).replace(",", "")))
         except (ValueError, TypeError) as exc:
             raise ValueError(
-                f"Capital parser: cannot parse Share '{raw_shares}' "
+                f"President parser: cannot parse Share '{raw_shares}' "
                 f"for {stock_id} — page structure may have changed"
             ) from exc
 
@@ -101,7 +101,7 @@ def parse_capital_holdings(text: str) -> list[Holding]:
             weight_pct = float(str(raw_weight).replace(",", ""))
         except (ValueError, TypeError) as exc:
             raise ValueError(
-                f"Capital parser: cannot parse NavRate '{raw_weight}' "
+                f"President parser: cannot parse NavRate '{raw_weight}' "
                 f"for {stock_id} — page structure may have changed"
             ) from exc
 
@@ -116,14 +116,14 @@ def parse_capital_holdings(text: str) -> list[Holding]:
 
     if not holdings:
         raise ValueError(
-            "Capital parser: no stock holdings extracted — "
+            "President parser: no stock holdings extracted — "
             "page structure may have changed or no entries in Details"
         )
 
     return holdings
 
 
-class CapitalScraper(BaseScraper):
+class PresidentScraper(BaseScraper):
     """Scraper for 統一投信 ETF holdings (00981A).
 
     The ezmoney.com.tw server requires a valid session cookie; BaseScraper's
@@ -137,8 +137,8 @@ class CapitalScraper(BaseScraper):
     def fetch(self, ticker: str) -> list[Holding]:
         if ticker != "00981A":
             raise ValueError(
-                f"CapitalScraper only supports 00981A, got {ticker!r}. "
+                f"PresidentScraper only supports 00981A, got {ticker!r}. "
                 "Extend this scraper with a ticker → FundCode map to support more ETFs."
             )
         text = self.get(HOLDINGS_URL)
-        return parse_capital_holdings(text)
+        return parse_president_holdings(text)

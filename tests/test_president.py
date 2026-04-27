@@ -1,9 +1,9 @@
-from scrapers.capital import parse_capital_holdings
+from scrapers.president import parse_president_holdings
 
 
-def test_parse_capital_00981A(fixture_path):
+def test_parse_president_00981A(fixture_path):
     text = fixture_path("capital_00981A.html").read_text(encoding="utf-8")
-    holdings = parse_capital_holdings(text)
+    holdings = parse_president_holdings(text)
 
     # 00981A is an active ETF; active ETFs typically hold 30-100 stocks
     assert 30 <= len(holdings) <= 100, f"expected 30-100 holdings, got {len(holdings)}"
