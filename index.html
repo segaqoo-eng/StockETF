@@ -21,7 +21,8 @@
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="cross">交叉持股</button>
     <button class="tab-btn" data-tab="etfs">ETF 總覽</button>
-    <button class="tab-btn" data-tab="changes">持股變化</button>
+    <button class="tab-btn" data-tab="changes">各 ETF 持股變化</button>
+    <button class="tab-btn" data-tab="consensus">共識加減碼</button>
   </nav>
 
   <main class="container">
@@ -49,9 +50,17 @@
     <section id="tab-changes" class="tab-panel">
       <div class="changes-intro">
         📊 各檔 ETF 在最近一次比對期間內的<b>持股權重變動</b>—新進、移除、加減碼。
-        <small>顯示的是 [持股權重 %] 的變動（<b>不是股價漲跌</b>）。每張卡可獨立展開。</small>
+        <small>顯示的是 [持股權重 %] 的變動（<b>不是股價漲跌</b>）。每張卡可獨立展開；點任一股票看歷史走勢。</small>
       </div>
       <div id="changes-list" class="etf-overview"></div>
+    </section>
+
+    <section id="tab-consensus" class="tab-panel">
+      <div class="changes-intro">
+        🎯 過去 N 天被「多家 ETF 同時加碼」或「同時減碼」最多的個股 — 共識度愈高訊號愈強。
+        <small>「N 檔」= 同向異動的 ETF 數；「+X.XX%」= 該股票在所有 ETF 累計的<b>權重變化</b>（不是股價漲跌）。</small>
+      </div>
+      <div id="consensus-panel"></div>
     </section>
   </main>
 

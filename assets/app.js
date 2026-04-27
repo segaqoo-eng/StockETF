@@ -61,6 +61,7 @@ async function load() {
     renderEtfChipBar();
     renderEtfOverview();
     renderChanges();
+    renderConsensus();
     render();
 
     applyHash();  // honour deep-link hash on first paint
@@ -189,7 +190,59 @@ function toggleDetail(row) {
   state.expandedStockId = stockId;
 }
 
-// --- 持股變化 tab — per-ETF added/removed/changed breakdown ---
+// --- 共識加減碼 tab — cross-ETF top movers (was the original leaderboard, brought back) ---
+
+function renderConsensus() {
+  const container = document.getElementById("consensus-panel");
+  const lb = state.leaderboard;
+
+  if (!lb || !lb.as_of_baseline || (lb.top_added.length === 0 && lb.top_removed.length === 0)) {
+    container.innerHTML = `
+      <div class="leaderboard-empty">
+        🎯 過去 ${(lb && lb.window_days) || 7} 天 共識加減碼排行
+        <span>資料累積中 — 需要 ≥ 2 天的快照才會出現排行</span>
+      </div>`;
+    return;
+  }
+
+  const renderList = (items, polarity) => {
+    if (items.length === 0) {
+      return `<li class="lb-empty">本期無顯著共識${polarity === "added" ? "加碼" : "減碼"}</li>`;
+    }
+    return items.map((it, i) => {
+      const sign = polarity === "added" ? "+" : "";
+      return `<li>
+        <span class="lb-rank">${i + 1}</span>
+        <span class="lb-stock"><b>${escapeHtml(it.stock_id)}</b> ${escapeHtml(it.stock_name)}</span>
+        <span class="lb-meta">
+          <span class="lb-count" title="${it.etf_count} 檔 ETF 同向異動">${it.etf_count} 檔</span>
+          <span class="lb-delta lb-${polarity}">${sign}${it.total_delta.toFixed(2)}%</span>
+        </span>
+      </li>`;
+    }).join("");
+  };
+
+  container.innerHTML = `
+    <section class="leaderboard">
+      <div class="leaderboard-header">
+        🎯 過去 ${lb.window_days} 天 跨 ETF 共識
+        <span class="leaderboard-window">${lb.as_of_baseline} → ${lb.as_of_today}</span>
+      </div>
+      <div class="leaderboard-grid">
+        <div class="lb-col lb-col-added">
+          <h3>🟢 共識加碼 TOP ${lb.top_added.length}</h3>
+          <ol>${renderList(lb.top_added, "added")}</ol>
+        </div>
+        <div class="lb-col lb-col-removed">
+          <h3>🔴 共識減碼 TOP ${lb.top_removed.length}</h3>
+          <ol>${renderList(lb.top_removed, "removed")}</ol>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// --- 各 ETF 持股變化 tab — per-ETF added/removed/changed breakdown ---
 
 function renderChanges() {
   const root = document.getElementById("changes-list");
@@ -562,7 +615,7 @@ function activateTab(name) {
 }
 
 // Whitelist so an unrecognised hash doesn't accidentally activate a removed tab.
-const VALID_TABS = new Set(["cross", "etfs", "changes"]);
+const VALID_TABS = new Set(["cross", "etfs", "changes", "consensus"]);
 
 function applyHash() {
   const hash = location.hash.slice(1);  // strip leading #
