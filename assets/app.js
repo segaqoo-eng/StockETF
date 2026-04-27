@@ -228,7 +228,7 @@ function buildChangesCardHtml(etf, byEtf) {
       summaryNote = `<span class="card-count">${counts.join(" · ")}</span>`;
       body = `<div class="card-body">
         ${renderChangesAddRemoveSection("🆕 新進", "added", diff.added, "weight_pct")}
-        ${renderChangesAddRemoveSection("❌ 移除", "removed", diff.removed, "weight_pct", "昨日權重")}
+        ${renderChangesAddRemoveSection("❌ 移除", "removed", diff.removed, "weight_pct", "前次權重")}
         ${renderChangesChangedSection(diff.changed)}
       </div>`;
     }
@@ -273,7 +273,7 @@ function renderChangesChangedSection(items) {
     return `<li>
       <b>${escapeHtml(c.stock_id)}</b>
       <span class="ch-name">${escapeHtml(c.stock_name)}</span>
-      <span class="ch-trans">${c.weight_yesterday.toFixed(2)}% → ${c.weight_today.toFixed(2)}%</span>
+      <span class="ch-trans" title="前次 → 本次">${c.weight_prev.toFixed(2)}% → ${c.weight_now.toFixed(2)}%</span>
       <span class="diff-badge diff-${up ? "up" : "down"}">${up ? "▲" : "▼"} ${sign}${c.delta.toFixed(2)}</span>
     </li>`;
   }).join("");
@@ -355,7 +355,7 @@ function buildEtfCardHtml(etf) {
       const up = change.delta > 0;
       const sign = up ? "+" : "";
       badges.push(
-        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="昨日 ${change.weight_yesterday.toFixed(2)}% → 今日 ${change.weight_today.toFixed(2)}%">` +
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="前次 ${change.weight_prev.toFixed(2)}% → 本次 ${change.weight_now.toFixed(2)}%">` +
         `${up ? "▲" : "▼"} ${sign}${change.delta.toFixed(2)}%</span>`
       );
     }
@@ -375,7 +375,7 @@ function buildEtfCardHtml(etf) {
     ).join("");
     removedSection = `
       <div class="diff-removed-section">
-        <h3>❌ 本日移除（${diff.removed.length} 檔，昨日權重）</h3>
+        <h3>❌ 本期移除（${diff.removed.length} 檔，前次權重）</h3>
         <ul>${items}</ul>
       </div>`;
   }

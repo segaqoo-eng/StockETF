@@ -64,8 +64,8 @@ def test_weight_change_above_threshold():
     assert len(diff["0050"]["changed"]) == 1
     ch = diff["0050"]["changed"][0]
     assert ch["stock_id"] == "2330"
-    assert ch["weight_today"] == 49.20
-    assert ch["weight_yesterday"] == 48.50
+    assert ch["weight_now"] == 49.20
+    assert ch["weight_prev"] == 48.50
     assert abs(ch["delta"] - 0.70) < 1e-9
 
 

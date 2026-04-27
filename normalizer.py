@@ -158,8 +158,8 @@ def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.00
             changed.append({
                 "stock_id": sid,
                 "stock_name": t["stock_name"],
-                "weight_today": t["weight_pct"],
-                "weight_yesterday": y["weight_pct"],
+                "weight_now": t["weight_pct"],
+                "weight_prev": y["weight_pct"],
                 "delta": round(delta, 4),
             })
 
