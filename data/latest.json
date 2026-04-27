@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-27T18:00:10+08:00",
+  "updated_at": "2026-04-27T18:10:19+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -321,11 +321,11 @@
           "market": "TW"
         },
         {
-          "stock_id": "\"2395\")",
+          "stock_id": "2395",
           "stock_name": "研華",
           "weight_pct": 0.19,
           "shares": 8855256,
-          "market": "OTHER"
+          "market": "TW"
         },
         {
           "stock_id": "4904",
@@ -3797,6 +3797,18 @@
           "etf": "0050",
           "weight_pct": 0.24,
           "shares": 80909083
+        }
+      ]
+    },
+    {
+      "stock_id": "2395",
+      "stock_name": "研華",
+      "industry": "",
+      "held_by": [
+        {
+          "etf": "0050",
+          "weight_pct": 0.19,
+          "shares": 8855256
         }
       ]
     },
