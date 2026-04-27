@@ -14,6 +14,10 @@
     <div class="header-sub">主動式 ETF 交叉持股分析（+ 0050 對照） · 更新於 <b id="updated-at">—</b></div>
   </header>
 
+  <nav id="etf-chip-bar" class="etf-chip-bar" aria-label="ETF 列表，點選查看持股明細">
+    <span class="loading">載入中…</span>
+  </nav>
+
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="cross">交叉持股</button>
     <button class="tab-btn" data-tab="etfs" disabled title="v2 規劃中">ETF 總覽</button>
@@ -43,6 +47,16 @@
     <p>資訊僅供參考，不構成投資建議。資料來源：各 ETF 發行商官網。</p>
     <p><a href="https://github.com/your-user/StockETF" target="_blank" rel="noopener">GitHub 原始碼</a></p>
   </footer>
+
+  <div id="etf-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="etf-modal-title">
+    <div id="etf-modal-dialog" class="modal-dialog">
+      <header class="modal-header">
+        <h2 id="etf-modal-title"></h2>
+        <button id="etf-modal-close" class="modal-close" aria-label="關閉">×</button>
+      </header>
+      <div id="etf-modal-body" class="modal-body"></div>
+    </div>
+  </div>
 
   <script src="assets/app.js"></script>
 </body>

@@ -34,10 +34,13 @@ async function load() {
     state.payload = await res.json();
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
     populateIndustryFilter();
+    renderEtfChipBar();
     render();
   } catch (err) {
     document.getElementById("cross-holdings-table").innerHTML =
       `<p class="loading">載入資料失敗：${escapeHtml(err.message)}</p>`;
+    document.getElementById("etf-chip-bar").innerHTML =
+      `<span class="loading">ETF 列表載入失敗</span>`;
   }
 }
 
@@ -162,7 +165,63 @@ function toggleDetail(row) {
   state.expandedStockId = stockId;
 }
 
-// Wire filter controls
+// --- Per-ETF holdings drill-down ---
+
+function renderEtfChipBar() {
+  const bar = document.getElementById("etf-chip-bar");
+  // Sort by ticker so the chip order is stable across reloads regardless of
+  // payload.etfs ordering.
+  const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  bar.innerHTML = sortedEtfs.map(e => `
+    <button type="button" class="etf-chip ${etfBorderClass(e.ticker)}" data-ticker="${escapeHtml(e.ticker)}">
+      <span class="etf-chip-ticker">${escapeHtml(e.ticker)}</span>
+      <span class="etf-chip-name">${escapeHtml(e.name)}</span>
+    </button>
+  `).join("");
+  bar.querySelectorAll(".etf-chip").forEach(btn => {
+    btn.addEventListener("click", () => openEtfModal(btn.dataset.ticker));
+  });
+}
+
+function openEtfModal(ticker) {
+  const etf = state.payload.etfs.find(e => e.ticker === ticker);
+  if (!etf) return;
+
+  // Defensive sort by weight desc — most scrapers return that order, but
+  // don't rely on it.
+  const holdings = [...(etf.holdings || [])].sort((a, b) => b.weight_pct - a.weight_pct);
+
+  const rows = holdings.map(h => `
+    <tr>
+      <td><b>${escapeHtml(h.stock_id)}</b></td>
+      <td>${escapeHtml(h.stock_name)}${renderMarketBadge(h.market)}</td>
+      <td class="num weight">${h.weight_pct.toFixed(2)}%</td>
+      <td class="num">${Number(h.shares).toLocaleString()}</td>
+    </tr>
+  `).join("");
+
+  document.getElementById("etf-modal-dialog").className =
+    `modal-dialog ${etfBorderClass(etf.ticker)}`;
+  document.getElementById("etf-modal-title").innerHTML =
+    `<span class="ticker">${escapeHtml(etf.ticker)}</span>${escapeHtml(etf.name)}` +
+    `<span class="modal-subtitle">· ${etf.holdings_count} 檔持股</span>`;
+  document.getElementById("etf-modal-body").innerHTML = `
+    <table class="etf-holdings">
+      <thead><tr>
+        <th>代號</th><th>名稱</th><th class="num">權重</th><th class="num">股數</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+  document.getElementById("etf-modal").classList.remove("hidden");
+}
+
+function closeEtfModal() {
+  document.getElementById("etf-modal").classList.add("hidden");
+}
+
+// --- Wire controls ---
+
 document.getElementById("filter-min-etfs").addEventListener("change", e => {
   state.minEtfs = Number(e.target.value);
   render();
@@ -174,6 +233,17 @@ document.getElementById("filter-industry").addEventListener("change", e => {
 document.getElementById("filter-search").addEventListener("input", e => {
   state.search = e.target.value.trim();
   render();
+});
+
+document.getElementById("etf-modal-close").addEventListener("click", closeEtfModal);
+document.getElementById("etf-modal").addEventListener("click", e => {
+  // Close on backdrop click but not on dialog click.
+  if (e.target.id === "etf-modal") closeEtfModal();
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !document.getElementById("etf-modal").classList.contains("hidden")) {
+    closeEtfModal();
+  }
 });
 
 load();
