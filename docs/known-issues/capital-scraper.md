@@ -1,35 +1,63 @@
-# 群益 scraper 已知限制
+# 群益 scraper — 完整持股操作手冊
 
-## 問題
+## 背景：為什麼需要手動 xlsx
 
-`capitalfund.com.tw` 的完整持股 JSON 存於內網 API（`125.227.3.107`），外網無法存取。SSR HTML 僅提供前 10 大持股；客戶端「展開全部」按鈕觸發的 fetch 走的是無法從外部到達的 endpoint。
+`capitalfund.com.tw` 完整持股 JSON 存於內網 API（`125.227.3.107`），外網無法存取。SSR HTML 僅 render 前 10 大持股；`/JsonData/Hourly/ETFBuyback/{fundId}_{ts}.json` 的 mapping 已過期 3 個月（檔案被 rotate 但 mapping 沒更新）。
 
-## 現況
+JS bundle 內 `exportEtfPortfolio()` 是 client-side SheetJS 動態組 xlsx，沒對應 server URL 可抓。
 
-`scrapers/capital.py` 目前只抓 SSR top-10（約佔總權重 60-70%）。
+→ **解法**：使用者手動下載官網 xlsx，scraper 優先讀本地檔。
 
-影響範圍：
-- 00982A 主動群益台灣強棒（總共約 58 檔，抓到 10 檔）
-- 00992A 主動群益科技創新（總共約 41 檔，抓到 10 檔）
+## 操作流程
 
-跨持股分析仍可運作（top-10 通常是經理人最重押的部位，訊號最強），但完整資料還是要靠後續升級。
+每隔幾天（建議週末或重大持股調整公告後），手動更新 xlsx：
 
-## 未來改進選項
+### 1. 從官網下載
 
-- **選項 A**：找到 `FileMapping.json` 正確路徑後直接 fetch JSON  
-  pattern: `/JsonData/Hourly/ETFBuyback/{fundId}_{timestamp}.json`  
-  目前 mapping 內的時間戳已過期 3 個月（檔案被 rotate 但 mapping 沒更新）
-- **選項 B**：用 Playwright 跑真實瀏覽器，等 Angular hydration 完成後抓 DOM  
-  缺點：跑爬蟲變重，破壞 fixture 離線測試的單純性
-- **選項 C**：使用者手動下載 xlsx 放到 `data/manual/capital_{ticker}.xlsx`，scraper 優先讀本地檔，沒有才 fallback 到 SSR top-10  
-  優點：完全可控；缺點：失去自動化
+| ETF | URL |
+|---|---|
+| 00982A | https://www.capitalfund.com.tw/etf/product/detail/399/portfolio |
+| 00992A | https://www.capitalfund.com.tw/etf/product/detail/500/portfolio |
 
-## Discovery 中間產物（未 commit；在 `tmp/`）
+進入頁面，點「**下載資料 ⬇**」按鈕（在表格右上方），會下載一個 `xxxxxx.xlsx`。
 
-下次有人想接續找完整資料來源，可以從這些抽出來的 bundle 開始看：
+### 2. 改名 + 放到 `data/manual/`
 
-- `tmp/main.js`（2.4 MB Angular 主 bundle）
-- `tmp/chunk_44.js`、`tmp/chunk_494.js`（portfolio + buyback 元件）
-- `tmp/file_mapping.json`（過期 mapping，可觀察 URL pattern）
+檔名格式：`capital_{ticker}_{YYYYMMDD}.xlsx`
 
-這些檔案在 `.gitignore` 的 `tmp/` 規則內，不會被 commit；要重抓就重跑 discovery script。
+範例：
+```
+data/manual/capital_00982A_20260427.xlsx
+data/manual/capital_00992A_20260427.xlsx
+```
+
+日期用「資料日期」（xlsx 內第三行 `日期: 2026/04/24` 那個），不是下載日期。
+
+### 3. commit + push
+
+```bash
+git add data/manual/
+git commit -m "data: refresh capital manual xlsx (YYYY-MM-DD)"
+git push
+```
+
+下次（手動 trigger 或排程）執行 `python main.py` 時，scraper 自動讀最新 xlsx，full ~50 檔持股就會出現在 `data/latest.json` 與前端 modal。
+
+## 行為細節
+
+- **找檔邏輯**：`scrapers/capital.py: find_latest_manual_xlsx(ticker)` 撈 `data/manual/capital_{ticker}_*.xlsx`，取**檔名 YYYYMMDD 最大**的那個
+- **xlsx 不存在** → 自動 fallback 到 SSR top-10 + log warning
+- **xlsx 損毀** → raise ValueError → main.py per-ETF fallback 會用前一天的 `latest.json`（不會破整支 build）
+- **多支 ETF 各自獨立** — 00982A 有 xlsx 但 00992A 沒有 → 00982A 完整、00992A top-10
+- **沒上限頻率**：xlsx 一旦放著就會一直被讀，直到你放更新的；30 天前的 xlsx 也照吃，由你自己負責新鮮度
+
+## 未來進一步自動化選項
+
+- **選項 B（廢案）**：用 Playwright 跑真實瀏覽器、等 hydration → 太重，破壞 fixture 離線測試慣例
+- **選項 D**：寫腳本固定週末用 selenium-headless 自動跑 xlsx 下載 + 自動 commit。比 Playwright 輕但仍需 browser binary。如果手動流程嫌煩再考慮
+
+## 相關檔案
+
+- `scrapers/capital.py` — 完整實作
+- `tests/test_capital.py` — xlsx parser + 檔案 picker 單元測試
+- `data/manual/.gitkeep` — 確保目錄被 git 追蹤
