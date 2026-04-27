@@ -28,6 +28,7 @@ const state = {
   diff: null,           // {as_of_today, as_of_baseline, by_etf} or null on first-ever / fetch failure
   leaderboard: null,
   history: null,        // {stock_id: {ticker: [{date, weight}]}}; per-stock sparkline source
+  prices: null,         // {date, prices: {stock_id: {close, change, change_pct}}}; today's close
   minEtfs: 3,
   industry: "",
   search: "",
@@ -54,6 +55,10 @@ async function load() {
     try {
       const histRes = await fetch("data/history_per_stock.json", { cache: "no-store" });
       if (histRes.ok) state.history = await histRes.json();
+    } catch (_) { /* swallow */ }
+    try {
+      const pricesRes = await fetch("data/prices_today.json", { cache: "no-store" });
+      if (pricesRes.ok) state.prices = await pricesRes.json();
     } catch (_) { /* swallow */ }
 
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
@@ -98,6 +103,7 @@ function render() {
     return;
   }
 
+  const priceDate = (state.prices && state.prices.date) || "";
   const html = `
     <table class="cross">
       <thead>
@@ -106,6 +112,7 @@ function render() {
           <th>產業</th>
           <th class="center">被幾檔 ETF 持有</th>
           <th class="num">最高權重</th>
+          <th class="num" title="今日盤後">收盤 / 漲跌${priceDate ? ` <span class="th-date">(${priceDate.slice(5)})</span>` : ""}</th>
         </tr>
       </thead>
       <tbody>
@@ -140,8 +147,21 @@ function renderRow(h) {
       <td>${escapeHtml(h.industry || "—")}</td>
       <td class="center"><span class="count-badge">${h.held_by.length}</span></td>
       <td class="num weight">${maxWeight.toFixed(2)}%</td>
+      <td class="num">${renderPriceCell(h.stock_id)}</td>
     </tr>
   `;
+}
+
+function renderPriceCell(stockId) {
+  const p = state.prices && state.prices.prices && state.prices.prices[stockId];
+  if (!p) return `<span class="price-na">—</span>`;
+  const up = p.change > 0;
+  const down = p.change < 0;
+  const cls = up ? "price-up" : down ? "price-down" : "price-flat";
+  const arrow = up ? "▲" : down ? "▼" : "·";
+  const sign = up ? "+" : "";
+  return `<span class="price-close">${p.close.toLocaleString()}</span>` +
+         ` <span class="price-change ${cls}">${arrow}${sign}${p.change_pct.toFixed(2)}%</span>`;
 }
 
 function escapeHtml(s) {

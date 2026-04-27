@@ -127,6 +127,16 @@ table.cross tbody tr:hover { background: var(--bg3); }
 .count-badge { display: inline-block; min-width: 28px; padding: 2px 8px; background: rgba(63, 185, 80, 0.15); color: var(--green); border-radius: 12px; font-family: var(--mono); font-weight: 600; }
 .weight { color: var(--gold); font-weight: 600; }
 
+/* Cross-table 「收盤 / 漲跌」 column. Filled from data/prices_today.json,
+   "—" when the stock isn't on TWSE or TPEx (e.g. ETF tickers held by funds). */
+.cross th.num .th-date { font-size: var(--fs-xs); color: var(--text3); font-family: var(--mono); margin-left: 4px; font-weight: normal; text-transform: none; letter-spacing: 0; }
+.price-close { font-family: var(--mono); color: var(--text); }
+.price-change { font-family: var(--mono); font-size: var(--fs-sm); margin-left: 6px; }
+.price-up   { color: var(--green); }
+.price-down { color: #f85149; }
+.price-flat { color: var(--text3); }
+.price-na   { color: var(--text3); }
+
 tr.detail td { background: var(--bg); padding: 16px 24px; }
 tr.detail ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px 12px; }
 tr.detail li { display: flex; justify-content: space-between; font-size: var(--fs-base); padding: 6px 10px; }

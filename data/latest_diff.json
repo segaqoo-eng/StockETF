@@ -28,13 +28,6 @@
           "delta": 0.2
         },
         {
-          "stock_id": "2308",
-          "stock_name": "台達電子工業",
-          "weight_now": 5.28,
-          "weight_prev": 5.47,
-          "delta": -0.19
-        },
-        {
           "stock_id": "2383",
           "stock_name": "台光電子材料",
           "weight_now": 3.94,
@@ -42,18 +35,18 @@
           "delta": 0.19
         },
         {
+          "stock_id": "2308",
+          "stock_name": "台達電子工業",
+          "weight_now": 5.28,
+          "weight_prev": 5.47,
+          "delta": -0.19
+        },
+        {
           "stock_id": "8299",
           "stock_name": "群聯電子",
           "weight_now": 1.91,
           "weight_prev": 1.76,
           "delta": 0.15
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "weight_now": 3.09,
-          "weight_prev": 3.23,
-          "delta": -0.14
         },
         {
           "stock_id": "3665",
@@ -67,6 +60,13 @@
           "stock_name": "穎崴科技",
           "weight_now": 2.46,
           "weight_prev": 2.6,
+          "delta": -0.14
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "weight_now": 3.09,
+          "weight_prev": 3.23,
           "delta": -0.14
         },
         {
@@ -84,31 +84,10 @@
           "delta": 0.12
         },
         {
-          "stock_id": "8210",
-          "stock_name": "勤誠興業",
-          "weight_now": 2.17,
-          "weight_prev": 2.27,
-          "delta": -0.1
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "weight_now": 1.52,
-          "weight_prev": 1.62,
-          "delta": -0.1
-        },
-        {
           "stock_id": "2344",
           "stock_name": "華邦電子",
           "weight_now": 1.88,
           "weight_prev": 1.78,
-          "delta": 0.1
-        },
-        {
-          "stock_id": "6805",
-          "stock_name": "富世達",
-          "weight_now": 1.59,
-          "weight_prev": 1.49,
           "delta": 0.1
         },
         {
@@ -119,11 +98,39 @@
           "delta": -0.1
         },
         {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "weight_now": 1.52,
+          "weight_prev": 1.62,
+          "delta": -0.1
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達",
+          "weight_now": 1.59,
+          "weight_prev": 1.49,
+          "delta": 0.1
+        },
+        {
+          "stock_id": "8210",
+          "stock_name": "勤誠興業",
+          "weight_now": 2.17,
+          "weight_prev": 2.27,
+          "delta": -0.1
+        },
+        {
           "stock_id": "6223",
           "stock_name": "旺矽科技",
           "weight_now": 2.4,
           "weight_prev": 2.31,
           "delta": 0.09
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力熱處理工業",
+          "weight_now": 1.22,
+          "weight_prev": 1.3,
+          "delta": -0.08
         },
         {
           "stock_id": "3264",
@@ -138,13 +145,6 @@
           "weight_now": 2.25,
           "weight_prev": 2.17,
           "delta": 0.08
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力熱處理工業",
-          "weight_now": 1.22,
-          "weight_prev": 1.3,
-          "delta": -0.08
         },
         {
           "stock_id": "5274",
@@ -189,6 +189,13 @@
           "delta": 0.04
         },
         {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "weight_now": 3.17,
+          "weight_prev": 3.2,
+          "delta": -0.03
+        },
+        {
           "stock_id": "2345",
           "stock_name": "智邦科技",
           "weight_now": 3.14,
@@ -203,17 +210,10 @@
           "delta": 0.03
         },
         {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "weight_now": 3.17,
-          "weight_prev": 3.2,
-          "delta": -0.03
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投資控股",
-          "weight_now": 1.84,
-          "weight_prev": 1.86,
+          "stock_id": "2891",
+          "stock_name": "中國信託金融控股",
+          "weight_now": 1.42,
+          "weight_prev": 1.44,
           "delta": -0.02
         },
         {
@@ -224,13 +224,6 @@
           "delta": -0.02
         },
         {
-          "stock_id": "6510",
-          "stock_name": "中華精測科技",
-          "weight_now": 0.87,
-          "weight_prev": 0.89,
-          "delta": -0.02
-        },
-        {
           "stock_id": "5434",
           "stock_name": "崇越科技",
           "weight_now": 0.83,
@@ -238,24 +231,24 @@
           "delta": -0.02
         },
         {
-          "stock_id": "2891",
-          "stock_name": "中國信託金融控股",
-          "weight_now": 1.42,
-          "weight_prev": 1.44,
+          "stock_id": "3711",
+          "stock_name": "日月光投資控股",
+          "weight_now": 1.84,
+          "weight_prev": 1.86,
           "delta": -0.02
         },
         {
-          "stock_id": "3293",
-          "stock_name": "鈊象電子",
-          "weight_now": 0.67,
-          "weight_prev": 0.68,
-          "delta": -0.01
+          "stock_id": "6510",
+          "stock_name": "中華精測科技",
+          "weight_now": 0.87,
+          "weight_prev": 0.89,
+          "delta": -0.02
         },
         {
-          "stock_id": "1477",
-          "stock_name": "聚陽實業",
-          "weight_now": 0.55,
-          "weight_prev": 0.56,
+          "stock_id": "2881",
+          "stock_name": "富邦金融控股",
+          "weight_now": 1.25,
+          "weight_prev": 1.26,
           "delta": -0.01
         },
         {
@@ -273,24 +266,24 @@
           "delta": -0.01
         },
         {
-          "stock_id": "2360",
-          "stock_name": "致茂電子",
-          "weight_now": 2.26,
-          "weight_prev": 2.27,
-          "delta": -0.01
-        },
-        {
-          "stock_id": "5234",
-          "stock_name": "達興材料",
-          "weight_now": 0.71,
-          "weight_prev": 0.72,
-          "delta": -0.01
-        },
-        {
           "stock_id": "6831",
           "stock_name": "邁科科技",
           "weight_now": 1.06,
           "weight_prev": 1.07,
+          "delta": -0.01
+        },
+        {
+          "stock_id": "3293",
+          "stock_name": "鈊象電子",
+          "weight_now": 0.67,
+          "weight_prev": 0.68,
+          "delta": -0.01
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂電子",
+          "weight_now": 2.26,
+          "weight_prev": 2.27,
           "delta": -0.01
         },
         {
@@ -301,17 +294,24 @@
           "delta": 0.01
         },
         {
+          "stock_id": "1477",
+          "stock_name": "聚陽實業",
+          "weight_now": 0.55,
+          "weight_prev": 0.56,
+          "delta": -0.01
+        },
+        {
+          "stock_id": "5234",
+          "stock_name": "達興材料",
+          "weight_now": 0.71,
+          "weight_prev": 0.72,
+          "delta": -0.01
+        },
+        {
           "stock_id": "4915",
           "stock_name": "致伸科技",
           "weight_now": 0.27,
           "weight_prev": 0.28,
-          "delta": -0.01
-        },
-        {
-          "stock_id": "2881",
-          "stock_name": "富邦金融控股",
-          "weight_now": 1.25,
-          "weight_prev": 1.26,
           "delta": -0.01
         }
       ]

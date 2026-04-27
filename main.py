@@ -14,6 +14,7 @@ from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
 from scrapers.capital import CapitalScraper
 from scrapers.fuhhwa import FuhhwaScraper
+from scrapers.twse_prices import PricesFetcher
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -142,6 +143,7 @@ def main() -> int:
     write_diff(payload, Path("data"))
     write_leaderboard(payload, Path("data"))
     write_per_stock_history(Path("data"))
+    write_prices(payload, Path("data"))
 
     if failures:
         print(f"Failures: {failures}")
@@ -228,6 +230,33 @@ def _find_previous_snapshot(snapshots_dir: Path, today_iso: str) -> Path | None:
         return None
     candidates = sorted(p for p in snapshots_dir.glob("*.json") if p.stem < today_iso)
     return candidates[-1] if candidates else None
+
+
+def write_prices(today_payload: dict, data_dir: Path) -> None:
+    """Fetch today's TWSE + TPEx close/change for stocks our ETFs hold.
+
+    Filters to stock_ids actually appearing in any TW holding (~107 stocks) so
+    the output stays small (vs ~40k stocks on TWSE). Soft-fails: if both
+    exchanges return empty (weekend / holiday / outage), writes
+    {"date": today, "prices": {}} so the frontend's lookup degrades cleanly.
+    """
+    target = datetime.now(TAIPEI).date()
+    fetcher = PricesFetcher()
+    raw = fetcher.fetch_all(target)
+
+    held_ids = {
+        h["stock_id"]
+        for etf in today_payload.get("etfs", [])
+        for h in etf.get("holdings", [])
+        if h.get("market") == "TW"
+    }
+    filtered = {sid: raw[sid] for sid in held_ids if sid in raw}
+
+    out = {"date": target.isoformat(), "prices": filtered}
+    (data_dir / "prices_today.json").write_text(
+        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print(f"Prices: {len(filtered)}/{len(held_ids)} held stocks priced ({target})")
 
 
 def write_per_stock_history(data_dir: Path) -> None:
