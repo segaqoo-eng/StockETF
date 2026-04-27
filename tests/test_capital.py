@@ -6,6 +6,7 @@ from openpyxl import Workbook
 from scrapers.capital import (
     parse_capital_holdings,
     parse_capital_xlsx,
+    parse_capital_meta_ssr,
     find_latest_manual_xlsx,
 )
 
@@ -130,3 +131,23 @@ def test_find_latest_manual_xlsx_ignores_malformed_filename(tmp_path):
 
 def test_find_latest_manual_xlsx_missing_dir_returns_none(tmp_path):
     assert find_latest_manual_xlsx("00982A", tmp_path / "does-not-exist") is None
+
+
+# --- SSR meta parser ---
+
+@pytest.mark.parametrize("ticker", ["00982A", "00992A"])
+def test_parse_capital_meta_ssr(ticker, fixture_path):
+    """SSR portfolio page surfaces nav_total / p_unit / units_outstanding /
+    as_of_date even though it only renders top-10 holdings."""
+    text = fixture_path(f"capital_{ticker}.html").read_text(encoding="utf-8")
+    meta = parse_capital_meta_ssr(text)
+
+    assert meta.get("as_of_date") == "2026-04-27"  # date-picker default at fixture-snapshot time
+    assert isinstance(meta.get("nav_total"), float) and meta["nav_total"] > 1e9, \
+        "nav_total should be in billions+ TWD, not a stray ngcontent number"
+    assert isinstance(meta.get("p_unit"), float) and 0 < meta["p_unit"] < 1000
+    assert isinstance(meta.get("units_outstanding"), float) and meta["units_outstanding"] > 1e6
+
+
+def test_parse_capital_meta_ssr_no_table_returns_empty():
+    assert parse_capital_meta_ssr("<html>no info table</html>") == {}

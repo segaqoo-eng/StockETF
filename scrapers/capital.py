@@ -117,6 +117,60 @@ def parse_capital_holdings(text: str) -> list[Holding]:
     return holdings
 
 
+# SSR 表格的 metadata 欄位 — 標籤對應 fund_meta key
+_SSR_LABEL_TO_KEY = {
+    "基金淨資產價值":   "nav_total",
+    "每受益權單位淨資產價值": "p_unit",
+    "已發行受益權單位總數":   "units_outstanding",
+}
+# 抓 td 值欄位內的數字（可能有也可能沒有 <span>TWD</span> 前綴）
+# 必須 anchor 在 'td cell auto' 防止抓到 ngcontent attribute 裡的數字
+_SSR_VALUE_CELL_RE = re.compile(
+    r'class="td cell auto"[^>]*>'
+    r'(?:<span[^>]*>TWD</span>\s*)?\s*'
+    r'([\d,]+(?:\.\d+)?)'
+)
+# 資料日期由 datepicker 的預設 value 透露（input-pad-trend 是該欄獨有 class）
+_SSR_DATE_RE = re.compile(r'class="[^"]*input-pad-trend[^"]*"\s+value="(\d{4})/(\d{2})/(\d{2})"')
+
+
+def parse_capital_meta_ssr(text: str) -> dict:
+    """Extract fund-level metadata from the SSR portfolio page.
+
+    The Angular Universal HTML SSRs an info table with three labelled rows
+    (基金淨資產價值 / 每受益權單位淨資產價值 / 已發行受益權單位總數) and a
+    date-picker whose default value is the latest data date.
+
+    Limitations: this is the same SSR that only ships top-10 holdings —
+    everything else lives behind the inaccessible internal API. Manual xlsx
+    upload (the alternate fetch path) doesn't yet plumb meta through.
+    See docs/known-issues/capital-scraper.md.
+
+    Returns {} if the SSR layout changed beyond recognition.
+    """
+    meta: dict = {}
+
+    for label, key in _SSR_LABEL_TO_KEY.items():
+        idx = text.find(label)
+        if idx < 0:
+            continue
+        # Search forward for the next 'td cell auto' value cell — the structure
+        # is always label-row </div> then value-row <div class="td cell auto">.
+        window = text[idx : idx + 400]
+        m = _SSR_VALUE_CELL_RE.search(window)
+        if m:
+            try:
+                meta[key] = float(m.group(1).replace(",", ""))
+            except ValueError:
+                pass
+
+    m = _SSR_DATE_RE.search(text)
+    if m:
+        meta["as_of_date"] = f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+
+    return meta
+
+
 def find_latest_manual_xlsx(ticker: str, manual_dir: Path = MANUAL_XLSX_DIR) -> Path | None:
     """Most recent capital_{ticker}_{YYYYMMDD}.xlsx in manual_dir, or None.
 
@@ -237,8 +291,8 @@ class CapitalScraper(BaseScraper):
         manual = find_latest_manual_xlsx(ticker)
         if manual is not None:
             logger.info("capital %s: using manual xlsx %s", ticker, manual.name)
-            # TODO: capital xlsx has an 投資組合 sheet with PCF metadata;
-            # add parser when we have a real-world xlsx fixture.
+            # TODO: capital's xlsx has an 投資組合 sheet with PCF metadata;
+            # add parser when we have a real-world xlsx fixture to base it on.
             return ScrapeResult(
                 holdings=parse_capital_xlsx(manual.read_bytes()),
                 fund_meta={},
@@ -251,4 +305,7 @@ class CapitalScraper(BaseScraper):
         )
         url = PORTFOLIO_URL.format(id=_TICKER_TO_ID[ticker])
         text = self.get(url)
-        return ScrapeResult(holdings=parse_capital_holdings(text), fund_meta={})
+        return ScrapeResult(
+            holdings=parse_capital_holdings(text),
+            fund_meta=parse_capital_meta_ssr(text),
+        )

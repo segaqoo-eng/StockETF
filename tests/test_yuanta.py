@@ -1,4 +1,4 @@
-from scrapers.yuanta import parse_yuanta_holdings
+from scrapers.yuanta import parse_yuanta_holdings, parse_yuanta_meta
 
 
 def test_parse_yuanta_0050(fixture_path):
@@ -67,3 +67,30 @@ def test_parse_yuanta_00990A_mixed_markets(fixture_path):
     # Weight sum across all markets ≈ 100
     total = sum(h.weight_pct for h in holdings)
     assert 80 <= total <= 101, f"weight sum {total} out of range"
+
+
+import pytest
+
+
+@pytest.mark.parametrize("fixture, ticker_for_log", [
+    ("yuanta_0050.html", "0050"),
+    ("yuanta_0056.html", "0056"),
+    ("yuanta_00990A.html", "00990A"),
+])
+def test_parse_yuanta_meta(fixture, ticker_for_log, fixture_path):
+    """PCF block exposes upddate / totalav / osunit / nav consistently across
+    passive (0050/0056) and active (00990A) ETFs — even when fields are
+    rendered as JS variable refs instead of literals."""
+    text = fixture_path(fixture).read_text(encoding="utf-8")
+    meta = parse_yuanta_meta(text)
+
+    assert "as_of_date" in meta and "T" in meta["as_of_date"], \
+        f"{ticker_for_log}: expected ISO-ish datetime, got {meta.get('as_of_date')!r}"
+    assert isinstance(meta.get("nav_total"), float) and meta["nav_total"] > 0, \
+        f"{ticker_for_log}: nav_total should be positive float"
+    assert isinstance(meta.get("units_outstanding"), float) and meta["units_outstanding"] > 0
+    assert isinstance(meta.get("p_unit"), float) and 0 < meta["p_unit"] < 1000
+
+
+def test_parse_yuanta_meta_no_nuxt_returns_empty():
+    assert parse_yuanta_meta("<html>nothing here</html>") == {}

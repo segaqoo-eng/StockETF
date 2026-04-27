@@ -44,16 +44,18 @@
 
 建議 **B 先做**，嫌不夠看再考慮 A。
 
-### 各 scraper 補抓 ETF metadata — **S** × 5 家（2/5 已實作）
+### 各 scraper 補抓 ETF metadata — ✅ 已實作（5/5）
 **標準 schema**：`payload.etfs[i].fund_meta = {as_of_date, nav_total, units_outstanding, p_unit, asset_breakdown}`，每家 scraper 抓得到什麼填什麼，缺的就 omit key。框架在 `ScrapeResult.fund_meta`。
 
-| Scraper | 狀態 | 抓到什麼 |
-|---|---|---|
-| president (統一) | ✅ | 5 欄位全套 + asset_breakdown 4 類（股票/現金/期貨保證金/應收付）|
-| fuhhwa (復華) | ✅ | as_of_date + nav_total + units_outstanding + p_unit |
-| yuanta (元大、含 0050/0056/00990A) | ⬜ TODO | 需 probe NUXT param map |
-| nomura (野村) | ⬜ TODO | 需 probe API response 上層欄位 |
-| capital (群益) | ⬜ TODO | SSR 沒、xlsx 投資組合 sheet 應該有 PCF metadata |
+| Scraper | 抓到什麼 |
+|---|---|
+| president (統一) | 5 欄位全套 + asset_breakdown 4 類（股票 / 現金 / 期貨保證金 / 應收付）|
+| fuhhwa (復華) | as_of_date + nav_total + units_outstanding + p_unit |
+| nomura (野村) | as_of_date + nav_total + units_outstanding + p_unit（API 上 FundAsset 區塊）|
+| yuanta (元大；0050/0056/00990A) | as_of_date + nav_total + units_outstanding + p_unit（NUXT PCF 區塊）|
+| capital (群益；SSR top-10 路徑) | as_of_date + nav_total + units_outstanding + p_unit（manual xlsx 路徑尚未抓 — 需要實際 xlsx fixture）|
+
+剩下小工：capital 的 manual xlsx PCF metadata 還沒抓（需要使用者實際下載一份 xlsx 才能寫 parser）。
 
 ### Cross-table per-stock aggregate diff badge — **S**
 **現況**：diff 只在 ETF modal 內顯示。交叉表上的股票列沒有差異提示。

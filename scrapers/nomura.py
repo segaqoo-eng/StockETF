@@ -118,6 +118,48 @@ def parse_nomura_holdings(text: str) -> list[Holding]:
     return holdings
 
 
+def parse_nomura_meta(text: str) -> dict:
+    """Extract fund-level metadata from the same response the holdings parser uses.
+
+    Entries.Data.FundAsset carries:
+      Aum     → nav_total           (基金總資產)
+      Units   → units_outstanding   (流通在外受益權單位數)
+      Nav     → p_unit              (每受益權單位淨值)
+      NavDate → as_of_date          ("YYYY/MM/DD" → ISO YYYY-MM-DD)
+
+    Returns {} on any parse failure — silent fallback so a metadata regression
+    doesn't take down the holdings scrape.
+    """
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        return {}
+    fa = (data.get("Entries") or {}).get("Data", {}).get("FundAsset")
+    if not isinstance(fa, dict):
+        return {}
+
+    meta: dict = {}
+    if (date_raw := fa.get("NavDate")):
+        # "2026/04/24" → "2026-04-24"
+        meta["as_of_date"] = str(date_raw).replace("/", "-")
+    if (aum := _safe_float(fa.get("Aum"))) is not None:
+        meta["nav_total"] = aum
+    if (units := _safe_float(fa.get("Units"))) is not None:
+        meta["units_outstanding"] = units
+    if (nav := _safe_float(fa.get("Nav"))) is not None:
+        meta["p_unit"] = nav
+    return meta
+
+
+def _safe_float(v):
+    if v is None:
+        return None
+    try:
+        return float(str(v).replace(",", ""))
+    except (TypeError, ValueError):
+        return None
+
+
 class NomuraScraper(BaseScraper):
     """Scraper for Nomura ETF holdings (00980A)."""
 
@@ -125,6 +167,7 @@ class NomuraScraper(BaseScraper):
         today = datetime.now(ZoneInfo("Asia/Taipei")).date().strftime("%Y-%m-%d")
         payload = {"FundID": ticker, "SearchDate": today}
         text = self.post(HOLDINGS_URL, json=payload)
-        # TODO: nomura's API response has Entries.Data with cash/futures
-        # tables — extract NAV / units / as_of_date once we probe the shape.
-        return ScrapeResult(holdings=parse_nomura_holdings(text), fund_meta={})
+        return ScrapeResult(
+            holdings=parse_nomura_holdings(text),
+            fund_meta=parse_nomura_meta(text),
+        )

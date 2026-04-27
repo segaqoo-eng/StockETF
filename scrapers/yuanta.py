@@ -267,12 +267,78 @@ def parse_yuanta_holdings(text: str) -> list[Holding]:
     return holdings
 
 
+_PCF_BLOCK_RE = re.compile(r"PCF:\{([^}]*)\}")
+# Each field's value can be a quoted string, a numeric literal, or a JS identifier.
+_PCF_FIELD_RE = re.compile(r'(\w+):("(?:\\.|[^"])*"|\d+\.?\d*|[\w$]+)')
+
+
+def parse_yuanta_meta(text: str) -> dict:
+    """Extract fund-level metadata from the same NUXT payload the holdings parser uses.
+
+    The PCF block (Portfolio Composition File) on every yuanta ETF detail
+    page has these fields that map to our standard schema:
+      upddate  → as_of_date         (e.g. "2026-04-24 15:58:15" → "2026-04-24T15:58:15")
+      totalav  → nav_total          (基金總資產 — sometimes a JS variable ref)
+      osunit   → units_outstanding  (流通在外受益權單位數)
+      nav      → p_unit             (每受益權單位淨值 — sometimes a variable ref)
+
+    Variable refs are resolved via the same NUXT param map the holdings parser
+    builds. Returns {} on any structural failure — silent fallback.
+    """
+    try:
+        scripts = re.findall(r"<script[^>]*>([\s\S]*?)</script>", text)
+        nuxt = next((s for s in scripts if "window.__NUXT__" in s), None)
+        if not nuxt:
+            return {}
+        try:
+            pmap = _build_param_map(nuxt)
+        except Exception:
+            pmap = {}
+
+        pcf_m = _PCF_BLOCK_RE.search(nuxt)
+        if not pcf_m:
+            return {}
+        fields = dict(_PCF_FIELD_RE.findall(pcf_m.group(1)))
+    except Exception:
+        return {}
+
+    def resolve(tok):
+        """Resolve a PCF field token to a Python value (str / int / float / None)."""
+        if tok is None:
+            return None
+        if tok.startswith('"') and tok.endswith('"'):
+            return tok[1:-1]
+        if re.fullmatch(r"\d+\.?\d*", tok):
+            return float(tok) if "." in tok else int(tok)
+        return pmap.get(tok)  # VAR ref
+
+    meta: dict = {}
+    upddate = resolve(fields.get("upddate"))
+    if isinstance(upddate, str) and upddate:
+        meta["as_of_date"] = upddate.replace(" ", "T")  # ISO-ish
+
+    totalav = resolve(fields.get("totalav"))
+    if isinstance(totalav, (int, float)):
+        meta["nav_total"] = float(totalav)
+
+    osunit = resolve(fields.get("osunit"))
+    if isinstance(osunit, (int, float)):
+        meta["units_outstanding"] = float(osunit)
+
+    nav = resolve(fields.get("nav"))
+    if isinstance(nav, (int, float)):
+        meta["p_unit"] = float(nav)
+
+    return meta
+
+
 class YuantaScraper(BaseScraper):
     """Scraper for Yuanta ETF holdings (0050, 0056, 00990A)."""
 
     def fetch(self, ticker: str) -> ScrapeResult:
         url = HOLDINGS_URL.format(ticker=ticker)
         text = self.get(url)
-        # TODO: extract NAV / units / as_of_date from the NUXT param map.
-        # The payload has them somewhere — needs a probe pass before adding.
-        return ScrapeResult(holdings=parse_yuanta_holdings(text), fund_meta={})
+        return ScrapeResult(
+            holdings=parse_yuanta_holdings(text),
+            fund_meta=parse_yuanta_meta(text),
+        )
