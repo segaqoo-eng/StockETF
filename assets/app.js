@@ -388,27 +388,28 @@ function activateTab(name) {
   });
 }
 
+// Whitelist so an unrecognised hash doesn't accidentally activate a removed tab.
+const VALID_TABS = new Set(["cross", "etfs", "changes"]);
+
 function applyHash() {
   const hash = location.hash.slice(1);  // strip leading #
   const [tab, etfTicker] = hash.split("/");
 
-  if (tab === "etfs") {
-    activateTab("etfs");
-    if (etfTicker) {
-      const card = document.querySelector(`details[data-ticker="${CSS.escape(etfTicker)}"]`);
-      if (card) {
-        card.open = true;
-        // Defer scroll until after the just-opened <details> has reflowed —
-        // otherwise smooth scroll computes the target from the still-closed
-        // bbox and lands past the summary. scroll-margin-top in CSS handles
-        // the sticky tab-nav offset.
-        requestAnimationFrame(() => {
-          card.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
+  activateTab(VALID_TABS.has(tab) ? tab : "cross");
+
+  // Sub-routing only matters for the ETF accordion right now.
+  if (tab === "etfs" && etfTicker) {
+    const card = document.querySelector(`details[data-ticker="${CSS.escape(etfTicker)}"]`);
+    if (card) {
+      card.open = true;
+      // Defer scroll until after the just-opened <details> has reflowed —
+      // otherwise smooth scroll computes the target from the still-closed
+      // bbox and lands past the summary. scroll-margin-top in CSS handles
+      // the sticky tab-nav offset.
+      requestAnimationFrame(() => {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     }
-  } else {
-    activateTab("cross");  // default for empty hash, "cross", or anything unrecognised
   }
 }
 
