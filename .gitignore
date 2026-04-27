@@ -1,6 +1,12 @@
 # Brainstorming / superpowers working directory
 .superpowers/
 
+# Claude Code local settings (per-machine permission cache)
+.claude/settings.local.json
+
+# Temporary / scratch directory
+tmp/
+
 # Python
 __pycache__/
 *.py[cod]

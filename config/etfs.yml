@@ -1,0 +1,48 @@
+"0050":
+  scraper: yuanta
+  name: 元大台灣50
+  type: passive
+  tags: [市值型, 大盤對照]
+  color: "#4a9eff"
+
+"00980A":
+  scraper: nomura
+  name: 主動野村臺灣智慧優選
+  type: active
+  tags: [主動, 台股型]
+  color: "#34d399"
+
+"00981A":
+  scraper: president
+  name: 主動統一台股增長
+  type: active
+  tags: [主動, 台股型]
+  color: "#f472b6"
+
+"00982A":
+  scraper: capital
+  name: 主動群益台灣強棒
+  type: active
+  tags: [主動, 台股型]
+  color: "#fbbf24"
+
+"00990A":
+  scraper: yuanta
+  name: 主動元大AI新經濟
+  type: active
+  tags: [主動, AI/科技型, 含美股]
+  color: "#a78bfa"
+
+"00991A":
+  scraper: fuhhwa
+  name: 主動復華台灣未來50
+  type: active
+  tags: [主動, 台股型]
+  color: "#60a5fa"
+
+"00992A":
+  scraper: capital
+  name: 主動群益科技創新
+  type: active
+  tags: [主動, 科技型]
+  color: "#fb923c"
