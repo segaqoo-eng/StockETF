@@ -21,17 +21,32 @@ function renderMarketBadge(market) {
 
 const state = {
   payload: null,
+  diff: null,           // {ticker: {added, removed, changed}} or null on first-ever / fetch failure
   minEtfs: 3,
   industry: "",
   search: "",
   expandedStockId: null,
 };
 
+// Capital scrapes only top-10 of 00982A / 00992A. Their diffs may contain
+// false 🆕/❌ when stocks shuffle in/out of the top-10 cutoff while the ETF
+// still holds them. Footnote marker shown in the ETF modal.
+const TOP10_LIMITED_TICKERS = new Set(["00982A", "00992A"]);
+
 async function load() {
   try {
     const res = await fetch(DATA_URL, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.payload = await res.json();
+
+    // Diff is optional — fail silently so a missing/empty diff file never
+    // breaks the main view. First daily run + new format takes ~2 cycles
+    // before badges have meaningful data.
+    try {
+      const diffRes = await fetch("data/latest_diff.json", { cache: "no-store" });
+      if (diffRes.ok) state.diff = await diffRes.json();
+    } catch (_) { /* swallow */ }
+
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
     populateIndustryFilter();
     renderEtfChipBar();
@@ -191,14 +206,53 @@ function openEtfModal(ticker) {
   // don't rely on it.
   const holdings = [...(etf.holdings || [])].sort((a, b) => b.weight_pct - a.weight_pct);
 
-  const rows = holdings.map(h => `
-    <tr>
+  // Pull this ETF's diff slice (may be undefined on first run or for ETFs
+  // not in yesterday's lineup).
+  const diff = (state.diff && state.diff[ticker]) || { added: [], removed: [], changed: [] };
+  const addedIds = new Set(diff.added.map(h => h.stock_id));
+  const changedById = Object.fromEntries(diff.changed.map(c => [c.stock_id, c]));
+
+  const rows = holdings.map(h => {
+    const badges = [];
+    if (addedIds.has(h.stock_id)) {
+      badges.push(`<span class="diff-badge diff-added" title="今日新進">🆕</span>`);
+    }
+    const change = changedById[h.stock_id];
+    if (change) {
+      const up = change.delta > 0;
+      const sign = up ? "+" : "";
+      badges.push(
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="昨日 ${change.weight_yesterday.toFixed(2)}% → 今日 ${change.weight_today.toFixed(2)}%">` +
+        `${up ? "▲" : "▼"} ${sign}${change.delta.toFixed(2)}%</span>`
+      );
+    }
+    return `<tr>
       <td><b>${escapeHtml(h.stock_id)}</b></td>
-      <td>${escapeHtml(h.stock_name)}${renderMarketBadge(h.market)}</td>
+      <td>${escapeHtml(h.stock_name)}${renderMarketBadge(h.market)}${badges.length ? " " + badges.join(" ") : ""}</td>
       <td class="num weight">${h.weight_pct.toFixed(2)}%</td>
       <td class="num">${Number(h.shares).toLocaleString()}</td>
-    </tr>
-  `).join("");
+    </tr>`;
+  }).join("");
+
+  // Removed stocks live in a separate footer section since they're absent
+  // from today's holdings list.
+  let removedSection = "";
+  if (diff.removed.length > 0) {
+    const items = diff.removed.map(r =>
+      `<li><b>${escapeHtml(r.stock_id)}</b> ${escapeHtml(r.stock_name)}` +
+      ` <span class="weight">${r.weight_pct.toFixed(2)}%</span></li>`
+    ).join("");
+    removedSection = `
+      <div class="diff-removed-section">
+        <h3>❌ 本日移除（${diff.removed.length} 檔，昨日權重）</h3>
+        <ul>${items}</ul>
+      </div>`;
+  }
+
+  // Capital top-10 caveat — false 🆕/❌ are likely.
+  const caveat = TOP10_LIMITED_TICKERS.has(ticker)
+    ? `<p class="diff-caveat">* 群益僅提供 top-10 持股，diff badge 可能含偽陽性 (見 docs/known-issues/capital-scraper.md)</p>`
+    : "";
 
   document.getElementById("etf-modal-dialog").className =
     `modal-dialog ${etfBorderClass(etf.ticker)}`;
@@ -212,6 +266,8 @@ function openEtfModal(ticker) {
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>
+    ${removedSection}
+    ${caveat}
   `;
   document.getElementById("etf-modal").classList.remove("hidden");
 }

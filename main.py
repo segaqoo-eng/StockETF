@@ -14,7 +14,12 @@ from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
 from scrapers.capital import CapitalScraper
 from scrapers.fuhhwa import FuhhwaScraper
-from normalizer import build_payload, write_payload, load_config
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+from normalizer import build_payload, write_payload, load_config, compute_diff
+
+TAIPEI = ZoneInfo("Asia/Taipei")
 
 INTER_REQUEST_DELAY_SEC = 2  # be polite to issuer sites
 
@@ -115,9 +120,43 @@ def main() -> int:
     payload = build_payload(scraped, etfs_config, stocks_config, preserved_updated_at)
     write_payload(payload)
     print(f"\nWrote data/latest.json ({len(payload['etfs'])} ETFs, {len(payload['holdings'])} unique stocks)")
+
+    write_diff(payload, Path("data"))
+
     if failures:
         print(f"Failures: {failures}")
     return 0
+
+
+def write_diff(today_payload: dict, data_dir: Path) -> None:
+    """Compute today-vs-most-recent-prior-snapshot diff and write latest_diff.json.
+
+    The previous snapshot must NOT be today's (write_payload just wrote that one);
+    pick the most recent earlier-dated file. If none exist (first run), the diff
+    is empty and the frontend renders no badges.
+    """
+    today_iso = datetime.now(TAIPEI).date().isoformat()
+    snapshots_dir = data_dir / "snapshots"
+    prev = _find_previous_snapshot(snapshots_dir, today_iso)
+    if prev is None:
+        diff = {}
+        print("Diff: no prior snapshot found; writing empty diff")
+    else:
+        prev_payload = json.loads(prev.read_text(encoding="utf-8"))
+        diff = compute_diff(today_payload, prev_payload)
+        changed_etfs = sum(1 for d in diff.values() if d["added"] or d["removed"] or d["changed"])
+        print(f"Diff: {prev.name} → today ({changed_etfs}/{len(diff)} ETFs with changes)")
+
+    diff_path = data_dir / "latest_diff.json"
+    diff_path.write_text(json.dumps(diff, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _find_previous_snapshot(snapshots_dir: Path, today_iso: str) -> Path | None:
+    """Return the snapshot with the most recent date string strictly less than today_iso."""
+    if not snapshots_dir.exists():
+        return None
+    candidates = sorted(p for p in snapshots_dir.glob("*.json") if p.stem < today_iso)
+    return candidates[-1] if candidates else None
 
 
 if __name__ == "__main__":

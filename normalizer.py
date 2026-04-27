@@ -88,6 +88,77 @@ def build_payload(
     }
 
 
+def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.005) -> dict:
+    """Per-ETF day-over-day holdings delta keyed by ETF ticker.
+
+    For each ETF present in BOTH payloads, partitions the TW-only holdings into:
+      - added:   stock_id appears today but not yesterday
+      - removed: stock_id appears yesterday but not today (carries yesterday's weight)
+      - changed: stock_id in both; weight delta whose abs >= change_threshold
+                 (default 0.005% — anything that wouldn't round to a visible
+                 0.01% change is filtered as noise)
+
+    ETFs present in only one payload (lineup change) are intentionally absent
+    from the result — those should be communicated separately, not as a wall
+    of "all stocks added" or "all stocks removed".
+
+    Foreign holdings (market != "TW") are excluded to stay consistent with the
+    cross-table convention. Frontend renders an asterisk for top-10-only ETFs
+    (Capital) where false-positive added/removed are likely.
+    """
+    today_etfs = {e["ticker"]: e for e in today.get("etfs", [])}
+    yesterday_etfs = {e["ticker"]: e for e in yesterday.get("etfs", [])}
+
+    result: dict = {}
+    for ticker in today_etfs.keys() & yesterday_etfs.keys():
+        # Backward-compat: pre-v1.5 snapshots have no etfs[i].holdings field.
+        # Skip rather than flagging everything as added (false 🆕 noise).
+        if "holdings" not in yesterday_etfs[ticker] or "holdings" not in today_etfs[ticker]:
+            continue
+        today_h = {
+            h["stock_id"]: h
+            for h in today_etfs[ticker]["holdings"]
+            if h.get("market") == "TW"
+        }
+        yesterday_h = {
+            h["stock_id"]: h
+            for h in yesterday_etfs[ticker]["holdings"]
+            if h.get("market") == "TW"
+        }
+
+        added = [
+            {"stock_id": h["stock_id"], "stock_name": h["stock_name"], "weight_pct": h["weight_pct"]}
+            for sid, h in today_h.items()
+            if sid not in yesterday_h
+        ]
+        removed = [
+            {"stock_id": h["stock_id"], "stock_name": h["stock_name"], "weight_pct": h["weight_pct"]}
+            for sid, h in yesterday_h.items()
+            if sid not in today_h
+        ]
+        changed = []
+        for sid in today_h.keys() & yesterday_h.keys():
+            t, y = today_h[sid], yesterday_h[sid]
+            delta = t["weight_pct"] - y["weight_pct"]
+            if abs(delta) < change_threshold:
+                continue
+            changed.append({
+                "stock_id": sid,
+                "stock_name": t["stock_name"],
+                "weight_today": t["weight_pct"],
+                "weight_yesterday": y["weight_pct"],
+                "delta": round(delta, 4),
+            })
+
+        if added or removed or changed:
+            result[ticker] = {
+                "added": sorted(added, key=lambda h: -h["weight_pct"]),
+                "removed": sorted(removed, key=lambda h: -h["weight_pct"]),
+                "changed": sorted(changed, key=lambda h: -abs(h["delta"])),
+            }
+    return result
+
+
 def write_payload(payload: dict, data_dir: str | Path = "data") -> None:
     """Write latest.json and today's snapshot to data/."""
     data_dir = Path(data_dir)
