@@ -72,5 +72,22 @@ class BaseScraper:
                 last_err = exc
         raise RuntimeError(f"POST {url} failed after retries: {last_err}")
 
+    def get_bytes(self, url: str) -> bytes:
+        """GET with 3 retries and exponential backoff. Returns response body bytes.
+
+        For binary payloads (xlsx, pdf, images) where decoding to text is wrong.
+        """
+        last_err = None
+        for delay in (0, *RETRY_BACKOFF):
+            if delay:
+                time.sleep(delay)
+            try:
+                r = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                r.raise_for_status()
+                return r.content
+            except requests.RequestException as exc:
+                last_err = exc
+        raise RuntimeError(f"GET {url} failed after retries: {last_err}")
+
     def fetch(self, ticker: str) -> list[Holding]:
         raise NotImplementedError

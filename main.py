@@ -13,6 +13,7 @@ from scrapers.yuanta import YuantaScraper
 from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
 from scrapers.capital import CapitalScraper
+from scrapers.fuhhwa import FuhhwaScraper
 from normalizer import build_payload, write_payload, load_config
 
 INTER_REQUEST_DELAY_SEC = 2  # be polite to issuer sites
@@ -22,6 +23,7 @@ SCRAPERS: dict[str, BaseScraper] = {
     "nomura":    NomuraScraper(),
     "president": PresidentScraper(),
     "capital":   CapitalScraper(),
+    "fuhhwa":    FuhhwaScraper(),
 }
 
 

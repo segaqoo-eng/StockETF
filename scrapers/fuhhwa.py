@@ -1,0 +1,163 @@
+"""Fuh Hwa / 復華投信 holdings scraper.
+
+Supports: 00991A (主動復華未來50).
+
+Strategy: 2-step fetch.
+1. GET the SSR detail page; the "檔案下載" link encodes the latest data date
+   as `/api/assetsExcel/{ETF_ID}/{YYYYMMDD}` — Fuh Hwa is the source of truth
+   for "what's the most recent trading day with data".
+2. GET that xlsx and parse Sheet1 with openpyxl. The header row uses
+   證券代號 / 證券名稱 / 股數 / 金額 / 權重(%); holdings begin one row below
+   and run until the first empty stock_id cell.
+
+Stock names in the xlsx are 4-char abbreviations (e.g. 台灣積體 for 台積電) —
+that's how Fuh Hwa stores them; the cross-aggregation joins by stock_id so
+display naming is intentionally left as-is.
+"""
+from __future__ import annotations
+import io
+import re
+
+from openpyxl import load_workbook
+
+from scrapers.base import BaseScraper, Holding, classify_market
+
+DETAIL_URL = "https://www.fhtrust.com.tw/ETF/etf_detail/{id}"
+EXCEL_URL = "https://www.fhtrust.com.tw/api/assetsExcel/{id}/{date}"
+
+# Stable ticker → internal product detail id (extracted from page URL on issuer site)
+_TICKER_TO_ID = {
+    "00991A": "ETF23",
+}
+
+# Excel header row identifies the column layout
+_HDR_STOCK_ID = "證券代號"
+_HDR_STOCK_NAME = "證券名稱"
+_HDR_SHARES = "股數"
+_HDR_WEIGHT = "權重(%)"
+
+
+def extract_date_from_detail(html: str, internal_id: str) -> str:
+    """Pull the YYYYMMDD date from the page's xlsx download link.
+
+    Fail loudly if the link isn't present — the page layout changed.
+    """
+    pat = r"/api/assetsExcel/" + re.escape(internal_id) + r"/(\d{8})"
+    m = re.search(pat, html)
+    if not m:
+        raise ValueError(
+            f"Fuh Hwa parser: assetsExcel link for {internal_id} not found in detail page — "
+            "page structure may have changed"
+        )
+    return m.group(1)
+
+
+def parse_fuhhwa_xlsx(content: bytes) -> list[Holding]:
+    """Parse holdings from the Fuh Hwa xlsx download.
+
+    Locates the header row (證券代號/證券名稱/股數/金額/權重(%)) then reads each
+    following row until the first row whose stock_id is empty. Fail loudly on
+    structural mismatch.
+    """
+    try:
+        wb = load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    except Exception as exc:
+        raise ValueError(
+            "Fuh Hwa parser: cannot open xlsx — file may be corrupt or not actually xlsx"
+        ) from exc
+
+    if not wb.sheetnames:
+        raise ValueError("Fuh Hwa parser: workbook has no sheets")
+    ws = wb[wb.sheetnames[0]]
+
+    rows = list(ws.iter_rows(values_only=True))
+
+    # Locate header row
+    header_idx = None
+    col_idx: dict[str, int] = {}
+    for i, row in enumerate(rows):
+        if row and row[0] == _HDR_STOCK_ID:
+            for j, cell in enumerate(row):
+                if cell:
+                    col_idx[str(cell).strip()] = j
+            if all(h in col_idx for h in (_HDR_STOCK_ID, _HDR_STOCK_NAME, _HDR_SHARES, _HDR_WEIGHT)):
+                header_idx = i
+                break
+    if header_idx is None:
+        raise ValueError(
+            f"Fuh Hwa parser: header row with columns "
+            f"{[_HDR_STOCK_ID, _HDR_STOCK_NAME, _HDR_SHARES, _HDR_WEIGHT]} not found — "
+            "page structure may have changed"
+        )
+
+    holdings: list[Holding] = []
+    for row in rows[header_idx + 1 :]:
+        raw_id = row[col_idx[_HDR_STOCK_ID]] if col_idx[_HDR_STOCK_ID] < len(row) else None
+        if raw_id is None or str(raw_id).strip() == "":
+            break
+        stock_id = str(raw_id).strip()
+
+        raw_name = row[col_idx[_HDR_STOCK_NAME]] if col_idx[_HDR_STOCK_NAME] < len(row) else None
+        if raw_name is None or str(raw_name).strip() == "":
+            raise ValueError(
+                f"Fuh Hwa parser: empty stock_name for {stock_id} — "
+                "page structure may have changed"
+            )
+        stock_name = str(raw_name).strip()
+
+        raw_shares = row[col_idx[_HDR_SHARES]]
+        try:
+            # Excel may store as int or as comma-formatted string
+            shares = int(float(str(raw_shares).replace(",", "")))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"Fuh Hwa parser: cannot parse shares {raw_shares!r} for {stock_id} — "
+                "page structure may have changed"
+            ) from exc
+
+        raw_weight = row[col_idx[_HDR_WEIGHT]]
+        try:
+            # Weight comes as "14.929%" string; strip % and convert
+            weight_pct = float(str(raw_weight).rstrip("%").strip())
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"Fuh Hwa parser: cannot parse weight {raw_weight!r} for {stock_id} — "
+                "page structure may have changed"
+            ) from exc
+
+        holdings.append(
+            Holding(
+                stock_id=stock_id,
+                stock_name=stock_name,
+                weight_pct=weight_pct,
+                shares=shares,
+                market=classify_market(stock_id),
+            )
+        )
+
+    if not holdings:
+        raise ValueError(
+            "Fuh Hwa parser: header row found but no data rows extracted — "
+            "page structure may have changed"
+        )
+    return holdings
+
+
+class FuhhwaScraper(BaseScraper):
+    """Scraper for 復華投信 active ETFs (00991A).
+
+    2-step fetch: detail page (date) → xlsx (holdings).
+    """
+
+    def fetch(self, ticker: str) -> list[Holding]:
+        if ticker not in _TICKER_TO_ID:
+            raise ValueError(
+                f"FuhhwaScraper supports {sorted(_TICKER_TO_ID)}, got {ticker!r}"
+            )
+        internal_id = _TICKER_TO_ID[ticker]
+
+        detail_html = self.get(DETAIL_URL.format(id=internal_id))
+        date = extract_date_from_detail(detail_html, internal_id)
+
+        xlsx_bytes = self.get_bytes(EXCEL_URL.format(id=internal_id, date=date))
+        return parse_fuhhwa_xlsx(xlsx_bytes)
