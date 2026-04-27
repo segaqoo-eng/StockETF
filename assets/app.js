@@ -385,7 +385,13 @@ function applyHash() {
       const card = document.querySelector(`details[data-ticker="${CSS.escape(etfTicker)}"]`);
       if (card) {
         card.open = true;
-        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Defer scroll until after the just-opened <details> has reflowed —
+        // otherwise smooth scroll computes the target from the still-closed
+        // bbox and lands past the summary. scroll-margin-top in CSS handles
+        // the sticky tab-nav offset.
+        requestAnimationFrame(() => {
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       }
     }
   } else {
