@@ -141,6 +141,7 @@ def main() -> int:
 
     write_diff(payload, Path("data"))
     write_leaderboard(payload, Path("data"))
+    write_per_stock_history(Path("data"))
 
     if failures:
         print(f"Failures: {failures}")
@@ -227,6 +228,54 @@ def _find_previous_snapshot(snapshots_dir: Path, today_iso: str) -> Path | None:
         return None
     candidates = sorted(p for p in snapshots_dir.glob("*.json") if p.stem < today_iso)
     return candidates[-1] if candidates else None
+
+
+def write_per_stock_history(data_dir: Path) -> None:
+    """Materialise a per-stock weight time series across every snapshot.
+
+    Output shape:
+      { stock_id: {
+          ticker: [{date: "YYYY-MM-DD", weight: float}, ...],
+          ...
+      }, ... }
+
+    Front-end fetches this once and renders inline trend sparklines from it.
+    Cheaper than 11+ HTTP requests for every snapshot file. TW only — foreign
+    holdings excluded for the same reason as the cross-table.
+    """
+    snapshots_dir = data_dir / "snapshots"
+    if not snapshots_dir.exists():
+        return
+
+    history: dict[str, dict[str, list]] = {}
+    snap_count = 0
+
+    for snap_path in sorted(snapshots_dir.glob("*.json")):
+        date_str = snap_path.stem
+        try:
+            payload = json.loads(snap_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        snap_count += 1
+        for etf in payload.get("etfs", []):
+            ticker = etf["ticker"]
+            for h in etf.get("holdings", []):
+                if h.get("market") != "TW":
+                    continue
+                sid = h["stock_id"]
+                history.setdefault(sid, {}).setdefault(ticker, []).append({
+                    "date": date_str,
+                    "weight": h["weight_pct"],
+                })
+
+    # Sort each ticker's series by date for deterministic plotting order.
+    for sid in history:
+        for ticker in history[sid]:
+            history[sid][ticker].sort(key=lambda x: x["date"])
+
+    out_path = data_dir / "history_per_stock.json"
+    out_path.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"History: {snap_count} snapshots → {len(history)} unique stocks tracked")
 
 
 if __name__ == "__main__":

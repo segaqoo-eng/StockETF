@@ -25,8 +25,9 @@ const TOP10_LIMITED_TICKERS = new Set(["00982A", "00992A"]);
 
 const state = {
   payload: null,
-  diff: null,           // {ticker: {added, removed, changed}} or null on first-ever / fetch failure
+  diff: null,           // {as_of_today, as_of_baseline, by_etf} or null on first-ever / fetch failure
   leaderboard: null,
+  history: null,        // {stock_id: {ticker: [{date, weight}]}}; per-stock sparkline source
   minEtfs: 3,
   industry: "",
   search: "",
@@ -49,6 +50,10 @@ async function load() {
     try {
       const lbRes = await fetch("data/leaderboard_7d.json", { cache: "no-store" });
       if (lbRes.ok) state.leaderboard = await lbRes.json();
+    } catch (_) { /* swallow */ }
+    try {
+      const histRes = await fetch("data/history_per_stock.json", { cache: "no-store" });
+      if (histRes.ok) state.history = await histRes.json();
     } catch (_) { /* swallow */ }
 
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
@@ -203,6 +208,119 @@ function renderChanges() {
   const cards = sortedEtfs.map(etf => buildChangesCardHtml(etf, state.diff.by_etf || {})).join("");
 
   root.innerHTML = period + cards;
+  wireStockTrendClicks();
+}
+
+// --- per-stock weight trend sparkline (inline expansion below each stock row) ---
+
+function wireStockTrendClicks() {
+  document.querySelectorAll("#changes-list .changes-section-list li[data-stock-id]").forEach(li => {
+    li.addEventListener("click", () => toggleStockTrend(li));
+  });
+}
+
+function toggleStockTrend(li) {
+  const stockId = li.dataset.stockId;
+  const next = li.nextElementSibling;
+  // Toggle off if its own trend row is already open
+  if (next && next.classList.contains("trend-row") && next.dataset.for === stockId) {
+    next.remove();
+    return;
+  }
+  // Close any other open trend row across the page
+  document.querySelectorAll("li.trend-row").forEach(r => r.remove());
+
+  const trendLi = document.createElement("li");
+  trendLi.className = "trend-row";
+  trendLi.dataset.for = stockId;
+  trendLi.innerHTML = drawStockTrend(stockId);
+  li.after(trendLi);
+}
+
+function drawStockTrend(stockId) {
+  const series = state.history && state.history[stockId];
+  if (!series) return `<div class="trend-empty">無歷史資料</div>`;
+
+  // Only ETFs with ≥ 2 points form a line — single-point series can't show a trend.
+  const lines = Object.entries(series).filter(([_, pts]) => pts.length >= 2);
+  if (lines.length === 0) {
+    return `<div class="trend-empty">資料點不足（每檔 ETF 至少需 2 個交易日才能畫線）</div>`;
+  }
+
+  const W = 640, H = 180, PAD_L = 44, PAD_R = 16, PAD_T = 12, PAD_B = 28;
+  // Union of all dates across lines (keeps X axis aligned)
+  const allDates = [...new Set(lines.flatMap(([_, pts]) => pts.map(p => p.date)))].sort();
+  const xIndex = Object.fromEntries(allDates.map((d, i) => [d, i]));
+
+  let yMin = Infinity, yMax = -Infinity;
+  for (const [_, pts] of lines) for (const p of pts) {
+    if (p.weight < yMin) yMin = p.weight;
+    if (p.weight > yMax) yMax = p.weight;
+  }
+  // Pad Y range so points don't kiss the edges
+  const span = yMax - yMin || 1;
+  yMin -= span * 0.1;
+  yMax += span * 0.1;
+
+  const xScale = i => PAD_L + (W - PAD_L - PAD_R) * (allDates.length === 1 ? 0.5 : i / (allDates.length - 1));
+  const yScale = w => H - PAD_B - (H - PAD_T - PAD_B) * ((w - yMin) / (yMax - yMin));
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" class="trend-svg" preserveAspectRatio="xMidYMid meet">`;
+
+  // Y gridlines (3 lines: top, middle, bottom of plot area)
+  for (let i = 0; i <= 2; i++) {
+    const y = PAD_T + (H - PAD_T - PAD_B) * (i / 2);
+    const wval = yMax - (yMax - yMin) * (i / 2);
+    svg += `<line x1="${PAD_L}" y1="${y}" x2="${W - PAD_R}" y2="${y}" stroke="rgba(48,54,61,0.5)" stroke-width="1"/>`;
+    svg += `<text x="${PAD_L - 6}" y="${y + 4}" text-anchor="end" fill="#6e7681" font-size="11" font-family="JetBrains Mono">${wval.toFixed(2)}%</text>`;
+  }
+
+  // X labels — first / middle / last date (MM-DD only)
+  const xLabelIdx = allDates.length <= 3
+    ? allDates.map((_, i) => i)
+    : [0, Math.floor(allDates.length / 2), allDates.length - 1];
+  for (const i of xLabelIdx) {
+    svg += `<text x="${xScale(i)}" y="${H - 8}" text-anchor="middle" fill="#6e7681" font-size="11" font-family="JetBrains Mono">${allDates[i].slice(5)}</text>`;
+  }
+
+  // Lines + dots, one path per ETF
+  const etfMeta = Object.fromEntries(state.payload.etfs.map(e => [e.ticker, e]));
+  for (const [ticker, pts] of lines) {
+    const color = (etfMeta[ticker] && etfMeta[ticker].color) || "#58a6ff";
+    const path = pts.map((p, idx) => {
+      const x = xScale(xIndex[p.date]);
+      const y = yScale(p.weight);
+      return `${idx === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }).join(" ");
+    svg += `<path d="${path}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    for (const p of pts) {
+      const x = xScale(xIndex[p.date]);
+      const y = yScale(p.weight);
+      svg += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${color}"><title>${ticker} ${p.date} ${p.weight.toFixed(2)}%</title></circle>`;
+    }
+  }
+
+  svg += `</svg>`;
+
+  // Legend below the chart
+  const legend = lines.map(([ticker, _]) => {
+    const meta = etfMeta[ticker] || {};
+    const color = meta.color || "#58a6ff";
+    return `<span class="trend-legend-item"><span class="trend-legend-dot" style="background:${color}"></span>${escapeHtml(ticker)} ${escapeHtml(meta.name || "")}</span>`;
+  }).join("");
+
+  // Single-point series get listed as a footer note rather than charted
+  const singletons = Object.entries(series).filter(([_, pts]) => pts.length < 2);
+  const singletonNote = singletons.length
+    ? `<div class="trend-singletons">＊只有今日資料：${singletons.map(([t]) => escapeHtml(t)).join(", ")}（cron 累積中）</div>`
+    : "";
+
+  return `
+    <div class="trend-container">
+      ${svg}
+      <div class="trend-legend">${legend}</div>
+      ${singletonNote}
+    </div>`;
 }
 
 function buildChangesCardHtml(etf, byEtf) {
@@ -253,7 +371,7 @@ function renderChangesAddRemoveSection(label, kind, items, weightField, weightPr
   if (items.length === 0) return "";
   const sorted = [...items].sort((a, b) => b[weightField] - a[weightField]);
   const li = sorted.map(it =>
-    `<li>
+    `<li data-stock-id="${escapeHtml(it.stock_id)}">
       <b>${escapeHtml(it.stock_id)}</b>
       <span class="ch-name">${escapeHtml(it.stock_name)}</span>
       <span class="ch-weight">${weightPrefix} ${it[weightField].toFixed(2)}%</span>
@@ -265,19 +383,25 @@ function renderChangesAddRemoveSection(label, kind, items, weightField, weightPr
 
 function renderChangesChangedSection(items) {
   if (items.length === 0) return "";
+  const prevDate = (state.diff && state.diff.as_of_baseline) || "前次";
+  const nowDate = (state.diff && state.diff.as_of_today) || "本次";
   // Sort by abs(delta) desc — biggest movers first regardless of direction.
   const sorted = [...items].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
   const li = sorted.map(c => {
     const up = c.delta > 0;
     const sign = up ? "+" : "";
-    return `<li>
+    return `<li data-stock-id="${escapeHtml(c.stock_id)}">
       <b>${escapeHtml(c.stock_id)}</b>
       <span class="ch-name">${escapeHtml(c.stock_name)}</span>
-      <span class="ch-trans" title="前次 → 本次">${c.weight_prev.toFixed(2)}% → ${c.weight_now.toFixed(2)}%</span>
+      <span class="ch-trans" title="${prevDate} → ${nowDate}">
+        <span class="ch-date">(${prevDate.slice(5)})</span> ${c.weight_prev.toFixed(2)}%
+        →
+        <span class="ch-date">(${nowDate.slice(5)})</span> ${c.weight_now.toFixed(2)}%
+      </span>
       <span class="diff-badge diff-${up ? "up" : "down"}">${up ? "▲" : "▼"} ${sign}${c.delta.toFixed(2)}</span>
     </li>`;
   }).join("");
-  return `<h4 class="changes-section-h ch-changed">📊 加減碼 (${items.length})</h4>
+  return `<h4 class="changes-section-h ch-changed">📊 加減碼 (${items.length})  <small style="font-weight:normal;color:var(--text3)">點任一檔看歷史走勢</small></h4>
           <ul class="changes-section-list changes-section-list-changes">${li}</ul>`;
 }
 
@@ -354,8 +478,10 @@ function buildEtfCardHtml(etf) {
     if (change) {
       const up = change.delta > 0;
       const sign = up ? "+" : "";
+      const prevDate = (state.diff && state.diff.as_of_baseline) || "前次";
+      const nowDate = (state.diff && state.diff.as_of_today) || "本次";
       badges.push(
-        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="前次 ${change.weight_prev.toFixed(2)}% → 本次 ${change.weight_now.toFixed(2)}%">` +
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="${prevDate}: ${change.weight_prev.toFixed(2)}% → ${nowDate}: ${change.weight_now.toFixed(2)}%">` +
         `${up ? "▲" : "▼"} ${sign}${change.delta.toFixed(2)}%</span>`
       );
     }

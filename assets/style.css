@@ -65,15 +65,28 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-h.ch-removed { color: #f85149; }
 
 .changes-section-list { list-style: none; }
-.changes-section-list li { padding: 6px 18px; font-size: var(--fs-base); border-top: 1px solid rgba(48, 54, 61, 0.4); display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline; }
-.changes-section-list li:hover { background: rgba(48, 54, 61, 0.25); }
+.changes-section-list li { padding: 6px 18px; font-size: var(--fs-base); border-top: 1px solid rgba(48, 54, 61, 0.4); display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline; cursor: pointer; }
+.changes-section-list li:hover { background: rgba(48, 54, 61, 0.4); }
 .changes-section-list li b { font-family: var(--mono); color: var(--text); }
 .changes-section-list .ch-name { color: var(--text2); }
 .changes-section-list .ch-weight { color: var(--gold); font-family: var(--mono); font-size: var(--fs-sm); text-align: right; }
 
 /* Changed (加減碼) row layout — 4 columns: ticker / name / transition / delta-badge */
 .changes-section-list-changes li { grid-template-columns: auto 1fr auto auto; }
-.changes-section-list .ch-trans { color: var(--text3); font-family: var(--mono); font-size: var(--fs-sm); }
+.changes-section-list .ch-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); }
+.changes-section-list .ch-date { color: var(--text3); font-size: var(--fs-xs); }
+
+/* Inline expansion: per-stock weight trend sparkline (hand-drawn SVG, no
+   chart lib). Triggered by clicking any row in changes-section-list. */
+.trend-row { padding: 0 !important; cursor: default !important; background: var(--bg) !important; grid-template-columns: 1fr !important; }
+.trend-row:hover { background: var(--bg) !important; }
+.trend-container { padding: 16px 18px; }
+.trend-svg { width: 100%; max-width: 720px; height: auto; display: block; }
+.trend-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; font-size: var(--fs-sm); color: var(--text2); }
+.trend-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.trend-legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+.trend-singletons { margin-top: 6px; font-size: var(--fs-xs); color: var(--text3); }
+.trend-empty { padding: 16px; color: var(--text3); font-size: var(--fs-sm); text-align: center; }
 
 /* Old leaderboard styles kept for now (data still gets written; could resurface elsewhere). */
 .leaderboard { margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }

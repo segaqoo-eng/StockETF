@@ -126,7 +126,16 @@ def main(argv: list[str]) -> int:
     snapshots_dir = Path("data/snapshots")
     snapshots_dir.mkdir(parents=True, exist_ok=True)
 
+    # Don't overwrite today's snapshot — main.py owns it and produces a
+    # 7-ETF full snapshot, not the 2-ETF partial one this script makes.
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    today = datetime.now(ZoneInfo("Asia/Taipei")).date()
+
     for day in daterange(start, end):
+        if day == today:
+            print(f"\n=== {day.isoformat()} ===\n  → skipping (today's snapshot is owned by main.py; run that for the full 7-ETF version)")
+            continue
         backfill_one_day(day, etfs_config, stocks_config, snapshots_dir)
 
     print("\nDone. Re-run `python main.py` so diff / leaderboard pick up the new baselines.")
