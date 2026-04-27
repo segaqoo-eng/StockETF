@@ -51,9 +51,19 @@ table.cross tbody tr:hover { background: var(--bg3); }
 .weight { color: var(--gold); font-weight: 600; }
 
 tr.detail td { background: var(--bg); padding: 16px 24px; }
-tr.detail ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px 20px; }
-tr.detail li { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+tr.detail ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px 12px; }
+tr.detail li { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 10px; }
 tr.detail li .etf-name { color: var(--accent); font-family: var(--mono); }
+
+/* ETF card — visually distinguishes 0050 (passive benchmark) from active ETFs.
+   Reused by the chip bar in the next commit. */
+.etf-card { border-left: 3px solid transparent; background: var(--bg2); border-radius: 4px; }
+.etf-card--active { border-left-color: #4ade80; }   /* main subjects */
+.etf-card--passive { border-left-color: #6b7280; }  /* 0050 benchmark */
+
+/* Foreign-market badge (US/JP/OTHER). TW gets no badge to keep the dominant
+   case clean. Used in per-ETF holdings views. */
+.market-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; background: var(--bg3); color: var(--text2); border-radius: 4px; font-size: 11px; vertical-align: middle; }
 
 .footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text3); font-size: 12px; }
 .footer a { color: var(--accent); text-decoration: none; }

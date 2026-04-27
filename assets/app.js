@@ -1,9 +1,27 @@
 // StockETF frontend — v1: cross-holdings table with filters.
 
 const DATA_URL = "data/latest.json";
+
+// 0050 is the passive benchmark; everything else in v1.5 is an active ETF.
+// Keep the rule by code (not type) so a future config tweak doesn't silently
+// flip the visual treatment.
+const PASSIVE_ETF_CODES = new Set(["0050"]);
+function etfBorderClass(code) {
+  return PASSIVE_ETF_CODES.has(code) ? "etf-card etf-card--passive" : "etf-card etf-card--active";
+}
+
+// Foreign-market badge for per-ETF holdings views. Cross-table is TW-only
+// (see normalizer), so this is currently a no-op there but reused by the
+// per-ETF modal added in the next commit.
+const MARKET_BADGES = { US: "🇺🇸", JP: "🇯🇵", OTHER: "🌐" };
+function renderMarketBadge(market) {
+  const label = MARKET_BADGES[market];
+  return label ? ` <span class="market-badge">${label}</span>` : "";
+}
+
 const state = {
   payload: null,
-  minEtfs: 2,
+  minEtfs: 3,
   industry: "",
   search: "",
   expandedStockId: null,
@@ -83,9 +101,12 @@ function filteredHoldings() {
 
 function renderRow(h) {
   const maxWeight = Math.max(...h.held_by.map(b => b.weight_pct));
+  // h.market is absent on cross-table holdings (always TW after normalizer
+  // filtering); fall back accordingly so the badge helper handles both.
+  const badge = renderMarketBadge(h.market);
   return `
-    <tr data-stock-id="${h.stock_id}">
-      <td><b>${escapeHtml(h.stock_id)}</b> ${escapeHtml(h.stock_name)}</td>
+    <tr data-stock-id="${escapeHtml(h.stock_id)}">
+      <td><b>${escapeHtml(h.stock_id)}</b> ${escapeHtml(h.stock_name)}${badge}</td>
       <td>${escapeHtml(h.industry || "—")}</td>
       <td class="center"><span class="count-badge">${h.held_by.length}</span></td>
       <td class="num weight">${maxWeight.toFixed(2)}%</td>
@@ -127,7 +148,7 @@ function toggleDetail(row) {
     .map(b => {
       const meta = etfMeta[b.etf] || {};
       const name = meta.name ? ` ${escapeHtml(meta.name)}` : "";
-      return `<li>
+      return `<li class="${etfBorderClass(b.etf)}">
         <span class="etf-name">${escapeHtml(b.etf)}${name}</span>
         <span class="weight">${b.weight_pct.toFixed(2)}%</span>
       </li>`;
