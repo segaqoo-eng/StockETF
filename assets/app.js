@@ -193,8 +193,8 @@ function renderLeaderboard() {
   if (!lb || !lb.as_of_baseline || (lb.top_added.length === 0 && lb.top_removed.length === 0)) {
     container.innerHTML = `
       <div class="leaderboard-empty">
-        📈 過去 ${(lb && lb.window_days) || 7} 天動向
-        <span>資料累積中 — 需要 ≥ 2 天的新格式 snapshot 才會出現排行（每天 cron 會自動累積）</span>
+        🔄 過去 ${(lb && lb.window_days) || 7} 天 經理人加減碼排行
+        <span>資料累積中 — 需要 ≥ 2 天的快照才會出現排行（每天 cron 自動累積）</span>
       </div>`;
     return;
   }
@@ -218,16 +218,16 @@ function renderLeaderboard() {
 
   container.innerHTML = `
     <div class="leaderboard-header">
-      📈 過去 ${lb.window_days} 天動向
+      🔄 過去 ${lb.window_days} 天 經理人加減碼排行
       <span class="leaderboard-window">${lb.as_of_baseline} → ${lb.as_of_today}</span>
     </div>
     <div class="leaderboard-grid">
       <div class="lb-col lb-col-added">
-        <h3>🟢 加碼 TOP ${lb.top_added.length}</h3>
+        <h3>🟢 加碼權重 TOP ${lb.top_added.length}</h3>
         <ol>${renderList(lb.top_added, "added")}</ol>
       </div>
       <div class="lb-col lb-col-removed">
-        <h3>🔴 減碼 TOP ${lb.top_removed.length}</h3>
+        <h3>🔴 減碼權重 TOP ${lb.top_removed.length}</h3>
         <ol>${renderList(lb.top_removed, "removed")}</ol>
       </div>
     </div>

@@ -45,7 +45,13 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* Top-movers leaderboard — first-screen highlights, FB-share friendly. */
+/* "持股變化" tab intro — explicit disclaimer that the ▲▼ % is weight delta,
+   not stock price movement. Critical for the tab's primary use case. */
+.changes-intro { margin-bottom: 16px; padding: 14px 18px; background: var(--bg2); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 8px; font-size: var(--fs-base); color: var(--text); }
+.changes-intro small { display: block; margin-top: 6px; color: var(--text2); font-size: var(--fs-sm); }
+.changes-intro b { color: var(--gold); font-weight: 600; }
+
+/* Top-movers leaderboard — moved into the 持股變化 tab. */
 .leaderboard { margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }
 .leaderboard-empty { color: var(--text2); font-size: var(--fs-sm); text-align: center; padding: 8px; }
 .leaderboard-empty span { display: block; margin-top: 4px; color: var(--text3); font-size: var(--fs-xs); }

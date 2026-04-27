@@ -21,13 +21,11 @@
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="cross">交叉持股</button>
     <button class="tab-btn" data-tab="etfs">ETF 總覽</button>
-    <button class="tab-btn" data-tab="changes" disabled title="v3 規劃中">持股變動</button>
+    <button class="tab-btn" data-tab="changes">持股變化</button>
   </nav>
 
   <main class="container">
     <section id="tab-cross" class="tab-panel active">
-      <section id="leaderboard" class="leaderboard" aria-label="過去 7 天動向"></section>
-
       <div class="filters">
         <label>最少被持有 <select id="filter-min-etfs">
           <option value="1">1 檔以上</option>
@@ -46,6 +44,14 @@
 
     <section id="tab-etfs" class="tab-panel">
       <div id="etf-overview" class="etf-overview"></div>
+    </section>
+
+    <section id="tab-changes" class="tab-panel">
+      <div class="changes-intro">
+        📊 比對歷史快照，看各檔 ETF 經理人在期間內「加碼」與「減碼」最多的個股。
+        <small>顯示的數值是<b>持股權重 %</b> 的變動（不是股價漲跌）。多檔 ETF 同方向異動的個股，「強度」與「共識度」皆高。</small>
+      </div>
+      <section id="leaderboard" class="leaderboard" aria-label="持股權重變化排行"></section>
     </section>
   </main>
 
