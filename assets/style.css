@@ -11,6 +11,16 @@
   --gold: #d29922;
   --mono: 'JetBrains Mono', monospace;
   --sans: 'Noto Sans TC', sans-serif;
+
+  /* Font scale — change these in one place to globally resize text.
+     Tier names follow t-shirt sizes (xs / sm / base / md / lg). The bump
+     from the original 11/12/13/14/16 set is +1px per tier for readability. */
+  --fs-xs:    12px;   /* micro: badges, footnotes, table headers */
+  --fs-sm:    13px;   /* small: meta lines, captions, leaderboard */
+  --fs-base:  14px;   /* body: tables, list items, default content */
+  --fs-md:    15px;   /* tabs, chip primary text, card name */
+  --fs-lg:    17px;   /* large: card title (ETF code) */
+  --fs-h1:    clamp(24px, 4.5vw, 38px);  /* responsive page title */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,13 +30,13 @@ html { scroll-padding-top: 64px; }
 body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
 
 .header { background: linear-gradient(180deg, #0d1117 0%, #161b22 100%); border-bottom: 1px solid var(--border); padding: 28px 24px 20px; text-align: center; }
-.header h1 { font-size: clamp(22px, 4vw, 36px); font-weight: 700; letter-spacing: -0.5px; }
+.header h1 { font-size: var(--fs-h1); font-weight: 700; letter-spacing: -0.5px; }
 .header h1 span { color: var(--accent); }
-.header-sub { margin-top: 8px; font-size: 13px; color: var(--text2); }
+.header-sub { margin-top: 8px; font-size: var(--fs-sm); color: var(--text2); }
 .header-sub b { color: var(--text); font-family: var(--mono); }
 
 .tab-nav { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 10; gap: 4px; }
-.tab-btn { background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--text2); padding: 13px 20px; font-size: 14px; font-family: var(--sans); cursor: pointer; }
+.tab-btn { background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--text2); padding: 13px 20px; font-size: var(--fs-md); font-family: var(--sans); cursor: pointer; }
 .tab-btn:hover:not(:disabled) { color: var(--text); }
 .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 .tab-btn:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -37,35 +47,35 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 
 /* Top-movers leaderboard — first-screen highlights, FB-share friendly. */
 .leaderboard { margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }
-.leaderboard-empty { color: var(--text2); font-size: 13px; text-align: center; padding: 8px; }
-.leaderboard-empty span { display: block; margin-top: 4px; color: var(--text3); font-size: 11px; }
-.leaderboard-header { font-size: 14px; color: var(--text); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
-.leaderboard-window { font-size: 11px; color: var(--text3); font-family: var(--mono); }
+.leaderboard-empty { color: var(--text2); font-size: var(--fs-sm); text-align: center; padding: 8px; }
+.leaderboard-empty span { display: block; margin-top: 4px; color: var(--text3); font-size: var(--fs-xs); }
+.leaderboard-header { font-size: var(--fs-md); color: var(--text); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.leaderboard-window { font-size: var(--fs-xs); color: var(--text3); font-family: var(--mono); }
 .leaderboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.lb-col h3 { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.lb-col h3 { font-size: var(--fs-sm); font-weight: 500; color: var(--text2); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
 .lb-col ol { list-style: none; }
-.lb-col li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 6px 0; font-size: 13px; border-bottom: 1px solid rgba(48, 54, 61, 0.4); }
+.lb-col li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 6px 0; font-size: var(--fs-base); border-bottom: 1px solid rgba(48, 54, 61, 0.4); }
 .lb-col li:last-child { border-bottom: none; }
-.lb-col li.lb-empty { color: var(--text3); font-size: 12px; padding: 12px 0; text-align: center; grid-template-columns: 1fr; }
-.lb-rank { color: var(--text3); font-family: var(--mono); font-size: 12px; text-align: center; }
+.lb-col li.lb-empty { color: var(--text3); font-size: var(--fs-sm); padding: 12px 0; text-align: center; grid-template-columns: 1fr; }
+.lb-rank { color: var(--text3); font-family: var(--mono); font-size: var(--fs-sm); text-align: center; }
 .lb-stock b { font-family: var(--mono); color: var(--text); margin-right: 4px; }
 .lb-stock { color: var(--text2); }
-.lb-meta { display: flex; gap: 8px; align-items: center; font-size: 11px; }
+.lb-meta { display: flex; gap: 8px; align-items: center; font-size: var(--fs-xs); }
 .lb-count { background: var(--bg3); color: var(--text2); padding: 1px 6px; border-radius: 4px; font-family: var(--mono); }
 .lb-delta { font-family: var(--mono); font-weight: 600; min-width: 60px; text-align: right; }
 .lb-delta.lb-added { color: var(--green); }
 .lb-delta.lb-removed { color: #f85149; }
 
 .filters { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px; padding: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; }
-.filters label { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 8px; }
-.filters select, .filters input { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 6px; font-family: var(--sans); font-size: 13px; }
+.filters label { font-size: var(--fs-sm); color: var(--text2); display: flex; align-items: center; gap: 8px; }
+.filters select, .filters input { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 6px; font-family: var(--sans); font-size: var(--fs-sm); }
 .filters input { min-width: 220px; }
 
 .table-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .loading { padding: 40px; text-align: center; color: var(--text2); }
 
-table.cross { width: 100%; border-collapse: collapse; font-size: 14px; }
-table.cross thead { background: var(--bg3); color: var(--text2); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+table.cross { width: 100%; border-collapse: collapse; font-size: var(--fs-base); }
+table.cross thead { background: var(--bg3); color: var(--text2); font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 1px; }
 table.cross th, table.cross td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
 table.cross th.num, table.cross td.num { text-align: right; font-family: var(--mono); }
 table.cross th.center, table.cross td.center { text-align: center; }
@@ -76,18 +86,18 @@ table.cross tbody tr:hover { background: var(--bg3); }
 
 tr.detail td { background: var(--bg); padding: 16px 24px; }
 tr.detail ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px 12px; }
-tr.detail li { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 10px; }
+tr.detail li { display: flex; justify-content: space-between; font-size: var(--fs-base); padding: 6px 10px; }
 tr.detail li .etf-name { color: var(--accent); font-family: var(--mono); }
 
 /* ETF card — visually distinguishes 0050 (passive benchmark) from active ETFs.
-   Reused by the chip bar in the next commit. */
+   Reused by the chip bar + accordion cards. */
 .etf-card { border-left: 3px solid transparent; background: var(--bg2); border-radius: 4px; }
 .etf-card--active { border-left-color: #4ade80; }   /* main subjects */
 .etf-card--passive { border-left-color: #6b7280; }  /* 0050 benchmark */
 
 /* Foreign-market badge (US/JP/OTHER). TW gets no badge to keep the dominant
    case clean. Used in per-ETF holdings views. */
-.market-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; background: var(--bg3); color: var(--text2); border-radius: 4px; font-size: 11px; vertical-align: middle; }
+.market-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; background: var(--bg3); color: var(--text2); border-radius: 4px; font-size: var(--fs-xs); vertical-align: middle; }
 
 /* Top-level ETF chip bar — quick entry to per-ETF holdings drill-down. */
 .etf-chip-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 24px; background: var(--bg2); border-bottom: 1px solid var(--border); }
@@ -95,52 +105,55 @@ tr.detail li .etf-name { color: var(--accent); font-family: var(--mono); }
 .etf-chip { padding: 8px 14px; cursor: pointer; font-family: var(--sans); display: flex; flex-direction: column; gap: 1px; min-width: 130px; transition: background 0.15s; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .etf-chip:hover { background: var(--bg3); }
 .etf-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.etf-chip-ticker { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 14px; }
-.etf-chip-name { color: var(--text2); font-size: 11px; }
+.etf-chip-ticker { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: var(--fs-md); }
+.etf-chip-name { color: var(--text2); font-size: var(--fs-xs); }
 
-/* ETF overview accordion — one <details> card per ETF. Native expand/collapse. */
+/* ETF overview accordion — one <details> card per ETF. Native expand/collapse
+   with name="etf-overview" enforces single-card-only-open. */
 .etf-overview { display: flex; flex-direction: column; gap: 12px; }
 .etf-card-large { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; scroll-margin-top: 64px; }
-/* Border-left accent inherited from .etf-card / --active / --passive. */
 .etf-card-large.etf-card { border-left-width: 4px; }
 .etf-card-large > summary { list-style: none; cursor: pointer; padding: 14px 18px 0; user-select: none; }
 .etf-card-large > summary::-webkit-details-marker { display: none; }
 .etf-card-large > summary:hover { background: rgba(48, 54, 61, 0.25); }
 .etf-card-large .card-head-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.etf-card-large .card-ticker { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: 16px; }
-.etf-card-large .card-name { color: var(--text); font-size: 14px; }
-.etf-card-large .card-count { color: var(--text3); font-size: 12px; margin-left: auto; }
-.etf-card-large .card-toggle { color: var(--text3); font-size: 14px; transition: transform 0.15s; }
+.etf-card-large .card-ticker-link { color: var(--accent); text-decoration: none; display: flex; align-items: baseline; gap: 12px; }
+.etf-card-large .card-ticker-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.etf-card-large .card-ticker-link::after { content: " ↗"; font-size: var(--fs-sm); color: var(--text3); margin-left: 2px; }
+.etf-card-large .card-ticker { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: var(--fs-lg); }
+.etf-card-large .card-name { color: var(--text); font-size: var(--fs-md); }
+.etf-card-large .card-count { color: var(--text3); font-size: var(--fs-sm); margin-left: auto; }
+.etf-card-large .card-toggle { color: var(--text3); font-size: var(--fs-md); transition: transform 0.15s; }
 .etf-card-large[open] .card-toggle { transform: rotate(180deg); color: var(--text); }
-.etf-card-large .fund-meta { padding: 8px 0 14px; background: transparent; border-bottom: none; font-size: 12px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 14px; }
+.etf-card-large .fund-meta { padding: 8px 0 14px; background: transparent; border-bottom: none; font-size: var(--fs-sm); color: var(--text2); display: flex; flex-wrap: wrap; gap: 14px; }
 .etf-card-large .fund-meta b { color: var(--text); font-family: var(--mono); font-weight: 600; }
 .etf-card-large .card-body { border-top: 1px solid var(--border); }
 .etf-card-large[open] > summary { border-bottom: none; }
 
-table.etf-holdings { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.etf-holdings { width: 100%; border-collapse: collapse; font-size: var(--fs-base); }
 table.etf-holdings thead { background: var(--bg3); position: sticky; top: 0; }
-table.etf-holdings th { padding: 10px 16px; text-align: left; color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+table.etf-holdings th { padding: 10px 16px; text-align: left; color: var(--text2); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
 table.etf-holdings td { padding: 8px 16px; border-bottom: 1px solid var(--border); }
 table.etf-holdings tbody tr:hover { background: var(--bg3); }
 table.etf-holdings .num { text-align: right; font-family: var(--mono); }
 table.etf-holdings .weight { color: var(--gold); font-weight: 600; }
 
-/* Day-over-day diff badges shown in the per-ETF modal. Empty diff (first
-   run, lineup change, etc.) silently renders no badges. */
-.diff-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-family: var(--mono); vertical-align: middle; }
+/* Day-over-day diff badges shown in the per-ETF accordion card. Empty diff
+   (first run, lineup change, etc.) silently renders no badges. */
+.diff-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 4px; font-size: var(--fs-xs); font-family: var(--mono); vertical-align: middle; }
 .diff-added { background: rgba(63, 185, 80, 0.22); color: var(--green); }
 .diff-up    { background: rgba(63, 185, 80, 0.15); color: var(--green); }
 .diff-down  { background: rgba(248, 81, 73, 0.15); color: #f85149; }
 
 .diff-removed-section { padding: 14px 18px; border-top: 1px solid var(--border); background: var(--bg); }
-.diff-removed-section h3 { font-size: 13px; color: var(--text2); margin-bottom: 10px; font-weight: 500; }
+.diff-removed-section h3 { font-size: var(--fs-sm); color: var(--text2); margin-bottom: 10px; font-weight: 500; }
 .diff-removed-section ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 16px; }
-.diff-removed-section li { font-size: 12px; color: var(--text2); padding: 2px 0; }
+.diff-removed-section li { font-size: var(--fs-sm); color: var(--text2); padding: 2px 0; }
 .diff-removed-section li b { color: var(--text); font-family: var(--mono); margin-right: 6px; }
-.diff-removed-section li .weight { font-size: 11px; }
+.diff-removed-section li .weight { font-size: var(--fs-xs); }
 
-.diff-caveat { padding: 8px 18px; font-size: 11px; color: var(--text3); border-top: 1px solid var(--border); }
+.diff-caveat { padding: 8px 18px; font-size: var(--fs-xs); color: var(--text3); border-top: 1px solid var(--border); }
 
-.footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text3); font-size: 12px; }
+.footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text3); font-size: var(--fs-sm); }
 .footer a { color: var(--accent); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }

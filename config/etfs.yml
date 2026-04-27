@@ -4,6 +4,7 @@
   type: passive
   tags: [市值型, 大盤對照]
   color: "#4a9eff"
+  url: "https://www.yuantaetfs.com/product/detail/0050/ratio"
 
 "00980A":
   scraper: nomura
@@ -11,6 +12,7 @@
   type: active
   tags: [主動, 台股型]
   color: "#34d399"
+  url: "https://www.nomurafunds.com.tw/ETFWEB/product-description?fundNo=00980A&tab=Shareholding"
 
 "00981A":
   scraper: president
@@ -18,6 +20,7 @@
   type: active
   tags: [主動, 台股型]
   color: "#f472b6"
+  url: "https://www.ezmoney.com.tw/ETF/Fund/Info?FundCode=49YTW"
 
 "00982A":
   scraper: capital
@@ -25,6 +28,7 @@
   type: active
   tags: [主動, 台股型]
   color: "#fbbf24"
+  url: "https://www.capitalfund.com.tw/etf/product/detail/399/portfolio"
 
 "00990A":
   scraper: yuanta
@@ -32,6 +36,7 @@
   type: active
   tags: [主動, AI/科技型, 含美股]
   color: "#a78bfa"
+  url: "https://www.yuantaetfs.com/product/detail/00990A/ratio"
 
 "00991A":
   scraper: fuhhwa
@@ -39,6 +44,7 @@
   type: active
   tags: [主動, 台股型]
   color: "#60a5fa"
+  url: "https://www.fhtrust.com.tw/ETF/etf_detail/ETF23"
 
 "00992A":
   scraper: capital
@@ -46,3 +52,4 @@
   type: active
   tags: [主動, 科技型]
   color: "#fb923c"
+  url: "https://www.capitalfund.com.tw/etf/product/detail/500/portfolio"

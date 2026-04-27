@@ -57,6 +57,8 @@ def build_payload(
                 for h in holdings
             ],
         }
+        if meta.get("url"):
+            block["url"] = meta["url"]
         fm = fund_meta_by_ticker.get(ticker) or {}
         if fm:
             block["fund_meta"] = fm

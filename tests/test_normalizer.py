@@ -69,6 +69,26 @@ def test_build_payload_uses_override_when_provided():
     assert payload["updated_at"] == "2025-12-01T12:00:00+08:00"
 
 
+def test_build_payload_propagates_url_when_in_config():
+    """url is an optional field on each ETF config; only emitted when set."""
+    scraped = {
+        "0050":   [Holding("2330", "台積電", 48.5, 100, "TW")],
+        "00990A": [Holding("2330", "台積電", 3.5, 50, "TW")],
+    }
+    etfs_config = {
+        "0050":   {"scraper": "yuanta", "name": "A", "type": "passive", "tags": [], "color": "#000",
+                   "url": "https://example.com/0050"},
+        "00990A": {"scraper": "yuanta", "name": "B", "type": "active", "tags": [], "color": "#000"},
+    }
+
+    payload = build_payload(scraped, etfs_config, {})
+
+    e0050 = next(e for e in payload["etfs"] if e["ticker"] == "0050")
+    assert e0050["url"] == "https://example.com/0050"
+    e990 = next(e for e in payload["etfs"] if e["ticker"] == "00990A")
+    assert "url" not in e990, "missing url in config should leave url off entirely"
+
+
 def test_build_payload_includes_fund_meta_when_present():
     """fund_meta_by_ticker entries flow into etfs[i].fund_meta; missing/empty → no key."""
     scraped = {

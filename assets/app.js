@@ -339,12 +339,25 @@ function buildEtfCardHtml(etf) {
 
   // Use native <details>/<summary> for accordion behaviour — no JS needed
   // for the expand/collapse, hash routing only flips the open attribute.
+  // name="etf-overview" makes all cards mutually exclusive (browser closes
+  // any other open <details> in the same group when one opens) — keeps the
+  // accordion predictable and the page from sprawling.
+  // The ticker+name span is wrapped in a target=_blank link to the issuer's
+  // page; clicking elsewhere on the summary still toggles the card.
+  const titleInner = `
+    <span class="card-ticker">${escapeHtml(ticker)}</span>
+    <span class="card-name">${escapeHtml(etf.name)}</span>
+  `;
+  const title = etf.url
+    ? `<a class="card-ticker-link" href="${escapeHtml(etf.url)}" target="_blank" rel="noopener noreferrer"
+          title="前往官方頁面（新分頁）">${titleInner}</a>`
+    : titleInner;
+
   return `
-    <details class="etf-card-large ${etfBorderClass(ticker)}" data-ticker="${escapeHtml(ticker)}">
+    <details class="etf-card-large ${etfBorderClass(ticker)}" name="etf-overview" data-ticker="${escapeHtml(ticker)}">
       <summary>
         <div class="card-head-row">
-          <span class="card-ticker">${escapeHtml(ticker)}</span>
-          <span class="card-name">${escapeHtml(etf.name)}</span>
+          ${title}
           <span class="card-count">${etf.holdings_count} 檔持股</span>
           <span class="card-toggle" aria-hidden="true">▾</span>
         </div>
