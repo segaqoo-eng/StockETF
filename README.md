@@ -84,3 +84,12 @@ After running `python main.py` and `python -m http.server 8000`, open http://loc
 ## 免責聲明
 
 本網站資訊僅供參考，不構成投資建議。
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+## Credits
+
+UI concept inspired by [zhaoyuanliu/etf-analysis](https://zhaoyuanliu.github.io/etf-analysis/).
+All scraping, normalization, and frontend code is original to this project.
