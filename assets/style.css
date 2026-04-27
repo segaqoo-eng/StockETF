@@ -95,21 +95,24 @@ tr.detail li .etf-name { color: var(--accent); font-family: var(--mono); }
 .etf-chip-ticker { font-family: var(--mono); font-weight: 600; color: var(--accent); font-size: 14px; }
 .etf-chip-name { color: var(--text2); font-size: 11px; }
 
-/* Modal backdrop + dialog for per-ETF holdings drill-down. */
-.modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
-.modal-backdrop.hidden { display: none; }
-.modal-dialog { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; max-width: 820px; width: 100%; max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
-.modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.modal-header h2 { font-size: 15px; font-weight: 500; line-height: 1.4; }
-.modal-header .ticker { font-family: var(--mono); color: var(--accent); margin-right: 10px; font-weight: 700; }
-.modal-header .modal-subtitle { color: var(--text3); font-size: 12px; margin-left: 8px; }
-.modal-close { background: none; border: none; color: var(--text2); font-size: 26px; cursor: pointer; padding: 0 6px; line-height: 1; }
-.modal-close:hover { color: var(--text); }
-.modal-body { overflow-y: auto; }
-
-/* Per-ETF fund_meta strip at the top of the modal body. */
-.fund-meta { padding: 10px 18px; background: var(--bg); border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 14px; }
-.fund-meta b { color: var(--text); font-family: var(--mono); font-weight: 600; }
+/* ETF overview accordion — one <details> card per ETF. Native expand/collapse. */
+.etf-overview { display: flex; flex-direction: column; gap: 12px; }
+.etf-card-large { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+/* Border-left accent inherited from .etf-card / --active / --passive. */
+.etf-card-large.etf-card { border-left-width: 4px; }
+.etf-card-large > summary { list-style: none; cursor: pointer; padding: 14px 18px 0; user-select: none; }
+.etf-card-large > summary::-webkit-details-marker { display: none; }
+.etf-card-large > summary:hover { background: rgba(48, 54, 61, 0.25); }
+.etf-card-large .card-head-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.etf-card-large .card-ticker { font-family: var(--mono); font-weight: 700; color: var(--accent); font-size: 16px; }
+.etf-card-large .card-name { color: var(--text); font-size: 14px; }
+.etf-card-large .card-count { color: var(--text3); font-size: 12px; margin-left: auto; }
+.etf-card-large .card-toggle { color: var(--text3); font-size: 14px; transition: transform 0.15s; }
+.etf-card-large[open] .card-toggle { transform: rotate(180deg); color: var(--text); }
+.etf-card-large .fund-meta { padding: 8px 0 14px; background: transparent; border-bottom: none; font-size: 12px; color: var(--text2); display: flex; flex-wrap: wrap; gap: 14px; }
+.etf-card-large .fund-meta b { color: var(--text); font-family: var(--mono); font-weight: 600; }
+.etf-card-large .card-body { border-top: 1px solid var(--border); }
+.etf-card-large[open] > summary { border-bottom: none; }
 
 table.etf-holdings { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.etf-holdings thead { background: var(--bg3); position: sticky; top: 0; }

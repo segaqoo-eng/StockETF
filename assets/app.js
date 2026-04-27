@@ -1,4 +1,4 @@
-// StockETF frontend — v1: cross-holdings table with filters.
+// StockETF frontend — cross-holdings table + per-ETF accordion overview.
 
 const DATA_URL = "data/latest.json";
 
@@ -11,28 +11,27 @@ function etfBorderClass(code) {
 }
 
 // Foreign-market badge for per-ETF holdings views. Cross-table is TW-only
-// (see normalizer), so this is currently a no-op there but reused by the
-// per-ETF modal added in the next commit.
+// (see normalizer), so this is a no-op there but used inside the ETF overview.
 const MARKET_BADGES = { US: "🇺🇸", JP: "🇯🇵", OTHER: "🌐" };
 function renderMarketBadge(market) {
   const label = MARKET_BADGES[market];
   return label ? ` <span class="market-badge">${label}</span>` : "";
 }
 
+// Capital scrapes only top-10 of 00982A / 00992A. Their diffs may contain
+// false 🆕/❌ when stocks shuffle in/out of the top-10 cutoff while the ETF
+// still holds them. Footnote shown in the ETF detail card.
+const TOP10_LIMITED_TICKERS = new Set(["00982A", "00992A"]);
+
 const state = {
   payload: null,
   diff: null,           // {ticker: {added, removed, changed}} or null on first-ever / fetch failure
-  leaderboard: null,    // {window_days, as_of_today, as_of_baseline, top_added, top_removed}
+  leaderboard: null,
   minEtfs: 3,
   industry: "",
   search: "",
   expandedStockId: null,
 };
-
-// Capital scrapes only top-10 of 00982A / 00992A. Their diffs may contain
-// false 🆕/❌ when stocks shuffle in/out of the top-10 cutoff while the ETF
-// still holds them. Footnote marker shown in the ETF modal.
-const TOP10_LIMITED_TICKERS = new Set(["00982A", "00992A"]);
 
 async function load() {
   try {
@@ -56,7 +55,10 @@ async function load() {
     populateIndustryFilter();
     renderEtfChipBar();
     renderLeaderboard();
+    renderEtfOverview();
     render();
+
+    applyHash();  // honour deep-link hash on first paint
   } catch (err) {
     document.getElementById("cross-holdings-table").innerHTML =
       `<p class="loading">載入資料失敗：${escapeHtml(err.message)}</p>`;
@@ -125,8 +127,6 @@ function filteredHoldings() {
 
 function renderRow(h) {
   const maxWeight = Math.max(...h.held_by.map(b => b.weight_pct));
-  // h.market is absent on cross-table holdings (always TW after normalizer
-  // filtering); fall back accordingly so the badge helper handles both.
   const badge = renderMarketBadge(h.market);
   return `
     <tr data-stock-id="${escapeHtml(h.stock_id)}">
@@ -154,13 +154,11 @@ function toggleDetail(row) {
   const stockId = row.dataset.stockId;
   const existing = row.nextElementSibling;
 
-  // If the detail row for *this* stock is already open, close it
   if (existing && existing.classList.contains("detail") && existing.dataset.for === stockId) {
     existing.remove();
     state.expandedStockId = null;
     return;
   }
-  // Close any other open detail row first
   document.querySelectorAll("tr.detail").forEach(r => r.remove());
 
   const holding = state.payload.holdings.find(h => h.stock_id === stockId);
@@ -192,7 +190,6 @@ function renderLeaderboard() {
   const container = document.getElementById("leaderboard");
   const lb = state.leaderboard;
 
-  // No baseline available yet (first daily-run cycles after the format change)
   if (!lb || !lb.as_of_baseline || (lb.top_added.length === 0 && lb.top_removed.length === 0)) {
     container.innerHTML = `
       <div class="leaderboard-empty">
@@ -237,9 +234,8 @@ function renderLeaderboard() {
   `;
 }
 
-// Fund-level metadata line shown at the top of the per-ETF modal body.
-// Renders only the keys the scraper actually populated — different issuers
-// expose different subsets, by design (see ScrapeResult.fund_meta).
+// --- Fund-level metadata strip used in the ETF overview cards ---
+
 function renderFundMetaLine(meta) {
   if (!meta || Object.keys(meta).length === 0) return "";
   const parts = [];
@@ -260,21 +256,17 @@ function renderFundMetaLine(meta) {
 }
 
 function formatYi(n) {
-  // 232,148,514,804 → "2,321"  (integer 億 — Taiwan convention)
   return (n / 1e8).toLocaleString("en", { maximumFractionDigits: 0 });
 }
 
 function formatDateShort(iso) {
-  // "2026-04-27T15:33:01" → "2026-04-27 15:33"; safe for plain date strings too
   return String(iso).replace("T", " ").slice(0, 16);
 }
 
-// --- Per-ETF holdings drill-down ---
+// --- ETF chip bar (always visible at top, acts as a deep-link launcher) ---
 
 function renderEtfChipBar() {
   const bar = document.getElementById("etf-chip-bar");
-  // Sort by ticker so the chip order is stable across reloads regardless of
-  // payload.etfs ordering.
   const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
   bar.innerHTML = sortedEtfs.map(e => `
     <button type="button" class="etf-chip ${etfBorderClass(e.ticker)}" data-ticker="${escapeHtml(e.ticker)}">
@@ -283,20 +275,25 @@ function renderEtfChipBar() {
     </button>
   `).join("");
   bar.querySelectorAll(".etf-chip").forEach(btn => {
-    btn.addEventListener("click", () => openEtfModal(btn.dataset.ticker));
+    btn.addEventListener("click", () => {
+      // Hash routing handles tab switch + accordion open + scroll
+      location.hash = `etfs/${btn.dataset.ticker}`;
+    });
   });
 }
 
-function openEtfModal(ticker) {
-  const etf = state.payload.etfs.find(e => e.ticker === ticker);
-  if (!etf) return;
+// --- ETF overview accordion (the "ETF 總覽" tab content) ---
 
-  // Defensive sort by weight desc — most scrapers return that order, but
-  // don't rely on it.
+function renderEtfOverview() {
+  const root = document.getElementById("etf-overview");
+  const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
+  root.innerHTML = sortedEtfs.map(buildEtfCardHtml).join("");
+}
+
+function buildEtfCardHtml(etf) {
+  const ticker = etf.ticker;
   const holdings = [...(etf.holdings || [])].sort((a, b) => b.weight_pct - a.weight_pct);
 
-  // Pull this ETF's diff slice (may be undefined on first run or for ETFs
-  // not in yesterday's lineup).
   const diff = (state.diff && state.diff[ticker]) || { added: [], removed: [], changed: [] };
   const addedIds = new Set(diff.added.map(h => h.stock_id));
   const changedById = Object.fromEntries(diff.changed.map(c => [c.stock_id, c]));
@@ -323,8 +320,6 @@ function openEtfModal(ticker) {
     </tr>`;
   }).join("");
 
-  // Removed stocks live in a separate footer section since they're absent
-  // from today's holdings list.
   let removedSection = "";
   if (diff.removed.length > 0) {
     const items = diff.removed.map(r =>
@@ -338,32 +333,75 @@ function openEtfModal(ticker) {
       </div>`;
   }
 
-  // Capital top-10 caveat — false 🆕/❌ are likely.
   const caveat = TOP10_LIMITED_TICKERS.has(ticker)
     ? `<p class="diff-caveat">* 群益僅提供 top-10 持股，diff badge 可能含偽陽性 (見 docs/known-issues/capital-scraper.md)</p>`
     : "";
 
-  document.getElementById("etf-modal-dialog").className =
-    `modal-dialog ${etfBorderClass(etf.ticker)}`;
-  document.getElementById("etf-modal-title").innerHTML =
-    `<span class="ticker">${escapeHtml(etf.ticker)}</span>${escapeHtml(etf.name)}` +
-    `<span class="modal-subtitle">· ${etf.holdings_count} 檔持股</span>`;
-  document.getElementById("etf-modal-body").innerHTML = `
-    ${renderFundMetaLine(etf.fund_meta)}
-    <table class="etf-holdings">
-      <thead><tr>
-        <th>代號</th><th>名稱</th><th class="num">權重</th><th class="num">股數</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    ${removedSection}
-    ${caveat}
+  // Use native <details>/<summary> for accordion behaviour — no JS needed
+  // for the expand/collapse, hash routing only flips the open attribute.
+  return `
+    <details class="etf-card-large ${etfBorderClass(ticker)}" data-ticker="${escapeHtml(ticker)}">
+      <summary>
+        <div class="card-head-row">
+          <span class="card-ticker">${escapeHtml(ticker)}</span>
+          <span class="card-name">${escapeHtml(etf.name)}</span>
+          <span class="card-count">${etf.holdings_count} 檔持股</span>
+          <span class="card-toggle" aria-hidden="true">▾</span>
+        </div>
+        ${renderFundMetaLine(etf.fund_meta)}
+      </summary>
+      <div class="card-body">
+        <table class="etf-holdings">
+          <thead><tr>
+            <th>代號</th><th>名稱</th><th class="num">權重</th><th class="num">股數</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${removedSection}
+        ${caveat}
+      </div>
+    </details>
   `;
-  document.getElementById("etf-modal").classList.remove("hidden");
 }
 
-function closeEtfModal() {
-  document.getElementById("etf-modal").classList.add("hidden");
+// --- Tab switching + hash routing (single source of truth: location.hash) ---
+
+function activateTab(name) {
+  document.querySelectorAll(".tab-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.tab === name);
+  });
+  document.querySelectorAll(".tab-panel").forEach(p => {
+    p.classList.toggle("active", p.id === `tab-${name}`);
+  });
+}
+
+function applyHash() {
+  const hash = location.hash.slice(1);  // strip leading #
+  const [tab, etfTicker] = hash.split("/");
+
+  if (tab === "etfs") {
+    activateTab("etfs");
+    if (etfTicker) {
+      const card = document.querySelector(`details[data-ticker="${CSS.escape(etfTicker)}"]`);
+      if (card) {
+        card.open = true;
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  } else {
+    activateTab("cross");  // default for empty hash, "cross", or anything unrecognised
+  }
+}
+
+function wireTabs() {
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      // Setting hash triggers hashchange → applyHash; never mutate UI directly.
+      location.hash = btn.dataset.tab;
+    });
+  });
+  window.addEventListener("hashchange", applyHash);
 }
 
 // --- Wire controls ---
@@ -381,15 +419,5 @@ document.getElementById("filter-search").addEventListener("input", e => {
   render();
 });
 
-document.getElementById("etf-modal-close").addEventListener("click", closeEtfModal);
-document.getElementById("etf-modal").addEventListener("click", e => {
-  // Close on backdrop click but not on dialog click.
-  if (e.target.id === "etf-modal") closeEtfModal();
-});
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && !document.getElementById("etf-modal").classList.contains("hidden")) {
-    closeEtfModal();
-  }
-});
-
+wireTabs();
 load();
