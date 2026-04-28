@@ -55,6 +55,7 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-period { padding: 10px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 16px; font-size: var(--fs-sm); color: var(--text2); }
 .changes-period b { color: var(--text); font-family: var(--mono); }
 .changes-period-empty { color: var(--text3); }
+.changes-stale-note { margin-left: 12px; color: #d29922; font-size: var(--fs-xs); }
 
 .changes-empty { padding: 16px; color: var(--text3); font-size: var(--fs-sm); text-align: center; }
 

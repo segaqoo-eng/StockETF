@@ -196,40 +196,41 @@ def _find_baseline_snapshot(snapshots_dir: Path, today_iso: str, cutoff_iso: str
 
 
 def write_diff(today_payload: dict, data_dir: Path) -> None:
-    """Compute today-vs-most-recent-prior-snapshot diff and write latest_diff.json.
+    """Diff the two most recent snapshots and write latest_diff.json.
 
-    The previous snapshot must NOT be today's (write_payload just wrote that one);
-    pick the most recent earlier-dated file. If none exist (first run), by_etf
-    is empty {} and as_of_baseline is null.
+    Always compares the last two snapshots (not latest.json vs snapshot),
+    so the diff is meaningful even when today's scrape produced no new data.
+    Sets is_stale=True when the newest snapshot is older than today, so the
+    frontend can show a "今日無最新資料" notice.
 
     Output shape:
-      { "as_of_today": "YYYY-MM-DD",
-        "as_of_baseline": "YYYY-MM-DD" or null,
+      { "as_of_today": "YYYY-MM-DD",       -- newest snapshot date
+        "as_of_baseline": "YYYY-MM-DD",     -- second-newest snapshot date
+        "is_stale": bool,                   -- true when newest < real today
         "by_etf": { ticker: {added, removed, changed}, ... } }
     """
     today_iso = datetime.now(TAIPEI).date().isoformat()
     snapshots_dir = data_dir / "snapshots"
-    prev = _find_previous_snapshot(snapshots_dir, today_iso)
-    if prev is None:
-        result = {"as_of_today": today_iso, "as_of_baseline": None, "by_etf": {}}
-        print("Diff: no prior snapshot found; writing empty diff")
+    snaps = sorted(snapshots_dir.glob("*.json")) if snapshots_dir.exists() else []
+
+    if len(snaps) < 2:
+        result = {"as_of_today": snaps[0].stem if snaps else today_iso,
+                  "as_of_baseline": None, "is_stale": True, "by_etf": {}}
+        print("Diff: fewer than 2 snapshots; writing empty diff")
     else:
-        prev_payload = json.loads(prev.read_text(encoding="utf-8"))
-        by_etf = compute_diff(today_payload, prev_payload)
+        newest, prev = snaps[-1], snaps[-2]
+        is_stale = newest.stem < today_iso
+        newest_payload = json.loads(newest.read_text(encoding="utf-8"))
+        prev_payload   = json.loads(prev.read_text(encoding="utf-8"))
+        by_etf = compute_diff(newest_payload, prev_payload)
         changed_etfs = sum(1 for d in by_etf.values() if d["added"] or d["removed"] or d["changed"])
-        print(f"Diff: {prev.name} → today ({changed_etfs}/{len(by_etf)} ETFs with changes)")
-        result = {"as_of_today": today_iso, "as_of_baseline": prev.stem, "by_etf": by_etf}
+        stale_tag = " [STALE]" if is_stale else ""
+        print(f"Diff: {prev.stem} → {newest.stem} ({changed_etfs}/{len(by_etf)} ETFs with changes){stale_tag}")
+        result = {"as_of_today": newest.stem, "as_of_baseline": prev.stem,
+                  "is_stale": is_stale, "by_etf": by_etf}
 
     diff_path = data_dir / "latest_diff.json"
     diff_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-
-
-def _find_previous_snapshot(snapshots_dir: Path, today_iso: str) -> Path | None:
-    """Return the snapshot with the most recent date string strictly less than today_iso."""
-    if not snapshots_dir.exists():
-        return None
-    candidates = sorted(p for p in snapshots_dir.glob("*.json") if p.stem < today_iso)
-    return candidates[-1] if candidates else None
 
 
 def write_prices(today_payload: dict, data_dir: Path) -> None:

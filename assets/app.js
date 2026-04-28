@@ -272,9 +272,15 @@ function renderChanges() {
   }
 
   // Period header — shows what dates the diff is comparing against.
-  const period = state.diff.as_of_baseline
-    ? `<div class="changes-period">📅 比對期間：<b>${state.diff.as_of_baseline}</b> → <b>${state.diff.as_of_today}</b></div>`
-    : `<div class="changes-period changes-period-empty">尚無歷史快照可比對 — 明天 cron 後自動有資料</div>`;
+  let period;
+  if (!state.diff.as_of_baseline) {
+    period = `<div class="changes-period changes-period-empty">尚無歷史快照可比對 — 明天 cron 後自動有資料</div>`;
+  } else {
+    const staleNote = state.diff.is_stale
+      ? `<span class="changes-stale-note">⚠️ 今日無最新資料，顯示上次更新比較</span>`
+      : "";
+    period = `<div class="changes-period">📅 比對期間：<b>${state.diff.as_of_baseline}</b> → <b>${state.diff.as_of_today}</b>${staleNote}</div>`;
+  }
 
   // One card per ETF (ordered by ticker for stability), independent accordion.
   const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
@@ -404,8 +410,8 @@ function buildChangesCardHtml(etf, byEtf) {
   let body = "";
 
   if (!diff) {
-    summaryNote = `<span class="card-count card-count-muted">尚無比對資料</span>`;
-    body = `<div class="card-body changes-empty">此 ETF 暫無歷史比對基準（cron 累積中或發行商無歷史 API）</div>`;
+    summaryNote = `<span class="card-count card-count-muted">首次出現，累積中</span>`;
+    body = `<div class="card-body changes-empty">此 ETF 尚無前次快照可比對，待 cron 累積第二筆資料後自動顯示。</div>`;
   } else {
     const total = diff.added.length + diff.removed.length + diff.changed.length;
     if (total === 0) {
