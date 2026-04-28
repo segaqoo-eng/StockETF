@@ -665,5 +665,306 @@ async function _drawChart(sid, container, periodBar) {
   container.appendChild(credit);
 }
 
+/* ── 綜合評分函數 ── */
+
+function scoreTechnical(candles) {
+  const signals = [];
+  let rawScore = 0;
+
+  // RSI
+  const rsiData = _calcRSI(candles);
+  if (rsiData.length) {
+    const rsi = rsiData[rsiData.length - 1].value;
+    if (rsi < 30) {
+      rawScore += 6;
+      signals.push({ category: "technical", type: "BUY", reason: "RSI 超賣（<30）", score: 6 });
+    } else if (rsi < 50) {
+      rawScore += 3;
+      signals.push({ category: "technical", type: "BUY", reason: "RSI 中低區（30-50）", score: 3 });
+    } else if (rsi < 70) {
+      rawScore += 2;
+      signals.push({ category: "technical", type: "BUY", reason: "RSI 健康（50-70）", score: 2 });
+    } else if (rsi < 80) {
+      rawScore -= 2;
+      signals.push({ category: "technical", type: "SELL", reason: "RSI 偏熱（70-80）", score: -2 });
+    } else {
+      rawScore -= 5;
+      signals.push({ category: "technical", type: "SELL", reason: "RSI 過熱（>80）", score: -5 });
+    }
+  }
+
+  // MACD crossover
+  const macdData = _calcMACD(candles);
+  if (macdData.length >= 2) {
+    const prev = macdData[macdData.length - 2];
+    const curr = macdData[macdData.length - 1];
+    if (prev.hist <= 0 && curr.hist > 0) {
+      rawScore += 6;
+      signals.push({ category: "technical", type: "BUY", reason: "MACD 黃金交叉", score: 6 });
+    } else if (prev.hist >= 0 && curr.hist < 0) {
+      rawScore -= 6;
+      signals.push({ category: "technical", type: "SELL", reason: "MACD 死亡交叉", score: -6 });
+    } else if (curr.macd > 0) {
+      rawScore += 3;
+      signals.push({ category: "technical", type: "BUY", reason: "MACD DIF 站上零軸", score: 3 });
+    }
+  }
+
+  // KD crossover
+  const kdData = _calcKD(candles);
+  if (kdData.length >= 2) {
+    const prev = kdData[kdData.length - 2];
+    const curr = kdData[kdData.length - 1];
+    const goldenCross = prev.k <= prev.d && curr.k > curr.d;
+    const deathCross  = prev.k >= prev.d && curr.k < curr.d;
+    if (goldenCross) {
+      rawScore += 5;
+      signals.push({ category: "technical", type: "BUY", reason: "KD 黃金交叉", score: 5 });
+    } else if (curr.k < 20) {
+      rawScore += 4;
+      signals.push({ category: "technical", type: "BUY", reason: "KD 超賣（K<20）", score: 4 });
+    }
+    if (!goldenCross) {
+      if (deathCross && curr.k >= 20) {
+        rawScore -= 3;
+        signals.push({ category: "technical", type: "SELL", reason: "KD 死亡交叉", score: -3 });
+      } else if (curr.k > 80 && !deathCross) {
+        rawScore -= 3;
+        signals.push({ category: "technical", type: "SELL", reason: "KD 超買（K>80）", score: -3 });
+      }
+    }
+  }
+
+  // MA arrangement
+  const ma5  = _calcMA(candles, 5);
+  const ma20 = _calcMA(candles, 20);
+  const ma60 = _calcMA(candles, 60);
+  if (ma5.length && ma20.length && ma60.length) {
+    const v5  = ma5[ma5.length - 1].value;
+    const v20 = ma20[ma20.length - 1].value;
+    const v60 = ma60[ma60.length - 1].value;
+    if (v5 > v20 && v20 > v60) {
+      rawScore += 8;
+      signals.push({ category: "technical", type: "BUY", reason: "均線多頭排列", score: 8 });
+    } else if (v5 < v20 && v20 < v60) {
+      rawScore -= 8;
+      signals.push({ category: "technical", type: "SELL", reason: "均線空頭排列", score: -8 });
+    }
+  }
+
+  return { score: Math.max(-30, Math.min(30, rawScore)), signals };
+}
+
+function scoreChip(instRows) {
+  const signals = [];
+  let rawScore = 0;
+
+  if (!instRows || instRows.length === 0) return { score: 0, signals };
+
+  // 近5日合計
+  const near5 = instRows.slice(0, 5);
+  const fTotal5 = near5.reduce((s, [, v]) => s + v.foreign, 0);
+  const tTotal5 = near5.reduce((s, [, v]) => s + v.trust,   0);
+  const dTotal5 = near5.reduce((s, [, v]) => s + v.dealer,  0);
+
+  if (fTotal5 > 0) {
+    rawScore += 5;
+    signals.push({ category: "chip", type: "BUY", reason: "外資近5日買超", score: 5 });
+  } else if (fTotal5 < 0) {
+    rawScore -= 5;
+    signals.push({ category: "chip", type: "SELL", reason: "外資近5日賣超", score: -5 });
+  }
+
+  if (tTotal5 > 0) {
+    rawScore += 4;
+    signals.push({ category: "chip", type: "BUY", reason: "投信近5日買超", score: 4 });
+  } else if (tTotal5 < 0) {
+    rawScore -= 4;
+    signals.push({ category: "chip", type: "SELL", reason: "投信近5日賣超", score: -4 });
+  }
+
+  if (dTotal5 > 0) {
+    rawScore += 2;
+    signals.push({ category: "chip", type: "BUY", reason: "自營商近5日買超", score: 2 });
+  } else if (dTotal5 < 0) {
+    rawScore -= 2;
+    signals.push({ category: "chip", type: "SELL", reason: "自營商近5日賣超", score: -2 });
+  }
+
+  // 連續性（外資）
+  const fDays = _consecutiveDays(instRows, "foreign");
+  if (fDays >= 5) {
+    rawScore += 5;
+    signals.push({ category: "chip", type: "BUY", reason: `外資連${fDays}日買超（額外）`, score: 5 });
+  } else if (fDays <= -5) {
+    rawScore -= 5;
+    signals.push({ category: "chip", type: "SELL", reason: `外資連${Math.abs(fDays)}日賣超（額外）`, score: -5 });
+  }
+
+  // 三大同向
+  if (fTotal5 > 0 && tTotal5 > 0 && dTotal5 > 0) {
+    rawScore += 6;
+    signals.push({ category: "chip", type: "BUY", reason: "三大法人同步買超", score: 6 });
+  } else if (fTotal5 < 0 && tTotal5 < 0 && dTotal5 < 0) {
+    rawScore -= 6;
+    signals.push({ category: "chip", type: "SELL", reason: "三大法人同步賣超", score: -6 });
+  }
+
+  // 籌碼分歧
+  if ((fTotal5 > 0 && tTotal5 < 0) || (fTotal5 < 0 && tTotal5 > 0)) {
+    rawScore -= 3;
+    signals.push({ category: "chip", type: "SELL", reason: "外資投信方向分歧", score: -3 });
+  }
+
+  return { score: Math.max(-30, Math.min(30, rawScore)), signals };
+}
+
+function scoreVolumePrice(candles) {
+  const signals = [];
+  let rawScore = 0;
+
+  if (candles.length < 6) return { score: 0, signals };
+
+  const last = candles[candles.length - 1];
+  const prev = candles[candles.length - 2];
+  const slice5 = candles.slice(candles.length - 6, candles.length - 1);
+  const avg5vol = slice5.reduce((s, c) => s + c.volume, 0) / 5;
+
+  const 放量 = last.volume > avg5vol * 1.5;
+  const 縮量 = last.volume < avg5vol * 0.7;
+  const 漲  = last.close > prev.close;
+  const 跌  = last.close < prev.close;
+
+  if (放量 && 漲) {
+    rawScore += 6;
+    signals.push({ category: "volume_price", type: "BUY", reason: "放量上漲", score: 6 });
+  } else if (放量 && 跌) {
+    rawScore -= 6;
+    signals.push({ category: "volume_price", type: "SELL", reason: "放量下跌", score: -6 });
+  } else if (縮量 && 漲) {
+    rawScore -= 2;
+    signals.push({ category: "volume_price", type: "SELL", reason: "量縮上漲（追價意願不足）", score: -2 });
+  } else if (縮量 && 跌) {
+    rawScore += 2;
+    signals.push({ category: "volume_price", type: "BUY", reason: "量縮下跌（賣壓減輕）", score: 2 });
+  }
+
+  // 連續3日 價漲量縮
+  if (candles.length >= 4) {
+    const c = candles;
+    const n = c.length;
+    const priceLongVolumeShort3 =
+      c[n-1].close > c[n-2].close && c[n-1].volume < c[n-2].volume &&
+      c[n-2].close > c[n-3].close && c[n-2].volume < c[n-3].volume &&
+      c[n-3].close > c[n-4].close && c[n-3].volume < c[n-4].volume;
+    if (priceLongVolumeShort3) {
+      rawScore -= 4;
+      signals.push({ category: "volume_price", type: "SELL", reason: "連3日價漲量縮（背離）", score: -4 });
+    }
+
+    // 連續3日 價跌量縮
+    const priceDownVolumeDown3 =
+      c[n-1].close < c[n-2].close && c[n-1].volume < c[n-2].volume &&
+      c[n-2].close < c[n-3].close && c[n-2].volume < c[n-3].volume &&
+      c[n-3].close < c[n-4].close && c[n-3].volume < c[n-4].volume;
+    if (priceDownVolumeDown3) {
+      rawScore += 3;
+      signals.push({ category: "volume_price", type: "BUY", reason: "連3日價跌量縮（底部特徵）", score: 3 });
+    }
+  }
+
+  return { score: Math.max(-20, Math.min(20, rawScore)), signals };
+}
+
+function scoreTrend(candles) {
+  const signals = [];
+  let rawScore = 0;
+
+  if (candles.length < 2) return { score: 0, signals };
+
+  const last = candles[candles.length - 1];
+  const prev = candles[candles.length - 2];
+
+  const slice60 = candles.slice(-60);
+  const high60 = Math.max(...slice60.map(c => c.high));
+  const low60  = Math.min(...slice60.map(c => c.low));
+
+  if (last.close >= high60) {
+    rawScore += 8;
+    signals.push({ category: "trend", type: "BUY", reason: "收盤突破60日新高", score: 8 });
+  } else if (last.close <= low60) {
+    rawScore -= 8;
+    signals.push({ category: "trend", type: "SELL", reason: "收盤跌破60日新低", score: -8 });
+  }
+
+  const ma20Data = _calcMA(candles, 20);
+  if (ma20Data.length) {
+    const ma20Last = ma20Data[ma20Data.length - 1].value;
+    // Need prev bar's MA20 — index one back
+    const ma20Prev = ma20Data.length >= 2 ? ma20Data[ma20Data.length - 2].value : null;
+    if (ma20Prev !== null) {
+      if (last.close > ma20Last && prev.close <= ma20Prev) {
+        rawScore += 4;
+        signals.push({ category: "trend", type: "BUY", reason: "站上MA20", score: 4 });
+      } else if (last.close < ma20Last && prev.close >= ma20Prev) {
+        rawScore -= 4;
+        signals.push({ category: "trend", type: "SELL", reason: "跌破MA20", score: -4 });
+      }
+    }
+  }
+
+  const ma60Data = _calcMA(candles, 60);
+  if (ma60Data.length) {
+    const ma60Last = ma60Data[ma60Data.length - 1].value;
+    const ma60Prev = ma60Data.length >= 2 ? ma60Data[ma60Data.length - 2].value : null;
+    if (ma60Prev !== null) {
+      if (last.close > ma60Last && prev.close <= ma60Prev) {
+        rawScore += 5;
+        signals.push({ category: "trend", type: "BUY", reason: "站上MA60季線", score: 5 });
+      } else if (last.close < ma60Last && prev.close >= ma60Prev) {
+        rawScore -= 5;
+        signals.push({ category: "trend", type: "SELL", reason: "跌破MA60季線", score: -5 });
+      }
+    }
+  }
+
+  const dailyChg = (last.close - prev.close) / prev.close * 100;
+  if (dailyChg > 7) {
+    rawScore -= 3;
+    signals.push({ category: "trend", type: "SELL", reason: "單日暴漲 >7%（追高風險）", score: -3 });
+  } else if (dailyChg < -7) {
+    rawScore -= 5;
+    signals.push({ category: "trend", type: "SELL", reason: "單日暴跌 <-7%（恐慌賣壓）", score: -5 });
+  }
+
+  return { score: Math.max(-20, Math.min(20, rawScore)), signals };
+}
+
+function computeScore(candles, instRows) {
+  const tech  = scoreTechnical(candles);
+  const chip  = scoreChip(instRows);
+  const vol   = scoreVolumePrice(candles);
+  const trend = scoreTrend(candles);
+
+  // Base 50 so neutral stock lands ~50
+  const raw = tech.score + chip.score + vol.score + trend.score;
+  const total = Math.max(0, Math.min(100, raw + 50));
+
+  const recommendation =
+    total >= 80 ? "STRONG_BUY"  :
+    total >= 60 ? "BUY"         :
+    total >= 40 ? "HOLD"        :
+    total >= 20 ? "SELL"        : "STRONG_SELL";
+
+  const allSignals = [
+    ...tech.signals, ...chip.signals, ...vol.signals, ...trend.signals
+  ].sort((a, b) => Math.abs(b.score) - Math.abs(a.score));
+
+  return { total, recommendation,
+    scores: { technical: tech.score, chip: chip.score,
+              volume_price: vol.score, trend: trend.score },
+    signals: allSignals };
+}
+
 /* ── Entry point ── */
 document.addEventListener("DOMContentLoaded", init);
