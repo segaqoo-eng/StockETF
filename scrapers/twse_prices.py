@@ -127,7 +127,8 @@ class PricesFetcher(BaseScraper):
         try:
             twse_text = self.get(TWSE_URL.format(date=twse_date))
             twse = parse_twse_prices(twse_text)
-            prices.update(twse)
+            for sid, data in twse.items():
+                prices[sid] = {**data, "exchange": "TWSE"}
             logger.info("prices: TWSE %d stocks", len(twse))
         except Exception as exc:
             logger.warning("prices: TWSE fetch failed: %s", exc)
@@ -135,7 +136,9 @@ class PricesFetcher(BaseScraper):
         try:
             tpex_text = self.get(TPEX_URL.format(date=tpex_date))
             tpex = parse_tpex_prices(tpex_text)
-            prices.update(tpex)
+            for sid, data in tpex.items():
+                if sid not in prices:
+                    prices[sid] = {**data, "exchange": "TPEX"}
             logger.info("prices: TPEx %d stocks", len(tpex))
         except Exception as exc:
             logger.warning("prices: TPEx fetch failed: %s", exc)
