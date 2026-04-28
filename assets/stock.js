@@ -532,10 +532,10 @@ async function _drawChart(sid, container, periodBar) {
   container.querySelectorAll(":scope > *:not(div:first-child)").forEach(el => el.remove());
 
   // 通用參考線 helper（供 RSI、KD 共用）
-  const refLine = (chart, val, color) => {
+  const refLine = (chart, data, val, color) => {
     const s = chart.addLineSeries({ color, lineWidth: 1, lineStyle: 2,
       priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-    s.setData(rsiData.map(d => ({ time: d.time, value: val })));
+    s.setData(data.map(d => ({ time: d.time, value: val })));
   };
 
   const cfg = CHART_PERIODS.find(p => p.key === _activePeriod);
@@ -613,8 +613,8 @@ async function _drawChart(sid, container, periodBar) {
       priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
     }).setData(rsiData);
     // 超買/超賣參考線
-    refLine(rsiChart, 70, "rgba(248,81,73,0.4)");
-    refLine(rsiChart, 30, "rgba(63,185,80,0.4)");
+    refLine(rsiChart, rsiData, 70, "rgba(248,81,73,0.4)");
+    refLine(rsiChart, rsiData, 30, "rgba(63,185,80,0.4)");
     rsiChart.timeScale().fitContent();
 
     // ── KD(9,3,3) ──
@@ -628,8 +628,8 @@ async function _drawChart(sid, container, periodBar) {
       kdChart.addLineSeries({ color: "#d2a8ff", lineWidth: 1,
         priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
       }).setData(kdData.map(d => ({ time: d.time, value: d.d })));
-      refLine(kdChart, 80, "rgba(248,81,73,0.3)");
-      refLine(kdChart, 20, "rgba(63,185,80,0.3)");
+      refLine(kdChart, kdData, 80, "rgba(248,81,73,0.3)");
+      refLine(kdChart, kdData, 20, "rgba(63,185,80,0.3)");
       kdChart.timeScale().fitContent();
 
       // ── MACD(12,26,9) ──
