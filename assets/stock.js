@@ -223,15 +223,19 @@ async function _fetchInstitutional(sid, startDate) {
 }
 
 function _parseInstitutional(raw) {
-  // Group by date → { 外資: net, 投信: net, 自營商: net }
+  // FinMind TaiwanStockInstitutionalInvestorsBuySell returns English names
+  // and separate buy/sell fields (no buy_minus_sell). Units are shares → ÷1000 = 張.
   const byDate = {};
   for (const r of raw) {
     if (!byDate[r.date]) byDate[r.date] = { foreign: 0, trust: 0, dealer: 0 };
-    const net = (r.buy_minus_sell || 0) / 1000; // 股 → 張
+    const net = ((r.buy || 0) - (r.sell || 0)) / 1000;
     const n = r.name || "";
-    if (n.includes("外資") && !n.includes("自營")) byDate[r.date].foreign += net;
-    else if (n === "投信")                          byDate[r.date].trust   += net;
-    else if (n.includes("自營"))                    byDate[r.date].dealer  += net;
+    if (n === "Foreign_Investor" || n === "Foreign_Dealer_Self")
+      byDate[r.date].foreign += net;
+    else if (n === "Investment_Trust")
+      byDate[r.date].trust += net;
+    else if (n === "Dealer_self" || n === "Dealer_Hedging")
+      byDate[r.date].dealer += net;
   }
   return Object.entries(byDate).sort((a, b) => a[0] < b[0] ? 1 : -1); // newest first
 }
