@@ -41,6 +41,7 @@ async function loadData() {
     state.prices  = pricesRes.ok   ? await pricesRes.json()   : null;
     state.diff    = diffRes.ok     ? await diffRes.json()     : null;
     state.history = histRes.ok     ? await histRes.json()     : null;
+    populateStockDatalist();
     render();
   } catch (err) {
     document.getElementById("sp-header").innerHTML =
@@ -1053,9 +1054,29 @@ async function renderScore(sid) {
   }
 }
 
-/* ── 搜尋框導航 ── */
+/* ── 搜尋框導航 + autocomplete ── */
+
+function populateStockDatalist() {
+  const dl = document.getElementById("stock-datalist");
+  if (!dl || !state.payload) return;
+  const seen = {};
+  for (const etf of state.payload.etfs) {
+    for (const h of etf.holdings || []) {
+      if (!seen[h.stock_id]) {
+        seen[h.stock_id] = h.stock_name;
+      }
+    }
+  }
+  dl.innerHTML = Object.entries(seen)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([id, name]) => `<option value="${escapeHtml(id)} ${escapeHtml(name)}"></option>`)
+    .join("");
+}
+
 function navigateToStock() {
-  const id = (document.getElementById("sp-stock-input")?.value || "").trim();
+  const raw = (document.getElementById("sp-stock-input")?.value || "").trim();
+  // Accept "2330 台積電" or just "2330"
+  const id = raw.split(/\s+/)[0];
   if (id) location.href = `stock.html?id=${encodeURIComponent(id)}`;
 }
 

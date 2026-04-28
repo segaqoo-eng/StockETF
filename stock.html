@@ -16,10 +16,10 @@
     .sp-site { color: var(--text3); font-size: var(--fs-md); }
     .sp-search { display: flex; gap: 6px; margin-left: auto; }
     .sp-search input { background: var(--bg); border: 1px solid var(--border); color: var(--text);
-      border-radius: 6px; padding: 4px 10px; font-size: var(--fs-sm); width: 140px; outline: none; }
+      border-radius: 6px; padding: 6px 12px; font-size: var(--fs-base); width: 220px; outline: none; }
     .sp-search input:focus { border-color: var(--accent); }
     .sp-search button { background: var(--accent); color: #000; border: none; border-radius: 6px;
-      padding: 4px 12px; font-size: var(--fs-sm); cursor: pointer; font-weight: 600; }
+      padding: 6px 16px; font-size: var(--fs-base); cursor: pointer; font-weight: 600; }
     .sp-search button:hover { opacity: 0.85; }
 
     .sp-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
@@ -134,8 +134,10 @@
   <span style="color:var(--border)">|</span>
   <span class="sp-site">StockETF 個股分析</span>
   <div class="sp-search">
-    <input id="sp-stock-input" type="text" placeholder="輸入股票代號…" autocomplete="off"
+    <input id="sp-stock-input" type="text" placeholder="代號或股名，例：2330 台積電"
+           list="stock-datalist" autocomplete="off"
            onkeydown="if(event.key==='Enter')navigateToStock()">
+    <datalist id="stock-datalist"></datalist>
     <button onclick="navigateToStock()">查詢</button>
   </div>
 </div>
