@@ -571,11 +571,11 @@ function buildEtfCardHtml(etf) {
     }
     const change = changedById[h.stock_id];
     if (change) {
-      const up   = change.shares_delta > 0;
+      const up = change.shares_delta > 0;
       const sign = up ? "+" : "";
       badges.push(
-        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="股數調整 ${sign}${Number(change.shares_delta).toLocaleString()}">` +
-        `${sign}${Number(change.shares_delta).toLocaleString()}</span>`
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="股數調整 ${sign}${Number(change.shares_delta).toLocaleString()} 股">` +
+        `${up ? "▲" : "▼"}</span>`
       );
     }
     return `<tr>
