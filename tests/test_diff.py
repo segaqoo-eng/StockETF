@@ -31,11 +31,14 @@ def _payload(etfs):
     }
 
 
-def test_no_change_omits_etf():
-    """When today and yesterday are identical, the ETF doesn't appear in the diff."""
+def test_no_change_includes_etf_with_empty_arrays():
+    """When today and yesterday are identical, the ETF still appears in the diff
+    with all empty arrays — so the frontend can show '無調倉' rather than 'no baseline'."""
     today = _payload({"0050": [("2330", "台積電", 48.5), ("2454", "聯發科", 3.8)]})
     yesterday = _payload({"0050": [("2330", "台積電", 48.5), ("2454", "聯發科", 3.8)]})
-    assert compute_diff(today, yesterday) == {}
+    diff = compute_diff(today, yesterday)
+    assert "0050" in diff
+    assert diff["0050"] == {"added": [], "removed": [], "changed": []}
 
 
 def test_added_stock():
@@ -74,7 +77,8 @@ def test_weight_change_below_threshold_filtered():
     today = _payload({"0050": [("2330", "台積電", 48.503)]})
     yesterday = _payload({"0050": [("2330", "台積電", 48.500)]})
     diff = compute_diff(today, yesterday)
-    assert diff == {}, "0.003% drift should be below threshold and produce no diff"
+    assert diff["0050"] == {"added": [], "removed": [], "changed": []}, \
+        "0.003% drift should be below threshold; ETF still present but with empty arrays"
 
 
 def test_foreign_holdings_ignored():
@@ -94,8 +98,8 @@ def test_foreign_holdings_ignored():
         ],
     })
     diff = compute_diff(today, yesterday)
-    # 2330 unchanged, foreign holdings ignored entirely → no diff for 00990A
-    assert diff == {}
+    # 2330 unchanged, foreign holdings ignored entirely → 00990A present but with empty arrays
+    assert diff["00990A"] == {"added": [], "removed": [], "changed": []}
 
 
 def test_etf_only_in_one_side_skipped():
