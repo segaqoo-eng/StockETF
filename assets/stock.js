@@ -263,6 +263,101 @@ function _startDate(monthsBack) {
   return d.toISOString().slice(0, 10);
 }
 
+/* ── 技術指標計算 ── */
+
+function _calcMA(candles, n) {
+  return candles.map((c, i) => {
+    if (i < n - 1) return null;
+    const avg = candles.slice(i - n + 1, i + 1).reduce((s, x) => s + x.close, 0) / n;
+    return { time: c.time, value: +avg.toFixed(2) };
+  }).filter(Boolean);
+}
+
+function _calcRSI(candles, period = 14) {
+  const results = [];
+  let avgGain = 0, avgLoss = 0;
+  for (let i = 1; i <= period; i++) {
+    const d = candles[i].close - candles[i - 1].close;
+    if (d > 0) avgGain += d; else avgLoss -= d;
+  }
+  avgGain /= period; avgLoss /= period;
+  for (let i = period; i < candles.length; i++) {
+    const d = candles[i].close - candles[i - 1].close;
+    avgGain = (avgGain * (period - 1) + Math.max(d, 0)) / period;
+    avgLoss = (avgLoss * (period - 1) + Math.max(-d, 0)) / period;
+    const rsi = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain / avgLoss);
+    results.push({ time: candles[i].time, value: +rsi.toFixed(2) });
+  }
+  return results;
+}
+
+function _calcEMA(arr, period) {
+  const k = 2 / (period + 1);
+  let ema = arr[0];
+  return arr.map((v, i) => { if (i > 0) ema = v * k + ema * (1 - k); return ema; });
+}
+
+function _calcMACD(candles, fast = 12, slow = 26, sig = 9) {
+  const closes = candles.map(c => c.close);
+  const emaFast = _calcEMA(closes, fast);
+  const emaSlow = _calcEMA(closes, slow);
+  const macdLine = emaFast.map((v, i) => v - emaSlow[i]);
+  const signalLine = _calcEMA(macdLine.slice(slow - 1), sig);
+  return macdLine.slice(slow - 1).map((m, i) => {
+    const s = signalLine[i], h = m - s;
+    return { time: candles[slow - 1 + i].time,
+      macd: +m.toFixed(3), signal: +s.toFixed(3), hist: +h.toFixed(3) };
+  });
+}
+
+function _calcKD(candles, period = 9, sm = 3) {
+  let k = 50, d = 50;
+  return candles.slice(period - 1).map((c, i) => {
+    const sl = candles.slice(i, i + period);
+    const hi = Math.max(...sl.map(x => x.high));
+    const lo = Math.min(...sl.map(x => x.low));
+    const rsv = hi === lo ? 50 : (c.close - lo) / (hi - lo) * 100;
+    k = (k * (sm - 1) + rsv) / sm;
+    d = (d * (sm - 1) + k) / sm;
+    return { time: c.time, k: +k.toFixed(2), d: +d.toFixed(2) };
+  });
+}
+
+/* 同步多圖 time scale */
+function _syncCharts(charts) {
+  let busy = false;
+  charts.forEach(src => {
+    src.timeScale().subscribeVisibleLogicalRangeChange(range => {
+      if (busy || !range) return;
+      busy = true;
+      charts.forEach(t => { if (t !== src) t.timeScale().setVisibleLogicalRange(range); });
+      busy = false;
+    });
+  });
+}
+
+function _makeSubChart(parent, height) {
+  const div = document.createElement("div");
+  div.style.cssText = `width:100%;height:${height}px;`;
+  parent.appendChild(div);
+  return LightweightCharts.createChart(div, {
+    width: div.clientWidth, height,
+    layout: { background: { color: "#161b22" }, textColor: "#8b949e" },
+    grid:   { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+    rightPriceScale: { borderColor: "#30363d", scaleMargins: { top: 0.1, bottom: 0.1 } },
+    timeScale: { borderColor: "#30363d", timeVisible: false, visible: false },
+    handleScroll: true, handleScale: true,
+  });
+}
+
+function _subLabel(parent, text) {
+  const el = document.createElement("div");
+  el.style.cssText = "padding:2px 8px;font-size:10px;color:var(--text3);background:#161b22;";
+  el.textContent = text;
+  parent.appendChild(el);
+}
+
 const CHART_PERIODS = [
   { key: "D", label: "日K", months: 3,  group: null    },
   { key: "W", label: "週K", months: 6,  group: "week"  },
@@ -326,57 +421,124 @@ async function _drawChart(sid, container, periodBar) {
     return;
   }
 
-  const chartDiv = document.createElement("div");
-  chartDiv.style.cssText = "width:100%;height:390px;";
-  container.appendChild(chartDiv);
+  // ── 主圖：K 線 + 成交量 + MA ──
+  const mainDiv = document.createElement("div");
+  mainDiv.style.cssText = "width:100%;height:320px;";
+  container.appendChild(mainDiv);
 
-  const chart = LightweightCharts.createChart(chartDiv, {
-    width: chartDiv.clientWidth, height: 390,
+  const main = LightweightCharts.createChart(mainDiv, {
+    width: mainDiv.clientWidth, height: 320,
     layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
     grid:   { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
     rightPriceScale: { borderColor: "#30363d", scaleMargins: { top: 0.05, bottom: 0.22 } },
     timeScale: { borderColor: "#30363d", timeVisible: false },
   });
-
-  // 台灣慣例：漲=紅 跌=綠
-  chart.addCandlestickSeries({
+  main.addCandlestickSeries({
     upColor: "#f85149", downColor: "#3fb950",
     borderUpColor: "#f85149", borderDownColor: "#3fb950",
-    wickUpColor:   "#f85149", wickDownColor:   "#3fb950",
+    wickUpColor: "#f85149", wickDownColor: "#3fb950",
   }).setData(candles);
 
-  // 成交量
-  const vol = chart.addHistogramSeries({ priceFormat: { type: "volume" }, priceScaleId: "vol" });
-  chart.priceScale("vol").applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+  const vol = main.addHistogramSeries({ priceFormat: { type: "volume" }, priceScaleId: "vol" });
+  main.priceScale("vol").applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
   vol.setData(candles.map(c => ({
     time: c.time, value: c.volume,
     color: c.close >= c.open ? "rgba(248,81,73,0.45)" : "rgba(63,185,80,0.45)",
   })));
 
-  // MA 均線
-  const maConfig = [{ n:5, color:"#f0883e" }, { n:20, color:"#d2a8ff" }, { n:60, color:"#7ee787" }];
+  const maConfig = [{ n: 5, color: "#f0883e" }, { n: 20, color: "#d2a8ff" }, { n: 60, color: "#7ee787" }];
   for (const { n, color } of maConfig) {
-    const ma = candles.map((c, i) => {
-      if (i < n - 1) return null;
-      const avg = candles.slice(i - n + 1, i + 1).reduce((s, x) => s + x.close, 0) / n;
-      return { time: c.time, value: +avg.toFixed(2) };
-    }).filter(Boolean);
+    const ma = _calcMA(candles, n);
     if (!ma.length) continue;
-    chart.addLineSeries({ color, lineWidth: 1,
+    main.addLineSeries({ color, lineWidth: 1,
       priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
     }).setData(ma);
   }
+  main.timeScale().fitContent();
 
-  chart.timeScale().fitContent();
+  // MA 圖例
+  const maLegend = document.createElement("div");
+  maLegend.style.cssText = "display:flex;gap:12px;padding:2px 8px;font-size:10px;background:#161b22;";
+  maLegend.innerHTML = maConfig.map(m => `<span style="color:${m.color}">● MA${m.n}</span>`).join("");
+  container.appendChild(maLegend);
 
-  const legend = document.createElement("div");
-  legend.style.cssText = "display:flex;align-items:center;padding:3px 8px;font-size:11px;gap:12px;background:#161b22;";
-  legend.innerHTML = maConfig.map(m => `<span style="color:${m.color}">● MA${m.n}</span>`).join("") +
-    `<span style="flex:1;text-align:right;color:var(--text3)">資料來源 <a href="https://finmindtrade.com/" target="_blank" rel="noopener" style="color:var(--text2)">FinMind</a></span>`;
-  container.appendChild(legend);
+  // ── RSI(14) ──
+  const rsiData = _calcRSI(candles);
+  if (rsiData.length) {
+    _subLabel(container, "RSI(14)");
+    const rsiChart = _makeSubChart(container, 100);
+    rsiChart.priceScale("right").applyOptions({ scaleMargins: { top: 0.1, bottom: 0.1 } });
+    rsiChart.addLineSeries({ color: "#79c0ff", lineWidth: 1,
+      priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
+    }).setData(rsiData);
+    // 超買/超賣參考線
+    const refLine = (val, color) => {
+      const s = rsiChart.addLineSeries({ color, lineWidth: 1, lineStyle: 2,
+        priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+      s.setData(rsiData.map(d => ({ time: d.time, value: val })));
+    };
+    refLine(70, "rgba(248,81,73,0.4)");
+    refLine(30, "rgba(63,185,80,0.4)");
+    rsiChart.timeScale().fitContent();
 
-  new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth })).observe(chartDiv);
+    // ── KD(9,3,3) ──
+    const kdData = _calcKD(candles);
+    if (kdData.length) {
+      _subLabel(container, "KD(9,3,3)");
+      const kdChart = _makeSubChart(container, 100);
+      kdChart.addLineSeries({ color: "#f0883e", lineWidth: 1,
+        priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
+      }).setData(kdData.map(d => ({ time: d.time, value: d.k })));
+      kdChart.addLineSeries({ color: "#d2a8ff", lineWidth: 1,
+        priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
+      }).setData(kdData.map(d => ({ time: d.time, value: d.d })));
+      refLine(80, "rgba(248,81,73,0.3)"); // reuse refLine is not scoped here — inline
+      kdChart.timeScale().fitContent();
+
+      // ── MACD(12,26,9) ──
+      const macdData = _calcMACD(candles);
+      if (macdData.length) {
+        _subLabel(container, "MACD(12,26,9)");
+        const macdChart = _makeSubChart(container, 100);
+        macdChart.timeScale().applyOptions({ visible: true, borderColor: "#30363d", timeVisible: false });
+        // 柱狀圖
+        macdChart.addHistogramSeries({ priceScaleId: "right",
+          priceLineVisible: false, lastValueVisible: false,
+        }).setData(macdData.map(d => ({
+          time: d.time, value: d.hist,
+          color: d.hist >= 0 ? "rgba(248,81,73,0.6)" : "rgba(63,185,80,0.6)",
+        })));
+        macdChart.addLineSeries({ color: "#79c0ff", lineWidth: 1,
+          priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
+        }).setData(macdData.map(d => ({ time: d.time, value: d.macd })));
+        macdChart.addLineSeries({ color: "#f0883e", lineWidth: 1,
+          priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
+        }).setData(macdData.map(d => ({ time: d.time, value: d.signal })));
+        macdChart.timeScale().fitContent();
+
+        _syncCharts([main, rsiChart, kdChart, macdChart]);
+        new ResizeObserver(() => [main, rsiChart, kdChart, macdChart].forEach(c =>
+          c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
+      } else {
+        _syncCharts([main, rsiChart, kdChart]);
+        new ResizeObserver(() => [main, rsiChart, kdChart].forEach(c =>
+          c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
+      }
+    } else {
+      _syncCharts([main, rsiChart]);
+      new ResizeObserver(() => [main, rsiChart].forEach(c =>
+        c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
+    }
+  } else {
+    new ResizeObserver(() => main.applyOptions({ width: mainDiv.clientWidth })).observe(mainDiv);
+  }
+
+  // 資料來源
+  const credit = document.createElement("div");
+  credit.style.cssText = "text-align:right;padding:3px 8px;font-size:10px;color:var(--text3);background:#161b22;";
+  credit.innerHTML = `資料來源 <a href="https://finmindtrade.com/" target="_blank" rel="noopener" style="color:var(--text2)">FinMind</a>`;
+  container.appendChild(credit);
 }
 
 /* ── Entry point ── */
