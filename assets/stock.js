@@ -206,34 +206,28 @@ function renderTrend(sid) {
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">${legend}</div>`;
 }
 
-/* ── TradingView Widget ── */
+/* ── TradingView Widget (iframe embed — free, works on any domain) ── */
 function initTradingView(sid) {
   const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
-  const symbol = `${exchange}:${sid}`;
+  const symbol = encodeURIComponent(`${exchange}:${sid}`);
   const container = document.getElementById("tv-container");
 
-  if (typeof TradingView === "undefined") {
-    container.innerHTML = `<div class="tv-unavailable">📈 K 線圖需要網路連線（TradingView）</div>`;
-    return;
-  }
+  const params = [
+    `symbol=${symbol}`,
+    "interval=D",
+    "theme=dark",
+    "style=1",
+    "locale=zh_TW",
+    "timezone=Asia%2FTaipei",
+    "hide_side_toolbar=0",
+    "allow_symbol_change=1",
+    "save_image=0",
+    "hide_volume=0",
+  ].join("&");
 
-  try {
-    new TradingView.widget({
-      autosize: true,
-      symbol,
-      interval: "D",
-      container_id: "tv-container",
-      theme: "dark",
-      locale: "zh_TW",
-      toolbar_bg: "#161b22",
-      hide_top_toolbar: false,
-      hide_legend: false,
-      save_image: false,
-      studies: [],
-    });
-  } catch (e) {
-    container.innerHTML = `<div class="tv-unavailable">K 線圖載入失敗：${escapeHtml(String(e))}</div>`;
-  }
+  container.innerHTML =
+    `<iframe src="https://www.tradingview.com/widgetembed/?${params}"` +
+    ` style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`;
 }
 
 /* ── Entry point ── */
