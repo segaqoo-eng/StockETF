@@ -590,11 +590,11 @@ function buildEtfCardHtml(etf) {
   if (diff.removed.length > 0) {
     const items = diff.removed.map(r =>
       `<li><b>${escapeHtml(r.stock_id)}</b> ${escapeHtml(r.stock_name)}` +
-      ` <span class="weight">${r.weight_pct.toFixed(2)}%</span></li>`
+      ` <span class="weight">${r.shares ? Number(r.shares).toLocaleString() + " 股" : "—"}</span></li>`
     ).join("");
     removedSection = `
       <div class="diff-removed-section">
-        <h3>❌ 本期移除（${diff.removed.length} 檔，前次權重）</h3>
+        <h3>❌ 本期移除（${diff.removed.length} 檔）</h3>
         <ul>${items}</ul>
       </div>`;
   }
