@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-28T18:09:25+08:00",
+  "updated_at": "2026-04-28T18:32:46+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -160,11 +160,11 @@
           "market": "TW"
         },
         {
-          "stock_id": "\"2368\")",
+          "stock_id": "2368",
           "stock_name": "金像電",
           "weight_pct": 0.55,
           "shares": 6636540,
-          "market": "OTHER"
+          "market": "TW"
         },
         {
           "stock_id": "2886",
@@ -2380,6 +2380,38 @@
       ]
     },
     {
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "industry": "",
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 4.86,
+          "shares": 8240000
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 3.731,
+          "shares": 1000000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 2.86,
+          "shares": 299000
+        },
+        {
+          "etf": "00990A",
+          "weight_pct": 1.91,
+          "shares": 370000
+        },
+        {
+          "etf": "0050",
+          "weight_pct": 0.55,
+          "shares": 6636540
+        }
+      ]
+    },
+    {
       "stock_id": "3653",
       "stock_name": "健策",
       "industry": "",
@@ -2413,7 +2445,7 @@
     },
     {
       "stock_id": "6510",
-      "stock_name": "中華精測科技",
+      "stock_name": "精測",
       "industry": "",
       "held_by": [
         {
@@ -2445,7 +2477,7 @@
     },
     {
       "stock_id": "3665",
-      "stock_name": "貿聯控股（BizLink Holding In",
+      "stock_name": "貿聯-KY",
       "industry": "",
       "held_by": [
         {
@@ -2467,33 +2499,6 @@
           "etf": "00980A",
           "weight_pct": 2.36,
           "shares": 130336
-        }
-      ]
-    },
-    {
-      "stock_id": "2368",
-      "stock_name": "金像電子（股）公司",
-      "industry": "",
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 4.86,
-          "shares": 8240000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 3.731,
-          "shares": 1000000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 2.86,
-          "shares": 299000
-        },
-        {
-          "etf": "00990A",
-          "weight_pct": 1.91,
-          "shares": 370000
         }
       ]
     },
@@ -2607,7 +2612,7 @@
     },
     {
       "stock_id": "6274",
-      "stock_name": "台燿科技",
+      "stock_name": "台燿",
       "industry": "",
       "held_by": [
         {
@@ -2634,7 +2639,7 @@
     },
     {
       "stock_id": "5274",
-      "stock_name": "信驊科技",
+      "stock_name": "信驊",
       "industry": "",
       "held_by": [
         {
@@ -2656,7 +2661,7 @@
     },
     {
       "stock_id": "3264",
-      "stock_name": "欣銓科技",
+      "stock_name": "欣銓",
       "industry": "",
       "held_by": [
         {
@@ -2678,7 +2683,7 @@
     },
     {
       "stock_id": "8996",
-      "stock_name": "高力熱處理工業",
+      "stock_name": "高力",
       "industry": "",
       "held_by": [
         {
@@ -2722,7 +2727,7 @@
     },
     {
       "stock_id": "6223",
-      "stock_name": "旺矽科技",
+      "stock_name": "旺矽",
       "industry": "",
       "held_by": [
         {
@@ -2766,7 +2771,7 @@
     },
     {
       "stock_id": "6515",
-      "stock_name": "穎崴科技",
+      "stock_name": "穎崴",
       "industry": "",
       "held_by": [
         {
@@ -2854,7 +2859,7 @@
     },
     {
       "stock_id": "8210",
-      "stock_name": "勤誠興業",
+      "stock_name": "勤誠",
       "industry": "",
       "held_by": [
         {
@@ -2964,7 +2969,7 @@
     },
     {
       "stock_id": "1590",
-      "stock_name": "亞德客國際集團",
+      "stock_name": "亞德客-KY",
       "industry": "",
       "held_by": [
         {
@@ -3008,7 +3013,7 @@
     },
     {
       "stock_id": "8299",
-      "stock_name": "群聯電子",
+      "stock_name": "群聯",
       "industry": "",
       "held_by": [
         {
@@ -3093,7 +3098,7 @@
     },
     {
       "stock_id": "3443",
-      "stock_name": "創意電子",
+      "stock_name": "創意",
       "industry": "",
       "held_by": [
         {
@@ -3161,7 +3166,7 @@
     },
     {
       "stock_id": "1519",
-      "stock_name": "華城電機",
+      "stock_name": "華城",
       "industry": "",
       "held_by": [
         {
@@ -3178,7 +3183,7 @@
     },
     {
       "stock_id": "3533",
-      "stock_name": "嘉澤端子工業",
+      "stock_name": "嘉澤",
       "industry": "",
       "held_by": [
         {
@@ -3195,7 +3200,7 @@
     },
     {
       "stock_id": "3036",
-      "stock_name": "文曄科技",
+      "stock_name": "文曄",
       "industry": "",
       "held_by": [
         {
@@ -3246,7 +3251,7 @@
     },
     {
       "stock_id": "3044",
-      "stock_name": "健鼎科技",
+      "stock_name": "健鼎",
       "industry": "",
       "held_by": [
         {
@@ -3486,7 +3491,7 @@
     },
     {
       "stock_id": "6831",
-      "stock_name": "邁科科技",
+      "stock_name": "邁科",
       "industry": "",
       "held_by": [
         {
@@ -3498,7 +3503,7 @@
     },
     {
       "stock_id": "6442",
-      "stock_name": "光紅建聖",
+      "stock_name": "光聖",
       "industry": "",
       "held_by": [
         {
@@ -3522,7 +3527,7 @@
     },
     {
       "stock_id": "5434",
-      "stock_name": "崇越科技",
+      "stock_name": "崇越",
       "industry": "",
       "held_by": [
         {
@@ -3546,7 +3551,7 @@
     },
     {
       "stock_id": "5904",
-      "stock_name": "寶雅國際",
+      "stock_name": "寶雅",
       "industry": "",
       "held_by": [
         {
@@ -3558,7 +3563,7 @@
     },
     {
       "stock_id": "3293",
-      "stock_name": "鈊象電子",
+      "stock_name": "鈊象",
       "industry": "",
       "held_by": [
         {
@@ -3594,7 +3599,7 @@
     },
     {
       "stock_id": "1477",
-      "stock_name": "聚陽實業",
+      "stock_name": "聚陽",
       "industry": "",
       "held_by": [
         {
@@ -3666,7 +3671,7 @@
     },
     {
       "stock_id": "2376",
-      "stock_name": "技嘉科技",
+      "stock_name": "技嘉",
       "industry": "",
       "held_by": [
         {
@@ -3678,7 +3683,7 @@
     },
     {
       "stock_id": "2548",
-      "stock_name": "華固建設",
+      "stock_name": "華固",
       "industry": "",
       "held_by": [
         {
@@ -3774,7 +3779,7 @@
     },
     {
       "stock_id": "4915",
-      "stock_name": "致伸科技",
+      "stock_name": "致伸",
       "industry": "",
       "held_by": [
         {
