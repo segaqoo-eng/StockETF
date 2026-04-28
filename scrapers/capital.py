@@ -130,8 +130,9 @@ _SSR_VALUE_CELL_RE = re.compile(
     r'(?:<span[^>]*>TWD</span>\s*)?\s*'
     r'([\d,]+(?:\.\d+)?)'
 )
-# 資料日期由 datepicker 的預設 value 透露（input-pad-trend 是該欄獨有 class）
-_SSR_DATE_RE = re.compile(r'class="[^"]*input-pad-trend[^"]*"\s+value="(\d{4})/(\d{2})/(\d{2})"')
+# 資料日期由 main-info-item-time 取得（NAV 更新日期，比 datepicker 準確）
+# datepicker value 是「下一個查詢日」，不是持股日期
+_SSR_DATE_RE = re.compile(r'class="main-info-item-time">(\d{4})/(\d{2})/(\d{2})<')
 
 
 def parse_capital_meta_ssr(text: str) -> dict:
