@@ -232,8 +232,9 @@ async function _fetchTwseOhlc(sid, months) {
         const time = _rocDateToIso(row[0]);
         const open = _safeNum(row[3]), high = _safeNum(row[4]);
         const low  = _safeNum(row[5]), close = _safeNum(row[6]);
+        const volume = _safeNum(row[1]);
         if (!time || open == null || close == null) continue;
-        candles.push({ time, open, high, low, close });
+        candles.push({ time, open, high, low, close, volume: volume ?? 0 });
       }
     } catch (_) {}
   }
@@ -254,8 +255,9 @@ async function _fetchTpexOhlc(sid, months) {
         const time = _rocDateToIso(row[0]);
         const open = _safeNum(row[4]), high = _safeNum(row[5]);
         const low  = _safeNum(row[6]), close = _safeNum(row[7]);
+        const volume = _safeNum(row[1]);
         if (!time || open == null || close == null) continue;
-        candles.push({ time, open, high, low, close });
+        candles.push({ time, open, high, low, close, volume: volume ?? 0 });
       }
     } catch (_) {}
   }
@@ -288,22 +290,22 @@ async function initChart(sid) {
 
   container.innerHTML = "";
   const chartDiv = document.createElement("div");
-  chartDiv.style.cssText = "width:100%;height:430px;";
+  chartDiv.style.cssText = "width:100%;height:420px;";
   container.appendChild(chartDiv);
 
   const chart = LightweightCharts.createChart(chartDiv, {
     width: chartDiv.clientWidth,
-    height: 430,
+    height: 420,
     layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
     grid: { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-    rightPriceScale: { borderColor: "#30363d" },
+    rightPriceScale: { borderColor: "#30363d", scaleMargins: { top: 0.05, bottom: 0.22 } },
     timeScale: { borderColor: "#30363d", timeVisible: false },
     localization: { locale: "zh-TW" },
   });
 
-  // Taiwan convention: 漲=紅 跌=綠
-  const series = chart.addCandlestickSeries({
+  // K 線（台灣慣例：漲=紅 跌=綠）
+  const candleSeries = chart.addCandlestickSeries({
     upColor:         "#f85149",
     downColor:       "#3fb950",
     borderUpColor:   "#f85149",
@@ -311,16 +313,55 @@ async function initChart(sid) {
     wickUpColor:     "#f85149",
     wickDownColor:   "#3fb950",
   });
-  series.setData(candles);
+  candleSeries.setData(candles);
+
+  // 成交量柱
+  const volSeries = chart.addHistogramSeries({
+    priceFormat: { type: "volume" },
+    priceScaleId: "vol",
+  });
+  chart.priceScale("vol").applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+  volSeries.setData(candles.map(c => ({
+    time: c.time,
+    value: c.volume,
+    color: c.close >= c.open ? "rgba(248,81,73,0.5)" : "rgba(63,185,80,0.5)",
+  })));
+
+  // MA 均線
+  function calcMA(data, n) {
+    return data.map((c, i) => {
+      if (i < n - 1) return null;
+      const avg = data.slice(i - n + 1, i + 1).reduce((s, x) => s + x.close, 0) / n;
+      return { time: c.time, value: +avg.toFixed(2) };
+    }).filter(Boolean);
+  }
+  const maConfig = [
+    { n: 5,  color: "#f0883e", label: "MA5"  },
+    { n: 20, color: "#d2a8ff", label: "MA20" },
+    { n: 60, color: "#7ee787", label: "MA60" },
+  ];
+  for (const { n, color } of maConfig) {
+    const data = calcMA(candles, n);
+    if (!data.length) continue;
+    chart.addLineSeries({
+      color, lineWidth: 1,
+      priceLineVisible: false,
+      lastValueVisible: false,
+      crosshairMarkerVisible: false,
+    }).setData(data);
+  }
+
   chart.timeScale().fitContent();
 
-  // 依授權要求標註來源
-  const credit = document.createElement("div");
-  credit.style.cssText = "text-align:right;padding:3px 8px;font-size:11px;color:var(--text3)";
-  credit.innerHTML = `Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:var(--text2)">TradingView</a>`;
-  container.appendChild(credit);
+  // MA 圖例 + 授權標註
+  const bar = document.createElement("div");
+  bar.style.cssText = "display:flex;align-items:center;padding:3px 8px;font-size:11px;gap:12px;background:#161b22;";
+  bar.innerHTML = maConfig.map(m =>
+    `<span style="color:${m.color}">● ${m.label}</span>`
+  ).join("") +
+  `<span style="flex:1;text-align:right;color:var(--text3)">Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:var(--text2)">TradingView</a></span>`;
+  container.appendChild(bar);
 
-  // Resize observer so chart fills container on window resize
   new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth }))
     .observe(chartDiv);
 }
