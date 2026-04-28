@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-28T17:18:37+08:00",
+  "updated_at": "2026-04-28T18:09:25+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -160,11 +160,11 @@
           "market": "TW"
         },
         {
-          "stock_id": "2368",
+          "stock_id": "\"2368\")",
           "stock_name": "金像電",
           "weight_pct": 0.55,
           "shares": 6636540,
-          "market": "TW"
+          "market": "OTHER"
         },
         {
           "stock_id": "2886",
@@ -2380,38 +2380,6 @@
       ]
     },
     {
-      "stock_id": "2368",
-      "stock_name": "金像電",
-      "industry": "",
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 4.86,
-          "shares": 8240000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 3.731,
-          "shares": 1000000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 2.86,
-          "shares": 299000
-        },
-        {
-          "etf": "00990A",
-          "weight_pct": 1.91,
-          "shares": 370000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.55,
-          "shares": 6636540
-        }
-      ]
-    },
-    {
       "stock_id": "3653",
       "stock_name": "健策",
       "industry": "",
@@ -2499,6 +2467,33 @@
           "etf": "00980A",
           "weight_pct": 2.36,
           "shares": 130336
+        }
+      ]
+    },
+    {
+      "stock_id": "2368",
+      "stock_name": "金像電子（股）公司",
+      "industry": "",
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 4.86,
+          "shares": 8240000
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 3.731,
+          "shares": 1000000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 2.86,
+          "shares": 299000
+        },
+        {
+          "etf": "00990A",
+          "weight_pct": 1.91,
+          "shares": 370000
         }
       ]
     },
