@@ -92,12 +92,12 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-list-changes > li:not(.trend-row) > *:first-child { padding-left: 18px; }
 .changes-section-list-changes > li:not(.trend-row) > *:last-child  { padding-right: 18px; }
 .changes-section-list-changes > li:not(.trend-row):hover > * { background: rgba(48,54,61,0.4); }
-/* direction indicator: left border stripe on first cell */
-.changes-section-list-changes > li[data-dir="up"]   > *:first-child { border-left: 3px solid rgba(63,185,80,0.6); }
-.changes-section-list-changes > li[data-dir="down"] > *:first-child { border-left: 3px solid rgba(248,81,73,0.5); }
+/* direction indicator: left border stripe — 台灣慣例 紅漲綠跌 */
+.changes-section-list-changes > li[data-dir="up"]   > *:first-child { border-left: 3px solid rgba(248,81,73,0.6); }
+.changes-section-list-changes > li[data-dir="down"] > *:first-child { border-left: 3px solid rgba(63,185,80,0.5); }
 /* "now" weight colored to match direction */
-.changes-section-list-changes > li[data-dir="up"]   .ch-now { color: var(--green); font-weight: 600; }
-.changes-section-list-changes > li[data-dir="down"] .ch-now { color: #f85149;      font-weight: 600; }
+.changes-section-list-changes > li[data-dir="up"]   .ch-now { color: #f85149;      font-weight: 600; }
+.changes-section-list-changes > li[data-dir="down"] .ch-now { color: var(--green); font-weight: 600; }
 .changes-section-list-changes > li[data-dir="flat"] .ch-now { color: var(--text2); }
 .diff-badge.diff-flat { background: rgba(100,100,100,0.15); color: var(--text3); }
 
@@ -231,9 +231,10 @@ table.etf-holdings .weight { color: var(--gold); font-weight: 600; }
 /* Day-over-day diff badges shown in the per-ETF accordion card. Empty diff
    (first run, lineup change, etc.) silently renders no badges. */
 .diff-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 4px; font-size: var(--fs-xs); font-family: var(--mono); vertical-align: middle; }
-.diff-added { background: rgba(63, 185, 80, 0.22); color: var(--green); }
-.diff-up    { background: rgba(63, 185, 80, 0.15); color: var(--green); }
-.diff-down  { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+.diff-added { background: rgba(63, 185, 80, 0.22); color: var(--green); }  /* 新進持股 — 語意綠，非方向 */
+/* 台灣慣例 加碼=紅 減碼=綠 */
+.diff-up    { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+.diff-down  { background: rgba(63, 185, 80, 0.15); color: var(--green); }
 
 .diff-removed-section { padding: 14px 18px; border-top: 1px solid var(--border); background: var(--bg); }
 .diff-removed-section h3 { font-size: var(--fs-sm); color: var(--text2); margin-bottom: 10px; font-weight: 500; }
