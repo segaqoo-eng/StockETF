@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-28T18:32:46+08:00",
+  "updated_at": "2026-04-28T18:44:08+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -160,11 +160,11 @@
           "market": "TW"
         },
         {
-          "stock_id": "2368",
+          "stock_id": "\"2368\")",
           "stock_name": "金像電",
           "weight_pct": 0.55,
           "shares": 6636540,
-          "market": "TW"
+          "market": "OTHER"
         },
         {
           "stock_id": "2886",
@@ -2077,6 +2077,11 @@
       "stock_id": "2330",
       "stock_name": "台積電",
       "industry": "半導體",
+      "tags": [
+        "AI",
+        "半導體",
+        "CoWoS"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -2119,6 +2124,11 @@
       "stock_id": "2383",
       "stock_name": "台光電",
       "industry": "",
+      "tags": [
+        "CPO",
+        "PCB",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -2161,6 +2171,11 @@
       "stock_id": "2345",
       "stock_name": "智邦",
       "industry": "",
+      "tags": [
+        "AI",
+        "網通",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2203,6 +2218,11 @@
       "stock_id": "3017",
       "stock_name": "奇鋐",
       "industry": "",
+      "tags": [
+        "AI",
+        "散熱",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2245,6 +2265,11 @@
       "stock_id": "6669",
       "stock_name": "緯穎",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器",
+        "雲端"
+      ],
       "held_by": [
         {
           "etf": "00982A",
@@ -2282,6 +2307,11 @@
       "stock_id": "2454",
       "stock_name": "聯發科",
       "industry": "半導體",
+      "tags": [
+        "AI",
+        "半導體",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2319,6 +2349,10 @@
       "stock_id": "3037",
       "stock_name": "欣興",
       "industry": "",
+      "tags": [
+        "PCB",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -2351,6 +2385,10 @@
       "stock_id": "2308",
       "stock_name": "台達電",
       "industry": "電子零組件",
+      "tags": [
+        "電源",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -2380,41 +2418,13 @@
       ]
     },
     {
-      "stock_id": "2368",
-      "stock_name": "金像電",
-      "industry": "",
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 4.86,
-          "shares": 8240000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 3.731,
-          "shares": 1000000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 2.86,
-          "shares": 299000
-        },
-        {
-          "etf": "00990A",
-          "weight_pct": 1.91,
-          "shares": 370000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.55,
-          "shares": 6636540
-        }
-      ]
-    },
-    {
       "stock_id": "3653",
       "stock_name": "健策",
       "industry": "",
+      "tags": [
+        "CoWoS",
+        "先進封裝"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2447,6 +2457,11 @@
       "stock_id": "6510",
       "stock_name": "精測",
       "industry": "",
+      "tags": [
+        "CPO",
+        "AI",
+        "量測"
+      ],
       "held_by": [
         {
           "etf": "00992A",
@@ -2479,6 +2494,7 @@
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -2503,9 +2519,40 @@
       ]
     },
     {
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "industry": "",
+      "tags": [
+        "PCB"
+      ],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 4.86,
+          "shares": 8240000
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 3.731,
+          "shares": 1000000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 2.86,
+          "shares": 299000
+        },
+        {
+          "etf": "00990A",
+          "weight_pct": 1.91,
+          "shares": 370000
+        }
+      ]
+    },
+    {
       "stock_id": "7769",
       "stock_name": "鴻勁",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00991A",
@@ -2533,6 +2580,10 @@
       "stock_id": "2317",
       "stock_name": "鴻海",
       "industry": "電子",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -2560,6 +2611,10 @@
       "stock_id": "3711",
       "stock_name": "日月光投控",
       "industry": "",
+      "tags": [
+        "封裝測試",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2587,6 +2642,9 @@
       "stock_id": "2449",
       "stock_name": "京元電子",
       "industry": "",
+      "tags": [
+        "封裝測試"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2614,6 +2672,9 @@
       "stock_id": "6274",
       "stock_name": "台燿",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2641,6 +2702,11 @@
       "stock_id": "5274",
       "stock_name": "信驊",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -2663,6 +2729,9 @@
       "stock_id": "3264",
       "stock_name": "欣銓",
       "industry": "",
+      "tags": [
+        "封裝測試"
+      ],
       "held_by": [
         {
           "etf": "00982A",
@@ -2685,6 +2754,10 @@
       "stock_id": "8996",
       "stock_name": "高力",
       "industry": "",
+      "tags": [
+        "散熱",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00992A",
@@ -2707,6 +2780,10 @@
       "stock_id": "2408",
       "stock_name": "南亞科",
       "industry": "",
+      "tags": [
+        "記憶體",
+        "HBM"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -2729,6 +2806,10 @@
       "stock_id": "6223",
       "stock_name": "旺矽",
       "industry": "",
+      "tags": [
+        "封裝測試",
+        "半導體"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -2751,6 +2832,10 @@
       "stock_id": "2382",
       "stock_name": "廣達",
       "industry": "電腦及週邊設備",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2773,6 +2858,10 @@
       "stock_id": "6515",
       "stock_name": "穎崴",
       "industry": "",
+      "tags": [
+        "CPO",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2795,6 +2884,7 @@
       "stock_id": "2360",
       "stock_name": "致茂",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -2817,6 +2907,7 @@
       "stock_id": "2327",
       "stock_name": "國巨*",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -2839,6 +2930,10 @@
       "stock_id": "2059",
       "stock_name": "川湖",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2861,6 +2956,10 @@
       "stock_id": "8210",
       "stock_name": "勤誠",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2883,6 +2982,9 @@
       "stock_id": "2344",
       "stock_name": "華邦電",
       "industry": "",
+      "tags": [
+        "記憶體"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2905,6 +3007,9 @@
       "stock_id": "2891",
       "stock_name": "中信金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2927,6 +3032,10 @@
       "stock_id": "3231",
       "stock_name": "緯創",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2949,6 +3058,9 @@
       "stock_id": "2881",
       "stock_name": "富邦金",
       "industry": "金融保險",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -2971,6 +3083,7 @@
       "stock_id": "1590",
       "stock_name": "亞德客-KY",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00991A",
@@ -2993,6 +3106,7 @@
       "stock_id": "1303",
       "stock_name": "南亞",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3015,6 +3129,9 @@
       "stock_id": "8299",
       "stock_name": "群聯",
       "industry": "",
+      "tags": [
+        "記憶體"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -3032,6 +3149,9 @@
       "stock_id": "3105",
       "stock_name": "穩懋",
       "industry": "",
+      "tags": [
+        "半導體"
+      ],
       "held_by": [
         {
           "etf": "00982A",
@@ -3049,6 +3169,9 @@
       "stock_id": "8046",
       "stock_name": "南電",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3066,6 +3189,9 @@
       "stock_id": "3189",
       "stock_name": "景碩",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -3083,6 +3209,9 @@
       "stock_id": "6805",
       "stock_name": "富世達",
       "industry": "",
+      "tags": [
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3100,6 +3229,10 @@
       "stock_id": "3443",
       "stock_name": "創意",
       "industry": "",
+      "tags": [
+        "AI",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3117,6 +3250,9 @@
       "stock_id": "2303",
       "stock_name": "聯電",
       "industry": "半導體",
+      "tags": [
+        "半導體"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3134,6 +3270,10 @@
       "stock_id": "3661",
       "stock_name": "世芯-KY",
       "industry": "",
+      "tags": [
+        "AI",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3151,6 +3291,9 @@
       "stock_id": "2884",
       "stock_name": "玉山金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3168,6 +3311,7 @@
       "stock_id": "1519",
       "stock_name": "華城",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3185,6 +3329,10 @@
       "stock_id": "3533",
       "stock_name": "嘉澤",
       "industry": "",
+      "tags": [
+        "連接器",
+        "AI"
+      ],
       "held_by": [
         {
           "etf": "00990A",
@@ -3202,6 +3350,7 @@
       "stock_id": "3036",
       "stock_name": "文曄",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3219,6 +3368,7 @@
       "stock_id": "2404",
       "stock_name": "漢唐",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00991A",
@@ -3236,6 +3386,9 @@
       "stock_id": "2882",
       "stock_name": "國泰金",
       "industry": "金融保險",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3253,6 +3406,9 @@
       "stock_id": "3044",
       "stock_name": "健鼎",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3270,6 +3426,9 @@
       "stock_id": "2885",
       "stock_name": "元大金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3287,6 +3446,9 @@
       "stock_id": "2412",
       "stock_name": "中華電",
       "industry": "",
+      "tags": [
+        "電信"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3304,6 +3466,7 @@
       "stock_id": "2357",
       "stock_name": "華碩",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3321,6 +3484,9 @@
       "stock_id": "2890",
       "stock_name": "永豐金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3338,6 +3504,7 @@
       "stock_id": "2603",
       "stock_name": "長榮",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3355,6 +3522,7 @@
       "stock_id": "2002",
       "stock_name": "中鋼",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3372,6 +3540,9 @@
       "stock_id": "2337",
       "stock_name": "旺宏",
       "industry": "",
+      "tags": [
+        "記憶體"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3389,6 +3560,9 @@
       "stock_id": "3045",
       "stock_name": "台灣大",
       "industry": "",
+      "tags": [
+        "電信"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3406,6 +3580,9 @@
       "stock_id": "2313",
       "stock_name": "華通",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3423,6 +3600,7 @@
       "stock_id": "6505",
       "stock_name": "台塑化",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3440,6 +3618,9 @@
       "stock_id": "5347",
       "stock_name": "世界",
       "industry": "",
+      "tags": [
+        "半導體"
+      ],
       "held_by": [
         {
           "etf": "00991A",
@@ -3457,6 +3638,7 @@
       "stock_id": "5536",
       "stock_name": "聖暉*",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00982A",
@@ -3469,6 +3651,7 @@
       "stock_id": "6139",
       "stock_name": "亞翔",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00982A",
@@ -3481,6 +3664,9 @@
       "stock_id": "6584",
       "stock_name": "南俊國際",
       "industry": "",
+      "tags": [
+        "散熱"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3493,6 +3679,9 @@
       "stock_id": "6831",
       "stock_name": "邁科",
       "industry": "",
+      "tags": [
+        "連接器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3505,6 +3694,7 @@
       "stock_id": "6442",
       "stock_name": "光聖",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3517,6 +3707,9 @@
       "stock_id": "8358",
       "stock_name": "金居",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3529,6 +3722,7 @@
       "stock_id": "5434",
       "stock_name": "崇越",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3541,6 +3735,7 @@
       "stock_id": "5234",
       "stock_name": "達興材料",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3553,6 +3748,7 @@
       "stock_id": "5904",
       "stock_name": "寶雅",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3565,6 +3761,7 @@
       "stock_id": "3293",
       "stock_name": "鈊象",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3577,6 +3774,9 @@
       "stock_id": "2887",
       "stock_name": "台新新光金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3589,6 +3789,9 @@
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00990A",
@@ -3601,6 +3804,7 @@
       "stock_id": "1477",
       "stock_name": "聚陽",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3613,6 +3817,9 @@
       "stock_id": "2886",
       "stock_name": "兆豐金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3625,6 +3832,7 @@
       "stock_id": "5439",
       "stock_name": "高技",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3637,6 +3845,10 @@
       "stock_id": "3529",
       "stock_name": "力旺",
       "industry": "",
+      "tags": [
+        "記憶體",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00990A",
@@ -3649,6 +3861,9 @@
       "stock_id": "6147",
       "stock_name": "頎邦",
       "industry": "",
+      "tags": [
+        "封裝測試"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3661,6 +3876,7 @@
       "stock_id": "2467",
       "stock_name": "志聖",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00990A",
@@ -3673,6 +3889,10 @@
       "stock_id": "2376",
       "stock_name": "技嘉",
       "industry": "",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
       "held_by": [
         {
           "etf": "00980A",
@@ -3685,6 +3905,7 @@
       "stock_id": "2548",
       "stock_name": "華固",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3697,6 +3918,7 @@
       "stock_id": "1216",
       "stock_name": "統一",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3709,6 +3931,9 @@
       "stock_id": "2301",
       "stock_name": "光寶科",
       "industry": "",
+      "tags": [
+        "網通"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3721,6 +3946,9 @@
       "stock_id": "2883",
       "stock_name": "凱基金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3733,6 +3961,9 @@
       "stock_id": "2880",
       "stock_name": "華南金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3745,6 +3976,9 @@
       "stock_id": "2892",
       "stock_name": "第一金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3757,6 +3991,7 @@
       "stock_id": "3008",
       "stock_name": "大立光",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3769,6 +4004,9 @@
       "stock_id": "5880",
       "stock_name": "合庫金",
       "industry": "",
+      "tags": [
+        "金融"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3781,6 +4019,7 @@
       "stock_id": "4915",
       "stock_name": "致伸",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00980A",
@@ -3793,6 +4032,7 @@
       "stock_id": "1301",
       "stock_name": "台塑",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3805,6 +4045,7 @@
       "stock_id": "2395",
       "stock_name": "研華",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3817,6 +4058,9 @@
       "stock_id": "4904",
       "stock_name": "遠傳",
       "industry": "",
+      "tags": [
+        "電信"
+      ],
       "held_by": [
         {
           "etf": "0050",
@@ -3829,6 +4073,9 @@
       "stock_id": "6191",
       "stock_name": "精成科",
       "industry": "",
+      "tags": [
+        "PCB"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3841,6 +4088,7 @@
       "stock_id": "2207",
       "stock_name": "和泰車",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3853,6 +4101,7 @@
       "stock_id": "3376",
       "stock_name": "新日興",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3865,6 +4114,7 @@
       "stock_id": "2481",
       "stock_name": "強茂",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3877,6 +4127,10 @@
       "stock_id": "6415",
       "stock_name": "矽力*-KY",
       "industry": "",
+      "tags": [
+        "IC設計",
+        "電源"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3889,6 +4143,7 @@
       "stock_id": "6919",
       "stock_name": "康霈*",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "0050",
@@ -3901,6 +4156,11 @@
       "stock_id": "4966",
       "stock_name": "譜瑞-KY",
       "industry": "",
+      "tags": [
+        "CPO",
+        "AI",
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3913,6 +4173,9 @@
       "stock_id": "3217",
       "stock_name": "優群",
       "industry": "",
+      "tags": [
+        "IC設計"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3925,6 +4188,7 @@
       "stock_id": "1319",
       "stock_name": "東陽",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3937,6 +4201,7 @@
       "stock_id": "1815",
       "stock_name": "富喬",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3949,6 +4214,7 @@
       "stock_id": "2439",
       "stock_name": "美律",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00981A",
@@ -3961,6 +4227,10 @@
       "stock_id": "4979",
       "stock_name": "華星光",
       "industry": "",
+      "tags": [
+        "CPO",
+        "光纖"
+      ],
       "held_by": [
         {
           "etf": "00981A",
@@ -3973,6 +4243,7 @@
       "stock_id": "5871",
       "stock_name": "中租-KY",
       "industry": "",
+      "tags": [],
       "held_by": [
         {
           "etf": "00991A",

@@ -7,98 +7,98 @@
 "1590": { name: 亞德客-KY }
 "1815": { name: 富喬 }
 "2002": { name: 中鋼 }
-"2059": { name: 川湖 }
+"2059": { name: 川湖,tags: [AI,伺服器] }
 "2207": { name: 和泰車 }
-"2301": { name: 光寶科 }
-"2303": { name: 聯電, industry: 半導體 }
-"2308": { name: 台達電, industry: 電子零組件 }
-"2313": { name: 華通 }
-"2317": { name: 鴻海, industry: 電子 }
+"2301": { name: 光寶科,tags: [網通] }
+"2303": { name: 聯電,industry: 半導體,tags: [半導體] }
+"2308": { name: 台達電,industry: 電子零組件,tags: [電源,AI] }
+"2313": { name: 華通,tags: [PCB] }
+"2317": { name: 鴻海,industry: 電子,tags: [AI,伺服器] }
 "2327": { name: 國巨* }
-"2330": { name: 台積電, industry: 半導體 }
-"2337": { name: 旺宏 }
-"2344": { name: 華邦電 }
-"2345": { name: 智邦 }
+"2330": { name: 台積電,industry: 半導體,tags: [AI,半導體,CoWoS] }
+"2337": { name: 旺宏,tags: [記憶體] }
+"2344": { name: 華邦電,tags: [記憶體] }
+"2345": { name: 智邦,tags: [AI,網通,伺服器] }
 "2357": { name: 華碩 }
 "2360": { name: 致茂 }
-"2368": { name: 金像電 }
-"2376": { name: 技嘉 }
-"2382": { name: 廣達, industry: 電腦及週邊設備 }
-"2383": { name: 台光電 }
+"2368": { name: 金像電,tags: [PCB] }
+"2376": { name: 技嘉,tags: [AI,伺服器] }
+"2382": { name: 廣達,industry: 電腦及週邊設備,tags: [AI,伺服器] }
+"2383": { name: 台光電,tags: [CPO,PCB,AI] }
 "2395": { name: 研華 }
 "2404": { name: 漢唐 }
-"2408": { name: 南亞科 }
-"2412": { name: 中華電 }
+"2408": { name: 南亞科,tags: [記憶體,HBM] }
+"2412": { name: 中華電,tags: [電信] }
 "2439": { name: 美律 }
-"2449": { name: 京元電子 }
-"2454": { name: 聯發科, industry: 半導體 }
+"2449": { name: 京元電子,tags: [封裝測試] }
+"2454": { name: 聯發科,industry: 半導體,tags: [AI,半導體,IC設計] }
 "2467": { name: 志聖 }
 "2481": { name: 強茂 }
 "2548": { name: 華固 }
 "2603": { name: 長榮 }
-"2880": { name: 華南金 }
-"2881": { name: 富邦金, industry: 金融保險 }
-"2882": { name: 國泰金, industry: 金融保險 }
-"2883": { name: 凱基金 }
-"2884": { name: 玉山金 }
-"2885": { name: 元大金 }
-"2886": { name: 兆豐金 }
-"2887": { name: 台新新光金 }
-"2890": { name: 永豐金 }
-"2891": { name: 中信金 }
-"2892": { name: 第一金 }
+"2880": { name: 華南金,tags: [金融] }
+"2881": { name: 富邦金,industry: 金融保險,tags: [金融] }
+"2882": { name: 國泰金,industry: 金融保險,tags: [金融] }
+"2883": { name: 凱基金,tags: [金融] }
+"2884": { name: 玉山金,tags: [金融] }
+"2885": { name: 元大金,tags: [金融] }
+"2886": { name: 兆豐金,tags: [金融] }
+"2887": { name: 台新新光金,tags: [金融] }
+"2890": { name: 永豐金,tags: [金融] }
+"2891": { name: 中信金,tags: [金融] }
+"2892": { name: 第一金,tags: [金融] }
 "3008": { name: 大立光 }
-"3017": { name: 奇鋐 }
+"3017": { name: 奇鋐,tags: [AI,散熱,伺服器] }
 "3036": { name: 文曄 }
-"3037": { name: 欣興 }
-"3044": { name: 健鼎 }
-"3045": { name: 台灣大 }
-"3105": { name: 穩懋 }
-"3189": { name: 景碩 }
-"3217": { name: 優群 }
-"3231": { name: 緯創 }
-"3264": { name: 欣銓 }
+"3037": { name: 欣興,tags: [PCB,AI] }
+"3044": { name: 健鼎,tags: [PCB] }
+"3045": { name: 台灣大,tags: [電信] }
+"3105": { name: 穩懋,tags: [半導體] }
+"3189": { name: 景碩,tags: [PCB] }
+"3217": { name: 優群,tags: [IC設計] }
+"3231": { name: 緯創,tags: [AI,伺服器] }
+"3264": { name: 欣銓,tags: [封裝測試] }
 "3293": { name: 鈊象 }
 "3376": { name: 新日興 }
-"3443": { name: 創意 }
-"3529": { name: 力旺 }
-"3533": { name: 嘉澤 }
-"3653": { name: 健策 }
-"3661": { name: 世芯-KY }
+"3443": { name: 創意,tags: [AI,IC設計] }
+"3529": { name: 力旺,tags: [記憶體,IC設計] }
+"3533": { name: 嘉澤,tags: [連接器,AI] }
+"3653": { name: 健策,tags: [CoWoS,先進封裝] }
+"3661": { name: 世芯-KY,tags: [AI,IC設計] }
 "3665": { name: 貿聯-KY }
-"3711": { name: 日月光投控 }
-"4904": { name: 遠傳 }
+"3711": { name: 日月光投控,tags: [封裝測試,AI] }
+"4904": { name: 遠傳,tags: [電信] }
 "4915": { name: 致伸 }
-"4958": { name: 臻鼎-KY }
-"4966": { name: 譜瑞-KY }
-"4979": { name: 華星光 }
+"4958": { name: 臻鼎-KY,tags: [PCB] }
+"4966": { name: 譜瑞-KY,tags: [CPO,AI,IC設計] }
+"4979": { name: 華星光,tags: [CPO,光纖] }
 "5234": { name: 達興材料 }
-"5274": { name: 信驊 }
-"5347": { name: 世界 }
+"5274": { name: 信驊,tags: [AI,伺服器,IC設計] }
+"5347": { name: 世界,tags: [半導體] }
 "5434": { name: 崇越 }
 "5439": { name: 高技 }
 "5536": { name: 聖暉* }
 "5871": { name: 中租-KY }
-"5880": { name: 合庫金 }
+"5880": { name: 合庫金,tags: [金融] }
 "5904": { name: 寶雅 }
 "6139": { name: 亞翔 }
-"6147": { name: 頎邦 }
-"6191": { name: 精成科 }
-"6223": { name: 旺矽 }
-"6274": { name: 台燿 }
-"6415": { name: 矽力*-KY }
+"6147": { name: 頎邦,tags: [封裝測試] }
+"6191": { name: 精成科,tags: [PCB] }
+"6223": { name: 旺矽,tags: [封裝測試,半導體] }
+"6274": { name: 台燿,tags: [PCB] }
+"6415": { name: 矽力*-KY,tags: [IC設計,電源] }
 "6442": { name: 光聖 }
 "6505": { name: 台塑化 }
-"6510": { name: 精測 }
-"6515": { name: 穎崴 }
-"6584": { name: 南俊國際 }
-"6669": { name: 緯穎 }
-"6805": { name: 富世達 }
-"6831": { name: 邁科 }
+"6510": { name: 精測,tags: [CPO,AI,量測] }
+"6515": { name: 穎崴,tags: [CPO,AI] }
+"6584": { name: 南俊國際,tags: [散熱] }
+"6669": { name: 緯穎,tags: [AI,伺服器,雲端] }
+"6805": { name: 富世達,tags: [IC設計] }
+"6831": { name: 邁科,tags: [連接器] }
 "6919": { name: 康霈* }
 "7769": { name: 鴻勁 }
-"8046": { name: 南電 }
-"8210": { name: 勤誠 }
-"8299": { name: 群聯 }
-"8358": { name: 金居 }
-"8996": { name: 高力 }
+"8046": { name: 南電,tags: [PCB] }
+"8210": { name: 勤誠,tags: [AI,伺服器] }
+"8299": { name: 群聯,tags: [記憶體] }
+"8358": { name: 金居,tags: [PCB] }
+"8996": { name: 高力,tags: [散熱,AI] }

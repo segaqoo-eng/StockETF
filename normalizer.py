@@ -88,6 +88,7 @@ def build_payload(
             "stock_id": stock_id,
             "stock_name": stock_meta.get("name") or stock_names.get(stock_id, stock_id),
             "industry": stock_meta.get("industry", ""),
+            "tags": stock_meta.get("tags", []),
             "held_by": sorted(held_by, key=lambda b: -b["weight_pct"]),
         })
 
