@@ -206,256 +206,30 @@ function renderTrend(sid) {
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">${legend}</div>`;
 }
 
-/* ── K 線圖：Lightweight Charts (Apache 2.0) + TWSE/TPEx OHLC ── */
+/* ── K 線圖：TradingView widgetembed iframe（免費，任何域名皆可用）── */
 
-function _rocDateToIso(rocDate) {
-  const p = rocDate.replace(/\//g, "-").split("-");
-  if (p.length !== 3) return null;
-  return `${parseInt(p[0]) + 1911}-${p[1]}-${p[2]}`;
-}
-
-function _safeNum(s) {
-  const n = parseFloat(String(s).replace(/,/g, ""));
-  return isNaN(n) ? null : n;
-}
-
-async function _fetchTwseOhlc(sid, months) {
-  const candles = [];
-  for (const ym of months) {
-    try {
-      const url = `https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=${ym}01&stockNo=${sid}`;
-      const res = await fetch(url);
-      if (!res.ok) continue;
-      const d = await res.json();
-      if (d.stat !== "OK") continue;
-      for (const row of d.data || []) {
-        const time = _rocDateToIso(row[0]);
-        const open = _safeNum(row[3]), high = _safeNum(row[4]);
-        const low  = _safeNum(row[5]), close = _safeNum(row[6]);
-        const volume = _safeNum(row[1]);
-        if (!time || open == null || close == null) continue;
-        candles.push({ time, open, high, low, close, volume: volume ?? 0 });
-      }
-    } catch (_) {}
-  }
-  return candles;
-}
-
-async function _fetchTpexOhlc(sid, months) {
-  const candles = [];
-  for (const ym of months) {
-    try {
-      const year  = parseInt(ym.slice(0, 4)) - 1911;
-      const month = ym.slice(4, 6);
-      const url = `https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_result.php?l=zh-tw&d=${year}/${month}&se=EW&s=${sid}`;
-      const res = await fetch(url);
-      if (!res.ok) continue;
-      const d = await res.json();
-      for (const row of d.aaData || []) {
-        const time = _rocDateToIso(row[0]);
-        const open = _safeNum(row[4]), high = _safeNum(row[5]);
-        const low  = _safeNum(row[6]), close = _safeNum(row[7]);
-        const volume = _safeNum(row[1]);
-        if (!time || open == null || close == null) continue;
-        candles.push({ time, open, high, low, close, volume: volume ?? 0 });
-      }
-    } catch (_) {}
-  }
-  return candles;
-}
-
-// Cache fetched daily data so switching periods doesn't re-fetch
-const _ohlcCache = {};
-
-async function _fetchMonths(sid, exchange, n) {
-  const now = new Date();
-  const keys = [];
-  for (let i = n - 1; i >= 0; i--) {
-    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    keys.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
-  }
-  const results = await Promise.all(keys.map(async ym => {
-    const cacheKey = `${sid}_${ym}`;
-    if (_ohlcCache[cacheKey]) return _ohlcCache[cacheKey];
-    const rows = exchange === "TPEX"
-      ? await _fetchTpexOhlc(sid, [ym])
-      : await _fetchTwseOhlc(sid, [ym]);
-    _ohlcCache[cacheKey] = rows;
-    return rows;
-  }));
-  return results.flat().sort((a, b) => a.time < b.time ? -1 : 1);
-}
-
-function _groupByWeek(daily) {
-  const map = {};
-  for (const c of daily) {
-    const d = new Date(c.time);
-    const day = d.getDay() || 7;
-    const mon = new Date(d); mon.setDate(d.getDate() - day + 1);
-    const key = mon.toISOString().slice(0, 10);
-    if (!map[key]) map[key] = { time: key, open: c.open, high: c.high, low: c.low, close: c.close, volume: 0 };
-    map[key].high   = Math.max(map[key].high, c.high);
-    map[key].low    = Math.min(map[key].low,  c.low);
-    map[key].close  = c.close;
-    map[key].volume += (c.volume || 0);
-  }
-  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
-}
-
-function _groupByMonth(daily) {
-  const map = {};
-  for (const c of daily) {
-    const key = c.time.slice(0, 7) + "-01";
-    if (!map[key]) map[key] = { time: key, open: c.open, high: c.high, low: c.low, close: c.close, volume: 0 };
-    map[key].high   = Math.max(map[key].high, c.high);
-    map[key].low    = Math.min(map[key].low,  c.low);
-    map[key].close  = c.close;
-    map[key].volume += (c.volume || 0);
-  }
-  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
-}
-
-const CHART_PERIODS = [
-  { key: "D", label: "日K", fetchMonths: 3,  group: null    },
-  { key: "W", label: "週K", fetchMonths: 6,  group: "week"  },
-  { key: "M", label: "月K", fetchMonths: 24, group: "month" },
-];
-
-let _chartPeriod = "D";
-
-async function initChart(sid) {
-  const container = document.getElementById("tv-container");
+function initChart(sid) {
   const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
+  const symbol = encodeURIComponent(`${exchange}:${sid}`);
+  const container = document.getElementById("tv-container");
 
-  // Build period switcher once (reuse if already built)
-  if (!container.querySelector(".kbar-periods")) {
-    const bar = document.createElement("div");
-    bar.className = "kbar-periods";
-    bar.style.cssText = "display:flex;gap:6px;padding:8px 10px 4px;background:#161b22;";
-    CHART_PERIODS.forEach(p => {
-      const btn = document.createElement("button");
-      btn.textContent = p.label;
-      btn.dataset.period = p.key;
-      btn.style.cssText = `padding:3px 12px;border-radius:6px;border:1px solid var(--border);background:${p.key===_chartPeriod?"var(--accent)":"var(--bg2)"};color:${p.key===_chartPeriod?"#000":"var(--text2)"};font-size:var(--fs-sm);cursor:pointer;`;
-      btn.onclick = () => { _chartPeriod = p.key; _drawChart(sid, exchange, container); };
-      bar.appendChild(btn);
-    });
-    container.innerHTML = "";
-    container.appendChild(bar);
-  }
+  const params = [
+    `symbol=${symbol}`,
+    "interval=D",
+    "theme=dark",
+    "style=1",
+    "locale=zh_TW",
+    "timezone=Asia%2FTaipei",
+    "hide_side_toolbar=0",
+    "allow_symbol_change=1",
+    "save_image=0",
+    "hide_volume=0",
+  ].join("&");
 
-  await _drawChart(sid, exchange, container);
+  container.innerHTML =
+    `<iframe src="https://www.tradingview.com/widgetembed/?${params}"` +
+    ` style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`;
 }
-
-async function _drawChart(sid, exchange, container) {
-  // Remove old chart area (keep period bar)
-  const bar = container.querySelector(".kbar-periods");
-  container.querySelectorAll(":scope > *:not(.kbar-periods)").forEach(el => el.remove());
-
-  // Update button styles
-  container.querySelectorAll(".kbar-periods button").forEach(btn => {
-    const active = btn.dataset.period === _chartPeriod;
-    btn.style.background = active ? "var(--accent)" : "var(--bg2)";
-    btn.style.color = active ? "#000" : "var(--text2)";
-  });
-
-  const loading = document.createElement("div");
-  loading.style.cssText = "color:var(--text3);padding:16px;font-size:var(--fs-sm)";
-  loading.textContent = "K 線載入中…";
-  container.appendChild(loading);
-
-  const cfg = CHART_PERIODS.find(p => p.key === _chartPeriod) || CHART_PERIODS[0];
-  let daily = await _fetchMonths(sid, exchange, cfg.fetchMonths);
-  loading.remove();
-
-  let candles = daily;
-  if (cfg.group === "week")  candles = _groupByWeek(daily);
-  if (cfg.group === "month") candles = _groupByMonth(daily);
-
-  if (!candles.length) {
-    const msg = document.createElement("div");
-    msg.style.cssText = "color:var(--text3);padding:16px;font-size:var(--fs-sm)";
-    msg.textContent = "無法取得歷史資料（TWSE/TPEx API 未回應）";
-    container.appendChild(msg);
-    return;
-  }
-
-  const chartDiv = document.createElement("div");
-  chartDiv.style.cssText = "width:100%;height:390px;";
-  container.appendChild(chartDiv);
-
-  const chart = LightweightCharts.createChart(chartDiv, {
-    width: chartDiv.clientWidth,
-    height: 390,
-    layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
-    grid: { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
-    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-    rightPriceScale: { borderColor: "#30363d", scaleMargins: { top: 0.05, bottom: 0.22 } },
-    timeScale: { borderColor: "#30363d", timeVisible: false },
-    localization: { locale: "zh-TW" },
-  });
-
-  // K 線（台灣慣例：漲=紅 跌=綠）
-  const candleSeries = chart.addCandlestickSeries({
-    upColor:         "#f85149",
-    downColor:       "#3fb950",
-    borderUpColor:   "#f85149",
-    borderDownColor: "#3fb950",
-    wickUpColor:     "#f85149",
-    wickDownColor:   "#3fb950",
-  });
-  candleSeries.setData(candles);
-
-  // 成交量柱
-  const volSeries = chart.addHistogramSeries({
-    priceFormat: { type: "volume" },
-    priceScaleId: "vol",
-  });
-  chart.priceScale("vol").applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
-  volSeries.setData(candles.map(c => ({
-    time: c.time,
-    value: c.volume,
-    color: c.close >= c.open ? "rgba(248,81,73,0.5)" : "rgba(63,185,80,0.5)",
-  })));
-
-  // MA 均線
-  function calcMA(data, n) {
-    return data.map((c, i) => {
-      if (i < n - 1) return null;
-      const avg = data.slice(i - n + 1, i + 1).reduce((s, x) => s + x.close, 0) / n;
-      return { time: c.time, value: +avg.toFixed(2) };
-    }).filter(Boolean);
-  }
-  const maConfig = [
-    { n: 5,  color: "#f0883e", label: "MA5"  },
-    { n: 20, color: "#d2a8ff", label: "MA20" },
-    { n: 60, color: "#7ee787", label: "MA60" },
-  ];
-  for (const { n, color } of maConfig) {
-    const data = calcMA(candles, n);
-    if (!data.length) continue;
-    chart.addLineSeries({
-      color, lineWidth: 1,
-      priceLineVisible: false,
-      lastValueVisible: false,
-      crosshairMarkerVisible: false,
-    }).setData(data);
-  }
-
-  chart.timeScale().fitContent();
-
-  // MA 圖例 + 授權標註
-  const bar = document.createElement("div");
-  bar.style.cssText = "display:flex;align-items:center;padding:3px 8px;font-size:11px;gap:12px;background:#161b22;";
-  bar.innerHTML = maConfig.map(m =>
-    `<span style="color:${m.color}">● ${m.label}</span>`
-  ).join("") +
-  `<span style="flex:1;text-align:right;color:var(--text3)">Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:var(--text2)">TradingView</a></span>`;
-  container.appendChild(bar);
-
-  new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth }))
-    .observe(chartDiv);
-}  // end _drawChart
 
 /* ── Entry point ── */
 document.addEventListener("DOMContentLoaded", init);
