@@ -643,14 +643,14 @@ function buildEtfCardHtml(etf) {
         ${renderFundMetaLine(etf.fund_meta)}
       </summary>
       <div class="card-body">
+        ${addedSection}
+        ${removedSection}
         <table class="etf-holdings">
           <thead><tr>
             <th>代號</th><th>名稱</th><th class="num">權重</th><th class="num">股數</th>
           </tr></thead>
           <tbody>${rows}</tbody>
         </table>
-        ${addedSection}
-        ${removedSection}
         ${caveat}
       </div>
     </details>
