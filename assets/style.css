@@ -65,25 +65,52 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-h.ch-added   { color: var(--green); }
 .changes-section-h.ch-removed { color: #f85149; }
 
+/* ---- 新進 / 移除 list (3-col per-li grid) ---- */
 .changes-section-list { list-style: none; }
-.changes-section-list li { padding: 6px 18px; font-size: var(--fs-base); border-top: 1px solid rgba(48, 54, 61, 0.4); display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline; cursor: pointer; }
-.changes-section-list li:hover { background: rgba(48, 54, 61, 0.4); }
+.changes-section-list li { padding: 6px 18px; font-size: var(--fs-base); border-top: 1px solid rgba(48,54,61,0.4); display: grid; grid-template-columns: 6ch 1fr auto; gap: 12px; align-items: baseline; cursor: pointer; }
+.changes-section-list li:hover { background: rgba(48,54,61,0.4); }
 .changes-section-list li b { font-family: var(--mono); color: var(--text); }
 .changes-section-list .ch-name { color: var(--text2); }
 .changes-section-list .ch-weight { color: var(--gold); font-family: var(--mono); font-size: var(--fs-sm); text-align: right; }
 
-/* Changed (加減碼) row layout — 5 columns: ticker / name / transition / delta-badge / shares */
-.changes-section-list-changes li { grid-template-columns: auto 1fr auto auto auto; }
-.changes-section-list .ch-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); }
-.changes-section-list .ch-date { color: var(--text3); font-size: var(--fs-xs); }
-.changes-section-list .ch-shares { color: var(--text3); font-family: var(--mono); font-size: var(--fs-xs); }
+/* ---- 加減碼 section: parent-grid + display:contents for true column alignment ---- */
+/* ul is the grid; each li becomes transparent (display:contents) so all rows
+   share one column-sizing context — like tab stops across all rows.            */
+.changes-section-list-changes {
+  display: grid;
+  grid-template-columns: 6ch 1fr max-content max-content max-content;
+  column-gap: 14px;
+}
+.changes-section-list-changes > li:not(.trend-row) { display: contents; }
+.changes-section-list-changes > li:not(.trend-row) > * {
+  padding: 6px 0;
+  border-top: 1px solid rgba(48,54,61,0.4);
+  align-self: center;
+  cursor: pointer;
+  font-size: var(--fs-base);
+}
+.changes-section-list-changes > li:not(.trend-row) > *:first-child { padding-left: 18px; }
+.changes-section-list-changes > li:not(.trend-row) > *:last-child  { padding-right: 18px; }
+.changes-section-list-changes > li:not(.trend-row):hover > * { background: rgba(48,54,61,0.4); }
+/* direction indicator: left border stripe on first cell */
+.changes-section-list-changes > li[data-dir="up"]   > *:first-child { border-left: 3px solid rgba(63,185,80,0.6); }
+.changes-section-list-changes > li[data-dir="down"] > *:first-child { border-left: 3px solid rgba(248,81,73,0.5); }
+/* "now" weight colored to match direction */
+.changes-section-list-changes > li[data-dir="up"]   .ch-now { color: var(--green); font-weight: 600; }
+.changes-section-list-changes > li[data-dir="down"] .ch-now { color: #f85149;      font-weight: 600; }
+
+.changes-section-list .ch-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); white-space: nowrap; }
+.changes-section-list .ch-date  { color: var(--text3); font-size: var(--fs-xs); }
+.changes-section-list .ch-shares { color: var(--text3); font-family: var(--mono); font-size: var(--fs-xs); white-space: nowrap; }
 .changes-section-list .ch-shares-delta { font-size: var(--fs-xs); }
 .ch-shares-delta.shares-up   { color: var(--green); }
 .ch-shares-delta.shares-down { color: #f85149; }
 
 /* Inline expansion: per-stock weight trend sparkline (hand-drawn SVG, no
    chart lib). Triggered by clicking any row in changes-section-list. */
-.trend-row { padding: 0 !important; cursor: default !important; background: var(--bg) !important; grid-template-columns: 1fr !important; }
+/* In the changes grid the trend-row spans all 5 columns */
+.changes-section-list-changes > li.trend-row { grid-column: 1 / -1; display: block; }
+.trend-row { padding: 0 !important; cursor: default !important; background: var(--bg) !important; }
 .trend-row:hover { background: var(--bg) !important; }
 .trend-container { padding: 16px 18px; }
 .trend-svg { width: 100%; max-width: 720px; height: auto; display: block; }

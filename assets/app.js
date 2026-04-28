@@ -469,20 +469,20 @@ function renderChangesChangedSection(items) {
   const li = sorted.map(c => {
     const up = c.delta > 0;
     const sign = up ? "+" : "";
+    const dir = up ? "up" : "down";
     const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
     const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
     const sharesLine = (c.shares_now != null && c.shares_prev != null)
       ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股 <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : sharesDelta < 0 ? "shares-down" : ""}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span></span>`
-      : "";
-    return `<li data-stock-id="${escapeHtml(c.stock_id)}">
+      : `<span class="ch-shares"></span>`;
+    return `<li data-stock-id="${escapeHtml(c.stock_id)}" data-dir="${dir}">
       <b>${escapeHtml(c.stock_id)}</b>
       <span class="ch-name">${escapeHtml(c.stock_name)}</span>
       <span class="ch-trans" title="${prevDate} → ${nowDate}">
         <span class="ch-date">(${prevDate.slice(5)})</span> ${c.weight_prev.toFixed(2)}%
-        →
-        <span class="ch-date">(${nowDate.slice(5)})</span> ${c.weight_now.toFixed(2)}%
+        → <span class="ch-date">(${nowDate.slice(5)})</span> <span class="ch-now">${c.weight_now.toFixed(2)}%</span>
       </span>
-      <span class="diff-badge diff-${up ? "up" : "down"}">${sign}${c.delta.toFixed(2)}%</span>
+      <span class="diff-badge diff-${dir}">${sign}${c.delta.toFixed(2)}%</span>
       ${sharesLine}
     </li>`;
   }).join("");
