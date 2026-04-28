@@ -427,7 +427,7 @@ function buildChangesCardHtml(etf, byEtf) {
         .map(h => ({
           stock_id: h.stock_id, stock_name: h.stock_name,
           weight_now: h.weight_pct, weight_prev: h.weight_pct,
-          delta: 0, shares_now: null, shares_prev: null,
+          delta: 0, shares_now: h.shares ?? null, shares_prev: null,
         }));
       summaryNote = `<span class="card-count card-count-muted">無調倉 (${zeroItems.length})</span>`;
       body = `<div class="card-body">${renderChangesChangedSection(zeroItems)}</div>`;
@@ -487,8 +487,8 @@ function renderChangesChangedSection(items) {
     const dir = up ? "up" : flat ? "flat" : "down";
     const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
     const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
-    const sharesLine = (c.shares_now != null && c.shares_prev != null)
-      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股${sharesDelta !== 0
+    const sharesLine = c.shares_now != null
+      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股${(c.shares_prev != null && sharesDelta !== 0)
           ? ` <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : "shares-down"}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span>`
           : ""}</span>`
       : `<span class="ch-shares"></span>`;
