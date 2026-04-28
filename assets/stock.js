@@ -82,13 +82,15 @@ function renderHeader(sid, stockName) {
     const cls = up ? "price-up" : down ? "price-down" : "";
     const arrow = up ? "▲" : down ? "▼" : "·";
     const sign = up ? "+" : "";
+    const close = p.close ?? 0;
+    const changePct = p.change_pct ?? 0;
     priceHtml = `
-      <span class="sp-close">${p.close.toLocaleString()}</span>
-      <span class="sp-change ${cls}">${arrow} ${sign}${p.change_pct.toFixed(2)}%</span>`;
+      <span class="sp-close">${close.toLocaleString()}</span>
+      <span class="sp-change ${cls}">${arrow} ${sign}${changePct.toFixed(2)}%</span>`;
   }
 
   const dateBadge = priceDate
-    ? `<span class="sp-date${stale ? " stale" : ""}" title="${stale ? "上次盤後資料" : "今日盤後"}">${priceDate.slice(5)} 盤後</span>`
+    ? `<span class="sp-date${stale ? " stale" : ""}" title="${stale ? "上次盤後資料" : "今日盤後"}">${escapeHtml(priceDate.slice(5))} 盤後</span>`
     : "";
 
   document.getElementById("sp-header").innerHTML = `
