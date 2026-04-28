@@ -488,7 +488,9 @@ function renderChangesChangedSection(items) {
     const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
     const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
     const sharesLine = (c.shares_now != null && c.shares_prev != null)
-      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股 <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : sharesDelta < 0 ? "shares-down" : ""}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span></span>`
+      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股${sharesDelta !== 0
+          ? ` <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : "shares-down"}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span>`
+          : ""}</span>`
       : `<span class="ch-shares"></span>`;
     return `<li data-stock-id="${escapeHtml(c.stock_id)}" data-dir="${dir}">
       <b>${escapeHtml(c.stock_id)}</b>
