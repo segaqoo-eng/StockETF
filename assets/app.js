@@ -31,6 +31,7 @@ const state = {
   prices: null,         // {date, prices: {stock_id: {close, change, change_pct}}}; today's close
   minEtfs: 3,
   industry: "",
+  tag: "",
   search: "",
   expandedStockId: null,
 };
@@ -63,6 +64,7 @@ async function load() {
 
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
     populateIndustryFilter();
+    populateTagBar();
     renderEtfChipBar();
     renderEtfOverview();
     renderChanges();
@@ -91,6 +93,41 @@ function populateIndustryFilter() {
     o.value = ind;
     o.textContent = ind;
     sel.appendChild(o);
+  });
+}
+
+// 概念股 tag chip bar
+const TAG_ORDER = ["AI","伺服器","CPO","記憶體","PCB","散熱","封裝測試","CoWoS",
+                   "半導體","IC設計","網通","金融","電信","連接器","電源","雲端"];
+
+function populateTagBar() {
+  const bar = document.getElementById("tag-chip-bar");
+  if (!bar) return;
+  // Collect tags that actually appear in holdings
+  const available = new Set(
+    state.payload.holdings.flatMap(h => h.tags || [])
+  );
+  const ordered = TAG_ORDER.filter(t => available.has(t));
+  // Add any tags not in TAG_ORDER
+  available.forEach(t => { if (!TAG_ORDER.includes(t)) ordered.push(t); });
+
+  bar.innerHTML = ["", ...ordered].map(tag => {
+    const active = state.tag === tag;
+    const label  = tag === "" ? "全部" : tag;
+    const count  = tag === ""
+      ? state.payload.holdings.length
+      : state.payload.holdings.filter(h => (h.tags||[]).includes(tag)).length;
+    return `<button class="tag-chip${active ? " tag-chip-active" : ""}" data-tag="${escapeHtml(tag)}">
+      ${escapeHtml(label)} <span class="tag-chip-count">${count}</span>
+    </button>`;
+  }).join("");
+
+  bar.querySelectorAll(".tag-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.tag = btn.dataset.tag;
+      populateTagBar();
+      render();
+    });
   });
 }
 
@@ -135,6 +172,7 @@ function filteredHoldings() {
   return holdings.filter(h => {
     if (h.held_by.length < state.minEtfs) return false;
     if (state.industry && h.industry !== state.industry) return false;
+    if (state.tag && !(h.tags || []).includes(state.tag)) return false;
     if (q) {
       const hay = `${h.stock_id} ${h.stock_name}`.toLowerCase();
       if (!hay.includes(q)) return false;
