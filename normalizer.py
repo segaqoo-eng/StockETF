@@ -101,7 +101,7 @@ def build_payload(
     }
 
 
-def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.005) -> dict:
+def compute_diff(today: dict, yesterday: dict) -> dict:
     """Per-ETF day-over-day holdings delta keyed by ETF ticker.
 
     For each ETF present in BOTH payloads, partitions the TW-only holdings into:
@@ -149,26 +149,27 @@ def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.00
             for sid, h in yesterday_h.items()
             if sid not in today_h
         ]
+        # Only real trades count — weight % floats daily from price moves,
+        # only a change in share count means the manager actually bought/sold.
         changed = []
         for sid in today_h.keys() & yesterday_h.keys():
             t, y = today_h[sid], yesterday_h[sid]
-            delta = t["weight_pct"] - y["weight_pct"]
-            if abs(delta) < change_threshold:
+            shares_t = t.get("shares", 0) or 0
+            shares_y = y.get("shares", 0) or 0
+            if shares_t == shares_y:
                 continue
             changed.append({
                 "stock_id": sid,
                 "stock_name": t["stock_name"],
-                "weight_now": t["weight_pct"],
-                "weight_prev": y["weight_pct"],
-                "delta": round(delta, 4),
-                "shares_now": t.get("shares", 0),
-                "shares_prev": y.get("shares", 0),
+                "shares_now": shares_t,
+                "shares_prev": shares_y,
+                "shares_delta": shares_t - shares_y,
             })
 
         result[ticker] = {
             "added": sorted(added, key=lambda h: -h["weight_pct"]),
             "removed": sorted(removed, key=lambda h: -h["weight_pct"]),
-            "changed": sorted(changed, key=lambda h: -abs(h["delta"])),
+            "changed": sorted(changed, key=lambda h: -abs(h["shares_delta"])),
         }
     return result
 

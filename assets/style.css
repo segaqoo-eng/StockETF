@@ -73,12 +73,12 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-list .ch-name { color: var(--text2); }
 .changes-section-list .ch-weight { color: var(--gold); font-family: var(--mono); font-size: var(--fs-sm); text-align: right; }
 
-/* ---- 加減碼 section: parent-grid + display:contents for true column alignment ---- */
+/* ---- 調倉 section: parent-grid + display:contents for true column alignment ---- */
 /* ul is the grid; each li becomes transparent (display:contents) so all rows
    share one column-sizing context — like tab stops across all rows.            */
 .changes-section-list-changes {
   display: grid;
-  grid-template-columns: 6ch 1fr max-content max-content max-content;
+  grid-template-columns: 6ch 1fr max-content max-content;
   column-gap: 14px;
 }
 .changes-section-list-changes > li:not(.trend-row) { display: contents; }
@@ -101,13 +101,12 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-list-changes > li[data-dir="flat"] .ch-now { color: var(--text2); }
 .diff-badge.diff-flat { background: rgba(100,100,100,0.15); color: var(--text3); }
 
-.changes-section-list .ch-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); white-space: nowrap; }
-.changes-section-list .ch-date  { color: var(--text3); font-size: var(--fs-xs); }
-.changes-section-list .ch-shares { color: var(--text3); font-family: var(--mono); font-size: var(--fs-xs); white-space: nowrap; }
-.changes-section-list .ch-shares-delta { font-size: var(--fs-xs); }
-/* Taiwan convention: 漲=紅 跌=綠 */
-.ch-shares-delta.shares-up   { color: #f85149; }
-.ch-shares-delta.shares-down { color: var(--green); }
+.changes-section-list .ch-shares-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); white-space: nowrap; }
+/* 台灣慣例: 加碼=紅 減碼=綠 */
+.changes-section-list-changes > li[data-dir="up"]   .ch-now { color: #f85149; font-weight: 600; }
+.changes-section-list-changes > li[data-dir="down"] .ch-now { color: var(--green); font-weight: 600; }
+/* 每張卡片的比對日期 */
+.card-date-range { font-size: var(--fs-xs); color: var(--text3); font-family: var(--mono); margin-left: 8px; }
 
 /* Inline expansion: per-stock weight trend sparkline (hand-drawn SVG, no
    chart lib). Triggered by clicking any row in changes-section-list. */

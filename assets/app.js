@@ -277,22 +277,17 @@ function renderChanges() {
     return;
   }
 
-  // Period header — shows what dates the diff is comparing against.
-  let period;
-  if (!state.diff.as_of_baseline) {
-    period = `<div class="changes-period changes-period-empty">尚無歷史快照可比對 — 明天 cron 後自動有資料</div>`;
-  } else {
-    const staleNote = state.diff.is_stale
-      ? `<span class="changes-stale-note">⚠️ 今日無最新資料，顯示上次更新比較</span>`
+  // 只有 stale 時才顯示全局提示（日期移到各卡片）
+  const staleBar = (!state.diff.as_of_baseline)
+    ? `<div class="changes-period changes-period-empty">尚無歷史快照可比對 — 明天 cron 後自動有資料</div>`
+    : state.diff.is_stale
+      ? `<div class="changes-period"><span class="changes-stale-note">⚠️ 今日無最新資料，顯示上次更新比較（${state.diff.as_of_baseline} → ${state.diff.as_of_today}）</span></div>`
       : "";
-    period = `<div class="changes-period">📅 比對期間：<b>${state.diff.as_of_baseline}</b> → <b>${state.diff.as_of_today}</b>${staleNote}</div>`;
-  }
 
-  // One card per ETF (ordered by ticker for stability), independent accordion.
   const sortedEtfs = [...state.payload.etfs].sort((a, b) => a.ticker.localeCompare(b.ticker));
   const cards = sortedEtfs.map(etf => buildChangesCardHtml(etf, state.diff.by_etf || {})).join("");
 
-  root.innerHTML = period + cards;
+  root.innerHTML = staleBar + cards;
   wireStockTrendClicks();
 }
 
@@ -415,28 +410,26 @@ function buildChangesCardHtml(etf, byEtf) {
   let summaryNote = "";
   let body = "";
 
+  // Per-card date range (snapshot dates, never "real today")
+  const baseline = state.diff?.as_of_baseline;
+  const asofNow  = state.diff?.as_of_today;
+  const dateTag  = (baseline && asofNow)
+    ? `<span class="card-date-range">${baseline.slice(5)} → ${asofNow.slice(5)}</span>`
+    : "";
+
   if (!diff) {
     summaryNote = `<span class="card-count card-count-muted">首次出現，累積中</span>`;
     body = `<div class="card-body changes-empty">此 ETF 尚無前次快照可比對，待 cron 累積第二筆資料後自動顯示。</div>`;
   } else {
     const total = diff.added.length + diff.removed.length + diff.changed.length;
     if (total === 0) {
-      // No rebalancing — show all current TW holdings with delta = 0 (neutral color)
-      const zeroItems = (etf.holdings || [])
-        .filter(h => h.market === "TW")
-        .sort((a, b) => b.weight_pct - a.weight_pct)
-        .map(h => ({
-          stock_id: h.stock_id, stock_name: h.stock_name,
-          weight_now: h.weight_pct, weight_prev: h.weight_pct,
-          delta: 0, shares_now: h.shares ?? null, shares_prev: null,
-        }));
-      summaryNote = `<span class="card-count card-count-muted">無調倉 (${zeroItems.length})</span>`;
-      body = `<div class="card-body">${renderChangesChangedSection(zeroItems)}</div>`;
+      summaryNote = `<span class="card-count card-count-muted">無調倉</span>`;
+      body = `<div class="card-body changes-empty">本期持股股數未調整（市值浮動不列為調倉）</div>`;
     } else {
       const counts = [];
       if (diff.added.length)   counts.push(`新進 ${diff.added.length}`);
       if (diff.removed.length) counts.push(`移除 ${diff.removed.length}`);
-      if (diff.changed.length) counts.push(`加減碼 ${diff.changed.length}`);
+      if (diff.changed.length) counts.push(`調倉 ${diff.changed.length}`);
       summaryNote = `<span class="card-count">${counts.join(" · ")}</span>`;
       body = `<div class="card-body">
         ${renderChangesAddRemoveSection("🆕 新進", "added", diff.added, "weight_pct")}
@@ -453,6 +446,7 @@ function buildChangesCardHtml(etf, byEtf) {
           <span class="card-ticker">${escapeHtml(ticker)}</span>
           <span class="card-name">${escapeHtml(etf.name)}</span>
           ${summaryNote}
+          ${dateTag}
           <span class="card-toggle" aria-hidden="true">▾</span>
         </div>
       </summary>
@@ -477,34 +471,22 @@ function renderChangesAddRemoveSection(label, kind, items, weightField, weightPr
 
 function renderChangesChangedSection(items) {
   if (items.length === 0) return "";
-  const prevDate = (state.diff && state.diff.as_of_baseline) || "前次";
-  const nowDate = (state.diff && state.diff.as_of_today) || "本次";
-  // Sort by abs(delta) desc — biggest movers first regardless of direction.
-  const sorted = [...items].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+  // Sort by abs shares_delta desc
+  const sorted = [...items].sort((a, b) => Math.abs(b.shares_delta) - Math.abs(a.shares_delta));
   const li = sorted.map(c => {
-    const up = c.delta > 0;
-    const flat = c.delta === 0;
+    const up   = c.shares_delta > 0;
+    const dir  = up ? "up" : "down";
     const sign = up ? "+" : "";
-    const dir = up ? "up" : flat ? "flat" : "down";
-    const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
-    const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
-    const sharesLine = c.shares_now != null
-      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股${(c.shares_prev != null && sharesDelta !== 0)
-          ? ` <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : "shares-down"}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span>`
-          : ""}</span>`
-      : `<span class="ch-shares"></span>`;
     return `<li data-stock-id="${escapeHtml(c.stock_id)}" data-dir="${dir}">
       <b>${escapeHtml(c.stock_id)}</b>
       <span class="ch-name">${escapeHtml(c.stock_name)}</span>
-      <span class="ch-trans" title="${prevDate} → ${nowDate}">
-        <span class="ch-date">(${prevDate.slice(5)})</span> ${c.weight_prev.toFixed(2)}%
-        → <span class="ch-date">(${nowDate.slice(5)})</span> <span class="ch-now">${c.weight_now.toFixed(2)}%</span>
+      <span class="ch-shares-trans">
+        ${Number(c.shares_prev).toLocaleString()} → <span class="ch-now">${Number(c.shares_now).toLocaleString()}</span> 股
       </span>
-      <span class="diff-badge diff-${dir}">${flat ? "±" : sign}${c.delta.toFixed(2)}%</span>
-      ${sharesLine}
+      <span class="diff-badge diff-${dir}">${sign}${Number(c.shares_delta).toLocaleString()}</span>
     </li>`;
   }).join("");
-  return `<h4 class="changes-section-h ch-changed">📊 加減碼 (${items.length})  <small style="font-weight:normal;color:var(--text3)">點任一檔看歷史走勢</small></h4>
+  return `<h4 class="changes-section-h ch-changed">📊 調倉 (${items.length}) <small style="font-weight:normal;color:var(--text3)">點任一檔看歷史走勢</small></h4>
           <ul class="changes-section-list changes-section-list-changes">${li}</ul>`;
 }
 
