@@ -206,29 +206,177 @@ function renderTrend(sid) {
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">${legend}</div>`;
 }
 
-/* ── K 線圖：TradingView widgetembed iframe（免費，任何域名皆可用）── */
+/* ── K 線圖：Lightweight Charts + FinMind API ── */
 
-function initChart(sid) {
-  const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
-  const symbol = encodeURIComponent(`${exchange}:${sid}`);
+async function _fetchFinMind(sid, startDate) {
+  const url = `https://api.finmindtrade.com/api/v4/data` +
+    `?dataset=TaiwanStockPrice&data_id=${encodeURIComponent(sid)}&start_date=${startDate}`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    const d = await res.json();
+    if (d.status !== 200 || !Array.isArray(d.data)) return [];
+    return d.data
+      .map(r => ({
+        time:   r.date,
+        open:   r.open,
+        high:   r.max,
+        low:    r.min,
+        close:  r.close,
+        volume: r.Trading_Volume || 0,
+      }))
+      .filter(c => c.open != null && c.close != null);
+  } catch (_) { return []; }
+}
+
+function _groupByWeek(daily) {
+  const map = {};
+  for (const c of daily) {
+    const d = new Date(c.time), day = d.getDay() || 7;
+    const mon = new Date(d); mon.setDate(d.getDate() - day + 1);
+    const key = mon.toISOString().slice(0, 10);
+    if (!map[key]) map[key] = { ...c, time: key, volume: 0 };
+    map[key].high   = Math.max(map[key].high, c.high);
+    map[key].low    = Math.min(map[key].low,  c.low);
+    map[key].close  = c.close;
+    map[key].volume += c.volume;
+  }
+  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+function _groupByMonth(daily) {
+  const map = {};
+  for (const c of daily) {
+    const key = c.time.slice(0, 7) + "-01";
+    if (!map[key]) map[key] = { ...c, time: key, volume: 0 };
+    map[key].high   = Math.max(map[key].high, c.high);
+    map[key].low    = Math.min(map[key].low,  c.low);
+    map[key].close  = c.close;
+    map[key].volume += c.volume;
+  }
+  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+function _startDate(monthsBack) {
+  const d = new Date();
+  d.setMonth(d.getMonth() - monthsBack);
+  return d.toISOString().slice(0, 10);
+}
+
+const CHART_PERIODS = [
+  { key: "D", label: "日K", months: 3,  group: null    },
+  { key: "W", label: "週K", months: 6,  group: "week"  },
+  { key: "M", label: "月K", months: 24, group: "month" },
+];
+let _activePeriod = "D";
+
+async function initChart(sid) {
   const container = document.getElementById("tv-container");
 
-  const params = [
-    `symbol=${symbol}`,
-    "interval=D",
-    "theme=dark",
-    "style=1",
-    "locale=zh_TW",
-    "timezone=Asia%2FTaipei",
-    "hide_side_toolbar=0",
-    "allow_symbol_change=1",
-    "save_image=0",
-    "hide_volume=0",
-  ].join("&");
+  // Period switcher bar（只建一次）
+  container.innerHTML = "";
+  const periodBar = document.createElement("div");
+  periodBar.style.cssText = "display:flex;gap:6px;padding:8px 10px 4px;background:#161b22;";
+  CHART_PERIODS.forEach(p => {
+    const btn = document.createElement("button");
+    btn.textContent = p.label;
+    btn.dataset.key = p.key;
+    btn.style.cssText = `padding:3px 12px;border-radius:6px;border:1px solid var(--border);` +
+      `background:${p.key===_activePeriod?"var(--accent)":"var(--bg2)"};` +
+      `color:${p.key===_activePeriod?"#000":"var(--text2)"};font-size:var(--fs-sm);cursor:pointer;`;
+    btn.onclick = async () => {
+      _activePeriod = p.key;
+      periodBar.querySelectorAll("button").forEach(b => {
+        const on = b.dataset.key === _activePeriod;
+        b.style.background = on ? "var(--accent)" : "var(--bg2)";
+        b.style.color = on ? "#000" : "var(--text2)";
+      });
+      await _drawChart(sid, container, periodBar);
+    };
+    periodBar.appendChild(btn);
+  });
+  container.appendChild(periodBar);
 
-  container.innerHTML =
-    `<iframe src="https://www.tradingview.com/widgetembed/?${params}"` +
-    ` style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`;
+  await _drawChart(sid, container, periodBar);
+}
+
+async function _drawChart(sid, container, periodBar) {
+  // 清舊圖，保留 period bar
+  container.querySelectorAll(":scope > *:not(div:first-child)").forEach(el => el.remove());
+
+  const cfg = CHART_PERIODS.find(p => p.key === _activePeriod);
+  const loading = Object.assign(document.createElement("div"), {
+    textContent: "K 線載入中…",
+    style: "color:var(--text3);padding:20px;font-size:var(--fs-sm)",
+  });
+  container.appendChild(loading);
+
+  const daily = await _fetchFinMind(sid, _startDate(cfg.months));
+  loading.remove();
+
+  let candles = cfg.group === "week"  ? _groupByWeek(daily)
+              : cfg.group === "month" ? _groupByMonth(daily)
+              : daily;
+
+  if (!candles.length) {
+    container.appendChild(Object.assign(document.createElement("div"), {
+      textContent: "FinMind API 無資料（可能是未上市 / 連線失敗）",
+      style: "color:var(--text3);padding:20px;font-size:var(--fs-sm)",
+    }));
+    return;
+  }
+
+  const chartDiv = document.createElement("div");
+  chartDiv.style.cssText = "width:100%;height:390px;";
+  container.appendChild(chartDiv);
+
+  const chart = LightweightCharts.createChart(chartDiv, {
+    width: chartDiv.clientWidth, height: 390,
+    layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
+    grid:   { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+    rightPriceScale: { borderColor: "#30363d", scaleMargins: { top: 0.05, bottom: 0.22 } },
+    timeScale: { borderColor: "#30363d", timeVisible: false },
+  });
+
+  // 台灣慣例：漲=紅 跌=綠
+  chart.addCandlestickSeries({
+    upColor: "#f85149", downColor: "#3fb950",
+    borderUpColor: "#f85149", borderDownColor: "#3fb950",
+    wickUpColor:   "#f85149", wickDownColor:   "#3fb950",
+  }).setData(candles);
+
+  // 成交量
+  const vol = chart.addHistogramSeries({ priceFormat: { type: "volume" }, priceScaleId: "vol" });
+  chart.priceScale("vol").applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+  vol.setData(candles.map(c => ({
+    time: c.time, value: c.volume,
+    color: c.close >= c.open ? "rgba(248,81,73,0.45)" : "rgba(63,185,80,0.45)",
+  })));
+
+  // MA 均線
+  const maConfig = [{ n:5, color:"#f0883e" }, { n:20, color:"#d2a8ff" }, { n:60, color:"#7ee787" }];
+  for (const { n, color } of maConfig) {
+    const ma = candles.map((c, i) => {
+      if (i < n - 1) return null;
+      const avg = candles.slice(i - n + 1, i + 1).reduce((s, x) => s + x.close, 0) / n;
+      return { time: c.time, value: +avg.toFixed(2) };
+    }).filter(Boolean);
+    if (!ma.length) continue;
+    chart.addLineSeries({ color, lineWidth: 1,
+      priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
+    }).setData(ma);
+  }
+
+  chart.timeScale().fitContent();
+
+  const legend = document.createElement("div");
+  legend.style.cssText = "display:flex;align-items:center;padding:3px 8px;font-size:11px;gap:12px;background:#161b22;";
+  legend.innerHTML = maConfig.map(m => `<span style="color:${m.color}">● MA${m.n}</span>`).join("") +
+    `<span style="flex:1;text-align:right;color:var(--text3)">資料來源 <a href="https://finmindtrade.com/" target="_blank" rel="noopener" style="color:var(--text2)">FinMind</a></span>`;
+  container.appendChild(legend);
+
+  new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth })).observe(chartDiv);
 }
 
 /* ── Entry point ── */
