@@ -1,104 +1,104 @@
-"1216": { name: 統一 }
-"1301": { name: 台塑 }
-"1303": { name: 南亞 }
-"1319": { name: 東陽 }
-"1477": { name: 聚陽 }
-"1519": { name: 華城 }
-"1590": { name: 亞德客-KY }
-"1815": { name: 富喬 }
-"2002": { name: 中鋼 }
-"2059": { name: 川湖,tags: [AI,伺服器] }
-"2207": { name: 和泰車 }
-"2301": { name: 光寶科,tags: [網通] }
-"2303": { name: 聯電,industry: 半導體,tags: [半導體] }
-"2308": { name: 台達電,industry: 電子零組件,tags: [電源,AI] }
-"2313": { name: 華通,tags: [PCB] }
-"2317": { name: 鴻海,industry: 電子,tags: [AI,伺服器] }
-"2327": { name: 國巨* }
-"2330": { name: 台積電,industry: 半導體,tags: [AI,半導體,CoWoS] }
-"2337": { name: 旺宏,tags: [記憶體] }
-"2344": { name: 華邦電,tags: [記憶體] }
-"2345": { name: 智邦,tags: [AI,網通,伺服器] }
-"2357": { name: 華碩 }
-"2360": { name: 致茂 }
-"2368": { name: 金像電,tags: [PCB] }
-"2376": { name: 技嘉,tags: [AI,伺服器] }
-"2382": { name: 廣達,industry: 電腦及週邊設備,tags: [AI,伺服器] }
-"2383": { name: 台光電,tags: [CPO,PCB,AI] }
-"2395": { name: 研華 }
-"2404": { name: 漢唐 }
-"2408": { name: 南亞科,tags: [記憶體,HBM] }
-"2412": { name: 中華電,tags: [電信] }
-"2439": { name: 美律 }
-"2449": { name: 京元電子,tags: [封裝測試] }
-"2454": { name: 聯發科,industry: 半導體,tags: [AI,半導體,IC設計] }
-"2467": { name: 志聖 }
-"2481": { name: 強茂 }
-"2548": { name: 華固 }
-"2603": { name: 長榮 }
-"2880": { name: 華南金,tags: [金融] }
-"2881": { name: 富邦金,industry: 金融保險,tags: [金融] }
-"2882": { name: 國泰金,industry: 金融保險,tags: [金融] }
-"2883": { name: 凱基金,tags: [金融] }
-"2884": { name: 玉山金,tags: [金融] }
-"2885": { name: 元大金,tags: [金融] }
-"2886": { name: 兆豐金,tags: [金融] }
-"2887": { name: 台新新光金,tags: [金融] }
-"2890": { name: 永豐金,tags: [金融] }
-"2891": { name: 中信金,tags: [金融] }
-"2892": { name: 第一金,tags: [金融] }
-"3008": { name: 大立光 }
-"3017": { name: 奇鋐,tags: [AI,散熱,伺服器] }
-"3036": { name: 文曄 }
-"3037": { name: 欣興,tags: [PCB,AI] }
-"3044": { name: 健鼎,tags: [PCB] }
-"3045": { name: 台灣大,tags: [電信] }
-"3105": { name: 穩懋,tags: [半導體] }
-"3189": { name: 景碩,tags: [PCB] }
-"3217": { name: 優群,tags: [IC設計] }
-"3231": { name: 緯創,tags: [AI,伺服器] }
-"3264": { name: 欣銓,tags: [封裝測試] }
-"3293": { name: 鈊象 }
-"3376": { name: 新日興 }
-"3443": { name: 創意,tags: [AI,IC設計] }
-"3529": { name: 力旺,tags: [記憶體,IC設計] }
-"3533": { name: 嘉澤,tags: [連接器,AI] }
-"3653": { name: 健策,tags: [CoWoS,先進封裝] }
-"3661": { name: 世芯-KY,tags: [AI,IC設計] }
-"3665": { name: 貿聯-KY }
-"3711": { name: 日月光投控,tags: [封裝測試,AI] }
-"4904": { name: 遠傳,tags: [電信] }
-"4915": { name: 致伸 }
-"4958": { name: 臻鼎-KY,tags: [PCB] }
-"4966": { name: 譜瑞-KY,tags: [CPO,AI,IC設計] }
-"4979": { name: 華星光,tags: [CPO,光纖] }
-"5234": { name: 達興材料 }
-"5274": { name: 信驊,tags: [AI,伺服器,IC設計] }
-"5347": { name: 世界,tags: [半導體] }
-"5434": { name: 崇越 }
-"5439": { name: 高技 }
-"5536": { name: 聖暉* }
-"5871": { name: 中租-KY }
-"5880": { name: 合庫金,tags: [金融] }
-"5904": { name: 寶雅 }
-"6139": { name: 亞翔 }
-"6147": { name: 頎邦,tags: [封裝測試] }
-"6191": { name: 精成科,tags: [PCB] }
-"6223": { name: 旺矽,tags: [封裝測試,半導體] }
-"6274": { name: 台燿,tags: [PCB] }
-"6415": { name: 矽力*-KY,tags: [IC設計,電源] }
-"6442": { name: 光聖 }
-"6505": { name: 台塑化 }
-"6510": { name: 精測,tags: [CPO,AI,量測] }
-"6515": { name: 穎崴,tags: [CPO,AI] }
-"6584": { name: 南俊國際,tags: [散熱] }
-"6669": { name: 緯穎,tags: [AI,伺服器,雲端] }
-"6805": { name: 富世達,tags: [IC設計] }
-"6831": { name: 邁科,tags: [連接器] }
-"6919": { name: 康霈* }
-"7769": { name: 鴻勁 }
-"8046": { name: 南電,tags: [PCB] }
-"8210": { name: 勤誠,tags: [AI,伺服器] }
-"8299": { name: 群聯,tags: [記憶體] }
-"8358": { name: 金居,tags: [PCB] }
-"8996": { name: 高力,tags: [散熱,AI] }
+"1216": { name: 統一,industry: 食品工業 }
+"1301": { name: 台塑,industry: 塑膠工業 }
+"1303": { name: 南亞,industry: 塑膠工業 }
+"1319": { name: 東陽,industry: 汽車工業 }
+"1477": { name: 聚陽,industry: 紡織纖維 }
+"1519": { name: 華城,industry: 電機機械 }
+"1590": { name: 亞德客-KY,industry: 電機機械 }
+"1815": { name: 富喬,industry: 電子零組件業 }
+"2002": { name: 中鋼,industry: 鋼鐵工業 }
+"2059": { name: 川湖,industry: 電子零組件業,tags: [AI,伺服器] }
+"2207": { name: 和泰車,industry: 汽車工業 }
+"2301": { name: 光寶科,industry: 電腦及週邊設備業,tags: [網通] }
+"2303": { name: 聯電,industry: 半導體業,tags: [半導體] }
+"2308": { name: 台達電,industry: 電子零組件業,tags: [電源,AI] }
+"2313": { name: 華通,industry: 電子零組件業,tags: [PCB] }
+"2317": { name: 鴻海,industry: 其他電子業,tags: [AI,伺服器] }
+"2327": { name: 國巨*,industry: 電子零組件業 }
+"2330": { name: 台積電,industry: 半導體業,tags: [AI,半導體,CoWoS] }
+"2337": { name: 旺宏,industry: 半導體業,tags: [記憶體] }
+"2344": { name: 華邦電,industry: 半導體業,tags: [記憶體] }
+"2345": { name: 智邦,industry: 通信網路業,tags: [AI,網通,伺服器] }
+"2357": { name: 華碩,industry: 電腦及週邊設備業 }
+"2360": { name: 致茂,industry: 其他電子業 }
+"2368": { name: 金像電,industry: 電子零組件業,tags: [PCB] }
+"2376": { name: 技嘉,industry: 電腦及週邊設備業,tags: [AI,伺服器] }
+"2382": { name: 廣達,industry: 電腦及週邊設備業,tags: [AI,伺服器] }
+"2383": { name: 台光電,industry: 電子零組件業,tags: [CPO,PCB,AI] }
+"2395": { name: 研華,industry: 電腦及週邊設備業 }
+"2404": { name: 漢唐,industry: 其他電子業 }
+"2408": { name: 南亞科,industry: 半導體業,tags: [記憶體,HBM] }
+"2412": { name: 中華電,industry: 通信網路業,tags: [電信] }
+"2439": { name: 美律,industry: 通信網路業 }
+"2449": { name: 京元電子,industry: 半導體業,tags: [封裝測試] }
+"2454": { name: 聯發科,industry: 半導體業,tags: [AI,半導體,IC設計] }
+"2467": { name: 志聖,industry: 電子零組件業 }
+"2481": { name: 強茂,industry: 半導體業 }
+"2548": { name: 華固,industry: 建材營造業 }
+"2603": { name: 長榮,industry: 航運業 }
+"2880": { name: 華南金,industry: 金融保險業,tags: [金融] }
+"2881": { name: 富邦金,industry: 金融保險業,tags: [金融] }
+"2882": { name: 國泰金,industry: 金融保險業,tags: [金融] }
+"2883": { name: 凱基金,industry: 金融保險業,tags: [金融] }
+"2884": { name: 玉山金,industry: 金融保險業,tags: [金融] }
+"2885": { name: 元大金,industry: 金融保險業,tags: [金融] }
+"2886": { name: 兆豐金,industry: 金融保險業,tags: [金融] }
+"2887": { name: 台新新光金,industry: 金融保險業,tags: [金融] }
+"2890": { name: 永豐金,industry: 金融保險業,tags: [金融] }
+"2891": { name: 中信金,industry: 金融保險業,tags: [金融] }
+"2892": { name: 第一金,industry: 金融保險業,tags: [金融] }
+"3008": { name: 大立光,industry: 光電業 }
+"3017": { name: 奇鋐,industry: 電腦及週邊設備業,tags: [AI,散熱,伺服器] }
+"3036": { name: 文曄,industry: 電子通路業 }
+"3037": { name: 欣興,industry: 電子零組件業,tags: [PCB,AI] }
+"3044": { name: 健鼎,industry: 電子零組件業,tags: [PCB] }
+"3045": { name: 台灣大,industry: 通信網路業,tags: [電信] }
+"3105": { name: 穩懋,industry: 半導體業,tags: [半導體] }
+"3189": { name: 景碩,industry: 半導體業,tags: [PCB] }
+"3217": { name: 優群,industry: 電子零組件業,tags: [IC設計] }
+"3231": { name: 緯創,industry: 電腦及週邊設備業,tags: [AI,伺服器] }
+"3264": { name: 欣銓,industry: 半導體業,tags: [封裝測試] }
+"3293": { name: 鈊象,industry: 文化創意業 }
+"3376": { name: 新日興,industry: 電子零組件業 }
+"3443": { name: 創意,industry: 半導體業,tags: [AI,IC設計] }
+"3529": { name: 力旺,industry: 半導體業,tags: [記憶體,IC設計] }
+"3533": { name: 嘉澤,industry: 電子零組件業,tags: [連接器,AI] }
+"3653": { name: 健策,industry: 電子零組件業,tags: [CoWoS,先進封裝] }
+"3661": { name: 世芯-KY,industry: 半導體業,tags: [AI,IC設計] }
+"3665": { name: 貿聯-KY,industry: 其他電子業 }
+"3711": { name: 日月光投控,industry: 半導體業,tags: [封裝測試,AI] }
+"4904": { name: 遠傳,industry: 通信網路業,tags: [電信] }
+"4915": { name: 致伸,industry: 電子零組件業 }
+"4958": { name: 臻鼎-KY,industry: 電子零組件業,tags: [PCB] }
+"4966": { name: 譜瑞-KY,industry: 半導體業,tags: [CPO,AI,IC設計] }
+"4979": { name: 華星光,industry: 通信網路業,tags: [CPO,光纖] }
+"5234": { name: 達興材料,industry: 光電業 }
+"5274": { name: 信驊,industry: 半導體業,tags: [AI,伺服器,IC設計] }
+"5347": { name: 世界,industry: 半導體業,tags: [半導體] }
+"5434": { name: 崇越,industry: 電子通路業 }
+"5439": { name: 高技,industry: 電子零組件業 }
+"5536": { name: 聖暉*,industry: 其他電子業 }
+"5871": { name: 中租-KY,industry: 其他業 }
+"5880": { name: 合庫金,industry: 金融保險業,tags: [金融] }
+"5904": { name: 寶雅,industry: 居家生活 }
+"6139": { name: 亞翔,industry: 其他電子業 }
+"6147": { name: 頎邦,industry: 半導體業,tags: [封裝測試] }
+"6191": { name: 精成科,industry: 電子零組件業,tags: [PCB] }
+"6223": { name: 旺矽,industry: 半導體業,tags: [封裝測試,半導體] }
+"6274": { name: 台燿,industry: 電子零組件業,tags: [PCB] }
+"6415": { name: 矽力*-KY,industry: 半導體業,tags: [IC設計,電源] }
+"6442": { name: 光聖,industry: 通信網路業 }
+"6505": { name: 台塑化,industry: 油電燃氣業 }
+"6510": { name: 精測,industry: 半導體業,tags: [CPO,AI,量測] }
+"6515": { name: 穎崴,industry: 半導體業,tags: [CPO,AI] }
+"6584": { name: 南俊國際,industry: 電子零組件業,tags: [散熱] }
+"6669": { name: 緯穎,industry: 電腦及週邊設備業,tags: [AI,伺服器,雲端] }
+"6805": { name: 富世達,industry: 電子零組件業,tags: [IC設計] }
+"6831": { name: 邁科,industry: 電腦及週邊設備業,tags: [連接器] }
+"6919": { name: 康霈*,industry: 生技醫療業 }
+"7769": { name: 鴻勁,industry: 半導體業 }
+"8046": { name: 南電,industry: 電子零組件業,tags: [PCB] }
+"8210": { name: 勤誠,industry: 電腦及週邊設備業,tags: [AI,伺服器] }
+"8299": { name: 群聯,industry: 半導體業,tags: [記憶體] }
+"8358": { name: 金居,industry: 電子零組件業,tags: [PCB] }
+"8996": { name: 高力,industry: 電機機械,tags: [散熱,AI] }
