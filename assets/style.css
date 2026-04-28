@@ -235,12 +235,17 @@ table.etf-holdings .weight { color: var(--gold); font-weight: 600; }
 .diff-up    { background: rgba(248, 81, 73, 0.15); color: #f85149; }
 .diff-down  { background: rgba(63, 185, 80, 0.15); color: var(--green); }
 
-.diff-removed-section { padding: 14px 18px; border-top: 1px solid var(--border); background: var(--bg); }
-.diff-removed-section h3 { font-size: var(--fs-sm); color: var(--text2); margin-bottom: 10px; font-weight: 500; }
-.diff-removed-section ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 16px; }
-.diff-removed-section li { font-size: var(--fs-sm); color: var(--text2); padding: 2px 0; }
-.diff-removed-section li b { color: var(--text); font-family: var(--mono); margin-right: 6px; }
-.diff-removed-section li .weight { font-size: var(--fs-xs); }
+.diff-added-section, .diff-removed-section {
+  padding: 14px 18px; border-top: 1px solid var(--border); background: var(--bg); }
+.diff-added-section h3, .diff-removed-section h3 {
+  font-size: var(--fs-sm); color: var(--text2); margin-bottom: 10px; font-weight: 500; }
+.diff-added-section ul, .diff-removed-section ul {
+  list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px 16px; }
+.diff-added-section li, .diff-removed-section li {
+  font-size: var(--fs-sm); color: var(--text2); padding: 2px 0; }
+.diff-added-section li b, .diff-removed-section li b {
+  color: var(--text); font-family: var(--mono); margin-right: 6px; }
+.diff-added-section li .weight, .diff-removed-section li .weight { font-size: var(--fs-xs); }
 
 .diff-caveat { padding: 8px 18px; font-size: var(--fs-xs); color: var(--text3); border-top: 1px solid var(--border); }
 

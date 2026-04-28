@@ -586,6 +586,19 @@ function buildEtfCardHtml(etf) {
     </tr>`;
   }).join("");
 
+  let addedSection = "";
+  if (diff.added.length > 0) {
+    const items = diff.added.map(r =>
+      `<li><b>${escapeHtml(r.stock_id)}</b> ${escapeHtml(r.stock_name)}` +
+      ` <span class="weight">${r.shares ? Number(r.shares).toLocaleString() + " 股" : "—"}</span></li>`
+    ).join("");
+    addedSection = `
+      <div class="diff-added-section">
+        <h3>🆕 本期新進（${diff.added.length} 檔）</h3>
+        <ul>${items}</ul>
+      </div>`;
+  }
+
   let removedSection = "";
   if (diff.removed.length > 0) {
     const items = diff.removed.map(r =>
@@ -636,6 +649,7 @@ function buildEtfCardHtml(etf) {
           </tr></thead>
           <tbody>${rows}</tbody>
         </table>
+        ${addedSection}
         ${removedSection}
         ${caveat}
       </div>
