@@ -561,13 +561,11 @@ function buildEtfCardHtml(etf) {
     }
     const change = changedById[h.stock_id];
     if (change) {
-      const up = change.delta > 0;
+      const up   = change.shares_delta > 0;
       const sign = up ? "+" : "";
-      const prevDate = (state.diff && state.diff.as_of_baseline) || "前次";
-      const nowDate = (state.diff && state.diff.as_of_today) || "本次";
       badges.push(
-        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="${prevDate}: ${change.weight_prev.toFixed(2)}% → ${nowDate}: ${change.weight_now.toFixed(2)}%">` +
-        `${sign}${change.delta.toFixed(2)}%</span>`
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="股數調整 ${sign}${Number(change.shares_delta).toLocaleString()}">` +
+        `${sign}${Number(change.shares_delta).toLocaleString()}</span>`
       );
     }
     return `<tr>
