@@ -574,8 +574,8 @@ function buildEtfCardHtml(etf) {
       const up = change.shares_delta > 0;
       const sign = up ? "+" : "";
       badges.push(
-        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="股數調整 ${sign}${Number(change.shares_delta).toLocaleString()} 股">` +
-        `${up ? "▲" : "▼"}</span>`
+        `<span class="diff-badge ${up ? "diff-up" : "diff-down"}">` +
+        `${up ? "▲" : "▼"} ${sign}${Number(change.shares_delta).toLocaleString()}</span>`
       );
     }
     return `<tr>

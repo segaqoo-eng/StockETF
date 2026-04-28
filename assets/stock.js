@@ -341,7 +341,7 @@ function _makeSubChart(parent, height) {
   div.style.cssText = `width:100%;height:${height}px;`;
   parent.appendChild(div);
   return LightweightCharts.createChart(div, {
-    width: div.clientWidth, height,
+    autoSize: true, height,
     layout: { background: { color: "#161b22" }, textColor: "#8b949e" },
     grid:   { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
@@ -427,7 +427,8 @@ async function _drawChart(sid, container, periodBar) {
   container.appendChild(mainDiv);
 
   const main = LightweightCharts.createChart(mainDiv, {
-    width: mainDiv.clientWidth, height: 320,
+    autoSize: true,
+    height: 320,
     layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
     grid:   { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
@@ -518,20 +519,12 @@ async function _drawChart(sid, container, periodBar) {
         macdChart.timeScale().fitContent();
 
         _syncCharts([main, rsiChart, kdChart, macdChart]);
-        new ResizeObserver(() => [main, rsiChart, kdChart, macdChart].forEach(c =>
-          c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
       } else {
         _syncCharts([main, rsiChart, kdChart]);
-        new ResizeObserver(() => [main, rsiChart, kdChart].forEach(c =>
-          c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
       }
     } else {
       _syncCharts([main, rsiChart]);
-      new ResizeObserver(() => [main, rsiChart].forEach(c =>
-        c.applyOptions({ width: mainDiv.clientWidth }))).observe(mainDiv);
     }
-  } else {
-    new ResizeObserver(() => main.applyOptions({ width: mainDiv.clientWidth })).observe(mainDiv);
   }
 
   // 資料來源
