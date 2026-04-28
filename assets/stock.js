@@ -264,38 +264,129 @@ async function _fetchTpexOhlc(sid, months) {
   return candles;
 }
 
+// Cache fetched daily data so switching periods doesn't re-fetch
+const _ohlcCache = {};
+
+async function _fetchMonths(sid, exchange, n) {
+  const now = new Date();
+  const keys = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    keys.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
+  }
+  const results = await Promise.all(keys.map(async ym => {
+    const cacheKey = `${sid}_${ym}`;
+    if (_ohlcCache[cacheKey]) return _ohlcCache[cacheKey];
+    const rows = exchange === "TPEX"
+      ? await _fetchTpexOhlc(sid, [ym])
+      : await _fetchTwseOhlc(sid, [ym]);
+    _ohlcCache[cacheKey] = rows;
+    return rows;
+  }));
+  return results.flat().sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+function _groupByWeek(daily) {
+  const map = {};
+  for (const c of daily) {
+    const d = new Date(c.time);
+    const day = d.getDay() || 7;
+    const mon = new Date(d); mon.setDate(d.getDate() - day + 1);
+    const key = mon.toISOString().slice(0, 10);
+    if (!map[key]) map[key] = { time: key, open: c.open, high: c.high, low: c.low, close: c.close, volume: 0 };
+    map[key].high   = Math.max(map[key].high, c.high);
+    map[key].low    = Math.min(map[key].low,  c.low);
+    map[key].close  = c.close;
+    map[key].volume += (c.volume || 0);
+  }
+  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+function _groupByMonth(daily) {
+  const map = {};
+  for (const c of daily) {
+    const key = c.time.slice(0, 7) + "-01";
+    if (!map[key]) map[key] = { time: key, open: c.open, high: c.high, low: c.low, close: c.close, volume: 0 };
+    map[key].high   = Math.max(map[key].high, c.high);
+    map[key].low    = Math.min(map[key].low,  c.low);
+    map[key].close  = c.close;
+    map[key].volume += (c.volume || 0);
+  }
+  return Object.values(map).sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+const CHART_PERIODS = [
+  { key: "D", label: "日K", fetchMonths: 3,  group: null    },
+  { key: "W", label: "週K", fetchMonths: 6,  group: "week"  },
+  { key: "M", label: "月K", fetchMonths: 24, group: "month" },
+];
+
+let _chartPeriod = "D";
+
 async function initChart(sid) {
   const container = document.getElementById("tv-container");
-  container.innerHTML = `<div style="color:var(--text3);padding:16px;font-size:var(--fs-sm)">K 線載入中…</div>`;
-
   const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
 
-  // Build last 3 months in YYYYMM format
-  const months = [];
-  const now = new Date();
-  for (let i = 2; i >= 0; i--) {
-    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    months.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
+  // Build period switcher once (reuse if already built)
+  if (!container.querySelector(".kbar-periods")) {
+    const bar = document.createElement("div");
+    bar.className = "kbar-periods";
+    bar.style.cssText = "display:flex;gap:6px;padding:8px 10px 4px;background:#161b22;";
+    CHART_PERIODS.forEach(p => {
+      const btn = document.createElement("button");
+      btn.textContent = p.label;
+      btn.dataset.period = p.key;
+      btn.style.cssText = `padding:3px 12px;border-radius:6px;border:1px solid var(--border);background:${p.key===_chartPeriod?"var(--accent)":"var(--bg2)"};color:${p.key===_chartPeriod?"#000":"var(--text2)"};font-size:var(--fs-sm);cursor:pointer;`;
+      btn.onclick = () => { _chartPeriod = p.key; _drawChart(sid, exchange, container); };
+      bar.appendChild(btn);
+    });
+    container.innerHTML = "";
+    container.appendChild(bar);
   }
 
-  const candles = exchange === "TPEX"
-    ? await _fetchTpexOhlc(sid, months)
-    : await _fetchTwseOhlc(sid, months);
+  await _drawChart(sid, exchange, container);
+}
+
+async function _drawChart(sid, exchange, container) {
+  // Remove old chart area (keep period bar)
+  const bar = container.querySelector(".kbar-periods");
+  container.querySelectorAll(":scope > *:not(.kbar-periods)").forEach(el => el.remove());
+
+  // Update button styles
+  container.querySelectorAll(".kbar-periods button").forEach(btn => {
+    const active = btn.dataset.period === _chartPeriod;
+    btn.style.background = active ? "var(--accent)" : "var(--bg2)";
+    btn.style.color = active ? "#000" : "var(--text2)";
+  });
+
+  const loading = document.createElement("div");
+  loading.style.cssText = "color:var(--text3);padding:16px;font-size:var(--fs-sm)";
+  loading.textContent = "K 線載入中…";
+  container.appendChild(loading);
+
+  const cfg = CHART_PERIODS.find(p => p.key === _chartPeriod) || CHART_PERIODS[0];
+  let daily = await _fetchMonths(sid, exchange, cfg.fetchMonths);
+  loading.remove();
+
+  let candles = daily;
+  if (cfg.group === "week")  candles = _groupByWeek(daily);
+  if (cfg.group === "month") candles = _groupByMonth(daily);
 
   if (!candles.length) {
-    container.innerHTML = `<div style="color:var(--text3);padding:16px;font-size:var(--fs-sm)">無法取得歷史資料（TWSE/TPEx API 未回應）</div>`;
+    const msg = document.createElement("div");
+    msg.style.cssText = "color:var(--text3);padding:16px;font-size:var(--fs-sm)";
+    msg.textContent = "無法取得歷史資料（TWSE/TPEx API 未回應）";
+    container.appendChild(msg);
     return;
   }
-  candles.sort((a, b) => a.time < b.time ? -1 : 1);
 
-  container.innerHTML = "";
   const chartDiv = document.createElement("div");
-  chartDiv.style.cssText = "width:100%;height:420px;";
+  chartDiv.style.cssText = "width:100%;height:390px;";
   container.appendChild(chartDiv);
 
   const chart = LightweightCharts.createChart(chartDiv, {
     width: chartDiv.clientWidth,
-    height: 420,
+    height: 390,
     layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
     grid: { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
@@ -364,7 +455,7 @@ async function initChart(sid) {
 
   new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth }))
     .observe(chartDiv);
-}
+}  // end _drawChart
 
 /* ── Entry point ── */
 document.addEventListener("DOMContentLoaded", init);
