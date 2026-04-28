@@ -14,6 +14,13 @@
     .sp-back { color: #79c0ff; text-decoration: none; font-size: var(--fs-md); }
     .sp-back:hover { text-decoration: underline; }
     .sp-site { color: var(--text3); font-size: var(--fs-md); }
+    .sp-search { display: flex; gap: 6px; margin-left: auto; }
+    .sp-search input { background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      border-radius: 6px; padding: 4px 10px; font-size: var(--fs-sm); width: 140px; outline: none; }
+    .sp-search input:focus { border-color: var(--accent); }
+    .sp-search button { background: var(--accent); color: #000; border: none; border-radius: 6px;
+      padding: 4px 12px; font-size: var(--fs-sm); cursor: pointer; font-weight: 600; }
+    .sp-search button:hover { opacity: 0.85; }
 
     .sp-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
     .sp-title-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
@@ -27,7 +34,7 @@
       padding: 2px 8px; border-radius: 10px; }
     .sp-date.stale { color: #d29922; border-color: rgba(210,153,34,0.4); }
 
-    .sp-main { display: grid; grid-template-columns: 60fr 40fr;
+    .sp-main { display: grid; grid-template-columns: 52fr 48fr;
       min-height: calc(100vh - 130px); }
 
     .sp-left  { border-right: 1px solid var(--border); padding: 16px; }
@@ -110,7 +117,7 @@
     .score-bar-track  { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
     .score-bar-fill   { height: 100%; border-radius: 3px; }
     .score-bar-val    { width: 24px; text-align: right; color: var(--text2); font-family: var(--mono); }
-    .score-signals { list-style: none; max-height: 140px; overflow-y: auto; }
+    .score-signals { list-style: none; }
     .score-signals li { display: flex; justify-content: space-between; align-items: center;
       padding: 4px 0; border-bottom: 1px solid rgba(48,54,61,0.3); font-size: var(--fs-xs); }
     .score-signals li:last-child { border-bottom: none; }
@@ -126,6 +133,11 @@
   <a class="sp-back" href="index.html">← 返回交叉持股</a>
   <span style="color:var(--border)">|</span>
   <span class="sp-site">StockETF 個股分析</span>
+  <div class="sp-search">
+    <input id="sp-stock-input" type="text" placeholder="輸入股票代號…" autocomplete="off"
+           onkeydown="if(event.key==='Enter')navigateToStock()">
+    <button onclick="navigateToStock()">查詢</button>
+  </div>
 </div>
 
 <div id="sp-header" class="sp-header">
@@ -143,20 +155,20 @@
       <div id="sp-score"><div class="sp-loading">計算中…</div></div>
     </div>
     <div class="sp-card">
-      <h3>ETF 持倉</h3>
-      <div id="sp-etf-holdings"><div class="sp-loading">載入中…</div></div>
-    </div>
-    <div class="sp-card">
-      <h3>各 ETF 持倉走勢</h3>
-      <div id="sp-trend"></div>
-    </div>
-    <div class="sp-card">
       <h3>買賣信號</h3>
       <div id="sp-signal"><div class="sp-loading">計算中…</div></div>
     </div>
     <div class="sp-card">
       <h3>法人買賣超（張）</h3>
       <div id="sp-institutional"><div class="sp-loading">載入中…</div></div>
+    </div>
+    <div class="sp-card">
+      <h3>ETF 持倉</h3>
+      <div id="sp-etf-holdings"><div class="sp-loading">載入中…</div></div>
+    </div>
+    <div class="sp-card">
+      <h3>各 ETF 持倉走勢</h3>
+      <div id="sp-trend"></div>
     </div>
   </div>
 </div>

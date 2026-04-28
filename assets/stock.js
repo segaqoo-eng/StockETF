@@ -1053,5 +1053,18 @@ async function renderScore(sid) {
   }
 }
 
+/* ── 搜尋框導航 ── */
+function navigateToStock() {
+  const id = (document.getElementById("sp-stock-input")?.value || "").trim();
+  if (id) location.href = `stock.html?id=${encodeURIComponent(id)}`;
+}
+
 /* ── Entry point ── */
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+  // Pre-fill search box from URL
+  const input = document.getElementById("sp-stock-input");
+  if (input) {
+    input.value = new URLSearchParams(location.search).get("id") || "";
+  }
+  init();
+});
