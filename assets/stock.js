@@ -64,7 +64,7 @@ function render() {
   renderHeader(sid, stockName);
   renderEtfHoldings(sid);
   renderTrend(sid);
-  initTradingView(sid);
+  initChart(sid);
 
   document.getElementById("sp-main").style.display = "grid";
 }
@@ -206,28 +206,123 @@ function renderTrend(sid) {
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">${legend}</div>`;
 }
 
-/* ── TradingView Widget (iframe embed — free, works on any domain) ── */
-function initTradingView(sid) {
-  const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
-  const symbol = encodeURIComponent(`${exchange}:${sid}`);
+/* ── K 線圖：Lightweight Charts (Apache 2.0) + TWSE/TPEx OHLC ── */
+
+function _rocDateToIso(rocDate) {
+  const p = rocDate.replace(/\//g, "-").split("-");
+  if (p.length !== 3) return null;
+  return `${parseInt(p[0]) + 1911}-${p[1]}-${p[2]}`;
+}
+
+function _safeNum(s) {
+  const n = parseFloat(String(s).replace(/,/g, ""));
+  return isNaN(n) ? null : n;
+}
+
+async function _fetchTwseOhlc(sid, months) {
+  const candles = [];
+  for (const ym of months) {
+    try {
+      const url = `https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=${ym}01&stockNo=${sid}`;
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const d = await res.json();
+      if (d.stat !== "OK") continue;
+      for (const row of d.data || []) {
+        const time = _rocDateToIso(row[0]);
+        const open = _safeNum(row[3]), high = _safeNum(row[4]);
+        const low  = _safeNum(row[5]), close = _safeNum(row[6]);
+        if (!time || open == null || close == null) continue;
+        candles.push({ time, open, high, low, close });
+      }
+    } catch (_) {}
+  }
+  return candles;
+}
+
+async function _fetchTpexOhlc(sid, months) {
+  const candles = [];
+  for (const ym of months) {
+    try {
+      const year  = parseInt(ym.slice(0, 4)) - 1911;
+      const month = ym.slice(4, 6);
+      const url = `https://www.tpex.org.tw/web/stock/aftertrading/daily_trading_info/st43_result.php?l=zh-tw&d=${year}/${month}&se=EW&s=${sid}`;
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const d = await res.json();
+      for (const row of d.aaData || []) {
+        const time = _rocDateToIso(row[0]);
+        const open = _safeNum(row[4]), high = _safeNum(row[5]);
+        const low  = _safeNum(row[6]), close = _safeNum(row[7]);
+        if (!time || open == null || close == null) continue;
+        candles.push({ time, open, high, low, close });
+      }
+    } catch (_) {}
+  }
+  return candles;
+}
+
+async function initChart(sid) {
   const container = document.getElementById("tv-container");
+  container.innerHTML = `<div style="color:var(--text3);padding:16px;font-size:var(--fs-sm)">K 線載入中…</div>`;
 
-  const params = [
-    `symbol=${symbol}`,
-    "interval=D",
-    "theme=dark",
-    "style=1",
-    "locale=zh_TW",
-    "timezone=Asia%2FTaipei",
-    "hide_side_toolbar=0",
-    "allow_symbol_change=1",
-    "save_image=0",
-    "hide_volume=0",
-  ].join("&");
+  const exchange = state.prices?.prices?.[sid]?.exchange || "TWSE";
 
-  container.innerHTML =
-    `<iframe src="https://www.tradingview.com/widgetembed/?${params}"` +
-    ` style="width:100%;height:100%;border:none;" allowfullscreen></iframe>`;
+  // Build last 3 months in YYYYMM format
+  const months = [];
+  const now = new Date();
+  for (let i = 2; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    months.push(`${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`);
+  }
+
+  const candles = exchange === "TPEX"
+    ? await _fetchTpexOhlc(sid, months)
+    : await _fetchTwseOhlc(sid, months);
+
+  if (!candles.length) {
+    container.innerHTML = `<div style="color:var(--text3);padding:16px;font-size:var(--fs-sm)">無法取得歷史資料（TWSE/TPEx API 未回應）</div>`;
+    return;
+  }
+  candles.sort((a, b) => a.time < b.time ? -1 : 1);
+
+  container.innerHTML = "";
+  const chartDiv = document.createElement("div");
+  chartDiv.style.cssText = "width:100%;height:430px;";
+  container.appendChild(chartDiv);
+
+  const chart = LightweightCharts.createChart(chartDiv, {
+    width: chartDiv.clientWidth,
+    height: 430,
+    layout: { background: { color: "#161b22" }, textColor: "#e6edf3" },
+    grid: { vertLines: { color: "#21262d" }, horzLines: { color: "#21262d" } },
+    crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+    rightPriceScale: { borderColor: "#30363d" },
+    timeScale: { borderColor: "#30363d", timeVisible: false },
+    localization: { locale: "zh-TW" },
+  });
+
+  // Taiwan convention: 漲=紅 跌=綠
+  const series = chart.addCandlestickSeries({
+    upColor:         "#f85149",
+    downColor:       "#3fb950",
+    borderUpColor:   "#f85149",
+    borderDownColor: "#3fb950",
+    wickUpColor:     "#f85149",
+    wickDownColor:   "#3fb950",
+  });
+  series.setData(candles);
+  chart.timeScale().fitContent();
+
+  // 依授權要求標註來源
+  const credit = document.createElement("div");
+  credit.style.cssText = "text-align:right;padding:3px 8px;font-size:11px;color:var(--text3)";
+  credit.innerHTML = `Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener" style="color:var(--text2)">TradingView</a>`;
+  container.appendChild(credit);
+
+  // Resize observer so chart fills container on window resize
+  new ResizeObserver(() => chart.applyOptions({ width: chartDiv.clientWidth }))
+    .observe(chartDiv);
 }
 
 /* ── Entry point ── */
