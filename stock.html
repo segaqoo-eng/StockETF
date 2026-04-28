@@ -67,6 +67,30 @@
 
     .tv-unavailable { height: 100%; display: flex; align-items: center;
       justify-content: center; color: var(--text3); font-size: var(--fs-md); }
+
+    /* 法人買賣超 */
+    .inst-summary { font-size: var(--fs-sm); color: var(--text2); margin-bottom: 10px; line-height: 1.8; }
+    .inst-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+    .inst-table th { color: var(--text3); font-weight: 500; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-xs); }
+    .inst-table td { padding: 5px 0; border-bottom: 1px solid rgba(48,54,61,0.3); }
+    .inst-date { color: var(--text3); font-family: var(--mono); font-size: var(--fs-xs); }
+    .inst-num { text-align: right; font-family: var(--mono); font-size: var(--fs-xs); }
+    .inst-buy  { color: #f85149; }
+    .inst-sell { color: #3fb950; }
+
+    /* 買賣信號 */
+    .sig-overall { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .sig-items { display: flex; flex-wrap: wrap; gap: 8px; }
+    .sig-item { display: flex; flex-direction: column; align-items: center;
+      padding: 6px 12px; border-radius: 8px; font-size: var(--fs-xs);
+      background: var(--bg3); gap: 2px; }
+    .sig-item b { font-size: var(--fs-sm); }
+    .sig-bull    { color: #f85149; }
+    .sig-bear    { color: #3fb950; }
+    .sig-neutral { color: var(--text3); }
+    .sig-item.sig-bull    { background: rgba(248,81,73,0.12); }
+    .sig-item.sig-bear    { background: rgba(63,185,80,0.12); }
+    .sig-item.sig-neutral { background: var(--bg3); }
   </style>
 </head>
 <body>
@@ -95,12 +119,13 @@
       <h3>各 ETF 持倉走勢</h3>
       <div id="sp-trend"></div>
     </div>
-    <div class="sp-coming">
-      <span style="font-size:20px">🏦</span>
-      <div>
-        <strong>法人籌碼</strong><br>
-        <span style="font-size:var(--fs-sm)">外資 / 投信淨買賣超 — 即將推出</span>
-      </div>
+    <div class="sp-card">
+      <h3>買賣信號</h3>
+      <div id="sp-signal"><div class="sp-loading">計算中…</div></div>
+    </div>
+    <div class="sp-card">
+      <h3>法人買賣超（張）</h3>
+      <div id="sp-institutional"><div class="sp-loading">載入中…</div></div>
     </div>
   </div>
 </div>

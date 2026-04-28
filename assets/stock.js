@@ -64,6 +64,7 @@ function render() {
   renderHeader(sid, stockName);
   renderEtfHoldings(sid);
   renderTrend(sid);
+  renderInstitutional(sid);   // async, fills in after OHLC loads
   initChart(sid);
 
   document.getElementById("sp-main").style.display = "grid";
@@ -204,6 +205,136 @@ function renderTrend(sid) {
       ${yLabels.join("")}${xLabels.join("")}${paths.join("")}
     </svg>
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px">${legend}</div>`;
+}
+
+/* ── 法人買賣超 + 信號 ── */
+
+async function _fetchInstitutional(sid, startDate) {
+  const url = `https://api.finmindtrade.com/api/v4/data` +
+    `?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=${encodeURIComponent(sid)}&start_date=${startDate}`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    const d = await res.json();
+    if (d.status !== 200 || !Array.isArray(d.data)) return [];
+    return d.data;
+  } catch (_) { return []; }
+}
+
+function _parseInstitutional(raw) {
+  // Group by date → { 外資: net, 投信: net, 自營商: net }
+  const byDate = {};
+  for (const r of raw) {
+    if (!byDate[r.date]) byDate[r.date] = { foreign: 0, trust: 0, dealer: 0 };
+    const net = (r.buy_minus_sell || 0) / 1000; // 股 → 張
+    const n = r.name || "";
+    if (n.includes("外資") && !n.includes("自營")) byDate[r.date].foreign += net;
+    else if (n === "投信")                          byDate[r.date].trust   += net;
+    else if (n.includes("自營"))                    byDate[r.date].dealer  += net;
+  }
+  return Object.entries(byDate).sort((a, b) => a[0] < b[0] ? 1 : -1); // newest first
+}
+
+function _consecutiveDays(rows, key) {
+  if (!rows.length) return 0;
+  const first = rows[0][1][key] >= 0 ? 1 : -1;
+  let count = 0;
+  for (const [, vals] of rows) {
+    if ((vals[key] >= 0 ? 1 : -1) === first) count++;
+    else break;
+  }
+  return first * count; // positive = consecutive buy days, negative = sell days
+}
+
+async function renderInstitutional(sid) {
+  const root = document.getElementById("sp-institutional");
+  if (!root) return;
+  root.innerHTML = `<div style="color:var(--text3);font-size:var(--fs-sm);padding:8px 0">法人資料載入中…</div>`;
+
+  const startDate = _startDate(2);   // 2 months back for ~40 trading days
+  const raw = await _fetchInstitutional(sid, startDate);
+  const rows = _parseInstitutional(raw).slice(0, 10); // last 10 trading days
+
+  if (!rows.length) {
+    root.innerHTML = `<div style="color:var(--text3);font-size:var(--fs-sm);padding:8px 0">無法人資料</div>`;
+    return;
+  }
+
+  const fDays  = _consecutiveDays(rows, "foreign");
+  const tDays  = _consecutiveDays(rows, "trust");
+  const fTotal = rows.reduce((s, [, v]) => s + v.foreign, 0);
+  const tTotal = rows.reduce((s, [, v]) => s + v.trust,   0);
+
+  const fmt = n => {
+    const abs = Math.abs(Math.round(n));
+    const sign = n >= 0 ? "+" : "-";
+    const cls = n >= 0 ? "inst-buy" : "inst-sell";
+    return `<span class="${cls}">${sign}${abs.toLocaleString()}</span>`;
+  };
+  const dayLabel = d => {
+    if (d === 0) return `<span style="color:var(--text3)">—</span>`;
+    const cls = d > 0 ? "inst-buy" : "inst-sell";
+    const arrow = d > 0 ? "▲" : "▼";
+    return `<span class="${cls}">${arrow} 連${Math.abs(d)}日${d > 0 ? "買" : "賣"}</span>`;
+  };
+
+  const tableRows = rows.map(([date, v]) => `
+    <tr>
+      <td class="inst-date">${date.slice(5)}</td>
+      <td class="inst-num">${fmt(v.foreign)}</td>
+      <td class="inst-num">${fmt(v.trust)}</td>
+      <td class="inst-num">${fmt(v.dealer)}</td>
+    </tr>`).join("");
+
+  root.innerHTML = `
+    <div class="inst-summary">
+      <span>外資 ${dayLabel(fDays)}，近10日合計 ${fmt(fTotal)} 張</span><br>
+      <span>投信 ${dayLabel(tDays)}，近10日合計 ${fmt(tTotal)} 張</span>
+    </div>
+    <table class="inst-table">
+      <thead><tr>
+        <th>日期</th><th class="inst-num">外資</th><th class="inst-num">投信</th><th class="inst-num">自營商</th>
+      </tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table>
+    <div style="font-size:10px;color:var(--text3);margin-top:4px">單位：張（1張=1,000股）</div>`;
+
+  // After institutional data loads, update the signal panel
+  renderSignal(sid, rows, fDays, tDays);
+}
+
+function renderSignal(sid, instRows, fDays, tDays) {
+  const root = document.getElementById("sp-signal");
+  if (!root) return;
+
+  // Read latest TA values from chart data if available (we'll use simple heuristics)
+  // Signal based on: RSI + MACD + 外資 + 投信
+  const signals = [];
+
+  // Institutional signals
+  if (fDays >= 3)       signals.push({ label: "外資", val: "連買", cls: "sig-bull" });
+  else if (fDays > 0)   signals.push({ label: "外資", val: "買超", cls: "sig-bull" });
+  else if (fDays <= -3) signals.push({ label: "外資", val: "連賣", cls: "sig-bear" });
+  else if (fDays < 0)   signals.push({ label: "外資", val: "賣超", cls: "sig-bear" });
+  else                  signals.push({ label: "外資", val: "持平", cls: "sig-neutral" });
+
+  if (tDays >= 2)       signals.push({ label: "投信", val: "連買", cls: "sig-bull" });
+  else if (tDays > 0)   signals.push({ label: "投信", val: "買超", cls: "sig-bull" });
+  else if (tDays <= -2) signals.push({ label: "投信", val: "連賣", cls: "sig-bear" });
+  else if (tDays < 0)   signals.push({ label: "投信", val: "賣超", cls: "sig-bear" });
+  else                  signals.push({ label: "投信", val: "持平", cls: "sig-neutral" });
+
+  const bulls = signals.filter(s => s.cls === "sig-bull").length;
+  const bears = signals.filter(s => s.cls === "sig-bear").length;
+  const overall = bulls > bears ? { text: "偏多", cls: "sig-bull" }
+                : bears > bulls ? { text: "偏空", cls: "sig-bear" }
+                : { text: "中性", cls: "sig-neutral" };
+
+  root.innerHTML = `
+    <div class="sig-overall ${overall.cls}">${overall.text}</div>
+    <div class="sig-items">
+      ${signals.map(s => `<span class="sig-item ${s.cls}">${s.label}<b>${s.val}</b></span>`).join("")}
+    </div>`;
 }
 
 /* ── K 線圖：Lightweight Charts + FinMind API ── */
