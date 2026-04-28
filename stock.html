@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>個股分析 — StockETF</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ── 個股頁面專用覆蓋 ── */
+    body { overflow-x: hidden; }
+
+    .sp-topbar { display: flex; align-items: center; gap: 16px; padding: 10px 24px;
+      background: var(--bg2); border-bottom: 1px solid var(--border); }
+    .sp-back { color: #79c0ff; text-decoration: none; font-size: var(--fs-md); }
+    .sp-back:hover { text-decoration: underline; }
+    .sp-site { color: var(--text3); font-size: var(--fs-md); }
+
+    .sp-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
+    .sp-title-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+    .sp-id   { font-size: 30px; font-weight: 700; font-family: var(--mono); }
+    .sp-name { font-size: 20px; color: var(--text2); }
+    .sp-price-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .sp-close  { font-size: 34px; font-weight: 700; font-family: var(--mono); }
+    .sp-change { font-size: 18px; font-weight: 600; }
+    .sp-date   { font-size: var(--fs-sm); color: var(--text3);
+      background: var(--bg2); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 10px; }
+    .sp-date.stale { color: #d29922; border-color: rgba(210,153,34,0.4); }
+
+    .sp-main { display: grid; grid-template-columns: 60fr 40fr;
+      min-height: calc(100vh - 130px); }
+
+    .sp-left  { border-right: 1px solid var(--border); padding: 16px; }
+    .sp-right { padding: 16px; display: flex; flex-direction: column; gap: 18px;
+      overflow-y: auto; }
+
+    .sp-section-label { font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em;
+      color: var(--text3); text-transform: uppercase; margin-bottom: 10px; }
+
+    #tv-container { background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; height: 460px; overflow: hidden; }
+
+    .sp-card { background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px; }
+    .sp-card h3 { font-size: var(--fs-sm); font-weight: 600; color: var(--text2);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+
+    .sp-etf-table { width: 100%; border-collapse: collapse; }
+    .sp-etf-table th { font-size: var(--fs-sm); color: var(--text3); text-align: left;
+      padding: 4px 0; border-bottom: 1px solid var(--border); font-weight: 500; }
+    .sp-etf-table th.r { text-align: right; }
+    .sp-etf-table td { padding: 8px 0; border-bottom: 1px solid rgba(48,54,61,0.4);
+      font-size: var(--fs-md); vertical-align: middle; }
+    .sp-etf-table td.r { text-align: right; font-family: var(--mono); }
+    .sp-etf-ticker { font-family: var(--mono); font-weight: 700; color: #79c0ff;
+      font-size: var(--fs-md); }
+    .sp-etf-name   { color: var(--text2); font-size: var(--fs-base); }
+
+    .sp-coming { background: rgba(187,128,9,0.08); border: 1px solid rgba(187,128,9,0.3);
+      border-radius: 8px; padding: 14px; display: flex; align-items: center;
+      gap: 10px; color: #d29922; font-size: var(--fs-md); }
+
+    .sp-loading { color: var(--text3); font-size: var(--fs-md); padding: 32px 0;
+      text-align: center; }
+    .sp-error   { color: #f85149; font-size: var(--fs-md); padding: 32px 0;
+      text-align: center; }
+
+    .tv-unavailable { height: 100%; display: flex; align-items: center;
+      justify-content: center; color: var(--text3); font-size: var(--fs-md); }
+  </style>
+</head>
+<body>
+
+<div class="sp-topbar">
+  <a class="sp-back" href="index.html">← 返回交叉持股</a>
+  <span style="color:var(--border)">|</span>
+  <span class="sp-site">StockETF 個股分析</span>
+</div>
+
+<div id="sp-header" class="sp-header">
+  <div class="sp-loading">載入中…</div>
+</div>
+
+<div id="sp-main" class="sp-main" style="display:none">
+  <div class="sp-left">
+    <div class="sp-section-label">日 K 走勢</div>
+    <div id="tv-container"></div>
+  </div>
+  <div class="sp-right">
+    <div class="sp-card">
+      <h3>ETF 持倉</h3>
+      <div id="sp-etf-holdings"><div class="sp-loading">載入中…</div></div>
+    </div>
+    <div class="sp-card">
+      <h3>各 ETF 持倉走勢</h3>
+      <div id="sp-trend"></div>
+    </div>
+    <div class="sp-coming">
+      <span style="font-size:20px">🏦</span>
+      <div>
+        <strong>法人籌碼</strong><br>
+        <span style="font-size:var(--fs-sm)">外資 / 投信淨買賣超 — 即將推出</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TradingView Widget -->
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script src="assets/stock.js"></script>
+</body>
+</html>
