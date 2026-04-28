@@ -146,9 +146,10 @@ function filteredHoldings() {
 function renderRow(h) {
   const maxWeight = Math.max(...h.held_by.map(b => b.weight_pct));
   const badge = renderMarketBadge(h.market);
+  const stockLink = `<a class="stock-detail-link" href="stock.html?id=${encodeURIComponent(h.stock_id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(h.stock_name)}</a>`;
   return `
     <tr data-stock-id="${escapeHtml(h.stock_id)}">
-      <td><b>${escapeHtml(h.stock_id)}</b> ${escapeHtml(h.stock_name)}${badge}</td>
+      <td><b>${escapeHtml(h.stock_id)}</b> ${stockLink}${badge}</td>
       <td>${escapeHtml(h.industry || "—")}</td>
       <td class="center"><span class="count-badge">${h.held_by.length}</span></td>
       <td class="num weight">${maxWeight.toFixed(2)}%</td>
