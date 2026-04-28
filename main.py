@@ -236,10 +236,10 @@ def write_diff(today_payload: dict, data_dir: Path) -> None:
 def write_prices(today_payload: dict, data_dir: Path) -> None:
     """Fetch today's TWSE + TPEx close/change for stocks our ETFs hold.
 
-    Filters to stock_ids actually appearing in any TW holding (~107 stocks) so
-    the output stays small (vs ~40k stocks on TWSE). Soft-fails: if both
-    exchanges return empty (weekend / holiday / outage), writes
-    {"date": today, "prices": {}} so the frontend's lookup degrades cleanly.
+    If TWSE/TPEx return empty (market not yet closed, holiday, outage),
+    the existing prices_today.json is kept unchanged so the frontend
+    continues to show the last known close with its original date label.
+    Only overwrites when fresh data is actually available.
     """
     target = datetime.now(TAIPEI).date()
     fetcher = PricesFetcher()
@@ -252,10 +252,21 @@ def write_prices(today_payload: dict, data_dir: Path) -> None:
         if h.get("market") == "TW"
     }
     filtered = {sid: raw[sid] for sid in held_ids if sid in raw}
+    prices_path = data_dir / "prices_today.json"
 
-    out = {"date": target.isoformat(), "prices": filtered}
-    (data_dir / "prices_today.json").write_text(
-        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8"
+    if not filtered:
+        if prices_path.exists():
+            prev_date = json.loads(prices_path.read_text(encoding="utf-8")).get("date", "?")
+            print(f"Prices: no data yet for {target} — keeping previous ({prev_date})")
+        else:
+            prices_path.write_text(json.dumps({"date": target.isoformat(), "prices": {}},
+                                               ensure_ascii=False), encoding="utf-8")
+            print(f"Prices: no data for {target}, wrote empty placeholder")
+        return
+
+    prices_path.write_text(
+        json.dumps({"date": target.isoformat(), "prices": filtered}, ensure_ascii=False, indent=2),
+        encoding="utf-8"
     )
     print(f"Prices: {len(filtered)}/{len(held_ids)} held stocks priced ({target})")
 

@@ -104,6 +104,11 @@ function render() {
   }
 
   const priceDate = (state.prices && state.prices.date) || "";
+  const todayIso = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Taipei" });
+  const priceStale = priceDate && priceDate < todayIso;
+  const priceDateLabel = priceDate
+    ? ` <span class="th-date${priceStale ? " th-date-stale" : ""}" title="${priceStale ? "顯示上次盤後資料" : "今日盤後"}">(${priceDate.slice(5)})</span>`
+    : "";
   const html = `
     <table class="cross">
       <thead>
@@ -112,7 +117,7 @@ function render() {
           <th>產業</th>
           <th class="center">被幾檔 ETF 持有</th>
           <th class="num">最高權重</th>
-          <th class="num" title="今日盤後">收盤 / 漲跌${priceDate ? ` <span class="th-date">(${priceDate.slice(5)})</span>` : ""}</th>
+          <th class="num">收盤 / 漲跌${priceDateLabel}</th>
         </tr>
       </thead>
       <tbody>

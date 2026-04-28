@@ -1,11 +1,12 @@
 name: Daily ETF scrape
 
-# Twice-daily run aligned with Taiwan trading info release windows.
+# Three-daily run aligned with Taiwan trading info release windows.
 # Cron is in UTC; Taiwan = UTC+8.
 on:
   schedule:
-    - cron: '0 8 * * *'   # 16:00 Taiwan — primary slot, after most issuers update
-    - cron: '0 10 * * *'  # 18:00 Taiwan — retry slot for late publishers
+    - cron: '0 6 * * 1-5'  # 14:00 Taiwan (Mon-Fri) — prices-only slot, TWSE publishes ~30min after close
+    - cron: '0 8 * * *'    # 16:00 Taiwan — primary slot, after most issuers update
+    - cron: '0 10 * * *'   # 18:00 Taiwan — retry slot for late publishers
   workflow_dispatch:       # manual trigger from the Actions tab
 
 # The job needs to push back to main when data/ changes.
