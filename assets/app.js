@@ -463,6 +463,11 @@ function renderChangesChangedSection(items) {
   const li = sorted.map(c => {
     const up = c.delta > 0;
     const sign = up ? "+" : "";
+    const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
+    const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
+    const sharesLine = (c.shares_now != null && c.shares_prev != null)
+      ? `<span class="ch-shares">${Number(c.shares_now).toLocaleString()} 股 <span class="ch-shares-delta ${sharesDelta > 0 ? "shares-up" : sharesDelta < 0 ? "shares-down" : ""}">(${sharesDeltaSign}${sharesDelta.toLocaleString()})</span></span>`
+      : "";
     return `<li data-stock-id="${escapeHtml(c.stock_id)}">
       <b>${escapeHtml(c.stock_id)}</b>
       <span class="ch-name">${escapeHtml(c.stock_name)}</span>
@@ -471,7 +476,8 @@ function renderChangesChangedSection(items) {
         →
         <span class="ch-date">(${nowDate.slice(5)})</span> ${c.weight_now.toFixed(2)}%
       </span>
-      <span class="diff-badge diff-${up ? "up" : "down"}">${up ? "▲" : "▼"} ${sign}${c.delta.toFixed(2)}</span>
+      <span class="diff-badge diff-${up ? "up" : "down"}">${sign}${c.delta.toFixed(2)}%</span>
+      ${sharesLine}
     </li>`;
   }).join("");
   return `<h4 class="changes-section-h ch-changed">📊 加減碼 (${items.length})  <small style="font-weight:normal;color:var(--text3)">點任一檔看歷史走勢</small></h4>
@@ -555,7 +561,7 @@ function buildEtfCardHtml(etf) {
       const nowDate = (state.diff && state.diff.as_of_today) || "本次";
       badges.push(
         `<span class="diff-badge ${up ? "diff-up" : "diff-down"}" title="${prevDate}: ${change.weight_prev.toFixed(2)}% → ${nowDate}: ${change.weight_now.toFixed(2)}%">` +
-        `${up ? "▲" : "▼"} ${sign}${change.delta.toFixed(2)}%</span>`
+        `${sign}${change.delta.toFixed(2)}%</span>`
       );
     }
     return `<tr>
@@ -596,7 +602,7 @@ function buildEtfCardHtml(etf) {
   `;
   const title = etf.url
     ? `<a class="card-ticker-link" href="${escapeHtml(etf.url)}" target="_blank" rel="noopener noreferrer"
-          title="前往官方頁面（新分頁）">${titleInner}</a>`
+          title="前往官方頁面（新分頁）" onclick="event.stopPropagation()">${titleInner}</a>`
     : titleInner;
 
   return `

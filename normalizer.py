@@ -161,6 +161,8 @@ def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.00
                 "weight_now": t["weight_pct"],
                 "weight_prev": y["weight_pct"],
                 "delta": round(delta, 4),
+                "shares_now": t.get("shares", 0),
+                "shares_prev": y.get("shares", 0),
             })
 
         if added or removed or changed:
