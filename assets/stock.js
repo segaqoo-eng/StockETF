@@ -124,9 +124,9 @@ function renderEtfHoldings(sid) {
       if (added) {
         badge = `<span class="diff-badge diff-added">🆕</span>`;
       } else if (changed) {
-        const up = changed.delta > 0;
+        const up = changed.shares_delta > 0;
         const sign = up ? "+" : "";
-        badge = `<span class="diff-badge diff-${up ? "up" : "down"}">${sign}${changed.delta.toFixed(2)}%</span>`;
+        badge = `<span class="diff-badge diff-${up ? "up" : "down"}">${up ? "▲" : "▼"} ${sign}${Number(changed.shares_delta).toLocaleString()}</span>`;
       }
       return { ticker: etf.ticker, name: etf.name, weight: h.weight_pct, badge };
     })
