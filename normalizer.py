@@ -165,12 +165,11 @@ def compute_diff(today: dict, yesterday: dict, *, change_threshold: float = 0.00
                 "shares_prev": y.get("shares", 0),
             })
 
-        if added or removed or changed:
-            result[ticker] = {
-                "added": sorted(added, key=lambda h: -h["weight_pct"]),
-                "removed": sorted(removed, key=lambda h: -h["weight_pct"]),
-                "changed": sorted(changed, key=lambda h: -abs(h["delta"])),
-            }
+        result[ticker] = {
+            "added": sorted(added, key=lambda h: -h["weight_pct"]),
+            "removed": sorted(removed, key=lambda h: -h["weight_pct"]),
+            "changed": sorted(changed, key=lambda h: -abs(h["delta"])),
+        }
     return result
 
 
