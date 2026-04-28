@@ -105,8 +105,9 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 .changes-section-list .ch-date  { color: var(--text3); font-size: var(--fs-xs); }
 .changes-section-list .ch-shares { color: var(--text3); font-family: var(--mono); font-size: var(--fs-xs); white-space: nowrap; }
 .changes-section-list .ch-shares-delta { font-size: var(--fs-xs); }
-.ch-shares-delta.shares-up   { color: var(--green); }
-.ch-shares-delta.shares-down { color: #f85149; }
+/* Taiwan convention: 漲=紅 跌=綠 */
+.ch-shares-delta.shares-up   { color: #f85149; }
+.ch-shares-delta.shares-down { color: var(--green); }
 
 /* Inline expansion: per-stock weight trend sparkline (hand-drawn SVG, no
    chart lib). Triggered by clicking any row in changes-section-list. */
@@ -166,8 +167,9 @@ table.cross tbody tr:hover { background: var(--bg3); }
 .cross th.num .th-date { font-size: var(--fs-xs); color: var(--text3); font-family: var(--mono); margin-left: 4px; font-weight: normal; text-transform: none; letter-spacing: 0; }
 .price-close { font-family: var(--mono); color: var(--text); }
 .price-change { font-family: var(--mono); font-size: var(--fs-sm); margin-left: 6px; }
-.price-up   { color: var(--green); }
-.price-down { color: #f85149; }
+/* Taiwan convention: 漲=紅 跌=綠 */
+.price-up   { color: #f85149; }
+.price-down { color: var(--green); }
 .price-flat { color: var(--text3); }
 .price-na   { color: var(--text3); }
 
