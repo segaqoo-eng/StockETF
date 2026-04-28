@@ -1,4 +1,4 @@
-from scrapers.fuhhwa import extract_date_from_detail, parse_fuhhwa_xlsx, parse_fuhhwa_meta
+from scrapers.fuhhwa import extract_date_from_detail, parse_fuhhwa_xlsx, parse_fuhhwa_meta, parse_fuhhwa_api
 
 
 def test_extract_date_from_detail(fixture_path):
@@ -45,3 +45,26 @@ def test_parse_fuhhwa_meta(fixture_path):
 def test_parse_fuhhwa_meta_corrupt_returns_empty():
     """Garbage bytes → empty meta, not exception."""
     assert parse_fuhhwa_meta(b"not an xlsx") == {}
+
+
+def test_parse_fuhhwa_api(fixture_path):
+    text = fixture_path("fuhhwa_api_00991A.json").read_text(encoding="utf-8")
+    holdings, meta = parse_fuhhwa_api(text)
+
+    assert len(holdings) == 2          # 2 股票; 現金 excluded
+    assert holdings[0].stock_id == "2330"
+    assert holdings[0].stock_name == "台灣積體"
+    assert holdings[0].shares == 3_600_000
+    assert abs(holdings[0].weight_pct - 21.406) < 0.001
+    assert holdings[0].market == "TW"
+
+    assert meta["as_of_date"] == "2026-04-28"
+    assert meta["nav_total"] == 37_251_262_686.0
+    assert meta["units_outstanding"] == 2_243_416_000.0
+    assert meta["p_unit"] == 16.6
+
+
+def test_parse_fuhhwa_api_empty_on_bad_status():
+    holdings, meta = parse_fuhhwa_api('{"status": 1, "result": []}')
+    assert holdings == []
+    assert meta == {}

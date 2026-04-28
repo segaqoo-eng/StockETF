@@ -1,0 +1,47 @@
+{
+  "result": [
+    {
+      "fundID": "ETF23",
+      "twNameFull": "復華台灣未來50主動式ETF基金",
+      "etf002": "00991A",
+      "dDate": "2026/04/28",
+      "pcf_FundNav": "37,251,262,686",
+      "pcf_FundQissue": "2,243,416,000",
+      "pcf_Fundpnav": "16.6",
+      "detail": [
+        {
+          "ftype": "股票",
+          "stockid": "2330",
+          "stockname": "台灣積體",
+          "qshare": "3,600,000",
+          "mvalue": "7,974,000,000",
+          "price": "2,215.0000",
+          "prate_addaccint": "21.406%"
+        },
+        {
+          "ftype": "股票",
+          "stockid": "2383",
+          "stockname": "台光電子",
+          "qshare": "12,500,000",
+          "mvalue": "2,987,500,000",
+          "price": "239.0000",
+          "prate_addaccint": "8.020%"
+        },
+        {
+          "ftype": "現金",
+          "stockid": "",
+          "stockname": "現金",
+          "qshare": "0",
+          "mvalue": "1,194,213,486",
+          "price": "0",
+          "prate_addaccint": "3.208%"
+        }
+      ],
+      "result": [
+        {"ftype": "股票", "totValue": "36,057,049,200", "totRatio": "96.792%"}
+      ],
+      "summary": []
+    }
+  ],
+  "status": 0
+}

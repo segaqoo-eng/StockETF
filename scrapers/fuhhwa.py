@@ -16,14 +16,20 @@ display naming is intentionally left as-is.
 """
 from __future__ import annotations
 import io
+import json
 import re
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from openpyxl import load_workbook
 
 from scrapers.base import BaseScraper, Holding, ScrapeResult, classify_market
 
 DETAIL_URL = "https://www.fhtrust.com.tw/ETF/etf_detail/{id}"
-EXCEL_URL = "https://www.fhtrust.com.tw/api/assetsExcel/{id}/{date}"
+EXCEL_URL  = "https://www.fhtrust.com.tw/api/assetsExcel/{id}/{date}"
+API_URL    = "https://www.fhtrust.com.tw/api/assets?fundID={id}&qDate={date}"
+
+TAIPEI = ZoneInfo("Asia/Taipei")
 
 # Stable ticker → internal product detail id (extracted from page URL on issuer site)
 _TICKER_TO_ID = {
@@ -211,6 +217,62 @@ def parse_fuhhwa_xlsx(content: bytes) -> list[Holding]:
     return holdings
 
 
+def parse_fuhhwa_api(text: str) -> tuple[list[Holding], dict]:
+    """Parse holdings + fund_meta from the /api/assets JSON endpoint.
+
+    Returns ([], {}) on any failure — callers fall back to XLSX.
+    """
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        return [], {}
+    if data.get("status") != 0 or not data.get("result"):
+        return [], {}
+
+    fund = data["result"][0]
+
+    # Fund metadata
+    meta: dict = {}
+    raw_date = fund.get("dDate", "")
+    if raw_date:
+        meta["as_of_date"] = raw_date.replace("/", "-")
+    for key, src in [
+        ("nav_total",         "pcf_FundNav"),
+        ("units_outstanding", "pcf_FundQissue"),
+        ("p_unit",            "pcf_Fundpnav"),
+    ]:
+        val = _safe_float(str(fund.get(src, "")).replace(",", ""))
+        if val is not None:
+            meta[key] = val
+
+    # Holdings — skip non-equity rows (ftype != "股票")
+    holdings: list[Holding] = []
+    for item in fund.get("detail", []):
+        if item.get("ftype") != "股票":
+            continue
+        stock_id = str(item.get("stockid", "")).strip()
+        if not stock_id:
+            continue
+        stock_name = str(item.get("stockname", "")).strip()
+        try:
+            shares = int(float(str(item.get("qshare", "0")).replace(",", "")))
+        except (TypeError, ValueError):
+            shares = 0
+        try:
+            weight_pct = float(str(item.get("prate_addaccint", "0")).rstrip("%").strip())
+        except (TypeError, ValueError):
+            weight_pct = 0.0
+        holdings.append(Holding(
+            stock_id=stock_id,
+            stock_name=stock_name,
+            weight_pct=weight_pct,
+            shares=shares,
+            market=classify_market(stock_id),
+        ))
+
+    return holdings, meta
+
+
 class FuhhwaScraper(BaseScraper):
     """Scraper for 復華投信 active ETFs (00991A).
 
@@ -223,10 +285,20 @@ class FuhhwaScraper(BaseScraper):
                 f"FuhhwaScraper supports {sorted(_TICKER_TO_ID)}, got {ticker!r}"
             )
         internal_id = _TICKER_TO_ID[ticker]
+        today = datetime.now(TAIPEI).strftime("%Y/%m/%d")
 
+        # Primary: JSON API (today's date, more current than XLSX)
+        try:
+            api_text = self.get(API_URL.format(id=internal_id, date=today))
+            holdings, fund_meta = parse_fuhhwa_api(api_text)
+            if holdings:
+                return ScrapeResult(holdings=holdings, fund_meta=fund_meta)
+        except Exception:
+            pass
+
+        # Fallback: dated XLSX (same as before)
         detail_html = self.get(DETAIL_URL.format(id=internal_id))
         date = extract_date_from_detail(detail_html, internal_id)
-
         xlsx_bytes = self.get_bytes(EXCEL_URL.format(id=internal_id, date=date))
         return ScrapeResult(
             holdings=parse_fuhhwa_xlsx(xlsx_bytes),
