@@ -140,12 +140,14 @@ def compute_diff(today: dict, yesterday: dict) -> dict:
         }
 
         added = [
-            {"stock_id": h["stock_id"], "stock_name": h["stock_name"], "weight_pct": h["weight_pct"]}
+            {"stock_id": h["stock_id"], "stock_name": h["stock_name"],
+             "shares": h.get("shares", 0) or 0}
             for sid, h in today_h.items()
             if sid not in yesterday_h
         ]
         removed = [
-            {"stock_id": h["stock_id"], "stock_name": h["stock_name"], "weight_pct": h["weight_pct"]}
+            {"stock_id": h["stock_id"], "stock_name": h["stock_name"],
+             "shares": h.get("shares", 0) or 0}
             for sid, h in yesterday_h.items()
             if sid not in today_h
         ]
@@ -167,8 +169,8 @@ def compute_diff(today: dict, yesterday: dict) -> dict:
             })
 
         result[ticker] = {
-            "added": sorted(added, key=lambda h: -h["weight_pct"]),
-            "removed": sorted(removed, key=lambda h: -h["weight_pct"]),
+            "added": sorted(added, key=lambda h: -(h["shares"] or 0)),
+            "removed": sorted(removed, key=lambda h: -(h["shares"] or 0)),
             "changed": sorted(changed, key=lambda h: -abs(h["shares_delta"])),
         }
     return result

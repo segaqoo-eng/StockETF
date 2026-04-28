@@ -60,19 +60,24 @@ def test_share_change_detected():
 
 
 def test_added_stock():
-    today     = _payload({"0050": [("2330", "台積電", 48.5), ("6669", "緯穎", 4.2)]})
+    today     = _payload({"0050": [("2330", "台積電", 48.5), ("6669", "緯穎", 4.2, "TW", 5000)]})
     yesterday = _payload({"0050": [("2330", "台積電", 48.5)]})
     diff = compute_diff(today, yesterday)
     assert len(diff["0050"]["added"]) == 1
-    assert diff["0050"]["added"][0] == {"stock_id": "6669", "stock_name": "緯穎", "weight_pct": 4.2}
+    added = diff["0050"]["added"][0]
+    assert added["stock_id"] == "6669"
+    assert added["stock_name"] == "緯穎"
+    assert added["shares"] == 5000
     assert diff["0050"]["changed"] == []
 
 
-def test_removed_stock_carries_yesterday_weight():
+def test_removed_stock_carries_shares():
     today     = _payload({"0050": [("2330", "台積電", 49.5)]})
-    yesterday = _payload({"0050": [("2330", "台積電", 48.5), ("9999", "某檔", 1.0)]})
+    yesterday = _payload({"0050": [("2330", "台積電", 48.5), ("9999", "某檔", 1.0, "TW", 3000)]})
     diff = compute_diff(today, yesterday)
-    assert diff["0050"]["removed"] == [{"stock_id": "9999", "stock_name": "某檔", "weight_pct": 1.0}]
+    removed = diff["0050"]["removed"][0]
+    assert removed["stock_id"] == "9999"
+    assert removed["shares"] == 3000
 
 
 def test_changed_sorted_by_absolute_shares_delta_desc():

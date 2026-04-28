@@ -423,8 +423,19 @@ function buildChangesCardHtml(etf, byEtf) {
   } else {
     const total = diff.added.length + diff.removed.length + diff.changed.length;
     if (total === 0) {
-      summaryNote = `<span class="card-count card-count-muted">無調倉</span>`;
-      body = `<div class="card-body changes-empty">本期持股股數未調整（市值浮動不列為調倉）</div>`;
+      const holdings = (etf.holdings || []).filter(h => h.market === "TW")
+        .sort((a, b) => b.weight_pct - a.weight_pct);
+      const li = holdings.map(h =>
+        `<li data-stock-id="${escapeHtml(h.stock_id)}">
+          <b>${escapeHtml(h.stock_id)}</b>
+          <span class="ch-name">${escapeHtml(h.stock_name)}</span>
+          <span class="ch-weight">${h.shares ? Number(h.shares).toLocaleString() + " 股" : "—"}</span>
+        </li>`).join("");
+      summaryNote = `<span class="card-count card-count-muted">無調倉 (${holdings.length})</span>`;
+      body = `<div class="card-body">
+        <h4 class="changes-section-h" style="color:var(--text3)">持股未調整（股數無變動）</h4>
+        <ul class="changes-section-list">${li}</ul>
+      </div>`;
     } else {
       const counts = [];
       if (diff.added.length)   counts.push(`新進 ${diff.added.length}`);
@@ -432,8 +443,8 @@ function buildChangesCardHtml(etf, byEtf) {
       if (diff.changed.length) counts.push(`調倉 ${diff.changed.length}`);
       summaryNote = `<span class="card-count">${counts.join(" · ")}</span>`;
       body = `<div class="card-body">
-        ${renderChangesAddRemoveSection("🆕 新進", "added", diff.added, "weight_pct")}
-        ${renderChangesAddRemoveSection("❌ 移除", "removed", diff.removed, "weight_pct", "前次權重")}
+        ${renderChangesAddRemoveSection("🆕 新進", "added", diff.added)}
+        ${renderChangesAddRemoveSection("❌ 移除", "removed", diff.removed)}
         ${renderChangesChangedSection(diff.changed)}
       </div>`;
     }
@@ -455,14 +466,13 @@ function buildChangesCardHtml(etf, byEtf) {
   `;
 }
 
-function renderChangesAddRemoveSection(label, kind, items, weightField, weightPrefix = "權重") {
-  if (items.length === 0) return "";
-  const sorted = [...items].sort((a, b) => b[weightField] - a[weightField]);
-  const li = sorted.map(it =>
+function renderChangesAddRemoveSection(label, kind, items) {
+  if (!items.length) return "";
+  const li = items.map(it =>
     `<li data-stock-id="${escapeHtml(it.stock_id)}">
       <b>${escapeHtml(it.stock_id)}</b>
       <span class="ch-name">${escapeHtml(it.stock_name)}</span>
-      <span class="ch-weight">${weightPrefix} ${it[weightField].toFixed(2)}%</span>
+      <span class="ch-weight">${it.shares ? Number(it.shares).toLocaleString() + " 股" : "—"}</span>
     </li>`
   ).join("");
   return `<h4 class="changes-section-h ch-${kind}">${label} (${items.length})</h4>
