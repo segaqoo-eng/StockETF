@@ -91,6 +91,33 @@
     .sig-item.sig-bull    { background: rgba(248,81,73,0.12); }
     .sig-item.sig-bear    { background: rgba(63,185,80,0.12); }
     .sig-item.sig-neutral { background: var(--bg3); }
+
+    /* 綜合評分卡 */
+    .score-wrap { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
+    .score-circle { width: 72px; height: 72px; border-radius: 50%; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      font-weight: 700; flex-shrink: 0; border: 3px solid; }
+    .score-circle .sc-num  { font-size: 22px; font-family: var(--mono); line-height: 1; }
+    .score-circle .sc-rec  { font-size: 9px; letter-spacing: 0.05em; margin-top: 2px; }
+    .score-strong-buy  { border-color: #1a7f37; color: #1a7f37; background: rgba(26,127,55,0.12); }
+    .score-buy         { border-color: #3fb950; color: #3fb950; background: rgba(63,185,80,0.10); }
+    .score-hold        { border-color: #d29922; color: #d29922; background: rgba(210,153,34,0.10); }
+    .score-sell        { border-color: #f0883e; color: #f0883e; background: rgba(240,136,62,0.10); }
+    .score-strong-sell { border-color: #f85149; color: #f85149; background: rgba(248,81,73,0.10); }
+    .score-bars { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .score-bar-row { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+    .score-bar-label { width: 28px; color: var(--text3); }
+    .score-bar-track  { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+    .score-bar-fill   { height: 100%; border-radius: 3px; }
+    .score-bar-val    { width: 24px; text-align: right; color: var(--text2); font-family: var(--mono); }
+    .score-signals { list-style: none; max-height: 140px; overflow-y: auto; }
+    .score-signals li { display: flex; justify-content: space-between; align-items: center;
+      padding: 4px 0; border-bottom: 1px solid rgba(48,54,61,0.3); font-size: var(--fs-xs); }
+    .score-signals li:last-child { border-bottom: none; }
+    .score-sig-reason { color: var(--text2); }
+    .score-sig-pos { color: #3fb950; font-family: var(--mono); font-weight: 600; }
+    .score-sig-neg { color: #f85149; font-family: var(--mono); font-weight: 600; }
+    .score-risk { margin-top: 8px; font-size: var(--fs-xs); color: #d29922; }
   </style>
 </head>
 <body>
@@ -111,6 +138,10 @@
     <div id="tv-container"></div>
   </div>
   <div class="sp-right">
+    <div class="sp-card" id="sp-score-card">
+      <h3>綜合評分</h3>
+      <div id="sp-score"><div class="sp-loading">計算中…</div></div>
+    </div>
     <div class="sp-card">
       <h3>ETF 持倉</h3>
       <div id="sp-etf-holdings"><div class="sp-loading">載入中…</div></div>

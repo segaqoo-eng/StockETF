@@ -65,6 +65,7 @@ function render() {
   renderEtfHoldings(sid);
   renderTrend(sid);
   renderInstitutional(sid);   // async, fills in after OHLC loads
+  renderScore(sid);
   initChart(sid);
 
   document.getElementById("sp-main").style.display = "grid";
@@ -530,6 +531,13 @@ async function _drawChart(sid, container, periodBar) {
   // 清舊圖，保留 period bar
   container.querySelectorAll(":scope > *:not(div:first-child)").forEach(el => el.remove());
 
+  // 通用參考線 helper（供 RSI、KD 共用）
+  const refLine = (chart, val, color) => {
+    const s = chart.addLineSeries({ color, lineWidth: 1, lineStyle: 2,
+      priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+    s.setData(rsiData.map(d => ({ time: d.time, value: val })));
+  };
+
   const cfg = CHART_PERIODS.find(p => p.key === _activePeriod);
   const loading = Object.assign(document.createElement("div"), {
     textContent: "K 線載入中…",
@@ -605,13 +613,8 @@ async function _drawChart(sid, container, periodBar) {
       priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
     }).setData(rsiData);
     // 超買/超賣參考線
-    const refLine = (val, color) => {
-      const s = rsiChart.addLineSeries({ color, lineWidth: 1, lineStyle: 2,
-        priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-      s.setData(rsiData.map(d => ({ time: d.time, value: val })));
-    };
-    refLine(70, "rgba(248,81,73,0.4)");
-    refLine(30, "rgba(63,185,80,0.4)");
+    refLine(rsiChart, 70, "rgba(248,81,73,0.4)");
+    refLine(rsiChart, 30, "rgba(63,185,80,0.4)");
     rsiChart.timeScale().fitContent();
 
     // ── KD(9,3,3) ──
@@ -625,7 +628,8 @@ async function _drawChart(sid, container, periodBar) {
       kdChart.addLineSeries({ color: "#d2a8ff", lineWidth: 1,
         priceLineVisible: false, lastValueVisible: true, crosshairMarkerVisible: false,
       }).setData(kdData.map(d => ({ time: d.time, value: d.d })));
-      refLine(80, "rgba(248,81,73,0.3)"); // reuse refLine is not scoped here — inline
+      refLine(kdChart, 80, "rgba(248,81,73,0.3)");
+      refLine(kdChart, 20, "rgba(63,185,80,0.3)");
       kdChart.timeScale().fitContent();
 
       // ── MACD(12,26,9) ──
@@ -964,6 +968,85 @@ function computeScore(candles, instRows) {
     scores: { technical: tech.score, chip: chip.score,
               volume_price: vol.score, trend: trend.score },
     signals: allSignals };
+}
+
+/* ── 綜合評分卡 ── */
+
+async function renderScore(sid) {
+  const root = document.getElementById("sp-score");
+  if (!root) return;
+
+  try {
+    const [ohlcvRaw, instRaw] = await Promise.all([
+      _fetchFinMind(sid, _startDate(3)),
+      _fetchInstitutional(sid, _startDate(2)),
+    ]);
+
+    if (!ohlcvRaw.length) {
+      root.innerHTML = `<div style="color:var(--text3);font-size:var(--fs-sm)">無 OHLCV 資料</div>`;
+      return;
+    }
+
+    const instRows = _parseInstitutional(instRaw);
+    const result   = computeScore(ohlcvRaw, instRows);
+
+    const recLabel = {
+      STRONG_BUY: "強買進", BUY: "買進", HOLD: "觀望",
+      SELL: "減碼",  STRONG_SELL: "強賣出"
+    }[result.recommendation] || result.recommendation;
+
+    const recCls = {
+      STRONG_BUY: "score-strong-buy", BUY: "score-buy", HOLD: "score-hold",
+      SELL: "score-sell", STRONG_SELL: "score-strong-sell"
+    }[result.recommendation] || "score-hold";
+
+    const barColor = {
+      STRONG_BUY: "#1a7f37", BUY: "#3fb950", HOLD: "#d29922",
+      SELL: "#f0883e", STRONG_SELL: "#f85149"
+    }[result.recommendation] || "#d29922";
+
+    const { technical: t, chip: c, volume_price: v, trend: tr } = result.scores;
+    const barRow = (label, val, max) => {
+      const pct = Math.round((Math.max(0, val + max) / (max * 2)) * 100);
+      return `<div class="score-bar-row">
+        <span class="score-bar-label">${label}</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>
+        <span class="score-bar-val">${val > 0 ? "+" : ""}${val}</span>
+      </div>`;
+    };
+
+    const sigList = result.signals.slice(0, 8).map(s => {
+      const cls = s.score > 0 ? "score-sig-pos" : "score-sig-neg";
+      const sign = s.score > 0 ? "+" : "";
+      return `<li><span class="score-sig-reason">${escapeHtml(s.reason)}</span>
+               <span class="${cls}">${sign}${s.score}</span></li>`;
+    }).join("");
+
+    const riskWarnings = result.signals
+      .filter(s => s.score < -2)
+      .slice(0, 2)
+      .map(s => `⚠️ ${escapeHtml(s.reason)}`)
+      .join("　");
+
+    root.innerHTML = `
+      <div class="score-wrap">
+        <div class="score-circle ${recCls}">
+          <span class="sc-num">${result.total}</span>
+          <span class="sc-rec">${recLabel}</span>
+        </div>
+        <div class="score-bars">
+          ${barRow("技術", t, 30)}
+          ${barRow("籌碼", c, 30)}
+          ${barRow("量價", v, 20)}
+          ${barRow("趨勢", tr, 20)}
+        </div>
+      </div>
+      <ul class="score-signals">${sigList}</ul>
+      ${riskWarnings ? `<div class="score-risk">${riskWarnings}</div>` : ""}
+    `;
+  } catch (err) {
+    root.innerHTML = `<div style="color:var(--text3);font-size:var(--fs-sm)">評分計算失敗</div>`;
+  }
 }
 
 /* ── Entry point ── */
