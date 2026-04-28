@@ -98,6 +98,8 @@ body { font-family: var(--sans); background: var(--bg); color: var(--text); line
 /* "now" weight colored to match direction */
 .changes-section-list-changes > li[data-dir="up"]   .ch-now { color: var(--green); font-weight: 600; }
 .changes-section-list-changes > li[data-dir="down"] .ch-now { color: #f85149;      font-weight: 600; }
+.changes-section-list-changes > li[data-dir="flat"] .ch-now { color: var(--text2); }
+.diff-badge.diff-flat { background: rgba(100,100,100,0.15); color: var(--text3); }
 
 .changes-section-list .ch-trans { color: var(--text2); font-family: var(--mono); font-size: var(--fs-sm); white-space: nowrap; }
 .changes-section-list .ch-date  { color: var(--text3); font-size: var(--fs-xs); }

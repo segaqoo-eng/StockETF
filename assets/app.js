@@ -415,8 +415,17 @@ function buildChangesCardHtml(etf, byEtf) {
   } else {
     const total = diff.added.length + diff.removed.length + diff.changed.length;
     if (total === 0) {
-      summaryNote = `<span class="card-count card-count-muted">本期無變動</span>`;
-      body = `<div class="card-body changes-empty">本期持股無顯著變動（門檻內）</div>`;
+      // No rebalancing — show all current TW holdings with delta = 0 (neutral color)
+      const zeroItems = (etf.holdings || [])
+        .filter(h => h.market === "TW")
+        .sort((a, b) => b.weight_pct - a.weight_pct)
+        .map(h => ({
+          stock_id: h.stock_id, stock_name: h.stock_name,
+          weight_now: h.weight_pct, weight_prev: h.weight_pct,
+          delta: 0, shares_now: null, shares_prev: null,
+        }));
+      summaryNote = `<span class="card-count card-count-muted">無調倉 (${zeroItems.length})</span>`;
+      body = `<div class="card-body">${renderChangesChangedSection(zeroItems)}</div>`;
     } else {
       const counts = [];
       if (diff.added.length)   counts.push(`新進 ${diff.added.length}`);
@@ -468,8 +477,9 @@ function renderChangesChangedSection(items) {
   const sorted = [...items].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
   const li = sorted.map(c => {
     const up = c.delta > 0;
+    const flat = c.delta === 0;
     const sign = up ? "+" : "";
-    const dir = up ? "up" : "down";
+    const dir = up ? "up" : flat ? "flat" : "down";
     const sharesDelta = (c.shares_now || 0) - (c.shares_prev || 0);
     const sharesDeltaSign = sharesDelta > 0 ? "+" : "";
     const sharesLine = (c.shares_now != null && c.shares_prev != null)
@@ -482,7 +492,7 @@ function renderChangesChangedSection(items) {
         <span class="ch-date">(${prevDate.slice(5)})</span> ${c.weight_prev.toFixed(2)}%
         → <span class="ch-date">(${nowDate.slice(5)})</span> <span class="ch-now">${c.weight_now.toFixed(2)}%</span>
       </span>
-      <span class="diff-badge diff-${dir}">${sign}${c.delta.toFixed(2)}%</span>
+      <span class="diff-badge diff-${dir}">${flat ? "±" : sign}${c.delta.toFixed(2)}%</span>
       ${sharesLine}
     </li>`;
   }).join("");
