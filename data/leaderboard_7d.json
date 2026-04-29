@@ -1,13 +1,13 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-04-28",
-  "as_of_baseline": "2026-04-21",
+  "as_of_today": "2026-04-29",
+  "as_of_baseline": "2026-04-22",
   "top_added": [
     {
       "stock_id": "2330",
       "stock_name": "台灣積體",
       "etf_count": 2,
-      "total_delta": 6.769
+      "total_delta": 7.279
     },
     {
       "stock_id": "2327",
@@ -16,54 +16,54 @@
       "total_delta": 1.569
     },
     {
-      "stock_id": "2454",
-      "stock_name": "聯發科技",
-      "etf_count": 2,
-      "total_delta": 1.04
-    },
-    {
       "stock_id": "1590",
       "stock_name": "亞德客-KY",
       "etf_count": 2,
-      "total_delta": 0.942
+      "total_delta": 0.418
     },
     {
       "stock_id": "2404",
       "stock_name": "漢唐集成",
       "etf_count": 1,
-      "total_delta": 0.855
+      "total_delta": 0.337
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科技",
+      "etf_count": 1,
+      "total_delta": 0.274
     }
   ],
   "top_removed": [
     {
-      "stock_id": "6442",
-      "stock_name": "光紅建聖",
-      "etf_count": 2,
-      "total_delta": -3.02
-    },
-    {
       "stock_id": "2360",
       "stock_name": "致茂電子",
       "etf_count": 1,
-      "total_delta": -2.926
+      "total_delta": -2.885
     },
     {
-      "stock_id": "2308",
-      "stock_name": "台達電子",
+      "stock_id": "6442",
+      "stock_name": "光紅建聖",
       "etf_count": 2,
-      "total_delta": -0.975
+      "total_delta": -2.758
     },
     {
       "stock_id": "3653",
       "stock_name": "健策精密",
-      "etf_count": 2,
-      "total_delta": -0.958
+      "etf_count": 1,
+      "total_delta": -0.697
     },
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽科技",
-      "etf_count": 2,
-      "total_delta": -0.705
+      "stock_id": "5274",
+      "stock_name": "信驊科技",
+      "etf_count": 1,
+      "total_delta": -0.598
+    },
+    {
+      "stock_id": "3189",
+      "stock_name": "景碩科技",
+      "etf_count": 1,
+      "total_delta": -0.586
     }
   ]
 }
