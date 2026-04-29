@@ -709,13 +709,18 @@ function activateTab(name) {
 }
 
 // Whitelist so an unrecognised hash doesn't accidentally activate a removed tab.
-const VALID_TABS = new Set(["cross", "etfs", "changes", "consensus"]);
+const VALID_TABS = new Set(["cross", "etfs", "changes", "consensus", "ranking"]);
 
 function applyHash() {
   const hash = location.hash.slice(1);  // strip leading #
   const [tab, etfTicker] = hash.split("/");
 
-  activateTab(VALID_TABS.has(tab) ? tab : "cross");
+  const activeTab = VALID_TABS.has(tab) ? tab : "cross";
+  activateTab(activeTab);
+
+  if (activeTab === "ranking" && typeof initRankingTab === "function") {
+    initRankingTab();
+  }
 
   // Sub-routing only matters for the ETF accordion right now.
   if (tab === "etfs" && etfTicker) {
