@@ -319,7 +319,7 @@ function _getAllStocks() {
     stock_id:   h.stock_id,
     stock_name: h.stock_name,
     tags:       h.tags || [],
-    held_by:    (h.held_by || []).map(b => b.ticker),
+    held_by:    (h.held_by || []).map(b => b.etf),
   }));
 }
 
