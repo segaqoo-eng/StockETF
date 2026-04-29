@@ -317,7 +317,7 @@ async function initRankingTab() {
 }
 
 function _getAllStocks() {
-  if (!window.state || !state.payload || !state.payload.holdings) return [];
+  if (typeof state === "undefined" || !state.payload || !state.payload.holdings) return [];
   return state.payload.holdings.map(h => ({
     stock_id:   h.stock_id,
     stock_name: h.stock_name,
