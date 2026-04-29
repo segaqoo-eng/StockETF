@@ -23,6 +23,7 @@
     <button class="tab-btn" data-tab="etfs">ETF 總覽</button>
     <button class="tab-btn" data-tab="changes">各 ETF 持股變化</button>
     <button class="tab-btn" data-tab="consensus">共識加減碼</button>
+    <button class="tab-btn" data-tab="ranking">買進評分</button>
   </nav>
 
   <main class="container">
@@ -63,6 +64,12 @@
       </div>
       <div id="consensus-panel"></div>
     </section>
+
+    <section id="tab-ranking" class="tab-panel">
+      <div id="ranking-root">
+        <p class="loading">點選上方「買進評分」載入資料</p>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -71,5 +78,6 @@
   </footer>
 
   <script src="assets/app.js"></script>
+  <script src="assets/ranking.js"></script>
 </body>
 </html>
