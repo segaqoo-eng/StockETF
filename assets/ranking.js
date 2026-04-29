@@ -246,13 +246,13 @@ function _rComputeScore(candles, instRows) {
 
 async function initRankingTab() {
   if (_rankingInitialized) return;
-  _rankingInitialized = true;
 
   const root = document.getElementById("ranking-root");
   if (!root) return;
 
   const cached = _loadRankingCache();
   if (cached) {
+    _rankingInitialized = true;
     _rankingResults = cached;
     const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
     _renderRankingFull(root, now.getHours() < 14 ? "yesterday" : "today");
@@ -261,9 +261,12 @@ async function initRankingTab() {
 
   const allStocks = _getAllStocks();
   if (!allStocks.length) {
-    root.innerHTML = `<p class="loading">尚未載入持股資料，請稍後再試</p>`;
+    // 持股資料尚未載入（load() 還在跑），保持 flag=false 讓使用者再點一次
+    root.innerHTML = `<p class="loading">持股資料載入中，請稍候再點一次「買進評分」</p>`;
     return;
   }
+
+  _rankingInitialized = true;
 
   root.innerHTML = `
     <div class="rk-progress-wrap">
