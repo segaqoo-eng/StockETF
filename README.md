@@ -2,14 +2,42 @@
 
 台灣 ETF 交叉持股分析工具（v1 MVP）。
 
-## Quickstart
+## 快速開始（新電腦 / 換電腦）
 
-Set up a virtual environment and install dependencies:
+**Step 1：下載專案**
+```
+git clone https://github.com/segaqoo-eng/StockETF.git
+cd StockETF
+```
+
+**Step 2：一鍵安裝（雙擊 or 執行）**
+```
+init.bat
+```
+自動建立虛擬環境 + 安裝所有套件，完成後會顯示常用指令。
+
+---
+
+## 常用指令
+
+```bash
+# 更新今日持股資料
+.venv\Scripts\python.exe main.py
+
+# 開啟本地網站（瀏覽器開 http://localhost:8080）
+.venv\Scripts\python.exe -m http.server 8080
+
+# 回測買進評分策略
+.venv\Scripts\python.exe backtest.py
+```
+
+---
+
+## 手動安裝（舊方式）
 
 ```bash
 python -m venv .venv
 .venv\Scripts\activate           # Windows
-# source .venv/bin/activate      # macOS/Linux
 pip install -r requirements.txt
 ```
 
