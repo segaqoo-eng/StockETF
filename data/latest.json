@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-29T16:49:38+08:00",
+  "updated_at": "2026-04-29T19:42:31+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -167,11 +167,11 @@
           "market": "TW"
         },
         {
-          "stock_id": "2368",
+          "stock_id": "\"2368\")",
           "stock_name": "金像電",
           "weight_pct": 0.54,
           "shares": 6637807,
-          "market": "TW"
+          "market": "OTHER"
         },
         {
           "stock_id": "3653",
@@ -1243,7 +1243,7 @@
         "含美股"
       ],
       "color": "#a78bfa",
-      "holdings_count": 49,
+      "holdings_count": 48,
       "holdings": [
         {
           "stock_id": "LITE US",
@@ -1545,13 +1545,6 @@
           "weight_pct": 0.62,
           "shares": 29671,
           "market": "OTHER"
-        },
-        {
-          "stock_id": "ONTO US",
-          "stock_name": "ONTO INNOVATION INC",
-          "weight_pct": 0.6,
-          "shares": 18000,
-          "market": "US"
         },
         {
           "stock_id": "PLTR US",
@@ -2440,6 +2433,34 @@
       ]
     },
     {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "industry": "其他電子業",
+      "tags": [],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 5.38,
+          "shares": 4583848
+        },
+        {
+          "etf": "00992A",
+          "weight_pct": 3.76,
+          "shares": 667000
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 2.802,
+          "shares": 380000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 2.48,
+          "shares": 130336
+        }
+      ]
+    },
+    {
       "stock_id": "2368",
       "stock_name": "金像電",
       "industry": "電子零組件業",
@@ -2466,39 +2487,6 @@
           "etf": "00990A",
           "weight_pct": 1.92,
           "shares": 370000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.54,
-          "shares": 6637807
-        }
-      ]
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "industry": "其他電子業",
-      "tags": [],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 5.38,
-          "shares": 4583848
-        },
-        {
-          "etf": "00992A",
-          "weight_pct": 3.76,
-          "shares": 667000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 2.802,
-          "shares": 380000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 2.48,
-          "shares": 130336
         }
       ]
     },
