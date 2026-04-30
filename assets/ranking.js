@@ -4,6 +4,99 @@
 let _rankingInitialized = false;
 let _rankingResults = [];
 
+/* ── 盤中自動刷新 ── */
+const _AUTO_REFRESH_INTERVAL_MS = 30 * 1000;
+let _rAutoRefreshTimer   = null;
+let _rAutoCountdownTimer = null;
+let _rAutoCountdownSec   = 0;
+let _rRefreshing         = false;
+
+function _rIsMarketHours() {
+  // 台股盤中 = 週一至週五 09:00 ~ 13:30
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
+  const day = now.getDay();              // 0=Sun, 6=Sat
+  if (day === 0 || day === 6) return false;
+  const t = now.getHours() * 100 + now.getMinutes();
+  return t >= 900 && t <= 1330;
+}
+
+async function _rDoRefresh() {
+  if (_rRefreshing) return;              // 上一輪還沒跑完，跳過
+  _rRefreshing = true;
+  try {
+    _rankingInitialized = false;
+    localStorage.removeItem(_rankingCacheKey());
+    await initRankingTab();
+  } finally {
+    _rRefreshing = false;
+  }
+}
+
+function _rUpdateCountdownLabel() {
+  const lbl = document.getElementById("rk-auto-countdown");
+  if (!lbl) return;
+  if (_rRefreshing) {
+    lbl.textContent = "刷新中…";
+  } else if (_rAutoRefreshTimer) {
+    lbl.textContent = `下次刷新 ${_rAutoCountdownSec}s`;
+  } else {
+    lbl.textContent = "";
+  }
+}
+
+function _rStartAutoRefresh() {
+  if (_rAutoRefreshTimer) return;
+  _rAutoCountdownSec = Math.floor(_AUTO_REFRESH_INTERVAL_MS / 1000);
+  _rUpdateCountdownLabel();
+
+  _rAutoCountdownTimer = setInterval(() => {
+    _rAutoCountdownSec -= 1;
+    if (_rAutoCountdownSec < 0) _rAutoCountdownSec = Math.floor(_AUTO_REFRESH_INTERVAL_MS / 1000);
+    _rUpdateCountdownLabel();
+  }, 1000);
+
+  _rAutoRefreshTimer = setInterval(async () => {
+    if (!_rIsMarketHours()) {
+      // 收盤了，自動關閉
+      _rStopAutoRefresh();
+      const cb = document.getElementById("rk-auto-toggle");
+      if (cb) cb.checked = false;
+      return;
+    }
+    await _rDoRefresh();
+    _rAutoCountdownSec = Math.floor(_AUTO_REFRESH_INTERVAL_MS / 1000);
+  }, _AUTO_REFRESH_INTERVAL_MS);
+}
+
+function _rStopAutoRefresh() {
+  if (_rAutoRefreshTimer)   { clearInterval(_rAutoRefreshTimer);   _rAutoRefreshTimer   = null; }
+  if (_rAutoCountdownTimer) { clearInterval(_rAutoCountdownTimer); _rAutoCountdownTimer = null; }
+  _rUpdateCountdownLabel();
+}
+
+function _rAttachAutoRefreshControls() {
+  const cb = document.getElementById("rk-auto-toggle");
+  if (!cb) return;
+  // 重綁時保留原狀態
+  cb.checked = !!_rAutoRefreshTimer;
+  cb.disabled = !_rIsMarketHours();
+  cb.onchange = (e) => {
+    if (e.target.checked) {
+      if (!_rIsMarketHours()) {
+        alert("非盤中時段（週一至週五 09:00-13:30），自動刷新無意義。");
+        e.target.checked = false;
+        return;
+      }
+      _rStartAutoRefresh();
+    } else {
+      _rStopAutoRefresh();
+    }
+  };
+  const manualBtn = document.getElementById("rk-refresh-now");
+  if (manualBtn) manualBtn.onclick = () => _rDoRefresh();
+  _rUpdateCountdownLabel();
+}
+
 /* ── 快取管理 ── */
 
 function _rankingCacheKey() {
@@ -341,8 +434,22 @@ function _renderRankingFull(root, cacheStatus) {
     ? `<div class="rk-notice">⏰ 下午 2 點前，顯示昨日收盤資料</div>`
     : "";
 
+  const marketOpen = _rIsMarketHours();
+  const refreshBarHtml = `
+    <div class="rk-refresh-bar">
+      <label class="rk-auto-label">
+        <input type="checkbox" id="rk-auto-toggle" ${marketOpen ? "" : "disabled"} />
+        盤中自動刷新 (30s)
+      </label>
+      <span id="rk-auto-countdown" class="rk-auto-countdown"></span>
+      <button id="rk-refresh-now" class="rk-refresh-btn">立即刷新</button>
+      ${marketOpen ? "" : '<span class="rk-auto-hint">非盤中時段</span>'}
+    </div>
+  `;
+
   root.innerHTML = `
     ${noticeHtml}
+    ${refreshBarHtml}
     ${_buildTagStatsHTML(top20)}
     <div class="rk-table-wrap">
       <table class="rk-table">
@@ -376,6 +483,8 @@ function _renderRankingFull(root, cacheStatus) {
     const wrap = document.getElementById("rk-rest-wrap");
     if (wrap) { wrap.style.display = "block"; btn.style.display = "none"; }
   });
+
+  _rAttachAutoRefreshControls();
 }
 
 function _buildTagStatsHTML(top20) {
