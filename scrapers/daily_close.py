@@ -136,7 +136,83 @@ class FinMindDailyClose(PriceProvider):
         return result
 
 
-from datetime import timedelta
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+TAIPEI = ZoneInfo("Asia/Taipei")
+
+
+def fetch_daily_close(
+    stock_ids: list[str],
+    target_date: date,
+    providers: list[PriceProvider] | None = None,
+) -> dict:
+    """Walk providers in order; first one returning ≥ SUCCESS_THRESHOLD wins.
+
+    See spec §3 + §4 for full behavior.
+
+    Returns:
+      {
+        "ok":         bool,
+        "date":       "YYYY-MM-DD",
+        "source":     "finmind" | "yfinance" | "twse_tpex" | "cache" | None,
+        "fetched_at": ISO8601 with Asia/Taipei tz,
+        "prices":     {stock_id: {close, change, change_pct, exchange}},
+        "missing":    [stock_id, ...],
+        "tried":      [provider_name, ...],
+        "error":      str | None,
+      }
+    """
+    if providers is None:
+        providers = [
+            FinMindDailyClose(),
+            YFinanceDailyClose(),
+            TwseTpexDailyClose(),
+            CacheDailyClose(),
+        ]
+
+    tried: list[str] = []
+    for p in providers:
+        tried.append(p.name)
+        try:
+            partial = p.fetch(stock_ids, target_date)
+        except ProviderUnavailable as e:
+            logger.warning("[%s] unavailable: %s", p.name, e)
+            continue
+        except Exception as e:
+            logger.warning("[%s] unexpected error: %s", p.name, e)
+            continue
+
+        if not partial:
+            continue
+        ratio = len(partial) / max(1, len(stock_ids))
+        if ratio < SUCCESS_THRESHOLD:
+            logger.info("[%s] returned %d/%d (<%.0f%%), trying next",
+                        p.name, len(partial), len(stock_ids), SUCCESS_THRESHOLD * 100)
+            continue
+
+        missing = [sid for sid in stock_ids if sid not in partial]
+        return {
+            "ok":         True,
+            "date":       target_date.isoformat(),
+            "source":     p.name,
+            "fetched_at": datetime.now(TAIPEI).isoformat(timespec="seconds"),
+            "prices":     partial,
+            "missing":    missing,
+            "tried":      tried,
+            "error":      None,
+        }
+
+    return {
+        "ok":         False,
+        "date":       target_date.isoformat(),
+        "source":     None,
+        "fetched_at": datetime.now(TAIPEI).isoformat(timespec="seconds"),
+        "prices":     {},
+        "missing":    list(stock_ids),
+        "tried":      tried,
+        "error":      "all providers failed",
+    }
 
 
 class YFinanceDailyClose(PriceProvider):
