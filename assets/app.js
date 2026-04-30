@@ -63,6 +63,7 @@ async function load() {
     } catch (_) { /* swallow */ }
 
     document.getElementById("updated-at").textContent = formatDate(state.payload.updated_at);
+    renderSourceBadge();
     populateIndustryFilter();
     populateTagBar();
     renderEtfChipBar();
@@ -83,6 +84,42 @@ async function load() {
 function formatDate(iso) {
   // "2026-04-24T16:00:00+08:00" → "2026-04-24 16:00"
   return iso.replace("T", " ").slice(0, 16);
+}
+
+const SOURCE_LABELS = {
+  finmind:    { emoji: "🟢", label: "FinMind" },
+  yfinance:   { emoji: "🟡", label: "yfinance" },
+  twse_tpex:  { emoji: "🔵", label: "TWSE+TPEx" },
+  cache:      { emoji: "🔴", label: "Cache (舊資料)" },
+  running:    { emoji: "⏳", label: "抓取中..." },
+  unknown:    { emoji: "❓", label: "未知 (舊格式)" },
+};
+
+function renderSourceBadge() {
+  const el = document.getElementById("price-source-badge");
+  if (!el) return;
+  const src = state.prices && state.prices.source;
+  const fetchedAt = state.prices && state.prices.fetched_at;
+  const missing = (state.prices && state.prices.missing) || [];
+
+  const key = SOURCE_LABELS[src] ? src : "unknown";
+  const info = SOURCE_LABELS[key];
+
+  el.className = `source-badge source-badge-${key}`;
+  el.textContent = `${info.emoji} ${info.label}`;
+  const tooltipParts = [];
+  if (fetchedAt) tooltipParts.push(`抓取於 ${fetchedAt}`);
+  if (missing.length) tooltipParts.push(`${missing.length} 檔抓不到`);
+  el.title = tooltipParts.join(" · ") || info.label;
+}
+
+function setBadgeRunning() {
+  const el = document.getElementById("price-source-badge");
+  if (!el) return;
+  const info = SOURCE_LABELS.running;
+  el.className = "source-badge source-badge-running";
+  el.textContent = `${info.emoji} ${info.label}`;
+  el.title = "正在執行 refresh job...";
 }
 
 function populateIndustryFilter() {
@@ -775,3 +812,10 @@ document.getElementById("filter-search").addEventListener("input", e => {
 
 wireTabs();
 load();
+
+// Expose for refresh.js (Task 19) — use window.StockETF namespace to avoid pollution
+window.StockETF = window.StockETF || {};
+window.StockETF.renderSourceBadge = renderSourceBadge;
+window.StockETF.setBadgeRunning = setBadgeRunning;
+window.state = state;
+window.render = render;

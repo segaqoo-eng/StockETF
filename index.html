@@ -11,12 +11,14 @@
 <body>
   <header class="header">
     <h1>📊 Stock<span>ETF</span></h1>
-    <div class="header-sub">主動式 ETF 交叉持股分析（+ 0050 對照） · 更新於 <b id="updated-at">—</b></div>
+    <div class="header-sub">
+      主動式 ETF 交叉持股分析（+ 0050 對照） ·
+      更新於 <b id="updated-at">—</b> ·
+      <span id="price-source-badge" class="source-badge source-badge-unknown" title="">—</span>
+      <button id="btn-refresh-prices" class="header-btn" title="只重抓股價，10-30 秒">🔄 股價</button>
+      <button id="btn-refresh-etfs" class="header-btn" title="重抓 ETF 持股 + 股價，1-2 分鐘">🔄 ETF</button>
+    </div>
   </header>
-
-  <nav id="etf-chip-bar" class="etf-chip-bar" aria-label="ETF 列表，點選查看持股明細">
-    <span class="loading">載入中…</span>
-  </nav>
 
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="cross">交叉持股</button>
@@ -27,6 +29,10 @@
     <button class="tab-btn" data-tab="signals">📋 今日訊號</button>
     <button class="tab-btn" data-tab="paper">📈 Paper 模擬</button>
     <button class="tab-btn" data-tab="positions">💰 我的部位</button>
+  </nav>
+
+  <nav id="etf-chip-bar" class="etf-chip-bar" aria-label="ETF 列表，點選查看持股明細">
+    <span class="loading">載入中…</span>
   </nav>
 
   <main class="container">
@@ -98,6 +104,8 @@
     <p><a href="https://github.com/your-user/StockETF" target="_blank" rel="noopener">GitHub 原始碼</a></p>
   </footer>
 
+  <script src="assets/toast.js"></script>
+  <script src="assets/refresh.js"></script>
   <script src="assets/app.js"></script>
   <script src="assets/ranking.js"></script>
   <script src="assets/positions.js"></script>
