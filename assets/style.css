@@ -394,6 +394,7 @@ table.etf-holdings .weight { color: var(--gold); font-weight: 600; }
 
 .rk-expand-wrap { text-align: center; padding: 16px 0; }
 .rk-expand-btn  { padding: 8px 24px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg2); color: var(--text2); font-size: var(--fs-sm); cursor: pointer; font-family: var(--sans); }
+.rk-expand-btn:hover { color: var(--text); border-color: var(--accent); }
 
 /* ═══ Source badge + refresh buttons ═══ */
 .source-badge {
@@ -424,7 +425,6 @@ table.etf-holdings .weight { color: var(--gold); font-weight: 600; }
 }
 .header-btn:hover:not(:disabled)  { background: #e9ecef; }
 .header-btn:disabled              { opacity: 0.4; cursor: not-allowed; }
-.rk-expand-btn:hover { color: var(--text); border-color: var(--accent); }
 
 /* ═══ Toast ═══ */
 #toast-container {
