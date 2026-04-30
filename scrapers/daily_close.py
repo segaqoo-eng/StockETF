@@ -134,3 +134,69 @@ class FinMindDailyClose(PriceProvider):
                 "exchange": "TWSE",
             }
         return result
+
+
+from datetime import timedelta
+
+
+class YFinanceDailyClose(PriceProvider):
+    """yfinance batch download for multiple tickers.
+
+    Tries .TW (TWSE) suffix only; per spec we don't iterate .TWO since the
+    universe comes from latest.json which already classifies. If a stock
+    is on TPEx, this provider will miss it — TWSE+TPEx fallback covers.
+    """
+    name = "yfinance"
+
+    def fetch(self, stock_ids: list[str], target_date: date) -> dict[str, dict]:
+        try:
+            import yfinance as yf
+        except ImportError:
+            raise ProviderUnavailable("yfinance not installed")
+
+        if not stock_ids:
+            return {}
+
+        tickers = [f"{sid}.TW" for sid in stock_ids]
+        start = target_date - timedelta(days=5)
+        end = target_date + timedelta(days=1)
+
+        try:
+            df = yf.download(
+                tickers,
+                start=start.isoformat(),
+                end=end.isoformat(),
+                progress=False,
+                threads=True,
+                group_by="ticker",
+                auto_adjust=False,
+            )
+        except Exception as e:
+            raise ProviderUnavailable(f"yfinance download failed: {e}")
+
+        if df is None or df.empty:
+            raise ProviderUnavailable("yfinance returned empty DataFrame")
+
+        result: dict[str, dict] = {}
+        for sid in stock_ids:
+            ticker = f"{sid}.TW"
+            try:
+                if ticker not in df.columns.get_level_values(0):
+                    continue
+                sub = df[ticker].dropna(subset=["Close"])
+                if len(sub) < 1:
+                    continue
+                close = float(sub["Close"].iloc[-1])
+                prev = float(sub["Close"].iloc[-2]) if len(sub) >= 2 else close
+                change = close - prev
+                change_pct = round(change / prev * 100, 2) if prev > 0 else 0.0
+                result[sid] = {
+                    "close": round(close, 2),
+                    "change": round(change, 2),
+                    "change_pct": change_pct,
+                    "exchange": "TWSE",
+                }
+            except Exception as e:
+                logger.warning("[yfinance] %s: %s", sid, e)
+                continue
+        return result

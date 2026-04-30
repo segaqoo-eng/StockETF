@@ -216,3 +216,61 @@ def test_finmind_skips_subsequent_calls_after_exhausted(monkeypatch):
     with pytest.raises(ProviderUnavailable):
         p.fetch(["2330"], date(2026, 4, 30))
     assert called == []   # 沒打過網路
+
+
+# ---------------------------------------------------------------------------
+# Task 7: YFinanceDailyClose
+# ---------------------------------------------------------------------------
+from scrapers.daily_close import YFinanceDailyClose
+
+
+def test_yfinance_provider_handles_multi_ticker_download(monkeypatch):
+    """yf.download 多 ticker 回傳 MultiIndex DataFrame，要 flatten 成 dict。"""
+    import pandas as pd
+
+    def fake_download(tickers, start, end, progress, threads, group_by, auto_adjust):
+        idx = pd.DatetimeIndex([pd.Timestamp("2026-04-29"), pd.Timestamp("2026-04-30")])
+        cols = pd.MultiIndex.from_product(
+            [["2330.TW", "0050.TW"], ["Open", "High", "Low", "Close", "Volume"]]
+        )
+        data = [
+            [100, 102, 99, 101, 1000, 200, 202, 199, 201, 2000],
+            [101, 103, 100, 102, 1100, 201, 203, 200, 202, 2100],
+        ]
+        return pd.DataFrame(data, index=idx, columns=cols)
+
+    import yfinance as yf
+    monkeypatch.setattr(yf, "download", fake_download)
+
+    p = YFinanceDailyClose()
+    result = p.fetch(["2330", "0050"], date(2026, 4, 30))
+    assert result["2330"]["close"] == 102
+    assert result["2330"]["change"] == 102 - 101
+    assert result["0050"]["close"] == 202
+
+
+def test_yfinance_raises_on_empty_dataframe(monkeypatch):
+    """yf.download 回 None / empty → ProviderUnavailable"""
+    import yfinance as yf
+    monkeypatch.setattr(yf, "download", lambda *a, **k: None)
+    p = YFinanceDailyClose()
+    with pytest.raises(ProviderUnavailable):
+        p.fetch(["2330"], date(2026, 4, 30))
+
+
+def test_yfinance_raises_on_import_error(monkeypatch):
+    """yfinance 未安裝 → ProviderUnavailable（不 crash）"""
+    import sys, builtins
+    real_import = builtins.__import__
+
+    def fake_import(name, *args, **kwargs):
+        if name == "yfinance":
+            raise ImportError("No module named 'yfinance'")
+        return real_import(name, *args, **kwargs)
+
+    # 先把 yfinance 從 sys.modules 移除，確保 import 觸發 __import__
+    monkeypatch.delitem(sys.modules, "yfinance", raising=False)
+    monkeypatch.setattr(builtins, "__import__", fake_import)
+    p = YFinanceDailyClose()
+    with pytest.raises(ProviderUnavailable, match="not installed"):
+        p.fetch(["2330"], date(2026, 4, 30))
