@@ -4,7 +4,9 @@ Spec: docs/superpowers/specs/2026-04-30-prices-source-and-refresh-design.md
 """
 from __future__ import annotations
 
+import json
 from datetime import date
+from pathlib import Path
 
 
 SUCCESS_THRESHOLD = 0.80   # 回傳 ≥ 80% stock_ids 視為該 provider 成功
@@ -24,3 +26,24 @@ class PriceProvider:
 
     def fetch(self, stock_ids: list[str], target_date: date) -> dict[str, dict]:
         raise NotImplementedError
+
+
+class CacheDailyClose(PriceProvider):
+    """Read existing data/prices_today.json — last-resort fallback."""
+    name = "cache"
+
+    def __init__(self, cache_path: Path | str = Path("data/prices_today.json")):
+        self.cache_path = Path(cache_path)
+
+    def fetch(self, stock_ids: list[str], target_date: date) -> dict[str, dict]:
+        if not self.cache_path.exists():
+            raise ProviderUnavailable(f"cache file missing: {self.cache_path}")
+        try:
+            payload = json.loads(self.cache_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as e:
+            raise ProviderUnavailable(f"cache read failed: {e}")
+        prices = payload.get("prices") or {}
+        if not prices:
+            raise ProviderUnavailable("cache prices empty")
+        # filter to only requested stock_ids
+        return {sid: prices[sid] for sid in stock_ids if sid in prices}
