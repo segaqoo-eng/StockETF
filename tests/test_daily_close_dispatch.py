@@ -77,3 +77,29 @@ def test_dispatch_returns_missing_list():
     result = fetch_daily_close(stocks, date(2026, 4, 30), providers=[only_8])
     assert result["source"] == "twse_tpex"
     assert sorted(result["missing"]) == ["S8", "S9"]
+
+
+def test_dispatch_returns_error_when_all_providers_fail():
+    """4 家全失敗 → ok=False, error 訊息明確"""
+    stocks = ["S1"]
+    providers = [_FakeProvider(n, raises=ProviderUnavailable("bork"))
+                 for n in ("finmind", "yfinance", "twse_tpex", "cache")]
+    result = fetch_daily_close(stocks, date(2026, 4, 30), providers=providers)
+
+    assert result["ok"] is False
+    assert result["source"] is None
+    assert result["error"] == "all providers failed"
+    assert result["tried"] == ["finmind", "yfinance", "twse_tpex", "cache"]
+    assert result["missing"] == ["S1"]
+
+
+def test_dispatch_metadata_includes_date_fetched_at_tried():
+    """成功時 result 帶 date / fetched_at / tried 三欄"""
+    stocks = ["S1"]
+    p = _FakeProvider("twse_tpex", result=_make_prices(stocks))
+    result = fetch_daily_close(stocks, date(2026, 4, 30), providers=[p])
+
+    assert result["date"] == "2026-04-30"
+    assert result["fetched_at"]
+    assert "T" in result["fetched_at"]
+    assert result["tried"] == ["twse_tpex"]
