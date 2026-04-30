@@ -6,64 +6,64 @@
     {
       "stock_id": "2330",
       "stock_name": "台灣積體",
-      "etf_count": 1,
-      "total_delta": 6.651
+      "etf_count": 2,
+      "total_delta": 5.485
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨股份",
       "etf_count": 1,
-      "total_delta": 1.094
+      "total_delta": 2.2
     },
     {
-      "stock_id": "2454",
-      "stock_name": "聯發科技",
+      "stock_id": "6805",
+      "stock_name": "富世達",
+      "etf_count": 1,
+      "total_delta": 0.61
+    },
+    {
+      "stock_id": "2308",
+      "stock_name": "台達電子",
       "etf_count": 2,
-      "total_delta": 0.423
+      "total_delta": 0.544
     },
     {
-      "stock_id": "2404",
-      "stock_name": "漢唐集成",
-      "etf_count": 1,
-      "total_delta": 0.345
-    },
-    {
-      "stock_id": "1590",
-      "stock_name": "亞德客-KY",
-      "etf_count": 1,
-      "total_delta": 0.339
+      "stock_id": "3189",
+      "stock_name": "景碩科技",
+      "etf_count": 2,
+      "total_delta": 0.49
     }
   ],
   "top_removed": [
     {
       "stock_id": "2360",
       "stock_name": "致茂電子",
-      "etf_count": 1,
-      "total_delta": -2.716
+      "etf_count": 2,
+      "total_delta": -2.186
     },
     {
-      "stock_id": "3653",
-      "stock_name": "健策精密",
+      "stock_id": "2881",
+      "stock_name": "富邦金融控股",
       "etf_count": 1,
-      "total_delta": -0.668
+      "total_delta": -1.3
     },
     {
       "stock_id": "7769",
       "stock_name": "鴻勁精密",
-      "etf_count": 2,
-      "total_delta": -0.649
+      "etf_count": 1,
+      "total_delta": -1.204
     },
     {
-      "stock_id": "2383",
-      "stock_name": "台光電子",
-      "etf_count": 2,
-      "total_delta": -0.645
+      "stock_id": "6510",
+      "stock_name": "中華精測",
+      "etf_count": 1,
+      "total_delta": -0.963
     },
     {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 2,
-      "total_delta": -0.622
+      "stock_id": "2884",
+      "stock_name": "玉山金融控股",
+      "etf_count": 1,
+      "total_delta": -0.89
     }
   ]
 }
