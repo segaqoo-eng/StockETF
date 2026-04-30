@@ -34,7 +34,7 @@ REM --- 1/3 Update ETF holdings ---
 echo [1/3] Updating ETF holdings (main.py)...
 echo. >> "%LOG%"
 echo ====== %DATE% %TIME% main.py ====== >> "%LOG%"
-powershell -NoProfile -Command "& { python main.py 2>&1 | Tee-Object -FilePath '%LOG%' -Append }"
+python scripts\tee.py main.py "%LOG%"
 if errorlevel 1 (echo   [FAIL] see %LOG%) else (echo   [OK])
 
 REM --- 2/3 Generate status reports ---
