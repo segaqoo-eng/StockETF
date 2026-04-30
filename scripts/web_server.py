@@ -77,6 +77,7 @@ class StockETFHandler(SimpleHTTPRequestHandler):
                     buy_price  = float(payload["buy_price"]),
                     shares     = int(payload["shares"]),
                     buy_date   = payload.get("buy_date"),
+                    buy_reason = payload.get("buy_reason", ""),
                 )
                 return self._send_json({"ok": True, "position": pos})
 

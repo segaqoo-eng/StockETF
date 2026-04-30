@@ -51,6 +51,7 @@ function _renderPositions() {
   `;
 
   document.getElementById("pos-add-form")?.addEventListener("submit", _onAddSubmit);
+  _wireAddFormAutofill();
   document.querySelectorAll(".pos-close-btn").forEach(btn => {
     btn.addEventListener("click", () => _onCloseClick(btn));
   });
@@ -90,20 +91,57 @@ function _buildSummaryHTML(s) {
 function _buildAddFormHTML() {
   const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Taipei" }))
     .toISOString().slice(0, 10);
+
+  // 從已載入的持股清單組 datalist (可下拉選 + 自動補名稱)
+  const allStocks = (window.state?.payload?.holdings || []);
+  const datalistOpts = allStocks.map(h =>
+    `<option value="${escapeHtml(h.stock_id)}">${escapeHtml(h.stock_name)}</option>`
+  ).join("");
+
   return `
     <div class="pos-card">
       <h3>➕ 新增買進</h3>
       <form id="pos-add-form" class="pos-form">
-        <input type="text"   name="stock_id"   placeholder="代號 e.g. 7769" required maxlength="10">
-        <input type="text"   name="stock_name" placeholder="名稱 e.g. 鴻勁" required maxlength="20">
+        <input type="text"   name="stock_id"   placeholder="代號 e.g. 7769"
+               required maxlength="10" list="pos-stock-list" autocomplete="off">
+        <input type="text"   name="stock_name" placeholder="名稱（自動帶入）"
+               required maxlength="20">
         <input type="number" name="buy_price"  placeholder="進場價" step="0.01" required min="0.01">
         <input type="number" name="shares"     placeholder="股數"   step="1"   required min="1">
         <input type="date"   name="buy_date"   value="${today}">
         <button type="submit" class="pos-btn-primary">加入</button>
+        <textarea name="buy_reason" class="pos-form-reason" placeholder="買進理由（選填）— 例如：分數 78、法人連買三天、PCB 強勢..." maxlength="200" rows="2"></textarea>
       </form>
-      <small class="pos-hint">提示：可從「買進評分」分頁複製股號名稱；股數想輸入零股請直接打。</small>
+      <datalist id="pos-stock-list">${datalistOpts}</datalist>
+      <small class="pos-hint">輸入股號 → 自動帶入名稱（${allStocks.length} 檔可選；不在清單中的可手動打）。理由先寫，將來複盤時很有用。</small>
     </div>
   `;
+}
+
+function _wireAddFormAutofill() {
+  const f = document.getElementById("pos-add-form");
+  if (!f) return;
+  const idInput   = f.stock_id;
+  const nameInput = f.stock_name;
+  let nameManuallyEdited = false;
+
+  nameInput.addEventListener("input", (e) => {
+    // user 自己改了名字，之後不再覆蓋
+    if (e.isTrusted) nameManuallyEdited = true;
+  });
+
+  idInput.addEventListener("input", () => {
+    if (nameManuallyEdited && nameInput.value.trim()) return;
+    const sid = idInput.value.trim();
+    const all = window.state?.payload?.holdings || [];
+    const match = all.find(h => h.stock_id === sid);
+    if (match) {
+      nameInput.value = match.stock_name;
+      nameManuallyEdited = false;  // 重置 (等同於用 datalist 帶入)
+    }
+  });
+
+  f.addEventListener("reset", () => { nameManuallyEdited = false; });
 }
 
 function _buildOpenTableHTML(open) {
@@ -127,9 +165,15 @@ function _buildOpenTableHTML(open) {
       else if (pct <= -4) action = "🟡 接近 SL";
     }
 
+    const reasonHtml = p.buy_reason
+      ? `<div class="pos-reason" title="${escapeHtml(p.buy_reason)}">💡 ${escapeHtml(p.buy_reason)}</div>`
+      : "";
     return `
       <tr>
-        <td><b>${escapeHtml(p.stock_id)}</b> ${escapeHtml(p.stock_name)}</td>
+        <td>
+          <b>${escapeHtml(p.stock_id)}</b> ${escapeHtml(p.stock_name)}
+          ${reasonHtml}
+        </td>
         <td>${p.buy_date}</td>
         <td class="r">${p.buy_price.toFixed(1)}</td>
         <td class="r">${cur != null ? cur.toFixed(1) : "—"}</td>
@@ -217,6 +261,7 @@ async function _onAddSubmit(e) {
     buy_price:  Number(f.buy_price.value),
     shares:     Number(f.shares.value),
     buy_date:   f.buy_date.value || undefined,
+    buy_reason: f.buy_reason?.value?.trim() || "",
   };
   if (!data.stock_id || !data.stock_name || !(data.buy_price > 0) || !(data.shares > 0)) {
     alert("欄位都要填且為正數");

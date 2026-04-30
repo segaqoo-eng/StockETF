@@ -69,7 +69,7 @@ def calc_pnl_ntd(buy_price: float, current_price: float, shares: int) -> int:
 # ── 純邏輯函式（CLI / Web API 共用） ────────────────────────
 
 def add_position(stock_id: str, stock_name: str, buy_price: float, shares: int,
-                  buy_date: str | None = None) -> dict:
+                  buy_date: str | None = None, buy_reason: str = "") -> dict:
     """加入新部位。回傳新增的 position dict。"""
     if buy_date is None:
         buy_date = datetime.now(TAIPEI).strftime("%Y-%m-%d")
@@ -79,6 +79,7 @@ def add_position(stock_id: str, stock_name: str, buy_price: float, shares: int,
         "buy_date": buy_date,
         "buy_price": float(buy_price),
         "shares": int(shares),
+        "buy_reason": str(buy_reason or "").strip(),
     }
     cfg = load_positions()
     cfg.setdefault("open", []).append(pos)
