@@ -1,12 +1,18 @@
-"""generate_status.py — 產生每日貼文摘要 status_today.md
+"""generate_status.py — 產生每日「便當 5」實戰訊號 status_today.md
+
+策略 (便當 5)：
+  分數 > 65         → 明日收盤買進
+  浮動報酬 ≥ +5%    → 明日收盤賣出（達標獲利）
+  浮動報酬 ≤ -5%    → 明日收盤賣出（停損）
+  進場後不看分數，只看價
 
 讀取：
   data/latest.json
   data/leaderboard_7d.json
-  backtest_results.csv
+  backtest_results.csv (含 strategy 欄位)
 
 輸出：
-  status_today.md  (UTF-8, 適合複製貼到 FB)
+  status_today.md  (UTF-8, 適合複製貼到 FB / 自己參考)
 
 用法：
   python scripts/generate_status.py
@@ -23,8 +29,12 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parent.parent
 TAIPEI = ZoneInfo("Asia/Taipei")
 
-# 多策略 CSV 預設只看哪一個策略
-DEFAULT_STRATEGY = "baseline"
+# 便當 5 策略參數
+DEFAULT_STRATEGY = "tp5"
+STRATEGY_LABEL   = "便當 5"
+TP_PCT           = 5.0   # 達標獲利出場
+SL_PCT           = -5.0  # 停損出場
+BUY_THR          = 65    # 買進分數門檻
 
 
 def load_json(rel_path: str) -> dict | None:
@@ -40,117 +50,133 @@ def load_trades() -> list[dict]:
         return []
     with p.open(encoding="utf-8-sig") as f:
         rows = list(csv.DictReader(f))
-    # 多策略 CSV: 只取 DEFAULT_STRATEGY；舊 CSV 沒這欄就全收
     if rows and "strategy" in rows[0]:
         rows = [r for r in rows if r.get("strategy") == DEFAULT_STRATEGY]
     return rows
 
 
-def split_signals(trades: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
-    """切出三類：今日新買進、今日新賣出、目前持倉。
-
-    今日買進 = buy_date 最大的那天（不論 exit 狀態）
-    今日賣出 = sell_date 最大、且 exit != 期末強平 的那天
-    目前持倉 = exit == 期末強平 的所有筆
-    """
+def split_signals(trades: list[dict]) -> tuple[list[dict], list[dict], list[dict], list[dict]]:
+    """切出四類：今日新買進、今日 TP 出場、今日 SL 出場、目前持倉。"""
     if not trades:
-        return [], [], []
+        return [], [], [], []
 
     buy_dates = [t["buy_date"] for t in trades if t.get("buy_date")]
-    sell_dates = [t["sell_date"] for t in trades
-                  if t.get("sell_date") and t.get("exit") != "期末強平"]
+    closed = [t for t in trades if t.get("exit") in ("達標獲利", "停損")]
+    sell_dates = [t["sell_date"] for t in closed if t.get("sell_date")]
 
-    latest_buy = max(buy_dates) if buy_dates else None
+    latest_buy  = max(buy_dates) if buy_dates else None
     latest_sell = max(sell_dates) if sell_dates else None
 
-    today_buys = [t for t in trades if t["buy_date"] == latest_buy]
-    today_sells = [t for t in trades
-                   if t.get("sell_date") == latest_sell
-                   and t.get("exit") != "期末強平"]
-    open_positions = [t for t in trades if t.get("exit") == "期末強平"]
-    return today_buys, today_sells, open_positions
+    today_buys  = [t for t in trades if t["buy_date"] == latest_buy]
+    today_tp    = [t for t in closed if t.get("sell_date") == latest_sell and t.get("exit") == "達標獲利"]
+    today_sl    = [t for t in closed if t.get("sell_date") == latest_sell and t.get("exit") == "停損"]
+    open_pos    = [t for t in trades if t.get("exit") == "期末強平"]
+    return today_buys, today_tp, today_sl, open_pos
 
 
 def summarise_completed(trades: list[dict]) -> dict:
-    completed = [t for t in trades if t.get("exit") and t["exit"] != "期末強平"]
+    completed = [t for t in trades if t.get("exit") in ("達標獲利", "停損")]
     if not completed:
         return {"count": 0}
     rets = [float(t["return_pct"]) for t in completed]
     wins = [r for r in rets if r > 0]
+    medians = sorted(rets)
+    median_ret = medians[len(medians) // 2]
     return {
         "count": len(completed),
         "win_rate": len(wins) / len(rets) * 100,
         "avg_return": sum(rets) / len(rets),
-        "max_win": max(rets),
-        "max_loss": min(rets),
-        "max_win_name": max(completed, key=lambda t: float(t["return_pct"]))["stock_name"],
-        "max_loss_name": min(completed, key=lambda t: float(t["return_pct"]))["stock_name"],
+        "median": median_ret,
+        "tp_count": sum(1 for t in completed if t.get("exit") == "達標獲利"),
+        "sl_count": sum(1 for t in completed if t.get("exit") == "停損"),
     }
 
 
-def section_etf_overview(latest: dict) -> list[str]:
-    return [
-        "## 追蹤",
-        f"- ETF：{len(latest.get('etfs', []))} 檔",
-        f"- 不重複持股：{len(latest.get('holdings', []))} 檔",
-        "",
-    ]
+def fmt_tp_sl(buy_price: float) -> tuple[float, float]:
+    return buy_price * (1 + TP_PCT / 100), buy_price * (1 + SL_PCT / 100)
 
+
+# ── 區段 ────────────────────────────────────────────────
 
 def section_buys(buys: list[dict]) -> list[str]:
     if not buys:
-        return ["## 今日新買進訊號", "（無）", ""]
+        return ["## 🟢 最新進場訊號", "（無）", ""]
     d = buys[0]["buy_date"]
-    lines = [f"## 今日新買進訊號（{d}）"]
+    lines = [
+        f"## 🟢 最新進場訊號（{d}）",
+        f"分數 > {BUY_THR} 進場。買進後設 TP +{TP_PCT}% / SL {SL_PCT}% 委託。",
+        "",
+    ]
     sorted_buys = sorted(buys, key=lambda t: -float(t["buy_score"]))
-    for t in sorted_buys[:10]:
+    for t in sorted_buys[:15]:
+        bp = float(t["buy_price"])
+        tp, sl = fmt_tp_sl(bp)
         lines.append(
-            f"- {t['stock_name']}（{t['stock_id']}） "
-            f"@ {float(t['buy_price']):.1f}　分數 {t['buy_score']}"
+            f"- **{t['stock_name']}（{t['stock_id']}）** 分數 {t['buy_score']}"
+            f"　 進 @ {bp:.1f}　TP {tp:.1f}　SL {sl:.1f}"
         )
-    if len(sorted_buys) > 10:
-        lines.append(f"- ...（其餘 {len(sorted_buys) - 10} 筆略）")
+    if len(sorted_buys) > 15:
+        lines.append(f"- ...（其餘 {len(sorted_buys) - 15} 檔略；分數越高越優先）")
     lines.append("")
     return lines
 
 
-def section_sells(sells: list[dict]) -> list[str]:
-    if not sells:
-        return ["## 今日新賣出訊號", "（無）", ""]
-    d = sells[0]["sell_date"]
-    lines = [f"## 今日新賣出訊號（{d}）"]
-    sorted_sells = sorted(sells, key=lambda t: float(t["return_pct"]), reverse=True)
-    for t in sorted_sells[:10]:
-        ret = float(t["return_pct"])
-        sign = "+" if ret >= 0 else ""
-        lines.append(
-            f"- {t['stock_name']}（{t['stock_id']}） "
-            f"@ {float(t['sell_price']):.1f}　{sign}{ret:.1f}%"
-        )
-    if len(sorted_sells) > 10:
-        lines.append(f"- ...（其餘 {len(sorted_sells) - 10} 筆略）")
-    lines.append("")
+def section_exits(tp_list: list[dict], sl_list: list[dict]) -> list[str]:
+    lines = []
+    if tp_list:
+        d = tp_list[0]["sell_date"]
+        lines.append(f"## ✅ 今日達標出場（{d}）")
+        for t in sorted(tp_list, key=lambda t: -float(t["return_pct"])):
+            ret = float(t["return_pct"])
+            lines.append(
+                f"- {t['stock_name']}（{t['stock_id']}）"
+                f"　@ {float(t['sell_price']):.1f}　淨 +{ret:.2f}%　持 {t['hold_days']} 天"
+            )
+        lines.append("")
+    if sl_list:
+        d = sl_list[0]["sell_date"]
+        lines.append(f"## ⛔ 今日停損出場（{d}）")
+        for t in sorted(sl_list, key=lambda t: float(t["return_pct"])):
+            ret = float(t["return_pct"])
+            lines.append(
+                f"- {t['stock_name']}（{t['stock_id']}）"
+                f"　@ {float(t['sell_price']):.1f}　淨 {ret:.2f}%　持 {t['hold_days']} 天"
+            )
+        lines.append("")
+    if not tp_list and not sl_list:
+        lines += ["## 今日出場", "（無達標 / 停損訊號）", ""]
     return lines
+
+
+def _format_pos_row(t: dict) -> str:
+    bp = float(t["buy_price"])
+    tp, sl = fmt_tp_sl(bp)
+    ret = float(t["return_pct"])
+    sign = "+" if ret >= 0 else ""
+    return (f"| {t['stock_name']}（{t['stock_id']}） | {t['buy_date']} |"
+            f" {bp:.1f} | {tp:.1f} | {sl:.1f} | {sign}{ret:.1f}% |")
 
 
 def section_open_positions(positions: list[dict]) -> list[str]:
+    """策略目前未出場的部位。給使用者「我手上有的話該設多少價」做對照。"""
     if not positions:
-        return ["## 策略目前持倉", "（無）", ""]
-    rets = [float(t["return_pct"]) for t in positions]
-    avg = sum(rets) / len(rets)
-    sign_avg = "+" if avg >= 0 else ""
+        return ["## ⏳ 持倉中（待 TP / SL 觸發）", "（無）", ""]
+
+    sorted_pos = sorted(positions, key=lambda t: -float(t["return_pct"]))
     lines = [
-        f"## 策略目前持倉（{len(positions)} 檔，平均浮動 {sign_avg}{avg:.1f}%）",
+        f"## ⏳ 持倉中（{len(positions)} 檔，等 TP +{TP_PCT}% 或 SL {SL_PCT}%）",
+        f"⚠ 此為 backtest 無資金限制下的全部部位。**實盤建議照分數最高的 5 檔**進場，",
+        "  其他訊號當「想跟」的觀察名單。下表前 15 強、後 10 弱供決策：",
+        "",
+        "| 股票 | 進場日 | 進場價 | TP 目標 | SL 停損 | 目前浮動 |",
+        "|---|---|---|---|---|---|",
     ]
-    for t in sorted(positions, key=lambda t: float(t["return_pct"]), reverse=True)[:10]:
-        ret = float(t["return_pct"])
-        sign = "+" if ret >= 0 else ""
-        lines.append(
-            f"- {t['stock_name']}（{t['stock_id']}）"
-            f"　{sign}{ret:.1f}%　持有 {t['hold_days']} 天"
-        )
-    if len(positions) > 10:
-        lines.append(f"- ...（其餘 {len(positions) - 10} 筆略）")
+    if len(sorted_pos) <= 25:
+        lines += [_format_pos_row(t) for t in sorted_pos]
+    else:
+        lines += [_format_pos_row(t) for t in sorted_pos[:15]]
+        lines.append(f"| _(中段 {len(sorted_pos) - 25} 檔略)_ | | | | | |")
+        lines += [_format_pos_row(t) for t in sorted_pos[-10:]]
     lines.append("")
     return lines
 
@@ -160,8 +186,8 @@ def section_consensus(lb: dict | None, key: str, label: str, min_etf: int = 2) -
     filtered = [x for x in items if x.get("etf_count", 0) >= min_etf]
     if not filtered:
         return [f"## {label}（≥{min_etf} 檔 ETF）", "（無）", ""]
-    lines = [f"## {label}（≥{min_etf} 檔 ETF 同向）"]
-    for x in filtered[:8]:
+    lines = [f"## {label}（≥{min_etf} 檔 ETF 同向，僅供參考非進出依據）"]
+    for x in filtered[:6]:
         delta = x["total_delta"]
         sign = "+" if delta >= 0 else ""
         lines.append(
@@ -174,17 +200,30 @@ def section_consensus(lb: dict | None, key: str, label: str, min_etf: int = 2) -
 
 def section_backtest_summary(stats: dict) -> list[str]:
     if stats.get("count", 0) == 0:
-        return ["## 回測累計表現", "（尚無完成交易）", ""]
+        return ["## 📊 回測表現", "（尚無完成交易）", ""]
     avg = stats["avg_return"]
     sign = "+" if avg >= 0 else ""
     return [
-        "## 回測累計表現",
-        f"- 完成交易：{stats['count']} 筆",
+        "## 📊 回測表現（便當 5，半年）",
+        f"- 完成交易：{stats['count']} 筆（達標 {stats['tp_count']} / 停損 {stats['sl_count']}）",
         f"- 勝率：{stats['win_rate']:.1f}%",
         f"- 平均報酬：{sign}{avg:.2f}%（已扣 0.5% 來回成本）",
-        f"- 最大獲利：+{stats['max_win']:.1f}% ({stats['max_win_name']})",
-        f"- 最大虧損：{stats['max_loss']:.1f}% ({stats['max_loss_name']})",
+        f"- 中位數：+{stats['median']:.2f}%（一半以上交易賺得到）",
         "",
+    ]
+
+
+def section_disclaimer() -> list[str]:
+    return [
+        "---",
+        "## ⚠️ 風險提醒",
+        "- 過去績效**不保證**未來。回測樣本期 2025-10 ~ 2026-04（半年），含科技股大多頭。",
+        "- 回測 vs 實盤有滑價、稅費、額度等差異。",
+        "- 訊號越多越要分散：單檔建議 ≤ 20% 倉位。",
+        "- TP/SL 用券商「條件單」自動委託；半夜 gap 開盤偏離可能被吃掉。",
+        "- **跟訊號 ≠ 保證賺**，自負盈虧。",
+        "",
+        f"_資料來源：{', '.join(['FinMind / yfinance (股價籌碼)', 'ETF 發行商官網 (持股)'])}_",
     ]
 
 
@@ -198,27 +237,25 @@ def main() -> int:
 
     leaderboard = load_json("data/leaderboard_7d.json")
     trades = load_trades()
-    today_buys, today_sells, open_positions = split_signals(trades)
+    today_buys, today_tp, today_sl, open_pos = split_signals(trades)
     stats = summarise_completed(trades)
 
     snapshot_date = (latest.get("updated_at") or today)[:10]
 
     lines = [
-        f"# StockETF 觀察筆記 · {today}",
-        f"資料截至：{snapshot_date}",
+        f"# StockETF {STRATEGY_LABEL} 訊號 · {today}",
+        f"資料截至：{snapshot_date}　|　ETF：{len(latest.get('etfs', []))} 檔　|　追蹤股：{len(latest.get('holdings', []))} 檔",
+        "",
+        f"**策略**：分數 > {BUY_THR} 進場、浮動 +{TP_PCT}% 出場、-{abs(SL_PCT)}% 停損。",
         "",
     ]
-    lines += section_etf_overview(latest)
     lines += section_buys(today_buys)
-    lines += section_sells(today_sells)
-    lines += section_open_positions(open_positions)
-    lines += section_consensus(leaderboard, "top_added", "共識加碼")
-    lines += section_consensus(leaderboard, "top_removed", "共識減碼")
+    lines += section_exits(today_tp, today_sl)
+    lines += section_open_positions(open_pos)
+    lines += section_consensus(leaderboard, "top_added", "📈 法人共識加碼")
+    lines += section_consensus(leaderboard, "top_removed", "📉 法人共識減碼")
     lines += section_backtest_summary(stats)
-    lines += [
-        "---",
-        "_策略：分數 > 65 買進、< 60 賣出。回測已扣 0.5% 來回成本（手續費 + 證交稅）。_",
-    ]
+    lines += section_disclaimer()
 
     out = ROOT / "status_today.md"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
