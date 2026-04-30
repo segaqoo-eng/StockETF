@@ -9,22 +9,15 @@ backtest.py — 買進評分策略回測（本機執行）
   .venv\\Scripts\\python.exe backtest.py
 """
 
-import json, os, time, sys
-from pathlib import Path
-import requests
+import json, sys
 import pandas as pd
 import numpy as np
-from datetime import date
 
-# 可選：FinMind API token (https://finmindtrade.com 免費註冊就有，配額 600→6000/小時)
-# 設定方式：在 shell 或 update.bat 裡 set FINMIND_TOKEN=eyJ...
-FINMIND_TOKEN = os.environ.get("FINMIND_TOKEN", "").strip()
+import data_provider  # SQLite cache + multi-source fallback
 
 # ── 設定 ────────────────────────────────────────────────
 BACKTEST_START = "2025-10-01"   # 回測起點（半年）
 DATA_START     = "2025-04-01"   # 抓取起點（需足夠計算指標）
-SLEEP_SEC      = 0.8            # 每次 API 請求間隔
-FINMIND_URL    = "https://api.finmindtrade.com/api/v4/data"
 
 # 交易成本（單筆來回，台股實際）
 #   買進手續費 0.1% + 賣出手續費 0.1% + 證交稅 0.3% ≈ 0.5%
@@ -52,51 +45,6 @@ def get_stocks():
     with open("data/latest.json", encoding="utf-8") as f:
         d = json.load(f)
     return [(h["stock_id"], h["stock_name"]) for h in d["holdings"]]
-
-
-CACHE_DIR = Path("data/finmind_cache")
-CACHE_TTL_SEC = 24 * 3600   # 一天內 cache 有效
-
-
-def fetch_finmind(dataset, stock_id):
-    """先看 cache (24h 內視為新鮮)，沒命中再打 API。
-
-    用意：一天內反覆調策略不會耗 API 配額。FinMind 免費版每 IP 每小時有 limit。
-    """
-    cache_file = CACHE_DIR / f"{dataset}_{stock_id}.json"
-    if cache_file.exists():
-        age = time.time() - cache_file.stat().st_mtime
-        if age < CACHE_TTL_SEC:
-            try:
-                return json.loads(cache_file.read_text(encoding="utf-8"))
-            except Exception:
-                pass  # cache 壞了就重抓
-
-    params = {"dataset": dataset, "data_id": stock_id, "start_date": DATA_START}
-    if FINMIND_TOKEN:
-        params["token"] = FINMIND_TOKEN
-    try:
-        r = requests.get(FINMIND_URL, params=params, timeout=30)
-        d = r.json()
-        if d.get("status") == 200 and d.get("data"):
-            CACHE_DIR.mkdir(parents=True, exist_ok=True)
-            cache_file.write_text(json.dumps(d["data"], ensure_ascii=False), encoding="utf-8")
-            return d["data"]
-        # rate limit / 配額用完時印明顯訊息一次
-        if d.get("status") == 402:
-            global _RATE_LIMIT_WARNED
-            if not _RATE_LIMIT_WARNED:
-                _RATE_LIMIT_WARNED = True
-                print(f"\n[FINMIND RATE LIMIT] {d.get('msg','')}\n"
-                      f"  → 註冊免費帳號取得 token 可提升到 6000/hr：https://finmindtrade.com\n"
-                      f"  → 取得後執行：set FINMIND_TOKEN=eyJ... 再跑 update.bat\n",
-                      file=sys.stderr)
-    except Exception as e:
-        print(f"[WARN] {stock_id} {dataset}: {e}", file=sys.stderr)
-    return []
-
-
-_RATE_LIMIT_WARNED = False
 
 
 # ── 技術指標（pandas 版） ────────────────────────────────
@@ -341,7 +289,7 @@ def fetch_benchmark_return():
         "return_pct_net",    # 扣 0.5% 來回成本
       }
     """
-    raw = fetch_finmind("TaiwanStockPrice", BENCHMARK_TICKER)
+    raw = data_provider.get_ohlcv(BENCHMARK_TICKER, start_date=BACKTEST_START)
     if not raw:
         return None
 
@@ -380,10 +328,8 @@ def main():
 
     for i, (sid, name) in enumerate(stocks):
         print(f"[{i+1:3d}/{len(stocks)}] {sid} {name}... ", end="", flush=True)
-        ohlcv = fetch_finmind("TaiwanStockPrice", sid)
-        time.sleep(SLEEP_SEC)
-        inst  = fetch_finmind("TaiwanStockInstitutionalInvestorsBuySell", sid)
-        time.sleep(SLEEP_SEC)
+        ohlcv = data_provider.get_ohlcv(sid, start_date=DATA_START)
+        inst  = data_provider.get_institutional(sid, start_date=DATA_START)
 
         if not ohlcv:
             print("無資料")

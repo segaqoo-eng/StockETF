@@ -38,5 +38,12 @@ status_today.md
 # FinMind raw data cache (regenerated as needed; large)
 data/finmind_cache/
 
+# SQLite stock data cache (per-machine, accumulated over time)
+data/stock_data.db
+data/stock_data.db-journal
+
 # Backtest results (regenerated; not authoritative)
 backtest_results.csv
+
+# Task Scheduler wrapper (may contain FINMIND_TOKEN)
+update_scheduled.bat
