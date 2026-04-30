@@ -47,6 +47,9 @@ data/stock_data.db-journal
 # Paper trading portfolio (per-machine simulation state)
 data/paper_portfolio.json
 
+# Real positions (private — actual buys/sells, P&L history)
+data/my_positions.json
+
 # Backtest results (regenerated; not authoritative)
 backtest_results.csv
 
