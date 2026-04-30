@@ -25,6 +25,24 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import my_status  # noqa: E402
 
+import threading
+
+# ── Refresh job state（module-level mutex）──────────────────
+_job_lock = threading.Lock()
+_running_job: str | None = None         # "prices" | "etfs" | None
+_job_started_at: str | None = None
+_last_result: dict | None = None
+_last_error: str | None = None
+
+
+def _reset_for_tests() -> None:
+    """Test-only: reset module state between tests."""
+    global _running_job, _job_started_at, _last_result, _last_error
+    _running_job = None
+    _job_started_at = None
+    _last_result = None
+    _last_error = None
+
 
 class StockETFHandler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
@@ -38,6 +56,14 @@ class StockETFHandler(SimpleHTTPRequestHandler):
     # ── GET ───────────────────────────────────────────────
 
     def do_GET(self):
+        if self.path == "/api/refresh/status":
+            return self._send_json({
+                "running":     _running_job is not None,
+                "current_job": _running_job,
+                "started_at":  _job_started_at,
+                "last_result": _last_result,
+                "last_error":  _last_error,
+            })
         if self.path == "/api/positions":
             return self._send_json(my_status.get_full_status())
         if self.path.startswith("/api/markdown"):
