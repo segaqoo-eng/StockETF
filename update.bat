@@ -9,7 +9,7 @@ set PYTHONIOENCODING=utf-8
 REM === StockETF daily update (one-click) ===
 REM   1) Scrape ETF holdings -> data/latest.json
 REM   2) Run backtest -> backtest_results.csv
-REM   3) Generate post summary -> status_today.md
+REM   3) Generate post summary -> status_today.md + my_status.md
 REM   4) Start local web server + open browser
 REM Headless mode: set SKIP_PAUSE=1 to skip server, browser, and pause
 REM Full output is appended to logs/update_YYYY-MM-DD.log
@@ -45,12 +45,17 @@ echo ====== %DATE% %TIME% backtest.py ====== >> "%LOG%"
 python backtest.py >> "%LOG%" 2>&1
 if errorlevel 1 (echo   [FAIL] see %LOG%) else (echo   [OK])
 
-REM --- 3/4 Generate post summary ---
-echo [3/4] Generating post summary (status_today.md)...
+REM --- 3/4 Generate post summary + my positions ---
+echo [3/4] Generating status reports (status_today.md + my_status.md)...
 echo. >> "%LOG%"
 echo ====== %DATE% %TIME% generate_status.py ====== >> "%LOG%"
 python scripts\generate_status.py >> "%LOG%" 2>&1
-if errorlevel 1 (echo   [FAIL] see %LOG%) else (echo   [OK])
+if errorlevel 1 (echo   [FAIL] status_today see %LOG%) else (echo   [OK] status_today.md)
+
+echo. >> "%LOG%"
+echo ====== %DATE% %TIME% my_status.py ====== >> "%LOG%"
+python scripts\my_status.py >> "%LOG%" 2>&1
+if errorlevel 1 (echo   [FAIL] my_status see %LOG%) else (echo   [OK] my_status.md)
 
 REM --- 4/4 Start web server + open browser (skipped in headless mode) ---
 if "%SKIP_PAUSE%"=="1" (

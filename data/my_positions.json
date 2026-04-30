@@ -1,0 +1,13 @@
+{
+  "_comment": "你的實際部位記錄。用任何文字編輯器修改即可。每次跑 update.bat 會自動更新 my_status.md。",
+  "_schema": {
+    "open": "目前持有：{stock_id, stock_name, buy_date, buy_price, shares, tp_pct?, sl_pct?}",
+    "closed": "已出場：open 的所有欄位 + sell_date, sell_price"
+  },
+  "_target_usd": 100,
+  "_usd_twd_rate": 33.0,
+  "_strategy_default_tp_pct": 5.0,
+  "_strategy_default_sl_pct": -5.0,
+  "open": [],
+  "closed": []
+}
