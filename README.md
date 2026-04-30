@@ -20,15 +20,20 @@ init.bat
 
 ## 常用指令
 
+**一鍵更新（推薦）**：雙擊 `update.bat`，自動執行：
+1. 抓 ETF 持股 (`main.py`)
+2. 跑 5 種策略回測 (`backtest.py`)
+3. 產生貼文摘要 (`scripts/generate_status.py` → `status_today.md`)
+4. 啟動本機網站 + 開瀏覽器
+
+**設定每日自動刷新（不用記得每天跑）**：見 [docs/AUTO_REFRESH_SETUP.md](docs/AUTO_REFRESH_SETUP.md)
+
+**手動跑單一步驟**：
+
 ```bash
-# 更新今日持股資料
-.venv\Scripts\python.exe main.py
-
-# 開啟本地網站（瀏覽器開 http://localhost:8080）
-.venv\Scripts\python.exe -m http.server 8080
-
-# 回測買進評分策略
-.venv\Scripts\python.exe backtest.py
+.venv\Scripts\python.exe main.py        # 更新持股
+.venv\Scripts\python.exe backtest.py    # 回測
+.venv\Scripts\python.exe -m http.server 8000   # 看網站
 ```
 
 ---
@@ -67,26 +72,31 @@ Open http://localhost:8000/ in a browser. (Leave the server running; Ctrl+C to s
 2. On GitHub: Settings → Pages → Source: `main` branch, `/` (root) → Save.
 3. Wait ~1 minute; site appears at `https://<your-user>.github.io/StockETF/`.
 
-To refresh data (v1 is manual):
+To refresh data:
 
 ```bash
-python main.py
+update.bat              # 一鍵全跑 (持股 + 回測 + 摘要 + 開網站)
 git add data/
 git commit -m "data: update $(date +%Y-%m-%d)"
 git push
 ```
 
-v2 will automate this with GitHub Actions.
+每日自動排程見 [docs/AUTO_REFRESH_SETUP.md](docs/AUTO_REFRESH_SETUP.md)。
 
 ## Project layout
 
-- `scrapers/` — per-issuer HTML parsers (Yuanta, Nomura, Capital)
+- `scrapers/` — per-issuer HTML parsers (Yuanta, Nomura, Capital, ...)
 - `normalizer.py` — merges scraped data + config into `data/latest.json`
 - `main.py` — orchestrator; handles per-ETF failures by reusing previous data
+- `data_provider.py` — SQLite cache + multi-source (FinMind / yfinance) fallback for backtest
+- `backtest.py` — multi-strategy backtester with cost deduction + 0050 benchmark
+- `scripts/generate_status.py` — produces `status_today.md` from latest data
+- `update.bat` — one-click update orchestrator (supports headless mode for Task Scheduler)
 - `config/etfs.yml` — which ETFs to track; tags and color per ETF
 - `config/stocks.yml` — industry mapping (optional enrichment)
 - `index.html` + `assets/` — static frontend
 - `docs/VERIFY.md` — local verification steps
+- `docs/AUTO_REFRESH_SETUP.md` — Windows Task Scheduler setup
 
 ## Tests
 

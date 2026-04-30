@@ -260,20 +260,34 @@ def _today_iso() -> str:
     return datetime.now(TAIPEI).date().isoformat()
 
 
+def _earliest_date(stock_id: str, table: str) -> str | None:
+    with _conn() as c:
+        r = c.execute(f"SELECT MIN(date) FROM {table} WHERE stock_id = ?",
+                      (stock_id,)).fetchone()
+    return r[0] if r and r[0] else None
+
+
+def _coverage_complete(stock_id: str, table: str, start_date: str) -> bool:
+    """DB 是否已涵蓋 [start_date, 今天] 整段？"""
+    earliest = _earliest_date(stock_id, table)
+    latest = _last_date(stock_id, table)
+    today = _today_iso()
+    return (earliest is not None
+            and latest is not None
+            and earliest <= start_date
+            and latest >= today)
+
+
 def get_ohlcv(stock_id: str, start_date: str,
               providers: list[DataProvider] | None = None) -> list[dict]:
-    """從 DB 拿 OHLCV，缺的部分依序問 providers。永遠回傳合併後完整資料。"""
-    last = _last_date(stock_id, "ohlcv")
-    today = _today_iso()
-    needs_fetch = (last is None) or (last < today)
+    """從 DB 拿 OHLCV；若 DB 沒涵蓋 [start_date, 今天]，向 providers 補抓。
 
-    if needs_fetch:
-        # DB 已有資料就只抓「下一天起」，沒就從 start_date 起
-        fetch_from = start_date if last is None else (
-            (datetime.fromisoformat(last) + timedelta(days=1)).date().isoformat()
-        )
+    refetch from start_date 是刻意的：INSERT OR REPLACE 自帶去重，
+    一次抓全範圍比「只抓兩端」少邊界 bug。
+    """
+    if not _coverage_complete(stock_id, "ohlcv", start_date):
         for p in providers or default_providers():
-            new_rows = p.fetch_ohlcv(stock_id, fetch_from)
+            new_rows = p.fetch_ohlcv(stock_id, start_date)
             if new_rows:
                 _save_ohlcv(stock_id, new_rows, source=p.name)
                 break
@@ -282,17 +296,10 @@ def get_ohlcv(stock_id: str, start_date: str,
 
 def get_institutional(stock_id: str, start_date: str,
                        providers: list[DataProvider] | None = None) -> list[dict]:
-    """從 DB 拿三大法人，缺的部分依序問 providers。"""
-    last = _last_date(stock_id, "institutional")
-    today = _today_iso()
-    needs_fetch = (last is None) or (last < today)
-
-    if needs_fetch:
-        fetch_from = start_date if last is None else (
-            (datetime.fromisoformat(last) + timedelta(days=1)).date().isoformat()
-        )
+    """從 DB 拿三大法人；若 DB 沒涵蓋 [start_date, 今天]，向 providers 補抓。"""
+    if not _coverage_complete(stock_id, "institutional", start_date):
         for p in providers or default_providers():
-            new_rows = p.fetch_institutional(stock_id, fetch_from)
+            new_rows = p.fetch_institutional(stock_id, start_date)
             if new_rows:
                 _save_institutional(stock_id, new_rows, source=p.name)
                 break
