@@ -69,7 +69,7 @@ if "%SKIP_PAUSE%"=="1" (
 )
 
 echo [4/4] Starting local web server and opening browser...
-start "StockETF Server" /B python -m http.server 8000 >> "%LOG%" 2>&1
+start "StockETF Server" /B python scripts\web_server.py 8000 >> "%LOG%" 2>&1
 timeout /t 2 /nobreak > nul
 start http://localhost:8000
 

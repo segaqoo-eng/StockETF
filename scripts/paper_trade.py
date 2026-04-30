@@ -146,10 +146,10 @@ def take_new_signals(portfolio: dict) -> list[str]:
         if r["stock_id"] in held:
             continue
         bp = float(r["buy_price"])
-        # 整股數：以 POSITION_SIZE 為上限，floor 到整張 (1000 股)
-        shares = int(POSITION_SIZE / bp / 1000) * 1000
-        if shares < 1000:
-            notes.append(f"  💸 {r['stock_name']} ({bp:.0f} 元/股) 1 張要 {bp*1000:,.0f}，超過部位上限 {POSITION_SIZE:,.0f}，跳過")
+        # 零股化：以 POSITION_SIZE 為上限，最小 1 股
+        shares = int(POSITION_SIZE / bp)
+        if shares < 1:
+            notes.append(f"  💸 {r['stock_name']} ({bp:.0f} 元/股) 連 1 股都買不起 (部位上限 {POSITION_SIZE:,.0f})，跳過")
             continue
         actual_cost = shares * bp * (1 + COST_BUY_PCT / 100)
         if portfolio["cash"] < actual_cost:
