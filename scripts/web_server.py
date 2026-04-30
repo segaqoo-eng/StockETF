@@ -19,6 +19,16 @@ import traceback
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 
+# Force UTF-8 stdout/stderr so background jobs (backtest / generate_status /
+# paper_trade / main) can print Unicode chars (▶ → ✓ etc.) without crashing
+# on Windows cp950 default. update.bat already sets PYTHONIOENCODING=utf-8
+# but we shouldn't depend on the launcher.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass  # streams not always reconfigurable (e.g. piped); silently ignore
+
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
