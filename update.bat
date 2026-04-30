@@ -45,12 +45,17 @@ echo ====== %DATE% %TIME% backtest.py ====== >> "%LOG%"
 python backtest.py >> "%LOG%" 2>&1
 if errorlevel 1 (echo   [FAIL] see %LOG%) else (echo   [OK])
 
-REM --- 3/4 Generate post summary + my positions ---
-echo [3/4] Generating status reports (status_today.md + my_status.md)...
+REM --- 3/4 Generate status reports ---
+echo [3/4] Generating status reports...
 echo. >> "%LOG%"
 echo ====== %DATE% %TIME% generate_status.py ====== >> "%LOG%"
 python scripts\generate_status.py >> "%LOG%" 2>&1
 if errorlevel 1 (echo   [FAIL] status_today see %LOG%) else (echo   [OK] status_today.md)
+
+echo. >> "%LOG%"
+echo ====== %DATE% %TIME% paper_trade.py ====== >> "%LOG%"
+python scripts\paper_trade.py >> "%LOG%" 2>&1
+if errorlevel 1 (echo   [FAIL] paper_trade see %LOG%) else (echo   [OK] paper_status.md)
 
 echo. >> "%LOG%"
 echo ====== %DATE% %TIME% my_status.py ====== >> "%LOG%"

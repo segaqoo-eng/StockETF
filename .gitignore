@@ -35,6 +35,7 @@ logs/*.log
 # Generated post summary (regenerated daily)
 status_today.md
 my_status.md
+paper_status.md
 
 # FinMind raw data cache (regenerated as needed; large)
 data/finmind_cache/
@@ -42,6 +43,9 @@ data/finmind_cache/
 # SQLite stock data cache (per-machine, accumulated over time)
 data/stock_data.db
 data/stock_data.db-journal
+
+# Paper trading portfolio (per-machine simulation state)
+data/paper_portfolio.json
 
 # Backtest results (regenerated; not authoritative)
 backtest_results.csv
