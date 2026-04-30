@@ -44,6 +44,85 @@ def _reset_for_tests() -> None:
     _last_error = None
 
 
+import json as _json   # 避免遮蔽 do_POST 內的 json 匯入
+
+
+def _run_prices_job() -> None:
+    """Background runner: fetch_daily_close + write prices_today.json."""
+    global _running_job, _last_result, _last_error
+    try:
+        from scrapers.daily_close import fetch_daily_close
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+
+        latest_path = ROOT / "data" / "latest.json"
+        prices_path = ROOT / "data" / "prices_today.json"
+        target = datetime.now(ZoneInfo("Asia/Taipei")).date()
+
+        latest = _json.loads(latest_path.read_text(encoding="utf-8"))
+        held_ids = sorted({
+            h["stock_id"]
+            for etf in latest.get("etfs", [])
+            for h in etf.get("holdings", [])
+            if h.get("market") == "TW"
+        })
+        result = fetch_daily_close(list(held_ids), target)
+
+        if result["ok"]:
+            payload = {
+                "date":       result["date"],
+                "source":     result["source"],
+                "fetched_at": result["fetched_at"],
+                "prices":     result["prices"],
+                "missing":    result["missing"],
+            }
+            prices_path.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+        _last_result = {
+            "job":            "prices",
+            "ok":             result["ok"],
+            "source":         result["source"],
+            "missing_count":  len(result["missing"]),
+            "tried":          result["tried"],
+            "error":          result["error"],
+        }
+        _last_error = None
+    except Exception as e:
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        _last_error = f"{type(e).__name__}: {e}"
+        _last_result = None
+
+
+def _try_start_job(job_name: str, target_fn) -> tuple[bool, str | None]:
+    """嘗試取 mutex 並啟動 background thread。回 (started, error_msg)。"""
+    global _running_job, _job_started_at, _last_error
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    with _job_lock:
+        if _running_job is not None:
+            return False, f"another job '{_running_job}' is running"
+        _running_job = job_name
+        _job_started_at = datetime.now(ZoneInfo("Asia/Taipei")).isoformat(timespec="seconds")
+        _last_error = None
+
+    def _runner():
+        global _running_job, _job_started_at, _last_error
+        try:
+            target_fn()
+        except Exception as e:
+            import traceback
+            traceback.print_exc(file=sys.stderr)
+            _last_error = f"{type(e).__name__}: {e}"
+        finally:
+            with _job_lock:
+                _running_job = None
+                _job_started_at = None
+
+    threading.Thread(target=_runner, daemon=True).start()
+    return True, None
+
+
 class StockETFHandler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
@@ -114,6 +193,13 @@ class StockETFHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         try:
+            if self.path == "/api/refresh/prices":
+                ok, err = _try_start_job("prices", _run_prices_job)
+                if not ok:
+                    return self._send_json({"ok": False, "error": err}, status=409)
+                return self._send_json({"job": "prices", "started_at": _job_started_at},
+                                       status=202)
+
             if self.path == "/api/positions/add":
                 payload = self._read_json()
                 pos = my_status.add_position(
