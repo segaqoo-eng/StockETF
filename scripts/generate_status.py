@@ -246,7 +246,13 @@ def main() -> int:
         f"# StockETF {STRATEGY_LABEL} 訊號 · {today}",
         f"資料截至：{snapshot_date}　|　ETF：{len(latest.get('etfs', []))} 檔　|　追蹤股：{len(latest.get('holdings', []))} 檔",
         "",
-        f"**策略**：分數 > {BUY_THR} 進場、浮動 +{TP_PCT}% 出場、-{abs(SL_PCT)}% 停損。",
+        "## 📋 今日重點",
+        f"- 🟢 進場訊號：**{len(today_buys)} 檔**（取分數最高的 5 檔，每檔 ~20 萬）",
+        f"- ✅ 達標出場：**{len(today_tp)} 檔**（鎖利）",
+        f"- ⛔ 停損出場：**{len(today_sl)} 檔**（停損）",
+        f"- ⏳ 未實現持倉：{len(open_pos)} 檔",
+        "",
+        f"**策略**：分數 > {BUY_THR} 進場、浮動 +{TP_PCT}% 出場、{SL_PCT}% 停損。",
         "",
     ]
     lines += section_buys(today_buys)

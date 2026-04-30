@@ -97,6 +97,9 @@ git push
 - `index.html` + `assets/` — static frontend
 - `docs/VERIFY.md` — local verification steps
 - `docs/AUTO_REFRESH_SETUP.md` — Windows Task Scheduler setup
+- `docs/STRATEGY.md` — 便當 5 策略決策紀錄與實戰指南
+- `scripts/portfolio_sim.py` — 資金管理模擬（驗證 + 比較不同策略）
+- `scripts/my_status.py` — 實際持倉追蹤 + 回本進度
 
 ## Tests
 
