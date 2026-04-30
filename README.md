@@ -1,40 +1,77 @@
 # StockETF
 
-台灣 ETF 交叉持股分析工具（v1 MVP）。
+台灣主動式 ETF 交叉持股分析工具（v1.6）。
 
-## 快速開始（新電腦 / 換電腦）
+## 快速開始（新電腦 / 換電腦從零安裝）
 
-**Step 1：下載專案**
-```
+### 前置需求
+- **Windows**（專案目前只測過 Windows）
+- **Python 3.12**（[官網下載](https://www.python.org/downloads/)，安裝時記得勾選「Add Python to PATH」）
+- **Git**（[git-scm.com/download/win](https://git-scm.com/download/win)）
+
+### Step 1：下載專案
+```bat
+cd %USERPROFILE%\source\repos
 git clone https://github.com/segaqoo-eng/StockETF.git
 cd StockETF
 ```
 
-**Step 2：一鍵安裝（雙擊 or 執行）**
-```
+### Step 2：一鍵建環境（雙擊 or cmd 執行）
+```bat
 init.bat
 ```
-自動建立虛擬環境 + 安裝所有套件，完成後會顯示常用指令。
+自動建 `.venv` 虛擬環境 + 裝 `requirements.txt` 所有套件。完成後會顯示常用指令。
+
+### Step 3：一鍵抓資料 + 開網站
+```bat
+update.bat
+```
+跑完瀏覽器自動開到 `http://localhost:8000`。第一次跑可能 1-2 分鐘（爬 7 家發行商）。
+
+### 跨電腦工作流（家裡 ↔ 公司）
+```bat
+git pull              :: 開工：拿最新 code + data
+update.bat            :: 看當天最新分析
+git add data/         :: 收工：commit 今天的資料
+git commit -m "data: update %DATE%"
+git push
+```
+`.venv\` 跟 `.claude\` 是每台電腦獨立的（不跟著 git），換電腦要重跑 `init.bat`。
 
 ---
 
 ## 常用指令
 
-**一鍵更新（推薦）**：雙擊 `update.bat`，自動執行：
-1. 抓 ETF 持股 (`main.py`)
-2. 跑 5 種策略回測 (`backtest.py`)
-3. 產生貼文摘要 (`scripts/generate_status.py` → `status_today.md`)
-4. 啟動本機網站 + 開瀏覽器
+### 一鍵更新（推薦）
+雙擊或 cmd 執行 `update.bat`，自動執行 3 步：
+1. **`[1/3]`** 抓 ETF 持股 + 抓今日股價（`main.py`，走 4-tier provider chain：FinMind → yfinance → TWSE+TPEx → cache）
+2. **`[2/3]`** 產生個人持倉報告（`scripts/my_status.py` → `my_status.md`）
+3. **`[3/3]`** 啟動本機 web server + 開瀏覽器
 
-**設定每日自動刷新（不用記得每天跑）**：見 [docs/AUTO_REFRESH_SETUP.md](docs/AUTO_REFRESH_SETUP.md)
+> 💡 **注意**：v1.6 起 `update.bat` **不再跑回測**（太慢 + FinMind 容易爆配額）。回測改在網頁按「🔄 回測」按鈕**手動觸發**。
 
-**手動跑單一步驟**：
+### 網頁按鈕（v1.6 新功能）
+網頁 header 副標有 3 顆按鈕：
+- **🔄 股價** — 重抓今日收盤（10-30 秒）
+- **🔄 ETF** — 重抓 ETF 持股 + 股價（1-2 分鐘）
+- **🔄 回測** — 跑 backtest + 產生 status_today.md + paper_status.md（2-5 分鐘）
 
-```bash
-.venv\Scripts\python.exe main.py        # 更新持股
-.venv\Scripts\python.exe backtest.py    # 回測
-.venv\Scripts\python.exe -m http.server 8000   # 看網站
+旁邊的徽章顯示當前股價來源：🟢 FinMind / 🟡 yfinance / 🔵 TWSE+TPEx / 🔴 Cache（舊資料）。
+
+### 手動跑單一步驟
+```bat
+.venv\Scripts\python.exe main.py                      :: 更新持股 + 股價
+.venv\Scripts\python.exe backtest.py                  :: 回測
+.venv\Scripts\python.exe scripts\web_server.py 8000   :: 啟動網站（含 API endpoints）
 ```
+
+> ⚠️ 不要用 `python -m http.server 8000` — 那只是靜態檔伺服器，沒有 `/api/refresh/*` 等 endpoint，網頁按鈕不會動。
+
+### FinMind Token（選用）
+匿名用 600 calls/hour 對單機足夠。若想升級 6000/hour：
+1. 註冊 [finmindtrade.com](https://finmindtrade.com/)
+2. 拿 token 後 `setx FINMIND_TOKEN "你的token"`
+3. 重開 cmd 跑 `update.bat`
 
 ---
 
@@ -85,21 +122,41 @@ git push
 
 ## Project layout
 
-- `scrapers/` — per-issuer HTML parsers (Yuanta, Nomura, Capital, ...)
+### Backend
+- `scrapers/` — per-issuer HTML parsers (Yuanta, Nomura, Capital, President, Fuhhwa)
+- `scrapers/twse_prices.py` — TWSE + TPEx 每日收盤價 bulk fetcher
+- `scrapers/daily_close.py` — **(v1.5)** 4-tier 股價 provider chain（FinMind → yfinance → TWSE+TPEx → cache）+ dispatch logic
 - `normalizer.py` — merges scraped data + config into `data/latest.json`
-- `main.py` — orchestrator; handles per-ETF failures by reusing previous data
+- `main.py` — orchestrator；個別 ETF 失敗時 fallback 到前一天 snapshot
 - `data_provider.py` — SQLite cache + multi-source (FinMind / yfinance) fallback for backtest
 - `backtest.py` — multi-strategy backtester with cost deduction + 0050 benchmark
-- `scripts/generate_status.py` — produces `status_today.md` from latest data
-- `update.bat` — one-click update orchestrator (supports headless mode for Task Scheduler)
-- `config/etfs.yml` — which ETFs to track; tags and color per ETF
-- `config/stocks.yml` — industry mapping (optional enrichment)
-- `index.html` + `assets/` — static frontend
-- `docs/VERIFY.md` — local verification steps
-- `docs/AUTO_REFRESH_SETUP.md` — Windows Task Scheduler setup
-- `docs/STRATEGY.md` — 便當 5 策略決策紀錄與實戰指南
-- `scripts/portfolio_sim.py` — 資金管理模擬（驗證 + 比較不同策略）
-- `scripts/my_status.py` — 實際持倉追蹤 + 回本進度
+
+### Scripts
+- `scripts/web_server.py` — **(v1.5)** 本機 web server，提供 `/api/positions` + `/api/refresh/{prices,etfs,backtest,status}` endpoints
+- `scripts/tee.py` — **(v1.6)** Python tee wrapper（避免 PowerShell `Tee-Object` 在 PS 5.1 的 NativeCommandError 問題）
+- `scripts/generate_status.py` — produces `status_today.md`
+- `scripts/paper_trade.py` — paper 模擬交易，產 `paper_status.md`
+- `scripts/my_status.py` — 實際持倉追蹤 + 回本進度，產 `my_status.md`
+- `scripts/portfolio_sim.py` — 資金管理模擬
+
+### Frontend
+- `index.html` + `assets/style.css` — 主頁
+- `assets/app.js` — 主邏輯、交叉持股表、徽章 render
+- `assets/refresh.js` — **(v1.5)** 強制刷新按鈕邏輯 + polling
+- `assets/toast.js` — **(v1.5)** 簡易 toast lib
+- `assets/ranking.js` — 「買進評分」tab
+- `assets/positions.js` — 「我的部位」tab
+- `assets/markdown_view.js` — 「今日訊號」/「Paper 模擬」tab（讀 `.md` 渲染）
+
+### Config & docs
+- `config/etfs.yml` — 追蹤哪幾檔 ETF；tags 跟顏色
+- `config/stocks.yml` — 產業分類（optional）
+- `update.bat` — 一鍵更新（v1.6: 3 步流程，已分離回測）
+- `init.bat` — 一鍵建環境
+- `docs/VERIFY.md` — 本機驗收清單
+- `docs/SCRAPING.md` — 爬蟲開發方法論
+- `docs/ARCHITECTURE.md` — 模組職責與資料流
+- `docs/STRATEGY.md` — 便當 5 策略決策紀錄
 
 ## Tests
 
@@ -111,16 +168,30 @@ Scraper tests use saved HTML/JSON fixtures in `tests/fixtures/` so they don't hi
 
 ## Manual UI checklist
 
-After running `python main.py` and `python -m http.server 8000`, open http://localhost:8000/ in a browser and verify:
+跑完 `update.bat` 後，瀏覽器自動開到 `http://localhost:8000`。驗收：
 
-- [ ] Dark theme loads, header shows "更新於 YYYY-MM-DD HH:MM"
-- [ ] Tab bar shows "交叉持股" (active), "ETF 總覽" (disabled), "持股變動" (disabled)
-- [ ] Main table first row is 聯發科 (2454) with count badge "4"
-- [ ] Filter "最少被持有 4 檔以上" narrows table to ~4 rows
-- [ ] Industry dropdown lists values like "半導體", selecting narrows the table
-- [ ] Search "2330" narrows to 台積電
-- [ ] Click any row → a detail row appears below listing each ETF and weight; click again → it collapses
-- [ ] No errors in the browser console (F12 → Console)
+### Header
+- [ ] 看到「更新於 YYYY-MM-DD HH:MM · 🟢 FinMind / 🟡 yfinance / 🔵 TWSE+TPEx」徽章
+- [ ] 三顆按鈕：🔄 股價 / 🔄 ETF / 🔄 回測
+- [ ] hover 徽章看到 tooltip：「抓取於 ... · N 檔抓不到」
+
+### Tabs（8 個）
+- [ ] 交叉持股、ETF 總覽、各 ETF 持股變化、共識加減碼、買進評分、📋 今日訊號、📈 Paper 模擬、💰 我的部位
+
+### 交叉持股 tab（預設）
+- [ ] 表格顯示前幾名跨 ETF 持有的個股
+- [ ] 篩選「最少被持有 N 檔以上」會縮小範圍
+- [ ] 點任一列展開明細（顯示每檔 ETF 持有此股的權重）
+
+### Refresh 按鈕（v1.5/v1.6）
+- [ ] 按「🔄 股價」→ 兩按鈕灰掉、徽章變 ⏳ → 10-30 秒後表格自動更新
+- [ ] 按「🔄 回測」→ 等 2-5 分鐘 → 「買進評分」tab 點進去看到新資料
+- [ ] 同時間只允許一個 job（第二個會 toast「已有任務在跑」）
+
+### 不該出現的東西
+- [ ] DevTools console 沒紅字 (F12 → Console)
+- [ ] 跑 `update.bat` 時 cmd 視窗沒有 PowerShell `NativeCommandError` 紅字
+- [ ] yfinance 不會印「possibly delisted」噪音（v1.6 修了）
 
 ## 免責聲明
 
