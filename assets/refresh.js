@@ -67,10 +67,17 @@
         window.state.prices = await pricesRes.json();
       }
       if (status.last_result && status.last_result.job === "etfs") {
-        const latestRes = await fetch("data/latest.json", { cache: "no-store" });
-        if (latestRes.ok && window.state) {
-          window.state.payload = await latestRes.json();
-        }
+        // ETF job rewrites latest + diff + leaderboard + history; refetch all
+        const [latestRes, diffRes, lbRes, histRes] = await Promise.all([
+          fetch("data/latest.json", { cache: "no-store" }),
+          fetch("data/latest_diff.json", { cache: "no-store" }),
+          fetch("data/leaderboard_7d.json", { cache: "no-store" }),
+          fetch("data/history_per_stock.json", { cache: "no-store" }),
+        ]);
+        if (latestRes.ok && window.state) window.state.payload = await latestRes.json();
+        if (diffRes.ok && window.state)   window.state.diff = await diffRes.json();
+        if (lbRes.ok && window.state)     window.state.leaderboard = await lbRes.json();
+        if (histRes.ok && window.state)   window.state.history = await histRes.json();
       }
     } catch (e) {
       toast(`資料重載失敗：${e.message || e}`, { level: "error" });
