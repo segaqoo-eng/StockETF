@@ -47,3 +47,21 @@ class CacheDailyClose(PriceProvider):
             raise ProviderUnavailable("cache prices empty")
         # filter to only requested stock_ids
         return {sid: prices[sid] for sid in stock_ids if sid in prices}
+
+
+from scrapers.twse_prices import PricesFetcher
+
+
+class TwseTpexDailyClose(PriceProvider):
+    """TWSE + TPEx bulk daily-close — wraps existing PricesFetcher."""
+    name = "twse_tpex"
+
+    def __init__(self):
+        self._fetcher = PricesFetcher()
+
+    def fetch(self, stock_ids: list[str], target_date: date) -> dict[str, dict]:
+        raw = self._fetcher.fetch_all(target_date)
+        if not raw:
+            raise ProviderUnavailable("TWSE+TPEx returned empty")
+        wanted = set(stock_ids)
+        return {sid: raw[sid] for sid in wanted if sid in raw}
