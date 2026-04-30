@@ -55,6 +55,9 @@ function _renderPositions() {
   document.querySelectorAll(".pos-close-btn").forEach(btn => {
     btn.addEventListener("click", () => _onCloseClick(btn));
   });
+  document.querySelectorAll(".pos-delete-btn").forEach(btn => {
+    btn.addEventListener("click", () => _onDeleteClick(btn));
+  });
   document.getElementById("pos-refresh")?.addEventListener("click", _refreshPositions);
 }
 
@@ -183,11 +186,15 @@ function _buildOpenTableHTML(open) {
         <td class="r">${p.tp_price.toFixed(1)}</td>
         <td class="r">${p.sl_price.toFixed(1)}</td>
         <td>${action}</td>
-        <td>
-          <button class="pos-close-btn pos-btn-danger"
+        <td class="pos-actions">
+          <button class="pos-close-btn pos-btn-primary-sm"
                   data-id="${escapeHtml(p.stock_id)}"
                   data-name="${escapeHtml(p.stock_name)}"
                   data-buyprice="${p.buy_price}">平倉</button>
+          <button class="pos-delete-btn pos-btn-danger"
+                  data-id="${escapeHtml(p.stock_id)}"
+                  data-name="${escapeHtml(p.stock_name)}"
+                  title="只是打錯想刪除？不會記錄損益">🗑</button>
         </td>
       </tr>
     `;
@@ -281,6 +288,24 @@ async function _onAddSubmit(e) {
     await _refreshPositions();
   } catch (err) {
     alert("加入失敗：" + err);
+  }
+}
+
+async function _onDeleteClick(btn) {
+  const sid  = btn.dataset.id;
+  const name = btn.dataset.name;
+  if (!confirm(`確定刪除 ${name}（${sid}）？\n\n這只是打錯時用，不會記入已實現損益。\n要當作平倉請按「平倉」。`)) return;
+  try {
+    const res = await fetch("/api/positions/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stock_id: sid }),
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error || "刪除失敗");
+    await _refreshPositions();
+  } catch (err) {
+    alert("刪除失敗：" + err);
   }
 }
 

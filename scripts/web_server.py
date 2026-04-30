@@ -111,6 +111,13 @@ class StockETFHandler(SimpleHTTPRequestHandler):
                     return self._send_json({"ok": False, "error": "找不到持倉中的股票"}, status=404)
                 return self._send_json({"ok": True, "closed": closed})
 
+            if self.path == "/api/positions/delete":
+                payload = self._read_json()
+                deleted = my_status.delete_position(stock_id=payload["stock_id"])
+                if deleted is None:
+                    return self._send_json({"ok": False, "error": "找不到持倉中的股票"}, status=404)
+                return self._send_json({"ok": True, "deleted": deleted})
+
             return self._send_json({"ok": False, "error": "unknown endpoint"}, status=404)
 
         except Exception as e:

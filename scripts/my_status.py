@@ -106,6 +106,20 @@ def close_position(stock_id: str, sell_price: float,
     return closed
 
 
+def delete_position(stock_id: str) -> dict | None:
+    """直接刪掉持倉中的部位（不記錄為 closed）。給打錯時修正用。
+    回傳被刪掉的 dict；找不到回 None。FIFO 第一筆。
+    """
+    cfg = load_positions()
+    open_list = cfg.get("open", [])
+    matched = next((p for p in open_list if p["stock_id"] == str(stock_id)), None)
+    if matched is None:
+        return None
+    open_list.remove(matched)
+    save_positions(cfg)
+    return matched
+
+
 def get_full_status() -> dict:
     """完整狀態 (持倉 + 已實現 + 即時 P&L) — 給 Web API 用。"""
     cfg = load_positions()
