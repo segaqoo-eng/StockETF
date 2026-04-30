@@ -137,3 +137,56 @@ def test_thread_crash_writes_last_error_releases_mutex(server, monkeypatch):
 
     status, body = _get(server, "/api/refresh/status")
     assert "simulated crash" in (body["last_error"] or "")
+
+
+def test_run_backtest_job_records_result(monkeypatch):
+    """_run_backtest_job assembles steps list correctly when all subprocesses succeed."""
+    import scripts.web_server as ws
+    ws._reset_for_tests()
+
+    # Stub out the three modules so we don't actually run them
+    class _FakeMod:
+        def __init__(self, rc): self._rc = rc
+        def main(self): return self._rc
+
+    fake_bt = _FakeMod(0)
+    fake_gs = _FakeMod(0)
+    fake_pt = _FakeMod(0)
+
+    import sys
+    monkeypatch.setitem(sys.modules, "backtest", fake_bt)
+    monkeypatch.setitem(sys.modules, "generate_status", fake_gs)
+    monkeypatch.setitem(sys.modules, "paper_trade", fake_pt)
+
+    # Stub importlib.reload to a no-op (modules already in sys.modules)
+    import importlib
+    monkeypatch.setattr(importlib, "reload", lambda m: m)
+
+    ws._run_backtest_job()
+
+    assert ws._last_error is None
+    assert ws._last_result["job"] == "backtest"
+    assert ws._last_result["ok"] is True
+    names = [s["name"] for s in ws._last_result["steps"]]
+    assert names == ["backtest", "generate_status", "paper_trade"]
+
+
+def test_run_backtest_job_records_error_on_crash(monkeypatch):
+    """If any sub-job raises, _last_error is set, _last_result is None."""
+    import scripts.web_server as ws
+    ws._reset_for_tests()
+
+    class _Boomer:
+        def main(self): raise RuntimeError("simulated backtest crash")
+
+    import sys
+    monkeypatch.setitem(sys.modules, "backtest", _Boomer())
+    import importlib
+    monkeypatch.setattr(importlib, "reload", lambda m: m)
+
+    ws._run_backtest_job()
+
+    assert "simulated backtest crash" in (ws._last_error or "")
+    assert ws._last_result is None
+
+
