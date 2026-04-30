@@ -40,7 +40,30 @@ class StockETFHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/positions":
             return self._send_json(my_status.get_full_status())
+        if self.path.startswith("/api/markdown"):
+            return self._send_markdown()
         return super().do_GET()
+
+    def _send_markdown(self) -> None:
+        """讀取根目錄的 .md (限定白名單)、回原始文字。"""
+        from urllib.parse import urlparse, parse_qs
+        q = parse_qs(urlparse(self.path).query)
+        name = (q.get("file", [""])[0]).strip()
+        WHITELIST = {"status_today", "paper_status", "my_status"}
+        if name not in WHITELIST:
+            return self._send_json({"ok": False, "error": "unknown file"}, status=400)
+        path = ROOT / f"{name}.md"
+        if not path.exists():
+            text = f"# {name}\n\n（{name}.md 不存在 — 跑 update.bat 後會產生）"
+        else:
+            text = path.read_text(encoding="utf-8")
+        body = text.encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/markdown; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
 
     # ── POST ──────────────────────────────────────────────
 

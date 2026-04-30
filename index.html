@@ -24,7 +24,9 @@
     <button class="tab-btn" data-tab="changes">各 ETF 持股變化</button>
     <button class="tab-btn" data-tab="consensus">共識加減碼</button>
     <button class="tab-btn" data-tab="ranking">買進評分</button>
-    <button class="tab-btn" data-tab="positions">我的部位</button>
+    <button class="tab-btn" data-tab="signals">📋 今日訊號</button>
+    <button class="tab-btn" data-tab="paper">📈 Paper 模擬</button>
+    <button class="tab-btn" data-tab="positions">💰 我的部位</button>
   </nav>
 
   <main class="container">
@@ -72,6 +74,18 @@
       </div>
     </section>
 
+    <section id="tab-signals" class="tab-panel">
+      <div id="signals-root">
+        <p class="loading">點選上方「今日訊號」載入資料</p>
+      </div>
+    </section>
+
+    <section id="tab-paper" class="tab-panel">
+      <div id="paper-root">
+        <p class="loading">點選上方「Paper 模擬」載入資料</p>
+      </div>
+    </section>
+
     <section id="tab-positions" class="tab-panel">
       <div id="positions-root">
         <p class="loading">點選上方「我的部位」載入資料</p>
@@ -87,5 +101,6 @@
   <script src="assets/app.js"></script>
   <script src="assets/ranking.js"></script>
   <script src="assets/positions.js"></script>
+  <script src="assets/markdown_view.js"></script>
 </body>
 </html>
