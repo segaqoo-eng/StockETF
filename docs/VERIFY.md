@@ -102,7 +102,7 @@ Wrote data/latest.json (4 ETFs, 124 unique stocks)
 - 兩按鈕灰掉、徽章 ⏳
 - 1-2 分鐘流程
 - 跑完表格 + ETF chip-bar 都更新
-- 若有發行商失敗 → toast 黃字「⚠️ 元大、富邦爬蟲失敗，相關 ETF 用前一天資料」
+- 若有發行商失敗，main.py 內部會 fallback 到前一天 snapshot；目前僅 console log 顯示，UI 上不會直接告知（v1.6 補強）
 
 **6. 同時按兩個按鈕：**
 - 第一個正常啟動

@@ -91,10 +91,6 @@
     if (r.missing_count) {
       msgs.push(`${r.missing_count} 檔股票今日抓不到`);
     }
-    if (r.partial_failures && r.partial_failures.length) {
-      const issuers = r.partial_failures.map(p => p.issuer).filter(Boolean);
-      msgs.push(`${issuers.join("、")} 爬蟲失敗，相關 ETF 用前一天資料`);
-    }
     if (msgs.length) {
       toast("⚠️ " + msgs.join("；"), { level: "warn" });
     }
