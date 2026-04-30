@@ -65,3 +65,72 @@ class TwseTpexDailyClose(PriceProvider):
             raise ProviderUnavailable("TWSE+TPEx returned empty")
         wanted = set(stock_ids)
         return {sid: raw[sid] for sid in wanted if sid in raw}
+
+
+import os
+import logging
+import requests
+
+logger = logging.getLogger(__name__)
+
+FINMIND_URL = "https://api.finmindtrade.com/api/v4/data"
+
+
+class FinMindDailyClose(PriceProvider):
+    """FinMind per-stock loop. Free tier blocks bulk-by-date so we loop.
+
+    Uses FINMIND_TOKEN env var if set (raises 600/hr → 6000/hr quota).
+    """
+    name = "finmind"
+
+    def __init__(self):
+        self.token = os.environ.get("FINMIND_TOKEN", "").strip()
+        self._exhausted = False    # 同 process 內配額爆就停試
+
+    def fetch(self, stock_ids: list[str], target_date: date) -> dict[str, dict]:
+        if self._exhausted:
+            raise ProviderUnavailable("FinMind quota exhausted earlier in this process")
+
+        date_str = target_date.isoformat()
+        result: dict[str, dict] = {}
+        for sid in stock_ids:
+            params = {
+                "dataset": "TaiwanStockPrice",
+                "data_id": sid,
+                "start_date": date_str,
+                "end_date": date_str,
+            }
+            if self.token:
+                params["token"] = self.token
+            try:
+                r = requests.get(FINMIND_URL, params=params, timeout=20)
+                d = r.json()
+            except Exception as e:
+                logger.warning("[finmind] %s: %s", sid, e)
+                continue
+
+            status = d.get("status")
+            if status == 402:
+                self._exhausted = True
+                raise ProviderUnavailable(f"FinMind quota: {d.get('msg')}")
+            if status == 400 and "level" in (d.get("msg") or "").lower():
+                raise ProviderUnavailable(f"FinMind level too low: {d.get('msg')}")
+            if status != 200:
+                logger.warning("[finmind] %s status=%s msg=%s", sid, status, d.get("msg"))
+                continue
+
+            rows = d.get("data") or []
+            if not rows:
+                continue
+            row = rows[-1]
+            close = float(row["close"])
+            change = float(row.get("spread") or 0.0)
+            prev = close - change
+            change_pct = round(change / prev * 100, 2) if prev > 0 else 0.0
+            result[sid] = {
+                "close": round(close, 2),
+                "change": round(change, 2),
+                "change_pct": change_pct,
+                "exchange": "TWSE",
+            }
+        return result

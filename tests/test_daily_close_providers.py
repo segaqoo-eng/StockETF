@@ -101,3 +101,71 @@ def test_twse_tpex_raises_when_both_endpoints_empty():
     with patch.object(p._fetcher, "get", side_effect=[empty, empty]):
         with pytest.raises(ProviderUnavailable):
             p.fetch(["2330"], date(2026, 4, 27))
+
+
+# ---------------------------------------------------------------------------
+# Task 5: FinMindDailyClose
+# ---------------------------------------------------------------------------
+from scrapers.daily_close import FinMindDailyClose
+
+
+def _build_finmind_response(stock_ids, date_str="2026-04-30"):
+    """Build a FinMind-shape response for the given stocks."""
+    data = []
+    for sid in stock_ids:
+        data.append({
+            "date": date_str,
+            "stock_id": sid,
+            "Trading_Volume": 100000,
+            "open": 100.0,
+            "max": 102.0,
+            "min": 99.0,
+            "close": 101.5,
+            "spread": 1.5,
+        })
+    return {"status": 200, "data": data}
+
+
+def test_finmind_provider_happy_path(monkeypatch):
+    """每 stock_id 各打一次 FinMind，組成 dict 回傳。"""
+    calls = []
+
+    def fake_get(url, params, timeout):
+        calls.append(params["data_id"])
+        resp = _build_finmind_response([params["data_id"]])
+        class R:
+            def json(self): return resp
+            status_code = 200
+        return R()
+
+    monkeypatch.setattr("scrapers.daily_close.requests.get", fake_get)
+
+    p = FinMindDailyClose()
+    result = p.fetch(["2330", "0050"], date(2026, 4, 30))
+
+    assert calls == ["2330", "0050"]
+    assert result["2330"]["close"] == 101.5
+    assert result["2330"]["change"] == 1.5
+    assert "change_pct" in result["2330"]
+    assert "exchange" in result["2330"]
+
+
+def test_finmind_provider_skips_stocks_with_no_data(monkeypatch):
+    """某 stock_id 回空 data → 那檔 missing；不算整體失敗。"""
+    def fake_get(url, params, timeout):
+        if params["data_id"] == "2330":
+            resp = _build_finmind_response(["2330"])
+        else:
+            resp = {"status": 200, "data": []}
+        class R:
+            def json(self): return resp
+            status_code = 200
+        return R()
+
+    monkeypatch.setattr("scrapers.daily_close.requests.get", fake_get)
+
+    p = FinMindDailyClose()
+    result = p.fetch(["2330", "0050"], date(2026, 4, 30))
+
+    assert "2330" in result
+    assert "0050" not in result
