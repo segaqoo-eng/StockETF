@@ -169,3 +169,50 @@ def test_finmind_provider_skips_stocks_with_no_data(monkeypatch):
 
     assert "2330" in result
     assert "0050" not in result
+
+
+# ---------------------------------------------------------------------------
+# Task 6: FinMindDailyClose — error paths（quota + level）
+# ---------------------------------------------------------------------------
+
+def test_finmind_raises_on_quota_402(monkeypatch):
+    """status==402 → raise ProviderUnavailable + 設 _exhausted=True"""
+    def fake_get(url, params, timeout):
+        class R:
+            def json(self): return {"status": 402, "msg": "Requests reach the upper limit."}
+            status_code = 200
+        return R()
+
+    monkeypatch.setattr("scrapers.daily_close.requests.get", fake_get)
+    p = FinMindDailyClose()
+    with pytest.raises(ProviderUnavailable, match="quota"):
+        p.fetch(["2330"], date(2026, 4, 30))
+    assert p._exhausted is True
+
+
+def test_finmind_raises_on_level_too_low(monkeypatch):
+    """status==400 + 'level is free' → raise ProviderUnavailable"""
+    def fake_get(url, params, timeout):
+        class R:
+            def json(self):
+                return {"status": 400,
+                        "msg": "Your level is free. Please update your user level."}
+            status_code = 200
+        return R()
+
+    monkeypatch.setattr("scrapers.daily_close.requests.get", fake_get)
+    p = FinMindDailyClose()
+    with pytest.raises(ProviderUnavailable, match="level"):
+        p.fetch(["2330"], date(2026, 4, 30))
+
+
+def test_finmind_skips_subsequent_calls_after_exhausted(monkeypatch):
+    """_exhausted=True 後再呼叫 fetch → 直接 raise，不打網路"""
+    p = FinMindDailyClose()
+    p._exhausted = True
+    called = []
+    monkeypatch.setattr("scrapers.daily_close.requests.get",
+                        lambda *a, **k: called.append(1))
+    with pytest.raises(ProviderUnavailable):
+        p.fetch(["2330"], date(2026, 4, 30))
+    assert called == []   # 沒打過網路
