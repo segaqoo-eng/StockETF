@@ -93,6 +93,23 @@ def _run_prices_job() -> None:
         _last_result = None
 
 
+def _run_etfs_job() -> None:
+    """Background runner: re-run main.main() (full ETF pipeline + prices at end)."""
+    global _last_result, _last_error
+    try:
+        import importlib
+        import main as etf_main
+        importlib.reload(etf_main)
+        rc = etf_main.main()
+        _last_result = {"ok": rc == 0, "exit_code": rc, "job": "etfs"}
+        _last_error = None
+    except Exception as e:
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        _last_error = f"{type(e).__name__}: {e}"
+        _last_result = None
+
+
 def _try_start_job(job_name: str, target_fn) -> tuple[bool, str | None]:
     """嘗試取 mutex 並啟動 background thread。回 (started, error_msg)。"""
     global _running_job, _job_started_at, _last_error
@@ -198,6 +215,13 @@ class StockETFHandler(SimpleHTTPRequestHandler):
                 if not ok:
                     return self._send_json({"ok": False, "error": err}, status=409)
                 return self._send_json({"job": "prices", "started_at": _job_started_at},
+                                       status=202)
+
+            if self.path == "/api/refresh/etfs":
+                ok, err = _try_start_job("etfs", _run_etfs_job)
+                if not ok:
+                    return self._send_json({"ok": False, "error": err}, status=409)
+                return self._send_json({"job": "etfs", "started_at": _job_started_at},
                                        status=202)
 
             if self.path == "/api/positions/add":

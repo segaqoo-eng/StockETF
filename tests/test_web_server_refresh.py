@@ -105,3 +105,35 @@ def test_concurrent_refresh_returns_409(server, monkeypatch):
     assert "running" in b2["error"].lower()
 
     blocking.set()
+
+
+def test_post_refresh_etfs_returns_202(server, monkeypatch):
+    """ETF refresh 走獨立 endpoint。"""
+    import scripts.web_server as ws
+    done = threading.Event()
+    monkeypatch.setattr(ws, "_run_etfs_job", lambda: done.set())
+
+    status, body = _post(server, "/api/refresh/etfs")
+    assert status == 202
+    assert body["job"] == "etfs"
+    assert done.wait(timeout=2)
+
+
+def test_thread_crash_writes_last_error_releases_mutex(server, monkeypatch):
+    """Thread 內爆 exception → last_error 有值 + mutex 釋放（不卡死）"""
+    import scripts.web_server as ws
+
+    def boom():
+        raise RuntimeError("simulated crash")
+    monkeypatch.setattr(ws, "_run_prices_job", boom)
+
+    s1, _ = _post(server, "/api/refresh/prices")
+    assert s1 == 202
+
+    deadline = time.time() + 2
+    while time.time() < deadline and ws._running_job is not None:
+        time.sleep(0.02)
+    assert ws._running_job is None
+
+    status, body = _get(server, "/api/refresh/status")
+    assert "simulated crash" in (body["last_error"] or "")
