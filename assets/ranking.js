@@ -140,13 +140,13 @@ function _rankingStartDate(monthsBack) {
 }
 
 async function _rankingFetchOHLCV(sid) {
-  const url = `https://api.finmindtrade.com/api/v4/data` +
-    `?dataset=TaiwanStockPrice&data_id=${encodeURIComponent(sid)}&start_date=${_rankingStartDate(3)}`;
+  // 走本機 /api/ohlcv → SQLite cache + yfinance fallback，繞過 FinMind 限額
+  const url = `/api/ohlcv?stock_id=${encodeURIComponent(sid)}&start_date=${_rankingStartDate(3)}`;
   try {
     const res = await fetch(url);
     if (!res.ok) return [];
     const d = await res.json();
-    if (d.status !== 200 || !Array.isArray(d.data)) return [];
+    if (!Array.isArray(d.data)) return [];
     return d.data.map(r => ({
       time: r.date, open: r.open, high: r.max, low: r.min,
       close: r.close, volume: r.Trading_Volume || 0,
@@ -155,13 +155,12 @@ async function _rankingFetchOHLCV(sid) {
 }
 
 async function _rankingFetchInstitutional(sid) {
-  const url = `https://api.finmindtrade.com/api/v4/data` +
-    `?dataset=TaiwanStockInstitutionalInvestorsBuySell&data_id=${encodeURIComponent(sid)}&start_date=${_rankingStartDate(2)}`;
+  const url = `/api/institutional?stock_id=${encodeURIComponent(sid)}&start_date=${_rankingStartDate(2)}`;
   try {
     const res = await fetch(url);
     if (!res.ok) return [];
     const d = await res.json();
-    if (d.status !== 200 || !Array.isArray(d.data)) return [];
+    if (!Array.isArray(d.data)) return [];
     return d.data;
   } catch (_) { return []; }
 }
@@ -511,7 +510,7 @@ function _buildTableHTML(rows) {
 }
 
 function _buildRow(s, rank) {
-  const p = window.state?.prices?.prices?.[s.stock_id];
+  const p = (typeof state !== "undefined" ? state?.prices?.prices?.[s.stock_id] : null);
   const priceHtml  = p ? `<span class="price-close">${p.close.toLocaleString()}</span>` : `<span class="price-na">—</span>`;
   const changeHtml = p ? (() => {
     const up = p.change > 0, dn = p.change < 0;

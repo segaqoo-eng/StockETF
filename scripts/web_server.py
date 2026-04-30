@@ -42,7 +42,26 @@ class StockETFHandler(SimpleHTTPRequestHandler):
             return self._send_json(my_status.get_full_status())
         if self.path.startswith("/api/markdown"):
             return self._send_markdown()
+        if self.path.startswith("/api/ohlcv"):
+            return self._send_stock_data("ohlcv")
+        if self.path.startswith("/api/institutional"):
+            return self._send_stock_data("institutional")
         return super().do_GET()
+
+    def _send_stock_data(self, dataset: str) -> None:
+        """讀 SQLite cache (data_provider)，缺的 by-need 補抓。前端 ranking.js 用。"""
+        from urllib.parse import urlparse, parse_qs
+        import data_provider as dp
+        q = parse_qs(urlparse(self.path).query)
+        sid = (q.get("stock_id", [""])[0]).strip()
+        start = (q.get("start_date", ["2025-04-01"])[0]).strip()
+        if not sid:
+            return self._send_json({"ok": False, "error": "stock_id required"}, status=400)
+        if dataset == "ohlcv":
+            rows = dp.get_ohlcv(sid, start)
+        else:  # institutional
+            rows = dp.get_institutional(sid, start)
+        return self._send_json({"status": 200, "data": rows})
 
     def _send_markdown(self) -> None:
         """讀取根目錄的 .md (限定白名單)、回原始文字。"""

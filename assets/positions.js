@@ -93,7 +93,7 @@ function _buildAddFormHTML() {
     .toISOString().slice(0, 10);
 
   // 從已載入的持股清單組 datalist (可下拉選 + 自動補名稱)
-  const allStocks = (window.state?.payload?.holdings || []);
+  const allStocks = ((typeof state !== "undefined" ? state?.payload?.holdings : null) || []);
   const datalistOpts = allStocks.map(h =>
     `<option value="${escapeHtml(h.stock_id)}">${escapeHtml(h.stock_name)}</option>`
   ).join("");
@@ -133,7 +133,7 @@ function _wireAddFormAutofill() {
   idInput.addEventListener("input", () => {
     if (nameManuallyEdited && nameInput.value.trim()) return;
     const sid = idInput.value.trim();
-    const all = window.state?.payload?.holdings || [];
+    const all = (typeof state !== "undefined" ? state?.payload?.holdings : null) || [];
     const match = all.find(h => h.stock_id === sid);
     if (match) {
       nameInput.value = match.stock_name;
