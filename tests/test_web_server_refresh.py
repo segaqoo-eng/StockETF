@@ -190,3 +190,29 @@ def test_run_backtest_job_records_error_on_crash(monkeypatch):
     assert ws._last_result is None
 
 
+def test_post_refresh_backtest_returns_202(server, monkeypatch):
+    """Backtest button starts background job."""
+    import scripts.web_server as ws
+    done = threading.Event()
+    monkeypatch.setattr(ws, "_run_backtest_job", lambda: done.set())
+
+    status, body = _post(server, "/api/refresh/backtest")
+    assert status == 202
+    assert body["job"] == "backtest"
+    assert done.wait(timeout=2)
+
+
+def test_concurrent_backtest_blocked_by_prices_job(server, monkeypatch):
+    """If prices job is running, backtest gets 409."""
+    import scripts.web_server as ws
+    blocking = threading.Event()
+    monkeypatch.setattr(ws, "_run_prices_job", lambda: blocking.wait(timeout=2))
+
+    s1, _ = _post(server, "/api/refresh/prices")
+    assert s1 == 202
+
+    s2, b2 = _post(server, "/api/refresh/backtest")
+    assert s2 == 409
+    assert "running" in b2["error"].lower()
+
+    blocking.set()

@@ -276,6 +276,12 @@ class StockETFHandler(SimpleHTTPRequestHandler):
                 return self._send_json({"job": "etfs", "started_at": _job_started_at},
                                        status=202)
 
+            if self.path == "/api/refresh/backtest":
+                ok, err = _try_start_job("backtest", _run_backtest_job)
+                if not ok:
+                    return self._send_json({"ok": False, "error": err}, status=409)
+                return self._send_json({"job": "backtest", "started_at": _job_started_at}, status=202)
+
             if self.path == "/api/positions/add":
                 payload = self._read_json()
                 pos = my_status.add_position(
