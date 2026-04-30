@@ -274,3 +274,28 @@ def test_yfinance_raises_on_import_error(monkeypatch):
     p = YFinanceDailyClose()
     with pytest.raises(ProviderUnavailable, match="not installed"):
         p.fetch(["2330"], date(2026, 4, 30))
+
+
+def test_yfinance_suppresses_yf_stdout_noise(monkeypatch, capsys):
+    """yfinance 自己印的訊息應該被吞掉，不污染 console。"""
+    import pandas as pd
+
+    def chatty_download(tickers, start, end, progress, threads, group_by, auto_adjust):
+        # Simulate yfinance's noisy behavior
+        print("$5347.TW: possibly delisted; no timezone found")
+        print("HTTP Error 404: ...")
+        idx = pd.DatetimeIndex([pd.Timestamp("2026-04-30")])
+        cols = pd.MultiIndex.from_product([["2330.TW"], ["Open", "High", "Low", "Close", "Volume"]])
+        return pd.DataFrame([[100, 102, 99, 101, 1000]], index=idx, columns=cols)
+
+    import yfinance as yf
+    monkeypatch.setattr(yf, "download", chatty_download)
+
+    p = YFinanceDailyClose()
+    result = p.fetch(["2330"], date(2026, 4, 30))
+
+    assert result["2330"]["close"] == 101
+    captured = capsys.readouterr()
+    # The chatty prints should be suppressed
+    assert "possibly delisted" not in captured.out
+    assert "HTTP Error 404" not in captured.out

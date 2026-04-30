@@ -89,36 +89,48 @@ def main() -> int:
     fund_meta_by_ticker: dict[str, dict] = {}
     failures: list[str] = []
 
+    total = len(etfs_config)
     for i, (ticker, meta) in enumerate(etfs_config.items()):
         if i > 0:
             time.sleep(INTER_REQUEST_DELAY_SEC)
         scraper_name = meta["scraper"]
         scraper = SCRAPERS.get(scraper_name)
         if scraper is None:
-            print(f"[SKIP] {ticker}: unknown scraper '{scraper_name}'", file=sys.stderr)
+            print(f"[{i+1}/{total}] {scraper_name} {ticker}... SKIP (unknown scraper)", flush=True)
             continue
+        print(f"[{i+1}/{total}] {scraper_name} {ticker}... ", end="", flush=True)
+        start = time.perf_counter()
         try:
-            print(f"[FETCH] {ticker} via {scraper_name}...")
             result = scraper.fetch(ticker)
             if not result.holdings:
                 raise RuntimeError("empty holdings")
+            elapsed = time.perf_counter() - start
             scraped[ticker] = result.holdings
             if result.fund_meta:
                 fund_meta_by_ticker[ticker] = result.fund_meta
-            print(f"  ok: {len(result.holdings)} holdings"
-                  + (f" (+ fund_meta {sorted(result.fund_meta)})" if result.fund_meta else ""))
+            print(f"done in {elapsed:.1f}s ({len(result.holdings)} holdings)", flush=True)
         except Exception as exc:
+            elapsed = time.perf_counter() - start
             failures.append(ticker)
-            print(f"  FAIL: {exc}", file=sys.stderr)
             if ticker in previous and previous[ticker]:
-                print(f"  using previous data ({len(previous[ticker])} holdings)")
+                # Recover the date of the fallback snapshot for display
+                fallback_date = "previous"
+                for snap_path in sorted((Path("data/snapshots")).glob("*.json"), reverse=True):
+                    try:
+                        snap = json.loads(snap_path.read_text(encoding="utf-8"))
+                        if any(e["ticker"] == ticker for e in snap.get("etfs", [])):
+                            fallback_date = snap_path.stem
+                            break
+                    except Exception:
+                        pass
+                print(f"FAILED ({exc}); using {fallback_date} fallback", flush=True)
                 scraped[ticker] = previous[ticker]
                 # Carry forward previous fund_meta on fallback so the modal still
                 # shows the issuer's last-known stats (the data hasn't moved).
                 if ticker in previous_meta:
                     fund_meta_by_ticker[ticker] = previous_meta[ticker]
             else:
-                print(f"  no previous data — skipping {ticker}")
+                print(f"FAILED ({exc}); no previous data — skipping", flush=True)
 
     if not scraped:
         print("ERROR: no ETF data at all", file=sys.stderr)

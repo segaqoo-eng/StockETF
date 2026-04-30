@@ -8,6 +8,7 @@
   function setButtonsDisabled(disabled) {
     document.getElementById("btn-refresh-prices").disabled = disabled;
     document.getElementById("btn-refresh-etfs").disabled = disabled;
+    document.getElementById("btn-refresh-backtest").disabled = disabled;
   }
 
   async function startJob(endpoint) {
@@ -79,6 +80,13 @@
         if (lbRes.ok && window.state)     window.state.leaderboard = await lbRes.json();
         if (histRes.ok && window.state)   window.state.history = await histRes.json();
       }
+      if (status.last_result && status.last_result.job === "backtest") {
+        // Backtest job rewrote backtest_results.csv (and 2 markdown files).
+        // Tell ranking tab to drop its localStorage + in-memory cache so next view re-fetches.
+        if (window.StockETFRanking && window.StockETFRanking.invalidateCache) {
+          window.StockETFRanking.invalidateCache();
+        }
+      }
     } catch (e) {
       toast(`資料重載失敗：${e.message || e}`, { level: "error" });
     }
@@ -103,6 +111,8 @@
       ?.addEventListener("click", () => startJob("/api/refresh/prices"));
     document.getElementById("btn-refresh-etfs")
       ?.addEventListener("click", () => startJob("/api/refresh/etfs"));
+    document.getElementById("btn-refresh-backtest")
+      ?.addEventListener("click", () => startJob("/api/refresh/backtest"));
   }
 
   if (document.readyState === "loading") {

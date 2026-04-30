@@ -19,6 +19,16 @@ import traceback
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 
+# Force UTF-8 stdout/stderr so background jobs (backtest / generate_status /
+# paper_trade / main) can print Unicode chars (▶ → ✓ etc.) without crashing
+# on Windows cp950 default. update.bat already sets PYTHONIOENCODING=utf-8
+# but we shouldn't depend on the launcher.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass  # streams not always reconfigurable (e.g. piped); silently ignore
+
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -102,6 +112,58 @@ def _run_etfs_job() -> None:
         importlib.reload(etf_main)
         rc = etf_main.main()
         _last_result = {"ok": rc == 0, "exit_code": rc, "job": "etfs"}
+        _last_error = None
+    except Exception as e:
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        _last_error = f"{type(e).__name__}: {e}"
+        _last_result = None
+
+
+def _run_backtest_job() -> None:
+    """Background runner: backtest.py + generate_status.py + paper_trade.py.
+
+    Spec: docs/superpowers/specs/2026-04-30-prices-source-and-refresh-design.md
+    (extended in v1.6 to add the manual-trigger backtest pipeline).
+    """
+    global _last_result, _last_error
+    try:
+        import importlib
+
+        steps = []
+
+        # 1. backtest
+        import backtest as bt_mod
+        importlib.reload(bt_mod)
+        rc1 = bt_mod.main() if hasattr(bt_mod, "main") else 0
+        # backtest.main() returns None on success (no explicit return); treat None as 0
+        if rc1 is None:
+            rc1 = 0
+        steps.append(("backtest", rc1))
+
+        # 2. status report
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import generate_status as gs_mod
+        importlib.reload(gs_mod)
+        rc2 = gs_mod.main() if hasattr(gs_mod, "main") else 0
+        if rc2 is None:
+            rc2 = 0
+        steps.append(("generate_status", rc2))
+
+        # 3. paper trade
+        import paper_trade as pt_mod
+        importlib.reload(pt_mod)
+        rc3 = pt_mod.main() if hasattr(pt_mod, "main") else 0
+        if rc3 is None:
+            rc3 = 0
+        steps.append(("paper_trade", rc3))
+
+        all_ok = all(rc == 0 for _, rc in steps)
+        _last_result = {
+            "job":   "backtest",
+            "ok":    all_ok,
+            "steps": [{"name": n, "rc": rc} for n, rc in steps],
+        }
         _last_error = None
     except Exception as e:
         import traceback
@@ -223,6 +285,12 @@ class StockETFHandler(SimpleHTTPRequestHandler):
                     return self._send_json({"ok": False, "error": err}, status=409)
                 return self._send_json({"job": "etfs", "started_at": _job_started_at},
                                        status=202)
+
+            if self.path == "/api/refresh/backtest":
+                ok, err = _try_start_job("backtest", _run_backtest_job)
+                if not ok:
+                    return self._send_json({"ok": False, "error": err}, status=409)
+                return self._send_json({"job": "backtest", "started_at": _job_started_at}, status=202)
 
             if self.path == "/api/positions/add":
                 payload = self._read_json()

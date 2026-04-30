@@ -509,6 +509,18 @@ function _buildTableHTML(rows) {
   </table>`;
 }
 
+/* ── 外部快取失效 API（供 refresh.js 呼叫） ── */
+
+window.StockETFRanking = window.StockETFRanking || {};
+window.StockETFRanking.invalidateCache = function () {
+  // 清除 localStorage 中所有 scores_* 快取
+  for (const key of Object.keys(localStorage)) {
+    if (key.startsWith("scores_")) localStorage.removeItem(key);
+  }
+  // 重置記憶體內的 initialized flag，讓下次切入排行榜分頁時重新計算
+  _rankingInitialized = false;
+};
+
 function _buildRow(s, rank) {
   const p = (typeof state !== "undefined" ? state?.prices?.prices?.[s.stock_id] : null);
   const priceHtml  = p ? `<span class="price-close">${p.close.toLocaleString()}</span>` : `<span class="price-na">—</span>`;

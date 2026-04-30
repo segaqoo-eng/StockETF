@@ -237,18 +237,29 @@ class YFinanceDailyClose(PriceProvider):
         start = target_date - timedelta(days=5)
         end = target_date + timedelta(days=1)
 
+        # Suppress yfinance's chatty stdout/stderr (per-ticker 404s, "possibly
+        # delisted" lines, "N Failed downloads" summary). TPEx stocks always fail
+        # the .TW lookup; TWSE+TPEx provider covers them in the next fallback.
+        import contextlib, io
+        yf_logger = logging.getLogger("yfinance")
+        yf_old_level = yf_logger.level
+        yf_logger.setLevel(logging.CRITICAL)
         try:
-            df = yf.download(
-                tickers,
-                start=start.isoformat(),
-                end=end.isoformat(),
-                progress=False,
-                threads=True,
-                group_by="ticker",
-                auto_adjust=False,
-            )
-        except Exception as e:
-            raise ProviderUnavailable(f"yfinance download failed: {e}")
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                try:
+                    df = yf.download(
+                        tickers,
+                        start=start.isoformat(),
+                        end=end.isoformat(),
+                        progress=False,
+                        threads=True,
+                        group_by="ticker",
+                        auto_adjust=False,
+                    )
+                except Exception as e:
+                    raise ProviderUnavailable(f"yfinance download failed: {e}")
+        finally:
+            yf_logger.setLevel(yf_old_level)
 
         if df is None or df.empty:
             raise ProviderUnavailable("yfinance returned empty DataFrame")
@@ -275,4 +286,9 @@ class YFinanceDailyClose(PriceProvider):
             except Exception as e:
                 logger.warning("[yfinance] %s: %s", sid, e)
                 continue
+
+        missing = len(stock_ids) - len(result)
+        if missing > 0:
+            logger.info("[yfinance] %d/%d unavailable (likely TPEx), fallthrough may apply",
+                        missing, len(stock_ids))
         return result
