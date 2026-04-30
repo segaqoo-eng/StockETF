@@ -14,7 +14,6 @@ from scrapers.nomura import NomuraScraper
 from scrapers.president import PresidentScraper
 from scrapers.capital import CapitalScraper
 from scrapers.fuhhwa import FuhhwaScraper
-from scrapers.twse_prices import PricesFetcher
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -234,41 +233,51 @@ def write_diff(today_payload: dict, data_dir: Path) -> None:
 
 
 def write_prices(today_payload: dict, data_dir: Path) -> None:
-    """Fetch today's TWSE + TPEx close/change for stocks our ETFs hold.
+    """Fetch today's close prices via 4-tier provider chain.
 
-    If TWSE/TPEx return empty (market not yet closed, holiday, outage),
-    the existing prices_today.json is kept unchanged so the frontend
-    continues to show the last known close with its original date label.
-    Only overwrites when fresh data is actually available.
+    Spec: docs/superpowers/specs/2026-04-30-prices-source-and-refresh-design.md
+
+    Universe = unique stock_ids in today_payload's TW holdings (~150).
+    Walks FinMind → yfinance → TWSE+TPEx → cache; first ≥80% wins.
+    On total failure, keeps existing prices_today.json unchanged.
     """
-    target = datetime.now(TAIPEI).date()
-    fetcher = PricesFetcher()
-    raw = fetcher.fetch_all(target)
+    from scrapers.daily_close import fetch_daily_close
 
-    held_ids = {
+    target = datetime.now(TAIPEI).date()
+    held_ids = sorted({
         h["stock_id"]
         for etf in today_payload.get("etfs", [])
         for h in etf.get("holdings", [])
         if h.get("market") == "TW"
-    }
-    filtered = {sid: raw[sid] for sid in held_ids if sid in raw}
+    })
     prices_path = data_dir / "prices_today.json"
 
-    if not filtered:
+    result = fetch_daily_close(list(held_ids), target)
+
+    if not result["ok"]:
         if prices_path.exists():
             prev_date = json.loads(prices_path.read_text(encoding="utf-8")).get("date", "?")
-            print(f"Prices: no data yet for {target} — keeping previous ({prev_date})")
+            print(f"Prices: all providers failed for {target} — keeping previous ({prev_date})")
         else:
-            prices_path.write_text(json.dumps({"date": target.isoformat(), "prices": {}},
-                                               ensure_ascii=False), encoding="utf-8")
+            prices_path.write_text(
+                json.dumps({"date": target.isoformat(), "source": None,
+                            "fetched_at": result["fetched_at"], "prices": {},
+                            "missing": list(held_ids)}, ensure_ascii=False),
+                encoding="utf-8",
+            )
             print(f"Prices: no data for {target}, wrote empty placeholder")
         return
 
-    prices_path.write_text(
-        json.dumps({"date": target.isoformat(), "prices": filtered}, ensure_ascii=False, indent=2),
-        encoding="utf-8"
-    )
-    print(f"Prices: {len(filtered)}/{len(held_ids)} held stocks priced ({target})")
+    payload = {
+        "date":       result["date"],
+        "source":     result["source"],
+        "fetched_at": result["fetched_at"],
+        "prices":     result["prices"],
+        "missing":    result["missing"],
+    }
+    prices_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"Prices: wrote {len(result['prices'])} stocks from {result['source']} "
+          f"(missing {len(result['missing'])})")
 
 
 def write_per_stock_history(data_dir: Path) -> None:
