@@ -11,7 +11,13 @@
 <body>
   <header class="header">
     <h1>📊 Stock<span>ETF</span></h1>
-    <div class="header-sub">主動式 ETF 交叉持股分析（+ 0050 對照） · 更新於 <b id="updated-at">—</b></div>
+    <div class="header-sub">
+      主動式 ETF 交叉持股分析（+ 0050 對照） ·
+      更新於 <b id="updated-at">—</b> ·
+      <span id="price-source-badge" class="source-badge source-badge-unknown" title="">—</span>
+      <button id="btn-refresh-prices" class="header-btn" title="只重抓股價，10-30 秒">🔄 股價</button>
+      <button id="btn-refresh-etfs" class="header-btn" title="重抓 ETF 持股 + 股價，1-2 分鐘">🔄 ETF</button>
+    </div>
   </header>
 
   <nav class="tab-nav">
