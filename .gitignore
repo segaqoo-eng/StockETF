@@ -28,3 +28,15 @@ Thumbs.db
 # Local env files
 .env
 .env.local
+
+# Update logs (each-machine, not shared)
+logs/*.log
+
+# Generated post summary (regenerated daily)
+status_today.md
+
+# FinMind raw data cache (regenerated as needed; large)
+data/finmind_cache/
+
+# Backtest results (regenerated; not authoritative)
+backtest_results.csv

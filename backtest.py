@@ -9,19 +9,42 @@ backtest.py — 買進評分策略回測（本機執行）
   .venv\\Scripts\\python.exe backtest.py
 """
 
-import json, time, sys
+import json, os, time, sys
+from pathlib import Path
 import requests
 import pandas as pd
 import numpy as np
 from datetime import date
 
+# 可選：FinMind API token (https://finmindtrade.com 免費註冊就有，配額 600→6000/小時)
+# 設定方式：在 shell 或 update.bat 裡 set FINMIND_TOKEN=eyJ...
+FINMIND_TOKEN = os.environ.get("FINMIND_TOKEN", "").strip()
+
 # ── 設定 ────────────────────────────────────────────────
-BACKTEST_START = "2026-04-02"   # 回測起點
+BACKTEST_START = "2025-10-01"   # 回測起點（半年）
 DATA_START     = "2025-04-01"   # 抓取起點（需足夠計算指標）
-BUY_THRESHOLD  = 65
-SELL_THRESHOLD = 60
 SLEEP_SEC      = 0.8            # 每次 API 請求間隔
 FINMIND_URL    = "https://api.finmindtrade.com/api/v4/data"
+
+# 交易成本（單筆來回，台股實際）
+#   買進手續費 0.1% + 賣出手續費 0.1% + 證交稅 0.3% ≈ 0.5%
+COST_PER_ROUND_TRIP_PCT = 0.5
+
+# 基準對照
+BENCHMARK_TICKER = "0050"
+
+# 策略變體：一次跑多組參數 (資料只抓一次，CPU 計算便宜)
+#   buy:      score > buy 才買進
+#   sell:     score < sell 才賣出 (None = 不看分數，只看價)
+#   stop_pct: 浮動虧損低於此 % 強制下個交易日賣出 (None 表示不停損)
+#   tp_pct:   浮動獲利超過此 % 強制下個交易日賣出 (None 表示不停利)
+STRATEGIES = [
+    {"name": "baseline",    "label": "原 65/60/無/無",        "buy": 65, "sell": 60,   "stop_pct": None,  "tp_pct": None},
+    {"name": "combined",    "label": "強組合 75/50/-8%/無",   "buy": 75, "sell": 50,   "stop_pct": -8.0,  "tp_pct": None},
+    {"name": "tp3",         "label": "便當3 65/無/-5%/+3%",   "buy": 65, "sell": None, "stop_pct": -5.0,  "tp_pct": 3.0},
+    {"name": "tp5",         "label": "便當5 65/無/-5%/+5%",   "buy": 65, "sell": None, "stop_pct": -5.0,  "tp_pct": 5.0},
+    {"name": "tight_tp5",   "label": "嚴便當 75/無/-5%/+5%",  "buy": 75, "sell": None, "stop_pct": -5.0,  "tp_pct": 5.0},
+]
 # ────────────────────────────────────────────────────────
 
 
@@ -31,17 +54,49 @@ def get_stocks():
     return [(h["stock_id"], h["stock_name"]) for h in d["holdings"]]
 
 
+CACHE_DIR = Path("data/finmind_cache")
+CACHE_TTL_SEC = 24 * 3600   # 一天內 cache 有效
+
+
 def fetch_finmind(dataset, stock_id):
+    """先看 cache (24h 內視為新鮮)，沒命中再打 API。
+
+    用意：一天內反覆調策略不會耗 API 配額。FinMind 免費版每 IP 每小時有 limit。
+    """
+    cache_file = CACHE_DIR / f"{dataset}_{stock_id}.json"
+    if cache_file.exists():
+        age = time.time() - cache_file.stat().st_mtime
+        if age < CACHE_TTL_SEC:
+            try:
+                return json.loads(cache_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass  # cache 壞了就重抓
+
+    params = {"dataset": dataset, "data_id": stock_id, "start_date": DATA_START}
+    if FINMIND_TOKEN:
+        params["token"] = FINMIND_TOKEN
     try:
-        r = requests.get(FINMIND_URL, params={
-            "dataset": dataset, "data_id": stock_id, "start_date": DATA_START,
-        }, timeout=30)
+        r = requests.get(FINMIND_URL, params=params, timeout=30)
         d = r.json()
         if d.get("status") == 200 and d.get("data"):
+            CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            cache_file.write_text(json.dumps(d["data"], ensure_ascii=False), encoding="utf-8")
             return d["data"]
+        # rate limit / 配額用完時印明顯訊息一次
+        if d.get("status") == 402:
+            global _RATE_LIMIT_WARNED
+            if not _RATE_LIMIT_WARNED:
+                _RATE_LIMIT_WARNED = True
+                print(f"\n[FINMIND RATE LIMIT] {d.get('msg','')}\n"
+                      f"  → 註冊免費帳號取得 token 可提升到 6000/hr：https://finmindtrade.com\n"
+                      f"  → 取得後執行：set FINMIND_TOKEN=eyJ... 再跑 update.bat\n",
+                      file=sys.stderr)
     except Exception as e:
         print(f"[WARN] {stock_id} {dataset}: {e}", file=sys.stderr)
     return []
+
+
+_RATE_LIMIT_WARNED = False
 
 
 # ── 技術指標（pandas 版） ────────────────────────────────
@@ -193,64 +248,133 @@ def score_on_day(df: pd.DataFrame, inst: dict, as_of: str) -> float | None:
 
 # ── 單股回測 ─────────────────────────────────────────────
 
-def backtest_stock(stock_id, stock_name, ohlcv_raw, inst_raw):
+def _close_position(position, sell_date, sell_price, exit_reason):
+    """產生 trade dict (扣費後的 net + gross 都記)。"""
+    bp = position["buy_price"]
+    ret_gross = (sell_price - bp) / bp * 100
+    return {**position,
+        "sell_date": sell_date, "sell_price": sell_price,
+        "return_pct_gross": ret_gross,
+        "return_pct": ret_gross - COST_PER_ROUND_TRIP_PCT,
+        "hold_days": (pd.to_datetime(sell_date) - pd.to_datetime(position["buy_date"])).days,
+        "exit": exit_reason,
+    }
+
+
+def prep_stock(ohlcv_raw, inst_raw):
+    """事先算好 bt_df + 每日 score (策略共用，避免重複計算)。
+
+    回傳 None 表示資料不足、跳過。
+    """
     df = pd.DataFrame(ohlcv_raw).rename(columns={"max": "high", "min": "low", "Trading_Volume": "volume"})
     df = df.sort_values("date").reset_index(drop=True)
     inst = parse_inst(inst_raw)
 
     bt_df = df[df["date"] >= BACKTEST_START].reset_index(drop=True)
     if bt_df.empty:
-        return []
+        return None
+    scores = {as_of: score_on_day(df, inst, as_of) for as_of in bt_df["date"]}
+    return {"bt_df": bt_df, "scores": scores}
+
+
+def run_strategy(stock_id, stock_name, prep, strategy):
+    """跑單一策略 (buy/sell/stop_pct 由 strategy 參數決定)。共用 prep。"""
+    bt_df = prep["bt_df"]
+    scores = prep["scores"]
+
+    buy_thr  = strategy["buy"]
+    sell_thr = strategy.get("sell")     # 可能為 None (不看分數)
+    stop_pct = strategy.get("stop_pct") # 可能為 None
+    tp_pct   = strategy.get("tp_pct")   # 可能為 None
 
     trades = []
-    position = None   # None 或 {"buy_date", "buy_price", "buy_score"}
+    position = None
 
-    for i, row in bt_df.iterrows():
+    for i in range(len(bt_df)):
+        row = bt_df.iloc[i]
         as_of = row["date"]
-        sc = score_on_day(df, inst, as_of)
+        sc = scores.get(as_of)
         if sc is None:
             continue
 
-        # 取下一個交易日
+        # 期末強平
         if i + 1 >= len(bt_df):
-            # 最後一天：強制平倉
             if position:
-                ret = (row["close"] - position["buy_price"]) / position["buy_price"] * 100
-                trades.append({**position,
-                    "sell_date": as_of, "sell_price": row["close"],
-                    "return_pct": ret,
-                    "hold_days": (pd.to_datetime(as_of) - pd.to_datetime(position["buy_date"])).days,
-                    "exit": "期末強平",
-                })
+                trades.append(_close_position(position, as_of, row["close"], "期末強平"))
             break
 
         nxt = bt_df.iloc[i + 1]
 
         if position is None:
-            if sc > BUY_THRESHOLD:
+            if sc > buy_thr:
                 position = {"stock_id": stock_id, "stock_name": stock_name,
-                            "buy_date": nxt["date"], "buy_price": nxt["close"], "buy_score": sc}
+                            "buy_date": nxt["date"], "buy_price": nxt["close"],
+                            "buy_score": sc}
         else:
-            if sc < SELL_THRESHOLD:
-                ret = (nxt["close"] - position["buy_price"]) / position["buy_price"] * 100
-                trades.append({**position,
-                    "sell_date": nxt["date"], "sell_price": nxt["close"],
-                    "return_pct": ret,
-                    "hold_days": (pd.to_datetime(nxt["date"]) - pd.to_datetime(position["buy_date"])).days,
-                    "exit": "分數低於60",
-                })
+            # 出場優先順序：停損 > 達標獲利 > 分數低於門檻
+            unrealized_pct = (row["close"] - position["buy_price"]) / position["buy_price"] * 100
+            exit_reason = None
+            if stop_pct is not None and unrealized_pct < stop_pct:
+                exit_reason = "停損"
+            elif tp_pct is not None and unrealized_pct > tp_pct:
+                exit_reason = "達標獲利"
+            elif sell_thr is not None and sc < sell_thr:
+                exit_reason = "分數低於門檻"
+
+            if exit_reason:
+                trades.append(_close_position(position, nxt["date"], nxt["close"], exit_reason))
                 position = None
 
     return trades
+
+
+# ── 基準對照 ────────────────────────────────────────────
+
+def fetch_benchmark_return():
+    """抓 BENCHMARK_TICKER (預設 0050) 同期 buy-and-hold 報酬。
+
+    回傳 dict 或 None（抓不到資料時）：
+      {
+        "ticker", "start_date", "end_date",
+        "start_price", "end_price",
+        "return_pct_gross",  # 毛報酬
+        "return_pct_net",    # 扣 0.5% 來回成本
+      }
+    """
+    raw = fetch_finmind("TaiwanStockPrice", BENCHMARK_TICKER)
+    if not raw:
+        return None
+
+    df = pd.DataFrame(raw).sort_values("date").reset_index(drop=True)
+    in_window = df[df["date"] >= BACKTEST_START]
+    if in_window.empty:
+        return None
+
+    start_row = in_window.iloc[0]
+    end_row = df.iloc[-1]
+    start_p, end_p = float(start_row["close"]), float(end_row["close"])
+    gross = (end_p - start_p) / start_p * 100
+    return {
+        "ticker": BENCHMARK_TICKER,
+        "start_date": start_row["date"],
+        "end_date":   end_row["date"],
+        "start_price": start_p,
+        "end_price":   end_p,
+        "return_pct_gross": gross,
+        "return_pct_net":   gross - COST_PER_ROUND_TRIP_PCT,
+    }
 
 
 # ── 主程式 ───────────────────────────────────────────────
 
 def main():
     stocks = get_stocks()
-    print(f"▶ 回測 {len(stocks)} 支股票")
+    print(f"▶ 回測 {len(stocks)} 支股票 × {len(STRATEGIES)} 策略變體")
     print(f"▶ 期間：{BACKTEST_START} ~ 今日")
-    print(f"▶ 策略：分數 > {BUY_THRESHOLD} 買進 / 分數 < {SELL_THRESHOLD} 賣出\n")
+    print("▶ 變體：")
+    for s in STRATEGIES:
+        print(f"     {s['label']}")
+    print()
 
     all_trades = []
 
@@ -265,45 +389,88 @@ def main():
             print("無資料")
             continue
 
-        trades = backtest_stock(sid, name, ohlcv, inst)
-        all_trades.extend(trades)
+        prep = prep_stock(ohlcv, inst)
+        if prep is None:
+            print("資料不足")
+            continue
 
-        if trades:
-            avg = sum(t["return_pct"] for t in trades) / len(trades)
-            print(f"{len(trades)} 筆  平均 {avg:+.1f}%")
-        else:
-            print("無交易")
-
-    # ── 結果摘要 ──
-    print("\n" + "═" * 55)
-    print("回測結果摘要")
-    print("═" * 55)
+        counts = []
+        for strat in STRATEGIES:
+            trades = run_strategy(sid, name, prep, strat)
+            for t in trades:
+                t["strategy"] = strat["name"]
+            all_trades.extend(trades)
+            counts.append(len(trades))
+        print(f"共 {sum(counts)} 筆  每策略 {counts}")
 
     if not all_trades:
-        print("回測期間內無任何買賣訊號")
+        print("\n回測期間內無任何買賣訊號")
         return
 
-    df = pd.DataFrame(all_trades)
-    w = df[df["return_pct"] > 0]
-    l = df[df["return_pct"] <= 0]
+    df_all = pd.DataFrame(all_trades)
 
-    print(f"總交易次數  ：{len(df)}")
-    print(f"勝率        ：{len(w)/len(df)*100:.1f}%（{len(w)} 勝 / {len(l)} 負）")
-    print(f"平均報酬    ：{df['return_pct'].mean():+.2f}%")
-    print(f"中位數報酬  ：{df['return_pct'].median():+.2f}%")
-    print(f"平均持倉天數：{df['hold_days'].mean():.1f} 天")
-    print(f"最大獲利    ：{df['return_pct'].max():+.2f}%  ({df.loc[df['return_pct'].idxmax(), 'stock_name']})")
-    print(f"最大虧損    ：{df['return_pct'].min():+.2f}%  ({df.loc[df['return_pct'].idxmin(), 'stock_name']})")
+    # ── 基準對照 ──
+    print("\n" + "═" * 70)
+    bench = fetch_benchmark_return()
+    if bench is None:
+        print("基準：無法取得 0050 資料")
+        bench_net = None
+    else:
+        bench_net = bench["return_pct_net"]
+        print(f"基準對照：{BENCHMARK_TICKER} 同期 buy-and-hold")
+        print(f"  期間：{bench['start_date']} @ {bench['start_price']:.2f}"
+              f" → {bench['end_date']} @ {bench['end_price']:.2f}")
+        print(f"  持有報酬（淨）：{bench_net:+.2f}%  (扣 {COST_PER_ROUND_TRIP_PCT}% 來回成本)")
+    print("═" * 70)
 
-    print(f"\n前 10 筆最佳交易：")
-    top = df.nlargest(10, "return_pct")[
-        ["stock_id", "stock_name", "buy_date", "sell_date", "return_pct", "hold_days"]
-    ]
-    print(top.to_string(index=False))
+    # ── 各策略對比表 ──
+    print(f"\n{'策略':<22} {'交易':>5} {'勝率':>7} {'平均淨%':>9} {'中位淨%':>9}"
+          f" {'最大虧%':>9} {'累計淨%':>10}")
+    print("─" * 75)
+    for strat in STRATEGIES:
+        sdf = df_all[df_all["strategy"] == strat["name"]]
+        if sdf.empty:
+            print(f"{strat['label']:<22} (無交易)")
+            continue
+        n = len(sdf)
+        win_rate = (sdf["return_pct"] > 0).sum() / n * 100
+        avg = sdf["return_pct"].mean()
+        med = sdf["return_pct"].median()
+        worst = sdf["return_pct"].min()
+        cum = sdf["return_pct"].sum()
+        print(f"{strat['label']:<22} {n:>5} {win_rate:>6.1f}%"
+              f" {avg:>+8.2f}% {med:>+8.2f}% {worst:>+8.1f}% {cum:>+9.1f}%")
+
+    # ── vs 0050 ──
+    if bench_net is not None:
+        print("\nvs 0050 (持有 +{:.1f}%)：".format(bench_net))
+        for strat in STRATEGIES:
+            sdf = df_all[df_all["strategy"] == strat["name"]]
+            if sdf.empty:
+                continue
+            avg = sdf["return_pct"].mean()
+            mark = "✅勝" if avg > bench_net else "❌輸"
+            print(f"  {strat['label']:<22} 平均單筆 {avg:+.2f}%  →  vs 0050 {avg - bench_net:+.2f}% {mark}")
+
+    # ── 各策略出場原因分布 ──
+    print("\n各策略出場原因分布：")
+    for strat in STRATEGIES:
+        sdf = df_all[df_all["strategy"] == strat["name"]]
+        if sdf.empty:
+            continue
+        counts = sdf["exit"].value_counts()
+        parts = [f"{k} {v}" for k, v in counts.items()]
+        print(f"  {strat['label']:<22} {' / '.join(parts)}")
+
+    print()
+    print("⚠ 提醒：")
+    print("  - '平均%' vs 0050 是粗比較，未考慮資金管理")
+    print("  - '累計%' 假設每筆獨立 1 單位資金，不等於資金倍增")
+    print("  - 真實資金曲線模擬留 Phase 3.5")
 
     out = "backtest_results.csv"
-    df.to_csv(out, index=False, encoding="utf-8-sig")
-    print(f"\n詳細結果已存至 {out}")
+    df_all.to_csv(out, index=False, encoding="utf-8-sig")
+    print(f"\n詳細結果已存至 {out} ({len(df_all)} 筆，含 strategy 欄位)")
 
 
 if __name__ == "__main__":
