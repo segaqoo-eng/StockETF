@@ -3,50 +3,32 @@
   "as_of_baseline": "2026-05-03",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
+    "00990A": {
       "added": [
         {
-          "stock_id": "3324",
-          "stock_name": "雙鴻科技",
-          "shares": 510000
+          "stock_id": "5347",
+          "stock_name": "世界",
+          "shares": 1442000
         }
       ],
       "removed": [
         {
-          "stock_id": "6505",
-          "stock_name": "台塑石化",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨股份",
-          "shares_now": 3300000,
-          "shares_prev": 3200000,
-          "shares_delta": 100000
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 435000
         },
         {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 580000,
-          "shares_prev": 570000,
-          "shares_delta": 10000
+          "stock_id": "6510",
+          "stock_name": "精測",
+          "shares": 56000
         }
-      ]
+      ],
+      "changed": []
     },
-    "00992A": {
+    "00980A": {
       "added": [],
       "removed": [],
-      "changed": [
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "shares_now": 2302000,
-          "shares_prev": 2303000,
-          "shares_delta": -1000
-        }
-      ]
+      "changed": []
     },
     "0050": {
       "added": [
@@ -402,6 +384,51 @@
         }
       ]
     },
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "3324",
+          "stock_name": "雙鴻科技",
+          "shares": 510000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6505",
+          "stock_name": "台塑石化",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨股份",
+          "shares_now": 3300000,
+          "shares_prev": 3200000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 580000,
+          "shares_prev": 570000,
+          "shares_delta": 10000
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6187",
+          "stock_name": "萬潤",
+          "shares_now": 1222000,
+          "shares_prev": 684000,
+          "shares_delta": 538000
+        }
+      ]
+    },
     "00982A": {
       "added": [
         {
@@ -419,43 +446,16 @@
       ],
       "changed": []
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "5347",
-          "stock_name": "世界",
-          "shares": 1442000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares": 435000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "精測",
-          "shares": 56000
-        }
-      ],
-      "changed": []
-    },
-    "00981A": {
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "6187",
-          "stock_name": "萬潤",
-          "shares_now": 1222000,
-          "shares_prev": 684000,
-          "shares_delta": 538000
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 2302000,
+          "shares_prev": 2303000,
+          "shares_delta": -1000
         }
       ]
     }
