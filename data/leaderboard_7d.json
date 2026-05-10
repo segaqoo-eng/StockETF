@@ -1,7 +1,7 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-09",
-  "as_of_baseline": "2026-05-02",
+  "as_of_today": "2026-05-10",
+  "as_of_baseline": "2026-05-03",
   "top_added": [
     {
       "stock_id": "2454",
@@ -11,7 +11,7 @@
     },
     {
       "stock_id": "8299",
-      "stock_name": "群聯",
+      "stock_name": "群聯電子",
       "etf_count": 3,
       "total_delta": 4.845
     },
@@ -23,7 +23,7 @@
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技",
       "etf_count": 5,
       "total_delta": 4.101
     },
@@ -37,13 +37,13 @@
   "top_removed": [
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐",
+      "stock_name": "奇鋐科技",
       "etf_count": 7,
       "total_delta": -10.419
     },
     {
       "stock_id": "3653",
-      "stock_name": "健策精密工業",
+      "stock_name": "健策精密",
       "etf_count": 5,
       "total_delta": -5.448
     },

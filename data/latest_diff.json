@@ -1,8 +1,18 @@
 {
-  "as_of_today": "2026-05-09",
-  "as_of_baseline": "2026-05-08",
+  "as_of_today": "2026-05-10",
+  "as_of_baseline": "2026-05-09",
   "is_stale": false,
   "by_etf": {
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00992A": {
       "added": [],
       "removed": [],
@@ -22,59 +32,6 @@
       "added": [],
       "removed": [],
       "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 8430000,
-          "shares_prev": 8268000,
-          "shares_delta": 162000
-        },
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 2533000,
-          "shares_prev": 2483000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 1728000,
-          "shares_prev": 1692000,
-          "shares_delta": 36000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares_now": 797000,
-          "shares_prev": 781000,
-          "shares_delta": 16000
-        },
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 799000,
-          "shares_prev": 785000,
-          "shares_delta": 14000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 510000,
-          "shares_prev": 499000,
-          "shares_delta": 11000
-        }
-      ]
     },
     "00981A": {
       "added": [],
