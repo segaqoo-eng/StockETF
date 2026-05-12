@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-11",
-  "as_of_baseline": "2026-05-04",
+  "as_of_today": "2026-05-12",
+  "as_of_baseline": "2026-05-05",
   "top_added": [
     {
       "stock_id": "8299",
       "stock_name": "群聯電子",
       "etf_count": 3,
-      "total_delta": 5.576
-    },
-    {
-      "stock_id": "2454",
-      "stock_name": "聯發科",
-      "etf_count": 6,
-      "total_delta": 5.15
+      "total_delta": 4.885
     },
     {
       "stock_id": "3443",
       "stock_name": "創意",
       "etf_count": 3,
-      "total_delta": 5.11
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": 4.072
+      "total_delta": 4.67
     },
     {
       "stock_id": "3661",
       "stock_name": "世芯-KY",
       "etf_count": 3,
-      "total_delta": 3.43
+      "total_delta": 4.19
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "etf_count": 5,
+      "total_delta": 3.863
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科",
+      "etf_count": 6,
+      "total_delta": 3.342
     }
   ],
   "top_removed": [
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
-      "etf_count": 6,
-      "total_delta": -5.56
+      "etf_count": 5,
+      "total_delta": -4.447
+    },
+    {
+      "stock_id": "8996",
+      "stock_name": "高力",
+      "etf_count": 2,
+      "total_delta": -4.22
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": -4.914
-    },
-    {
-      "stock_id": "3653",
-      "stock_name": "健策",
       "etf_count": 5,
-      "total_delta": -4.307
-    },
-    {
-      "stock_id": "8996",
-      "stock_name": "高力熱處",
-      "etf_count": 3,
-      "total_delta": -3.42
+      "total_delta": -3.522
     },
     {
       "stock_id": "6442",
       "stock_name": "光紅建聖",
       "etf_count": 2,
-      "total_delta": -3.33
+      "total_delta": -3.28
+    },
+    {
+      "stock_id": "3653",
+      "stock_name": "健策",
+      "etf_count": 5,
+      "total_delta": -3.028
     }
   ]
 }
