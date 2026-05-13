@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-12",
-  "as_of_baseline": "2026-05-05",
+  "as_of_today": "2026-05-13",
+  "as_of_baseline": "2026-05-06",
   "top_added": [
     {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 6,
-      "total_delta": 6.064
-    },
-    {
-      "stock_id": "8299",
-      "stock_name": "群聯",
-      "etf_count": 3,
-      "total_delta": 5.588
-    },
-    {
       "stock_id": "3443",
-      "stock_name": "創意",
-      "etf_count": 3,
-      "total_delta": 4.51
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 3,
-      "total_delta": 4.172
+      "stock_name": "創意電子",
+      "etf_count": 2,
+      "total_delta": 4.23
     },
     {
       "stock_id": "3661",
       "stock_name": "世芯-KY",
       "etf_count": 3,
-      "total_delta": 4.12
+      "total_delta": 4.06
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 3,
+      "total_delta": 4.011
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "etf_count": 6,
+      "total_delta": 3.915
+    },
+    {
+      "stock_id": "2308",
+      "stock_name": "台達電",
+      "etf_count": 6,
+      "total_delta": 2.392
     }
   ],
   "top_removed": [
     {
+      "stock_id": "6139",
+      "stock_name": "亞翔",
+      "etf_count": 1,
+      "total_delta": -3.91
+    },
+    {
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 2,
-      "total_delta": -4.62
+      "total_delta": -3.58
     },
     {
-      "stock_id": "3017",
-      "stock_name": "奇鋐",
-      "etf_count": 6,
-      "total_delta": -4.282
+      "stock_id": "6442",
+      "stock_name": "光紅建聖",
+      "etf_count": 2,
+      "total_delta": -3.27
+    },
+    {
+      "stock_id": "8996",
+      "stock_name": "高力熱處理工業",
+      "etf_count": 3,
+      "total_delta": -2.68
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 7,
-      "total_delta": -4.119
-    },
-    {
-      "stock_id": "6139",
-      "stock_name": "亞翔",
-      "etf_count": 1,
-      "total_delta": -3.8
-    },
-    {
-      "stock_id": "6442",
-      "stock_name": "光聖",
-      "etf_count": 2,
-      "total_delta": -3.28
+      "total_delta": -2.493
     }
   ]
 }
