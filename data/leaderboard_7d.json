@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-13",
-  "as_of_baseline": "2026-05-06",
+  "as_of_today": "2026-05-14",
+  "as_of_baseline": "2026-05-07",
   "top_added": [
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
       "etf_count": 4,
-      "total_delta": 5.356
+      "total_delta": 5.42
     },
     {
-      "stock_id": "3443",
-      "stock_name": "創意",
-      "etf_count": 2,
-      "total_delta": 4.11
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
+      "stock_id": "8299",
+      "stock_name": "群聯電子",
       "etf_count": 3,
-      "total_delta": 3.971
+      "total_delta": 4.965
     },
     {
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 6,
-      "total_delta": 3.391
+      "total_delta": 3.854
     },
     {
-      "stock_id": "3661",
-      "stock_name": "世芯-KY",
-      "etf_count": 2,
-      "total_delta": 3.29
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 1,
+      "total_delta": 3.651
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "etf_count": 3,
+      "total_delta": 1.84
     }
   ],
   "top_removed": [
     {
       "stock_id": "3665",
-      "stock_name": "貿聯-KY",
+      "stock_name": "貿聯控股（BizLink Holding In",
       "etf_count": 4,
-      "total_delta": -4.075
+      "total_delta": -3.998
     },
     {
       "stock_id": "6139",
       "stock_name": "亞翔",
       "etf_count": 1,
-      "total_delta": -3.91
+      "total_delta": -3.86
     },
     {
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 2,
-      "total_delta": -3.72
+      "total_delta": -3.53
     },
     {
-      "stock_id": "6442",
-      "stock_name": "光聖",
-      "etf_count": 2,
-      "total_delta": -3.27
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 7,
+      "total_delta": -3.525
     },
     {
       "stock_id": "2368",
       "stock_name": "金像電",
       "etf_count": 4,
-      "total_delta": -2.98
+      "total_delta": -2.569
     }
   ]
 }
