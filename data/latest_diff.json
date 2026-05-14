@@ -3,82 +3,6 @@
   "as_of_baseline": "2026-05-13",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
-      "added": [],
-      "removed": [
-        {
-          "stock_id": "3529",
-          "stock_name": "力旺",
-          "shares": 36000
-        }
-      ],
-      "changed": []
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 289000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 358000
-        }
-      ],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares_now": 88000,
-          "shares_prev": 470000,
-          "shares_delta": -382000
-        },
-        {
-          "stock_id": "1590",
-          "stock_name": "亞德客-KY",
-          "shares_now": 300000,
-          "shares_prev": 400000,
-          "shares_delta": -100000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力熱處",
-          "shares_now": 680000,
-          "shares_prev": 590000,
-          "shares_delta": 90000
-        },
-        {
-          "stock_id": "3653",
-          "stock_name": "健策精密",
-          "shares_now": 1000,
-          "shares_prev": 89000,
-          "shares_delta": -88000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴科技",
-          "shares_now": 65000,
-          "shares_prev": 1000,
-          "shares_delta": 64000
-        },
-        {
-          "stock_id": "8210",
-          "stock_name": "勤誠興業",
-          "shares_now": 460000,
-          "shares_prev": 401000,
-          "shares_delta": 59000
-        }
-      ]
-    },
     "0050": {
       "added": [],
       "removed": [],
@@ -435,6 +359,70 @@
         }
       ]
     },
+    "00981A": {
+      "added": [
+        {
+          "stock_id": "6278",
+          "stock_name": "台表科",
+          "shares": 2500000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "5439",
+          "stock_name": "高技",
+          "shares_now": 3528000,
+          "shares_prev": 3228000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares_now": 329000,
+          "shares_prev": 159000,
+          "shares_delta": 170000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 618000,
+          "shares_prev": 764000,
+          "shares_delta": -146000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 4723000,
+          "shares_prev": 4605000,
+          "shares_delta": 118000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 4925000,
+          "shares_prev": 4813000,
+          "shares_delta": 112000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 289000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 358000
+        }
+      ],
+      "changed": []
+    },
     "00980A": {
       "added": [],
       "removed": [],
@@ -481,50 +469,62 @@
         }
       ]
     },
-    "00981A": {
-      "added": [
+    "00990A": {
+      "added": [],
+      "removed": [
         {
-          "stock_id": "6278",
-          "stock_name": "台表科",
-          "shares": 2500000
+          "stock_id": "3529",
+          "stock_name": "力旺",
+          "shares": 36000
         }
       ],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "5439",
-          "stock_name": "高技",
-          "shares_now": 3528000,
-          "shares_prev": 3228000,
-          "shares_delta": 300000
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 88000,
+          "shares_prev": 470000,
+          "shares_delta": -382000
         },
         {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares_now": 329000,
-          "shares_prev": 159000,
-          "shares_delta": 170000
+          "stock_id": "1590",
+          "stock_name": "亞德客-KY",
+          "shares_now": 300000,
+          "shares_prev": 400000,
+          "shares_delta": -100000
         },
         {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 618000,
-          "shares_prev": 764000,
-          "shares_delta": -146000
+          "stock_id": "8996",
+          "stock_name": "高力熱處",
+          "shares_now": 680000,
+          "shares_prev": 590000,
+          "shares_delta": 90000
         },
         {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 4723000,
-          "shares_prev": 4605000,
-          "shares_delta": 118000
+          "stock_id": "3653",
+          "stock_name": "健策精密",
+          "shares_now": 1000,
+          "shares_prev": 89000,
+          "shares_delta": -88000
         },
         {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares_now": 4925000,
-          "shares_prev": 4813000,
-          "shares_delta": 112000
+          "stock_id": "6515",
+          "stock_name": "穎崴科技",
+          "shares_now": 65000,
+          "shares_prev": 1000,
+          "shares_delta": 64000
+        },
+        {
+          "stock_id": "8210",
+          "stock_name": "勤誠興業",
+          "shares_now": 460000,
+          "shares_prev": 401000,
+          "shares_delta": 59000
         }
       ]
     }
