@@ -6,40 +6,40 @@
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
-      "etf_count": 4,
-      "total_delta": 5.42
+      "etf_count": 5,
+      "total_delta": 10.001
     },
     {
       "stock_id": "8299",
-      "stock_name": "群聯電子",
+      "stock_name": "群聯",
       "etf_count": 3,
-      "total_delta": 4.965
+      "total_delta": 5.529
     },
     {
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 6,
-      "total_delta": 3.854
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 1,
-      "total_delta": 3.651
+      "total_delta": 2.918
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨*",
+      "stock_name": "國巨股份",
       "etf_count": 3,
-      "total_delta": 1.84
+      "total_delta": 2.482
+    },
+    {
+      "stock_id": "8210",
+      "stock_name": "勤誠興業",
+      "etf_count": 3,
+      "total_delta": 2.005
     }
   ],
   "top_removed": [
     {
       "stock_id": "3665",
-      "stock_name": "貿聯控股（BizLink Holding In",
+      "stock_name": "貿聯-KY",
       "etf_count": 4,
-      "total_delta": -3.998
+      "total_delta": -6.977
     },
     {
       "stock_id": "6139",
@@ -51,19 +51,19 @@
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 2,
-      "total_delta": -3.53
+      "total_delta": -3.72
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 7,
-      "total_delta": -3.525
+      "total_delta": -2.967
     },
     {
-      "stock_id": "2368",
-      "stock_name": "金像電",
+      "stock_id": "3653",
+      "stock_name": "健策",
       "etf_count": 4,
-      "total_delta": -2.569
+      "total_delta": -2.869
     }
   ]
 }
