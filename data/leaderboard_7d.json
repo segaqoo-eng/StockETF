@@ -5,33 +5,33 @@
   "top_added": [
     {
       "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 5,
-      "total_delta": 9.059
+      "stock_name": "旺矽科技",
+      "etf_count": 4,
+      "total_delta": 5.317
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 2,
+      "total_delta": 3.118
     },
     {
       "stock_id": "8210",
-      "stock_name": "勤誠",
+      "stock_name": "勤誠興業",
       "etf_count": 3,
-      "total_delta": 1.835
+      "total_delta": 2.26
     },
     {
       "stock_id": "8996",
       "stock_name": "高力",
-      "etf_count": 2,
-      "total_delta": 1.764
-    },
-    {
-      "stock_id": "2327",
-      "stock_name": "國巨*",
       "etf_count": 3,
-      "total_delta": 1.704
+      "total_delta": 2.165
     },
     {
-      "stock_id": "2408",
-      "stock_name": "南亞科",
-      "etf_count": 2,
-      "total_delta": 1.592
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 5,
+      "total_delta": 2.079
     }
   ],
   "top_removed": [
@@ -39,7 +39,7 @@
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
       "etf_count": 4,
-      "total_delta": -7.297
+      "total_delta": -7.728
     },
     {
       "stock_id": "6139",
@@ -49,21 +49,21 @@
     },
     {
       "stock_id": "2454",
-      "stock_name": "聯發科",
+      "stock_name": "聯發科技",
       "etf_count": 5,
-      "total_delta": -2.921
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 6,
-      "total_delta": -2.309
+      "total_delta": -3.119
     },
     {
       "stock_id": "2308",
-      "stock_name": "台達電",
+      "stock_name": "台達電子工業",
       "etf_count": 5,
-      "total_delta": -2.126
+      "total_delta": -2.328
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體電路製造",
+      "etf_count": 5,
+      "total_delta": -2.212
     }
   ]
 }
