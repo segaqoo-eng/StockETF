@@ -8,6 +8,53 @@
       "removed": [],
       "changed": []
     },
+    "00981A": {
+      "added": [
+        {
+          "stock_id": "3533",
+          "stock_name": "嘉澤",
+          "shares": 260000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2303",
+          "stock_name": "聯電",
+          "shares_now": 66190000,
+          "shares_prev": 63190000,
+          "shares_delta": 3000000
+        },
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 7772000,
+          "shares_prev": 9030000,
+          "shares_delta": -1258000
+        },
+        {
+          "stock_id": "2357",
+          "stock_name": "華碩",
+          "shares_now": 1622000,
+          "shares_prev": 1703000,
+          "shares_delta": -81000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊",
+          "shares_now": 422000,
+          "shares_prev": 483000,
+          "shares_delta": -61000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 96000,
+          "shares_prev": 107000,
+          "shares_delta": -11000
+        }
+      ]
+    },
     "0050": {
       "added": [],
       "removed": [
@@ -363,58 +410,6 @@
         }
       ]
     },
-    "00981A": {
-      "added": [
-        {
-          "stock_id": "3533",
-          "stock_name": "嘉澤",
-          "shares": 260000
-        }
-      ],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2303",
-          "stock_name": "聯電",
-          "shares_now": 66190000,
-          "shares_prev": 63190000,
-          "shares_delta": 3000000
-        },
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 7772000,
-          "shares_prev": 9030000,
-          "shares_delta": -1258000
-        },
-        {
-          "stock_id": "2357",
-          "stock_name": "華碩",
-          "shares_now": 1622000,
-          "shares_prev": 1703000,
-          "shares_delta": -81000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊",
-          "shares_now": 422000,
-          "shares_prev": 483000,
-          "shares_delta": -61000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 96000,
-          "shares_prev": 107000,
-          "shares_delta": -11000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00980A": {
       "added": [],
       "removed": [],
@@ -465,6 +460,59 @@
       "added": [],
       "removed": [],
       "changed": []
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares": 2463000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 851000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 444000,
+          "shares_prev": 572000,
+          "shares_delta": -128000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 451000,
+          "shares_prev": 513000,
+          "shares_delta": -62000
+        },
+        {
+          "stock_id": "5536",
+          "stock_name": "聖暉*",
+          "shares_now": 3654000,
+          "shares_prev": 3602000,
+          "shares_delta": 52000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 857000,
+          "shares_prev": 880000,
+          "shares_delta": -23000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 569000,
+          "shares_prev": 573000,
+          "shares_delta": -4000
+        }
+      ]
     }
   }
 }
