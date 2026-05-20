@@ -5,65 +5,65 @@
   "top_added": [
     {
       "stock_id": "6223",
-      "stock_name": "旺矽",
+      "stock_name": "旺矽科技",
       "etf_count": 5,
-      "total_delta": 4.418
+      "total_delta": 4.498
     },
     {
       "stock_id": "6139",
       "stock_name": "亞翔",
       "etf_count": 1,
-      "total_delta": 3.65
+      "total_delta": 3.59
     },
     {
       "stock_id": "6515",
-      "stock_name": "穎崴",
+      "stock_name": "穎崴科技",
       "etf_count": 2,
-      "total_delta": 2.886
+      "total_delta": 2.835
     },
     {
       "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_name": "台灣積體電路製造",
       "etf_count": 7,
-      "total_delta": 2.744
+      "total_delta": 2.831
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 3,
-      "total_delta": 1.985
+      "total_delta": 2.596
     }
   ],
   "top_removed": [
     {
+      "stock_id": "8299",
+      "stock_name": "群聯電子",
+      "etf_count": 3,
+      "total_delta": -5.009
+    },
+    {
       "stock_id": "3665",
-      "stock_name": "貿聯-KY",
+      "stock_name": "貿聯控股（BizLink Holding In",
       "etf_count": 3,
       "total_delta": -4.588
     },
     {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 2,
-      "total_delta": -3.922
+      "stock_id": "6669",
+      "stock_name": "緯穎科技服務",
+      "etf_count": 6,
+      "total_delta": -3.473
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電",
+      "stock_name": "台光電子材料",
       "etf_count": 6,
-      "total_delta": -2.866
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": -2.787
+      "total_delta": -3.092
     },
     {
       "stock_id": "2308",
-      "stock_name": "台達電",
+      "stock_name": "台達電子工業",
       "etf_count": 5,
-      "total_delta": -1.909
+      "total_delta": -2.209
     }
   ]
 }
