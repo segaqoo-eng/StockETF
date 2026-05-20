@@ -3,228 +3,6 @@
   "as_of_baseline": "2026-05-19",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [
-        {
-          "stock_id": "1519",
-          "stock_name": "華城電機",
-          "shares": 78000
-        },
-        {
-          "stock_id": "5434",
-          "stock_name": "崇越科技",
-          "shares": 59000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2884",
-          "stock_name": "玉山金融控股",
-          "shares_now": 3867622,
-          "shares_prev": 1999622,
-          "shares_delta": 1868000
-        },
-        {
-          "stock_id": "2382",
-          "stock_name": "廣達電腦",
-          "shares_now": 899000,
-          "shares_prev": 1574000,
-          "shares_delta": -675000
-        },
-        {
-          "stock_id": "2317",
-          "stock_name": "鴻海精密工業",
-          "shares_now": 1506000,
-          "shares_prev": 2076000,
-          "shares_delta": -570000
-        },
-        {
-          "stock_id": "2344",
-          "stock_name": "華邦電子",
-          "shares_now": 3621000,
-          "shares_prev": 3152000,
-          "shares_delta": 469000
-        },
-        {
-          "stock_id": "2376",
-          "stock_name": "技嘉科技",
-          "shares_now": 577000,
-          "shares_prev": 245000,
-          "shares_delta": 332000
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興電子",
-          "shares_now": 562000,
-          "shares_prev": 240000,
-          "shares_delta": 322000
-        },
-        {
-          "stock_id": "3036",
-          "stock_name": "文曄科技",
-          "shares_now": 1067000,
-          "shares_prev": 755000,
-          "shares_delta": 312000
-        },
-        {
-          "stock_id": "4915",
-          "stock_name": "致伸科技",
-          "shares_now": 298000,
-          "shares_prev": 596000,
-          "shares_delta": -298000
-        },
-        {
-          "stock_id": "1477",
-          "stock_name": "聚陽實業",
-          "shares_now": 201000,
-          "shares_prev": 402000,
-          "shares_delta": -201000
-        },
-        {
-          "stock_id": "6584",
-          "stock_name": "南俊國際",
-          "shares_now": 153000,
-          "shares_prev": 283000,
-          "shares_delta": -130000
-        },
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電子（股）公司",
-          "shares_now": 393000,
-          "shares_prev": 299000,
-          "shares_delta": 94000
-        },
-        {
-          "stock_id": "3293",
-          "stock_name": "鈊象電子",
-          "shares_now": 220000,
-          "shares_prev": 141000,
-          "shares_delta": 79000
-        },
-        {
-          "stock_id": "5904",
-          "stock_name": "寶雅國際",
-          "shares_now": 179450,
-          "shares_prev": 100450,
-          "shares_delta": 79000
-        },
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯控股（BizLink Holding In",
-          "shares_now": 53336,
-          "shares_prev": 130336,
-          "shares_delta": -77000
-        },
-        {
-          "stock_id": "3081",
-          "stock_name": "聯亞光電工業",
-          "shares_now": 127000,
-          "shares_prev": 71000,
-          "shares_delta": 56000
-        },
-        {
-          "stock_id": "8210",
-          "stock_name": "勤誠興業",
-          "shares_now": 236000,
-          "shares_prev": 292000,
-          "shares_delta": -56000
-        },
-        {
-          "stock_id": "3533",
-          "stock_name": "嘉澤端子工業",
-          "shares_now": 13000,
-          "shares_prev": 59000,
-          "shares_delta": -46000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台灣積體電路製造",
-          "shares_now": 645000,
-          "shares_prev": 607000,
-          "shares_delta": 38000
-        },
-        {
-          "stock_id": "3653",
-          "stock_name": "健策精密工業",
-          "shares_now": 38000,
-          "shares_prev": 66000,
-          "shares_delta": -28000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意電子",
-          "shares_now": 70000,
-          "shares_prev": 54000,
-          "shares_delta": 16000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技服務",
-          "shares_now": 68000,
-          "shares_prev": 83000,
-          "shares_delta": -15000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 74000,
-          "shares_prev": 86000,
-          "shares_delta": -12000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6147",
-          "stock_name": "頎邦",
-          "shares_now": 3201000,
-          "shares_prev": 1000,
-          "shares_delta": 3200000
-        },
-        {
-          "stock_id": "2481",
-          "stock_name": "強茂",
-          "shares_now": 2056000,
-          "shares_prev": 3654000,
-          "shares_delta": -1598000
-        },
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 6217000,
-          "shares_prev": 7772000,
-          "shares_delta": -1555000
-        },
-        {
-          "stock_id": "3533",
-          "stock_name": "嘉澤",
-          "shares_now": 624000,
-          "shares_prev": 260000,
-          "shares_delta": 364000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 358000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯",
-          "shares": 711000
-        }
-      ],
-      "changed": []
-    },
     "00991A": {
       "added": [],
       "removed": [],
@@ -235,38 +13,6 @@
           "shares_now": 850000,
           "shares_prev": 900000,
           "shares_delta": -50000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 373000,
-          "shares_prev": 451000,
-          "shares_delta": -78000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares_now": 821000,
-          "shares_prev": 857000,
-          "shares_delta": -36000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 570000,
-          "shares_prev": 569000,
-          "shares_delta": 1000
         }
       ]
     },
@@ -622,6 +368,260 @@
           "shares_now": 1115488,
           "shares_prev": 1112008,
           "shares_delta": 3480
+        }
+      ]
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 358000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯",
+          "shares": 711000
+        }
+      ],
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "1519",
+          "stock_name": "華城電機",
+          "shares": 78000
+        },
+        {
+          "stock_id": "5434",
+          "stock_name": "崇越科技",
+          "shares": 59000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2884",
+          "stock_name": "玉山金融控股",
+          "shares_now": 3867622,
+          "shares_prev": 1999622,
+          "shares_delta": 1868000
+        },
+        {
+          "stock_id": "2382",
+          "stock_name": "廣達電腦",
+          "shares_now": 899000,
+          "shares_prev": 1574000,
+          "shares_delta": -675000
+        },
+        {
+          "stock_id": "2317",
+          "stock_name": "鴻海精密工業",
+          "shares_now": 1506000,
+          "shares_prev": 2076000,
+          "shares_delta": -570000
+        },
+        {
+          "stock_id": "2344",
+          "stock_name": "華邦電子",
+          "shares_now": 3621000,
+          "shares_prev": 3152000,
+          "shares_delta": 469000
+        },
+        {
+          "stock_id": "2376",
+          "stock_name": "技嘉科技",
+          "shares_now": 577000,
+          "shares_prev": 245000,
+          "shares_delta": 332000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興電子",
+          "shares_now": 562000,
+          "shares_prev": 240000,
+          "shares_delta": 322000
+        },
+        {
+          "stock_id": "3036",
+          "stock_name": "文曄科技",
+          "shares_now": 1067000,
+          "shares_prev": 755000,
+          "shares_delta": 312000
+        },
+        {
+          "stock_id": "4915",
+          "stock_name": "致伸科技",
+          "shares_now": 298000,
+          "shares_prev": 596000,
+          "shares_delta": -298000
+        },
+        {
+          "stock_id": "1477",
+          "stock_name": "聚陽實業",
+          "shares_now": 201000,
+          "shares_prev": 402000,
+          "shares_delta": -201000
+        },
+        {
+          "stock_id": "6584",
+          "stock_name": "南俊國際",
+          "shares_now": 153000,
+          "shares_prev": 283000,
+          "shares_delta": -130000
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電子（股）公司",
+          "shares_now": 393000,
+          "shares_prev": 299000,
+          "shares_delta": 94000
+        },
+        {
+          "stock_id": "3293",
+          "stock_name": "鈊象電子",
+          "shares_now": 220000,
+          "shares_prev": 141000,
+          "shares_delta": 79000
+        },
+        {
+          "stock_id": "5904",
+          "stock_name": "寶雅國際",
+          "shares_now": 179450,
+          "shares_prev": 100450,
+          "shares_delta": 79000
+        },
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯控股（BizLink Holding In",
+          "shares_now": 53336,
+          "shares_prev": 130336,
+          "shares_delta": -77000
+        },
+        {
+          "stock_id": "3081",
+          "stock_name": "聯亞光電工業",
+          "shares_now": 127000,
+          "shares_prev": 71000,
+          "shares_delta": 56000
+        },
+        {
+          "stock_id": "8210",
+          "stock_name": "勤誠興業",
+          "shares_now": 236000,
+          "shares_prev": 292000,
+          "shares_delta": -56000
+        },
+        {
+          "stock_id": "3533",
+          "stock_name": "嘉澤端子工業",
+          "shares_now": 13000,
+          "shares_prev": 59000,
+          "shares_delta": -46000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體電路製造",
+          "shares_now": 645000,
+          "shares_prev": 607000,
+          "shares_delta": 38000
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策精密工業",
+          "shares_now": 38000,
+          "shares_prev": 66000,
+          "shares_delta": -28000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意電子",
+          "shares_now": 70000,
+          "shares_prev": 54000,
+          "shares_delta": 16000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技服務",
+          "shares_now": 68000,
+          "shares_prev": 83000,
+          "shares_delta": -15000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 74000,
+          "shares_prev": 86000,
+          "shares_delta": -12000
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6147",
+          "stock_name": "頎邦",
+          "shares_now": 3201000,
+          "shares_prev": 1000,
+          "shares_delta": 3200000
+        },
+        {
+          "stock_id": "2481",
+          "stock_name": "強茂",
+          "shares_now": 2056000,
+          "shares_prev": 3654000,
+          "shares_delta": -1598000
+        },
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 6217000,
+          "shares_prev": 7772000,
+          "shares_delta": -1555000
+        },
+        {
+          "stock_id": "3533",
+          "stock_name": "嘉澤",
+          "shares_now": 624000,
+          "shares_prev": 260000,
+          "shares_delta": 364000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 373000,
+          "shares_prev": 451000,
+          "shares_delta": -78000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 821000,
+          "shares_prev": 857000,
+          "shares_delta": -36000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 570000,
+          "shares_prev": 569000,
+          "shares_delta": 1000
         }
       ]
     }
