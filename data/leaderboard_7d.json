@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-20",
-  "as_of_baseline": "2026-05-13",
+  "as_of_today": "2026-05-21",
+  "as_of_baseline": "2026-05-14",
   "top_added": [
-    {
-      "stock_id": "6223",
-      "stock_name": "旺矽科技",
-      "etf_count": 5,
-      "total_delta": 4.498
-    },
     {
       "stock_id": "6139",
       "stock_name": "亞翔",
       "etf_count": 1,
-      "total_delta": 3.59
+      "total_delta": 3.72
     },
     {
-      "stock_id": "6515",
-      "stock_name": "穎崴科技",
+      "stock_id": "3491",
+      "stock_name": "昇達科",
+      "etf_count": 1,
+      "total_delta": 3.5
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
       "etf_count": 2,
-      "total_delta": 2.835
+      "total_delta": 3.289
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台灣積體",
-      "etf_count": 7,
-      "total_delta": 2.831
+      "stock_id": "3037",
+      "stock_name": "欣興",
+      "etf_count": 5,
+      "total_delta": 2.969
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨股份",
-      "etf_count": 3,
-      "total_delta": 2.596
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "etf_count": 2,
+      "total_delta": 2.665
     }
   ],
   "top_removed": [
     {
+      "stock_id": "2383",
+      "stock_name": "台光電",
+      "etf_count": 7,
+      "total_delta": -6.557
+    },
+    {
       "stock_id": "8299",
-      "stock_name": "群聯電子",
+      "stock_name": "群聯",
       "etf_count": 3,
-      "total_delta": -5.009
+      "total_delta": -6.305
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "etf_count": 5,
+      "total_delta": -5.849
     },
     {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
       "etf_count": 3,
-      "total_delta": -4.588
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎科技",
-      "etf_count": 6,
-      "total_delta": -3.473
-    },
-    {
-      "stock_id": "2383",
-      "stock_name": "台光電子",
-      "etf_count": 6,
-      "total_delta": -3.092
+      "total_delta": -1.531
     },
     {
       "stock_id": "2308",
-      "stock_name": "台達電子",
+      "stock_name": "台達電",
       "etf_count": 5,
-      "total_delta": -2.209
+      "total_delta": -1.5
     }
   ]
 }
