@@ -3,9 +3,86 @@
   "as_of_baseline": "2026-05-20",
   "is_stale": false,
   "by_etf": {
-    "0050": {
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 343000
+        }
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
       "added": [],
       "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 1012000,
+          "shares_prev": 916000,
+          "shares_delta": 96000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "3491",
+          "stock_name": "昇達科",
+          "shares": 980000
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 851000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares": 444000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares": 373000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "5536",
+          "stock_name": "聖暉*",
+          "shares_now": 3872000,
+          "shares_prev": 3654000,
+          "shares_delta": 218000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 831000,
+          "shares_prev": 821000,
+          "shares_delta": 10000
+        }
+      ]
+    },
+    "0050": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "2382",
+          "stock_name": "廣達",
+          "shares": 52056918
+        }
+      ],
       "changed": [
         {
           "stock_id": "2330",
@@ -167,13 +244,6 @@
           "shares_now": 60300481,
           "shares_prev": 60118664,
           "shares_delta": 181817
-        },
-        {
-          "stock_id": "2382",
-          "stock_name": "\"廣達\")",
-          "shares_now": 52213762,
-          "shares_prev": 52056918,
-          "shares_delta": 156844
         },
         {
           "stock_id": "2301",
@@ -359,60 +429,7 @@
         }
       ]
     },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "3491",
-          "stock_name": "昇達科",
-          "shares": 980000
-        },
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 851000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares": 444000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares": 373000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "5536",
-          "stock_name": "聖暉*",
-          "shares_now": 3872000,
-          "shares_prev": 3654000,
-          "shares_delta": 218000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares_now": 831000,
-          "shares_prev": 821000,
-          "shares_delta": 10000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares": 343000
-        }
-      ],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -449,16 +466,6 @@
           "shares_delta": 50000
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     }
   }
 }
