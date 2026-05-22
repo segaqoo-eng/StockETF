@@ -3,21 +3,39 @@
   "as_of_baseline": "2026-05-21",
   "is_stale": false,
   "by_etf": {
-    "00992A": {
-      "added": [
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
         {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 3433000
-        }
-      ],
-      "removed": [
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 890000,
+          "shares_prev": 570000,
+          "shares_delta": 320000
+        },
         {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 358000
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 2763000,
+          "shares_prev": 2463000,
+          "shares_delta": 300000
         }
-      ],
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
       "changed": []
     },
     "0050": {
@@ -375,42 +393,24 @@
         }
       ]
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
+    "00992A": {
+      "added": [
         {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 890000,
-          "shares_prev": 570000,
-          "shares_delta": 320000
-        },
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 2763000,
-          "shares_prev": 2463000,
-          "shares_delta": 300000
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 3433000
         }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
+      ],
+      "removed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 358000
+        }
+      ],
       "changed": []
     },
     "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
       "added": [],
       "removed": [],
       "changed": []
