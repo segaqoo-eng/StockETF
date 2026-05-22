@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-21",
-  "as_of_baseline": "2026-05-14",
+  "as_of_today": "2026-05-22",
+  "as_of_baseline": "2026-05-15",
   "top_added": [
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科技",
+      "etf_count": 5,
+      "total_delta": 5.236
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興",
+      "etf_count": 6,
+      "total_delta": 4.597
+    },
     {
       "stock_id": "6139",
       "stock_name": "亞翔",
       "etf_count": 1,
-      "total_delta": 3.72
+      "total_delta": 4.03
     },
     {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": 3.5
+      "total_delta": 3.59
     },
     {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 2,
-      "total_delta": 3.389
-    },
-    {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": 3.179
-    },
-    {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 2,
-      "total_delta": 2.665
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 4,
+      "total_delta": 3.581
     }
   ],
   "top_removed": [
     {
-      "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 7,
-      "total_delta": -6.497
-    },
-    {
       "stock_id": "8299",
       "stock_name": "群聯",
       "etf_count": 3,
-      "total_delta": -6.305
+      "total_delta": -5.153
     },
     {
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 5,
-      "total_delta": -5.699
+      "total_delta": -5.075
+    },
+    {
+      "stock_id": "2383",
+      "stock_name": "台光電",
+      "etf_count": 6,
+      "total_delta": -4.51
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 6,
+      "total_delta": -3.383
     },
     {
       "stock_id": "2382",
-      "stock_name": "\"廣達\")",
-      "etf_count": 2,
-      "total_delta": -2.151
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 3,
-      "total_delta": -1.531
+      "stock_name": "廣達",
+      "etf_count": 1,
+      "total_delta": -1.18
     }
   ]
 }
