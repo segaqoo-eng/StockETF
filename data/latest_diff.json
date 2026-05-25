@@ -3,24 +3,6 @@
   "as_of_baseline": "2026-05-24",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 2813000,
-          "shares_prev": 2763000,
-          "shares_delta": 50000
-        }
-      ]
-    },
     "00990A": {
       "added": [
         {
@@ -60,38 +42,6 @@
           "shares_delta": 20000
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "5904",
-          "stock_name": "寶雅國際",
-          "shares_now": 258450,
-          "shares_prev": 179450,
-          "shares_delta": 79000
-        },
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "shares_now": 205000,
-          "shares_prev": 150000,
-          "shares_delta": 55000
-        },
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電子工業",
-          "shares_now": 475000,
-          "shares_prev": 459000,
-          "shares_delta": 16000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     },
     "0050": {
       "added": [],
@@ -449,6 +399,16 @@
         }
       ]
     },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00981A": {
       "added": [],
       "removed": [
@@ -493,6 +453,46 @@
           "shares_now": 5041000,
           "shares_prev": 4925000,
           "shares_delta": 116000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "5904",
+          "stock_name": "寶雅國際",
+          "shares_now": 258450,
+          "shares_prev": 179450,
+          "shares_delta": 79000
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 205000,
+          "shares_prev": 150000,
+          "shares_delta": 55000
+        },
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電子工業",
+          "shares_now": 475000,
+          "shares_prev": 459000,
+          "shares_delta": 16000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 2813000,
+          "shares_prev": 2763000,
+          "shares_delta": 50000
         }
       ]
     }
