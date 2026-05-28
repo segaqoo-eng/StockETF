@@ -3,40 +3,10 @@
   "as_of_baseline": "2026-05-27",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00982A": {
       "added": [],
       "removed": [],
       "changed": []
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares": 412000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 358000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares_now": 3033000,
-          "shares_prev": 3433000,
-          "shares_delta": -400000
-        }
-      ]
     },
     "0050": {
       "added": [],
@@ -394,27 +364,43 @@
         }
       ]
     },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 103000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares": 52000
-        }
-      ],
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
       "removed": [
         {
-          "stock_id": "3653",
-          "stock_name": "健策",
-          "shares": 110000
+          "stock_id": "6415",
+          "stock_name": "矽力*-KY",
+          "shares": 1038000
         }
       ],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "6147",
+          "stock_name": "頎邦",
+          "shares_now": 4631000,
+          "shares_prev": 3201000,
+          "shares_delta": 1430000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 17948000,
+          "shares_prev": 16640000,
+          "shares_delta": 1308000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 11960000,
+          "shares_prev": 11657000,
+          "shares_delta": 303000
+        }
+      ]
     },
     "00991A": {
       "added": [],
@@ -464,36 +450,50 @@
         }
       ]
     },
-    "00981A": {
-      "added": [],
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 103000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares": 52000
+        }
+      ],
       "removed": [
         {
-          "stock_id": "6415",
-          "stock_name": "矽力*-KY",
-          "shares": 1038000
+          "stock_id": "3653",
+          "stock_name": "健策",
+          "shares": 110000
+        }
+      ],
+      "changed": []
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares": 412000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 358000
         }
       ],
       "changed": [
         {
-          "stock_id": "6147",
-          "stock_name": "頎邦",
-          "shares_now": 4631000,
-          "shares_prev": 3201000,
-          "shares_delta": 1430000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 17948000,
-          "shares_prev": 16640000,
-          "shares_delta": 1308000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 11960000,
-          "shares_prev": 11657000,
-          "shares_delta": 303000
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares_now": 3033000,
+          "shares_prev": 3433000,
+          "shares_delta": -400000
         }
       ]
     }
