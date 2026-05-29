@@ -364,6 +364,132 @@
       "removed": [],
       "changed": []
     },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares": 651000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 3033000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 636000,
+          "shares_prev": 536000,
+          "shares_delta": 100000
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科技",
+          "shares_now": 7500000,
+          "shares_prev": 7100000,
+          "shares_delta": 400000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 175000,
+          "shares_prev": 1000,
+          "shares_delta": 174000
+        },
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電子",
+          "shares_now": 920000,
+          "shares_prev": 850000,
+          "shares_delta": 70000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 830000,
+          "shares_prev": 770000,
+          "shares_delta": 60000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 950000,
+          "shares_prev": 900000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 1400000,
+          "shares_prev": 1360000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 540000,
+          "shares_prev": 500000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 300000,
+          "shares_prev": 280000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 375000,
+          "shares_prev": 360000,
+          "shares_delta": 15000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 260000,
+          "shares_prev": 250000,
+          "shares_delta": 10000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 105000,
+          "shares_prev": 100000,
+          "shares_delta": 5000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 671000,
+          "shares_prev": 628000,
+          "shares_delta": 43000
+        }
+      ]
+    },
     "00981A": {
       "added": [
         {
@@ -422,132 +548,6 @@
           "shares_now": 5191000,
           "shares_prev": 5141000,
           "shares_delta": 50000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2408",
-          "stock_name": "南亞科技",
-          "shares_now": 7500000,
-          "shares_prev": 7100000,
-          "shares_delta": 400000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 175000,
-          "shares_prev": 1000,
-          "shares_delta": 174000
-        },
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電子",
-          "shares_now": 920000,
-          "shares_prev": 850000,
-          "shares_delta": 70000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 830000,
-          "shares_prev": 770000,
-          "shares_delta": 60000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 950000,
-          "shares_prev": 900000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 540000,
-          "shares_prev": 500000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "shares_now": 1400000,
-          "shares_prev": 1360000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 300000,
-          "shares_prev": 280000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 375000,
-          "shares_prev": 360000,
-          "shares_delta": 15000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 260000,
-          "shares_prev": 250000,
-          "shares_delta": 10000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 105000,
-          "shares_prev": 100000,
-          "shares_delta": 5000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares": 651000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 3033000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 636000,
-          "shares_prev": 536000,
-          "shares_delta": 100000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 671000,
-          "shares_prev": 628000,
-          "shares_delta": 43000
         }
       ]
     }
