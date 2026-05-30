@@ -1,37 +1,37 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-05-29",
-  "as_of_baseline": "2026-05-22",
+  "as_of_today": "2026-05-30",
+  "as_of_baseline": "2026-05-23",
   "top_added": [
     {
       "stock_id": "2454",
       "stock_name": "聯發科",
       "etf_count": 7,
-      "total_delta": 5.836
+      "total_delta": 5.842
     },
     {
       "stock_id": "6274",
       "stock_name": "台燿科技",
       "etf_count": 3,
-      "total_delta": 3.831
+      "total_delta": 3.588
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
-      "etf_count": 4,
-      "total_delta": 3.697
+      "etf_count": 3,
+      "total_delta": 3.504
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電",
       "etf_count": 5,
-      "total_delta": 2.424
+      "total_delta": 2.248
     },
     {
       "stock_id": "3042",
       "stock_name": "台灣晶技",
       "etf_count": 1,
-      "total_delta": 1.862
+      "total_delta": 1.986
     }
   ],
   "top_removed": [
@@ -51,19 +51,19 @@
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 5,
-      "total_delta": -3.517
+      "total_delta": -3.068
     },
     {
       "stock_id": "6515",
       "stock_name": "穎崴科技",
       "etf_count": 3,
-      "total_delta": -2.694
+      "total_delta": -2.692
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 7,
-      "total_delta": -2.153
+      "total_delta": -1.943
     }
   ]
 }
