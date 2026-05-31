@@ -8,31 +8,6 @@
       "removed": [],
       "changed": []
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00991A": {
       "added": [],
       "removed": [],
@@ -73,17 +48,17 @@
           "shares_delta": 50000
         },
         {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "shares_now": 1400000,
-          "shares_prev": 1360000,
-          "shares_delta": 40000
-        },
-        {
           "stock_id": "2454",
           "stock_name": "聯發科技",
           "shares_now": 540000,
           "shares_prev": 500000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 1400000,
+          "shares_prev": 1360000,
           "shares_delta": 40000
         },
         {
@@ -115,6 +90,31 @@
           "shares_delta": 5000
         }
       ]
+    },
+    "0050": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
