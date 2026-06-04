@@ -3,6 +3,30 @@
   "as_of_baseline": "2026-06-03",
   "is_stale": false,
   "by_etf": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "2357",
+          "stock_name": "華碩",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares_now": 161000,
+          "shares_prev": 329000,
+          "shares_delta": -168000
+        }
+      ]
+    },
     "00990A": {
       "added": [],
       "removed": [
@@ -13,52 +37,6 @@
         }
       ],
       "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "8996",
-          "stock_name": "高力熱處",
-          "shares_now": 940000,
-          "shares_prev": 900000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 600000,
-          "shares_prev": 560000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 900000,
-          "shares_prev": 880000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "6805",
-          "stock_name": "富世達股",
-          "shares_now": 540000,
-          "shares_prev": 520000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 400000,
-          "shares_prev": 390000,
-          "shares_delta": 10000
-        }
-      ]
     },
     "0050": {
       "added": [],
@@ -415,34 +393,56 @@
         }
       ]
     },
-    "00981A": {
+    "00980A": {
       "added": [],
-      "removed": [
-        {
-          "stock_id": "2357",
-          "stock_name": "華碩",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares_now": 161000,
-          "shares_prev": 329000,
-          "shares_delta": -168000
-        }
-      ]
+      "removed": [],
+      "changed": []
     },
     "00992A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00980A": {
+    "00991A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "8996",
+          "stock_name": "高力熱處",
+          "shares_now": 940000,
+          "shares_prev": 900000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 600000,
+          "shares_prev": 560000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 900000,
+          "shares_prev": 880000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達股",
+          "shares_now": 540000,
+          "shares_prev": 520000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 400000,
+          "shares_prev": 390000,
+          "shares_delta": 10000
+        }
+      ]
     }
   }
 }
