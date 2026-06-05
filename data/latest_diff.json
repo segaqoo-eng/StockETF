@@ -3,33 +3,6 @@
   "as_of_baseline": "2026-06-04",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 1180000,
-          "shares_prev": 1120000,
-          "shares_delta": 60000
-        },
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares_now": 550000,
-          "shares_prev": 500000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 330000,
-          "shares_prev": 320000,
-          "shares_delta": 10000
-        }
-      ]
-    },
     "00990A": {
       "added": [
         {
@@ -401,10 +374,32 @@
         }
       ]
     },
-    "00980A": {
+    "00992A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 2097000,
+          "shares_prev": 2797000,
+          "shares_delta": -700000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 319000,
+          "shares_prev": 386000,
+          "shares_delta": -67000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 293000,
+          "shares_prev": 312000,
+          "shares_delta": -19000
+        }
+      ]
     },
     "00982A": {
       "added": [],
@@ -433,32 +428,37 @@
         }
       ]
     },
-    "00992A": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "shares_now": 2097000,
-          "shares_prev": 2797000,
-          "shares_delta": -700000
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 1180000,
+          "shares_prev": 1120000,
+          "shares_delta": 60000
         },
         {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 319000,
-          "shares_prev": 386000,
-          "shares_delta": -67000
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 550000,
+          "shares_prev": 500000,
+          "shares_delta": 50000
         },
         {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares_now": 293000,
-          "shares_prev": 312000,
-          "shares_delta": -19000
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 330000,
+          "shares_prev": 320000,
+          "shares_delta": 10000
         }
       ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "00981A": {
       "added": [],
