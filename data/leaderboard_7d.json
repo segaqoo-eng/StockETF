@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-07",
-  "as_of_baseline": "2026-05-31",
+  "as_of_today": "2026-06-08",
+  "as_of_baseline": "2026-06-01",
   "top_added": [
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖科技",
-      "etf_count": 3,
-      "total_delta": 5.272
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": 3.205
-    },
     {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
       "etf_count": 4,
-      "total_delta": 2.972
+      "total_delta": 6.763
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
-      "etf_count": 6,
-      "total_delta": 2.901
+      "etf_count": 7,
+      "total_delta": 3.873
     },
     {
-      "stock_id": "5536",
-      "stock_name": "聖暉*",
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
       "etf_count": 1,
-      "total_delta": 1.18
+      "total_delta": 3.19
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
+      "etf_count": 4,
+      "total_delta": 2.793
+    },
+    {
+      "stock_id": "8996",
+      "stock_name": "高力熱處理工業",
+      "etf_count": 4,
+      "total_delta": 1.712
     }
   ],
   "top_removed": [
     {
+      "stock_id": "3017",
+      "stock_name": "奇鋐",
+      "etf_count": 3,
+      "total_delta": -4.487
+    },
+    {
       "stock_id": "3264",
-      "stock_name": "欣銓",
+      "stock_name": "欣銓科技",
       "etf_count": 2,
-      "total_delta": -4.6
+      "total_delta": -3.86
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
       "etf_count": 6,
-      "total_delta": -3.285
+      "total_delta": -3.279
     },
     {
-      "stock_id": "3443",
-      "stock_name": "創意",
-      "etf_count": 3,
-      "total_delta": -3.21
+      "stock_id": "8299",
+      "stock_name": "群聯電子",
+      "etf_count": 2,
+      "total_delta": -2.323
     },
     {
-      "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 6,
-      "total_delta": -1.823
-    },
-    {
-      "stock_id": "2344",
-      "stock_name": "華邦電子",
-      "etf_count": 1,
-      "total_delta": -1.429
+      "stock_id": "2408",
+      "stock_name": "南亞科技",
+      "etf_count": 2,
+      "total_delta": -2.014
     }
   ]
 }
