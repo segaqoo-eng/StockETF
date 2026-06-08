@@ -8,10 +8,42 @@
       "removed": [],
       "changed": []
     },
-    "00980A": {
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares": 855000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares": 634000
+        }
+      ],
+      "changed": []
+    },
+    "00981A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 7949000,
+          "shares_prev": 7769000,
+          "shares_delta": 180000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 4405000,
+          "shares_prev": 4263000,
+          "shares_delta": 142000
+        }
+      ]
     },
     "00991A": {
       "added": [],
@@ -396,42 +428,10 @@
         }
       ]
     },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares": 855000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares": 634000
-        }
-      ],
-      "changed": []
-    },
-    "00981A": {
+    "00980A": {
       "added": [],
       "removed": [],
-      "changed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 7949000,
-          "shares_prev": 7769000,
-          "shares_delta": 180000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 4405000,
-          "shares_prev": 4263000,
-          "shares_delta": 142000
-        }
-      ]
+      "changed": []
     },
     "00982A": {
       "added": [
