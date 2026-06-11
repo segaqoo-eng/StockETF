@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-10",
-  "as_of_baseline": "2026-06-03",
+  "as_of_today": "2026-06-11",
+  "as_of_baseline": "2026-06-04",
   "top_added": [
     {
       "stock_id": "2383",
       "stock_name": "台光電",
       "etf_count": 7,
-      "total_delta": 6.182
+      "total_delta": 6.181
     },
     {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
-      "etf_count": 3,
-      "total_delta": 5.352
+      "etf_count": 5,
+      "total_delta": 5.659
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 3,
-      "total_delta": 2.5
+      "total_delta": 4.421
     },
     {
       "stock_id": "2059",
-      "stock_name": "川湖",
+      "stock_name": "川湖科技",
       "etf_count": 4,
-      "total_delta": 2.332
+      "total_delta": 2.384
     },
     {
-      "stock_id": "8996",
-      "stock_name": "高力",
-      "etf_count": 4,
-      "total_delta": 1.563
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 5,
+      "total_delta": 1.188
     }
   ],
   "top_removed": [
     {
       "stock_id": "6669",
       "stock_name": "緯穎",
-      "etf_count": 4,
-      "total_delta": -7.572
+      "etf_count": 5,
+      "total_delta": -8.386
     },
     {
       "stock_id": "2360",
-      "stock_name": "致茂",
+      "stock_name": "致茂電子",
       "etf_count": 4,
-      "total_delta": -2.328
+      "total_delta": -2.798
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
+      "etf_count": 6,
+      "total_delta": -2.749
+    },
+    {
+      "stock_id": "2308",
+      "stock_name": "台達電",
       "etf_count": 5,
-      "total_delta": -2.258
+      "total_delta": -1.484
     },
     {
       "stock_id": "8299",
       "stock_name": "群聯電子",
       "etf_count": 2,
-      "total_delta": -1.199
-    },
-    {
-      "stock_id": "2382",
-      "stock_name": "廣達",
-      "etf_count": 1,
-      "total_delta": -0.8
+      "total_delta": -0.952
     }
   ]
 }
