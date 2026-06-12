@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-11",
-  "as_of_baseline": "2026-06-04",
+  "as_of_today": "2026-06-12",
+  "as_of_baseline": "2026-06-05",
   "top_added": [
+    {
+      "stock_id": "3665",
+      "stock_name": "貿聯-KY",
+      "etf_count": 3,
+      "total_delta": 4.951
+    },
     {
       "stock_id": "2383",
       "stock_name": "台光電",
-      "etf_count": 7,
-      "total_delta": 6.181
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯控股（BizLink Holding In",
-      "etf_count": 5,
-      "total_delta": 5.659
+      "etf_count": 6,
+      "total_delta": 3.758
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 3,
-      "total_delta": 4.421
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 4,
-      "total_delta": 2.384
+      "total_delta": 3.643
     },
     {
       "stock_id": "6223",
-      "stock_name": "旺矽科技",
-      "etf_count": 5,
-      "total_delta": 1.188
+      "stock_name": "旺矽",
+      "etf_count": 6,
+      "total_delta": 2.804
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
+      "etf_count": 4,
+      "total_delta": 2.602
     }
   ],
   "top_removed": [
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": -8.386
+      "stock_name": "緯穎科技服務",
+      "etf_count": 6,
+      "total_delta": -9.105
     },
     {
       "stock_id": "2360",
       "stock_name": "致茂",
-      "etf_count": 4,
-      "total_delta": -2.798
+      "etf_count": 5,
+      "total_delta": -2.726
     },
     {
-      "stock_id": "3037",
-      "stock_name": "欣興",
+      "stock_id": "2330",
+      "stock_name": "台積電",
       "etf_count": 6,
-      "total_delta": -2.749
+      "total_delta": -1.176
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電",
-      "etf_count": 5,
-      "total_delta": -1.484
+      "etf_count": 4,
+      "total_delta": -1.015
     },
     {
-      "stock_id": "8299",
-      "stock_name": "群聯電子",
-      "etf_count": 2,
-      "total_delta": -0.952
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 5,
+      "total_delta": -0.922
     }
   ]
 }
