@@ -1,9 +1,14 @@
 {
-  "as_of_today": "2026-06-13",
-  "as_of_baseline": "2026-06-12",
+  "as_of_today": "2026-06-14",
+  "as_of_baseline": "2026-06-13",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "0050": {
       "added": [],
       "removed": [],
       "changed": []
@@ -18,11 +23,6 @@
       "removed": [],
       "changed": []
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -33,7 +33,7 @@
       "removed": [],
       "changed": []
     },
-    "0050": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": []
