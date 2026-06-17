@@ -3,87 +3,6 @@
   "as_of_baseline": "2026-06-16",
   "is_stale": false,
   "by_etf": {
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [
-        {
-          "stock_id": "2303",
-          "stock_name": "聯華電子",
-          "shares": 8500000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "6805",
-          "stock_name": "富世達股",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 600000,
-          "shares_prev": 750000,
-          "shares_delta": -150000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電子",
-          "shares_now": 850000,
-          "shares_prev": 820000,
-          "shares_delta": 30000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨*",
-          "shares_now": 23292000,
-          "shares_prev": 22792000,
-          "shares_delta": 500000
-        },
-        {
-          "stock_id": "6147",
-          "stock_name": "頎邦",
-          "shares_now": 6275000,
-          "shares_prev": 5875000,
-          "shares_delta": 400000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 4927000,
-          "shares_prev": 4763000,
-          "shares_delta": 164000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴",
-          "shares_now": 436000,
-          "shares_prev": 442000,
-          "shares_delta": -6000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00990A": {
       "added": [
         {
@@ -468,6 +387,87 @@
           "shares_delta": 5655
         }
       ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "shares_now": 23292000,
+          "shares_prev": 22792000,
+          "shares_delta": 500000
+        },
+        {
+          "stock_id": "6147",
+          "stock_name": "頎邦",
+          "shares_now": 6275000,
+          "shares_prev": 5875000,
+          "shares_delta": 400000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿",
+          "shares_now": 4927000,
+          "shares_prev": 4763000,
+          "shares_delta": 164000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 436000,
+          "shares_prev": 442000,
+          "shares_delta": -6000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "2303",
+          "stock_name": "聯華電子",
+          "shares": 8500000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達股",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 600000,
+          "shares_prev": 750000,
+          "shares_delta": -150000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電子",
+          "shares_now": 850000,
+          "shares_prev": 820000,
+          "shares_delta": 30000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
