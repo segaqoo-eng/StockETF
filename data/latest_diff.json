@@ -3,48 +3,7 @@
   "as_of_baseline": "2026-06-17",
   "is_stale": false,
   "by_etf": {
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 6484000,
-          "shares_prev": 3645000,
-          "shares_delta": 2839000
-        },
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 1508000,
-          "shares_prev": 1000,
-          "shares_delta": 1507000
-        },
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨*",
-          "shares_now": 23892000,
-          "shares_prev": 23292000,
-          "shares_delta": 600000
-        },
-        {
-          "stock_id": "6271",
-          "stock_name": "同欣電",
-          "shares_now": 1966000,
-          "shares_prev": 1466000,
-          "shares_delta": 500000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 5058000,
-          "shares_prev": 4927000,
-          "shares_delta": 131000
-        }
-      ]
-    },
-    "00990A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -424,31 +383,6 @@
         }
       ]
     },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares": 3147000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3491",
-          "stock_name": "昇達科",
-          "shares": 967000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 2941000,
-          "shares_prev": 2940000,
-          "shares_delta": 1000
-        }
-      ]
-    },
     "00992A": {
       "added": [
         {
@@ -480,6 +414,11 @@
           "shares_delta": 200000
         }
       ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "00991A": {
       "added": [
@@ -520,10 +459,71 @@
         }
       ]
     },
-    "00980A": {
+    "00981A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 6484000,
+          "shares_prev": 3645000,
+          "shares_delta": 2839000
+        },
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 1508000,
+          "shares_prev": 1000,
+          "shares_delta": 1507000
+        },
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "shares_now": 23892000,
+          "shares_prev": 23292000,
+          "shares_delta": 600000
+        },
+        {
+          "stock_id": "6271",
+          "stock_name": "同欣電",
+          "shares_now": 1966000,
+          "shares_prev": 1466000,
+          "shares_delta": 500000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿",
+          "shares_now": 5058000,
+          "shares_prev": 4927000,
+          "shares_delta": 131000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 3147000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3491",
+          "stock_name": "昇達科",
+          "shares": 967000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 2941000,
+          "shares_prev": 2940000,
+          "shares_delta": 1000
+        }
+      ]
     }
   }
 }
