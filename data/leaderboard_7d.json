@@ -1,45 +1,45 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-21",
-  "as_of_baseline": "2026-06-14",
+  "as_of_today": "2026-06-22",
+  "as_of_baseline": "2026-06-15",
   "top_added": [
     {
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
-      "etf_count": 4,
-      "total_delta": 4.541
+      "etf_count": 5,
+      "total_delta": 4.241
     },
     {
       "stock_id": "3008",
       "stock_name": "大立光",
-      "etf_count": 2,
-      "total_delta": 4.27
+      "etf_count": 1,
+      "total_delta": 4.17
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨*",
-      "etf_count": 3,
-      "total_delta": 4.009
-    },
-    {
-      "stock_id": "8996",
-      "stock_name": "高力",
-      "etf_count": 4,
-      "total_delta": 2.215
+      "stock_id": "2383",
+      "stock_name": "台光電子材料",
+      "etf_count": 6,
+      "total_delta": 3.127
     },
     {
       "stock_id": "2303",
-      "stock_name": "聯電",
+      "stock_name": "聯華電子",
       "etf_count": 3,
-      "total_delta": 2.192
+      "total_delta": 2.53
+    },
+    {
+      "stock_id": "2344",
+      "stock_name": "華邦電子",
+      "etf_count": 3,
+      "total_delta": 2.163
     }
   ],
   "top_removed": [
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_id": "2454",
+      "stock_name": "聯發科技",
       "etf_count": 7,
-      "total_delta": -4.94
+      "total_delta": -4.978
     },
     {
       "stock_id": "3491",
@@ -48,22 +48,22 @@
       "total_delta": -3.19
     },
     {
-      "stock_id": "2454",
-      "stock_name": "聯發科",
-      "etf_count": 5,
-      "total_delta": -2.975
-    },
-    {
       "stock_id": "2308",
-      "stock_name": "台達電",
+      "stock_name": "台達電子工業",
       "etf_count": 5,
-      "total_delta": -2.26
+      "total_delta": -3.085
     },
     {
-      "stock_id": "6805",
-      "stock_name": "富世達",
-      "etf_count": 3,
-      "total_delta": -1.835
+      "stock_id": "3017",
+      "stock_name": "奇鋐科技",
+      "etf_count": 5,
+      "total_delta": -2.165
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎科技服務",
+      "etf_count": 2,
+      "total_delta": -1.677
     }
   ]
 }
