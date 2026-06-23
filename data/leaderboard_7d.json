@@ -13,37 +13,37 @@
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
       "etf_count": 5,
-      "total_delta": 3.541
+      "total_delta": 3.451
     },
     {
       "stock_id": "2303",
-      "stock_name": "聯華電子",
+      "stock_name": "聯電",
       "etf_count": 3,
       "total_delta": 3.269
+    },
+    {
+      "stock_id": "2383",
+      "stock_name": "台光電",
+      "etf_count": 6,
+      "total_delta": 2.823
     },
     {
       "stock_id": "2492",
       "stock_name": "華新科技",
       "etf_count": 1,
       "total_delta": 2.75
-    },
-    {
-      "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 6,
-      "total_delta": 2.703
     }
   ],
   "top_removed": [
     {
       "stock_id": "2454",
       "stock_name": "聯發科",
-      "etf_count": 6,
-      "total_delta": -4.338
+      "etf_count": 5,
+      "total_delta": -4.038
     },
     {
       "stock_id": "2308",
-      "stock_name": "台達電子",
+      "stock_name": "台達電",
       "etf_count": 5,
       "total_delta": -3.702
     },
@@ -60,10 +60,10 @@
       "total_delta": -1.916
     },
     {
-      "stock_id": "3017",
-      "stock_name": "奇鋐科技",
-      "etf_count": 4,
-      "total_delta": -1.189
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "etf_count": 2,
+      "total_delta": -1.098
     }
   ]
 }
