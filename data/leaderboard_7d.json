@@ -1,51 +1,51 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-23",
-  "as_of_baseline": "2026-06-16",
+  "as_of_today": "2026-06-24",
+  "as_of_baseline": "2026-06-17",
   "top_added": [
     {
       "stock_id": "3008",
       "stock_name": "大立光",
       "etf_count": 1,
-      "total_delta": 4.11
-    },
-    {
-      "stock_id": "4958",
-      "stock_name": "臻鼎-KY",
-      "etf_count": 5,
-      "total_delta": 3.451
+      "total_delta": 4.08
     },
     {
       "stock_id": "2303",
-      "stock_name": "聯華電子",
-      "etf_count": 3,
-      "total_delta": 3.269
-    },
-    {
-      "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 6,
-      "total_delta": 2.823
+      "stock_name": "聯電",
+      "etf_count": 4,
+      "total_delta": 3.341
     },
     {
       "stock_id": "2492",
       "stock_name": "華新科技",
       "etf_count": 1,
-      "total_delta": 2.75
+      "total_delta": 2.793
+    },
+    {
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "etf_count": 5,
+      "total_delta": 2.76
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 5,
+      "total_delta": 2.618
     }
   ],
   "top_removed": [
     {
+      "stock_id": "2308",
+      "stock_name": "台達電",
+      "etf_count": 5,
+      "total_delta": -4.862
+    },
+    {
       "stock_id": "2454",
       "stock_name": "聯發科",
       "etf_count": 5,
-      "total_delta": -4.038
-    },
-    {
-      "stock_id": "2308",
-      "stock_name": "台達電子工業",
-      "etf_count": 5,
-      "total_delta": -3.702
+      "total_delta": -3.947
     },
     {
       "stock_id": "3491",
@@ -54,16 +54,16 @@
       "total_delta": -3.19
     },
     {
-      "stock_id": "3042",
-      "stock_name": "台灣晶技",
-      "etf_count": 1,
-      "total_delta": -1.916
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "etf_count": 4,
+      "total_delta": -2.5
     },
     {
-      "stock_id": "6669",
-      "stock_name": "緯穎科技服務",
-      "etf_count": 2,
-      "total_delta": -1.098
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 6,
+      "total_delta": -2.313
     }
   ]
 }
