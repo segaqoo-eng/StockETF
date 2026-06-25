@@ -160,26 +160,6 @@
         }
       ]
     },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 1700000,
-          "shares_prev": 1600000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴科技",
-          "shares_now": 180000,
-          "shares_prev": 170000,
-          "shares_delta": 10000
-        }
-      ]
-    },
     "0050": {
       "added": [
         {
@@ -540,6 +520,42 @@
       "removed": [],
       "changed": []
     },
+    "00990A": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 103000
+        }
+      ],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 1700000,
+          "shares_prev": 1600000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴科技",
+          "shares_now": 180000,
+          "shares_prev": 170000,
+          "shares_delta": 10000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -587,22 +603,6 @@
           "shares_delta": -35000
         }
       ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [],
-      "removed": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 103000
-        }
-      ],
-      "changed": []
     }
   }
 }
