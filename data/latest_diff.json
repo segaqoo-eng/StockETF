@@ -3,73 +3,12 @@
   "as_of_baseline": "2026-06-25",
   "is_stale": false,
   "by_etf": {
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 4481000,
-          "shares_prev": 6484000,
-          "shares_delta": -2003000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 12742000,
-          "shares_prev": 14158000,
-          "shares_delta": -1416000
-        },
-        {
-          "stock_id": "4966",
-          "stock_name": "譜瑞-KY",
-          "shares_now": 1116000,
-          "shares_prev": 1642000,
-          "shares_delta": -526000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力",
-          "shares_now": 1000,
-          "shares_prev": 354000,
-          "shares_delta": -353000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴",
-          "shares_now": 281000,
-          "shares_prev": 313000,
-          "shares_delta": -32000
-        }
-      ]
-    },
     "00992A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 3067000,
-          "shares_prev": 2941000,
-          "shares_delta": 126000
-        },
-        {
-          "stock_id": "5536",
-          "stock_name": "聖暉*",
-          "shares_now": 3735000,
-          "shares_prev": 3736000,
-          "shares_delta": -1000
-        }
-      ]
-    },
-    "00990A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -107,6 +46,13 @@
           "shares_delta": 200000
         },
         {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 2000000,
+          "shares_prev": 1900000,
+          "shares_delta": 100000
+        },
+        {
           "stock_id": "3711",
           "stock_name": "日月光投",
           "shares_now": 2700000,
@@ -128,13 +74,6 @@
           "shares_delta": 100000
         },
         {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 2000000,
-          "shares_prev": 1900000,
-          "shares_delta": 100000
-        },
-        {
           "stock_id": "2345",
           "stock_name": "智邦科技",
           "shares_now": 970000,
@@ -149,10 +88,10 @@
           "shares_delta": 15000
         },
         {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 300000,
-          "shares_prev": 290000,
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 310000,
+          "shares_prev": 300000,
           "shares_delta": 10000
         },
         {
@@ -163,18 +102,33 @@
           "shares_delta": 10000
         },
         {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 310000,
-          "shares_prev": 300000,
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 300000,
+          "shares_prev": 290000,
           "shares_delta": 10000
         }
       ]
     },
-    "00980A": {
+    "00982A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 3067000,
+          "shares_prev": 2941000,
+          "shares_delta": 126000
+        },
+        {
+          "stock_id": "5536",
+          "stock_name": "聖暉*",
+          "shares_now": 3735000,
+          "shares_prev": 3736000,
+          "shares_delta": -1000
+        }
+      ]
     },
     "0050": {
       "added": [],
@@ -528,6 +482,52 @@
           "shares_now": 1173628,
           "shares_prev": 1173320,
           "shares_delta": 308
+        }
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 4481000,
+          "shares_prev": 6484000,
+          "shares_delta": -2003000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 12742000,
+          "shares_prev": 14158000,
+          "shares_delta": -1416000
+        },
+        {
+          "stock_id": "4966",
+          "stock_name": "譜瑞-KY",
+          "shares_now": 1116000,
+          "shares_prev": 1642000,
+          "shares_delta": -526000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力",
+          "shares_now": 1000,
+          "shares_prev": 354000,
+          "shares_delta": -353000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 281000,
+          "shares_prev": 313000,
+          "shares_delta": -32000
         }
       ]
     }
