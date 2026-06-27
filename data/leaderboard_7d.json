@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-06-26",
-  "as_of_baseline": "2026-06-19",
+  "as_of_today": "2026-06-27",
+  "as_of_baseline": "2026-06-20",
   "top_added": [
     {
       "stock_id": "2303",
-      "stock_name": "聯華電子",
+      "stock_name": "聯電",
       "etf_count": 4,
-      "total_delta": 3.387
-    },
-    {
-      "stock_id": "2492",
-      "stock_name": "華新科技",
-      "etf_count": 1,
-      "total_delta": 2.623
+      "total_delta": 3.213
     },
     {
       "stock_id": "6515",
-      "stock_name": "穎崴科技",
+      "stock_name": "穎崴",
       "etf_count": 3,
-      "total_delta": 2.557
+      "total_delta": 2.567
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨",
+      "stock_name": "國巨*",
       "etf_count": 3,
-      "total_delta": 2.374
+      "total_delta": 2.267
     },
     {
-      "stock_id": "8046",
-      "stock_name": "南亞電路板",
-      "etf_count": 4,
-      "total_delta": 2.265
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 5,
+      "total_delta": 2.211
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興",
+      "etf_count": 5,
+      "total_delta": 2.065
     }
   ],
   "top_removed": [
     {
       "stock_id": "2308",
-      "stock_name": "台達電子工業",
+      "stock_name": "台達電",
       "etf_count": 5,
-      "total_delta": -5.694
+      "total_delta": -5.197
     },
     {
       "stock_id": "2368",
-      "stock_name": "金像電子（股）公司",
+      "stock_name": "金像電",
       "etf_count": 3,
-      "total_delta": -2.321
+      "total_delta": -2.247
     },
     {
-      "stock_id": "5274",
-      "stock_name": "信驊科技",
-      "etf_count": 3,
-      "total_delta": -2.056
+      "stock_id": "8996",
+      "stock_name": "高力",
+      "etf_count": 4,
+      "total_delta": -1.932
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
       "etf_count": 2,
-      "total_delta": -1.957
+      "total_delta": -1.925
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎科技服務",
+      "stock_name": "緯穎",
       "etf_count": 4,
-      "total_delta": -1.928
+      "total_delta": -1.875
     }
   ]
 }
