@@ -7,63 +7,63 @@
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 4,
-      "total_delta": 4.275
+      "total_delta": 4.661
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
       "etf_count": 5,
-      "total_delta": 2.794
+      "total_delta": 3.296
     },
     {
       "stock_id": "8046",
       "stock_name": "南電",
       "etf_count": 4,
-      "total_delta": 2.499
+      "total_delta": 2.639
     },
     {
       "stock_id": "2303",
       "stock_name": "聯電",
       "etf_count": 3,
-      "total_delta": 2.491
+      "total_delta": 2.571
     },
     {
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
       "etf_count": 2,
-      "total_delta": 1.674
+      "total_delta": 1.93
     }
   ],
   "top_removed": [
     {
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 6,
+      "total_delta": -2.606
+    },
+    {
       "stock_id": "2308",
       "stock_name": "台達電",
       "etf_count": 5,
-      "total_delta": -2.578
+      "total_delta": -2.579
     },
     {
       "stock_id": "5274",
       "stock_name": "信驊",
       "etf_count": 3,
-      "total_delta": -1.989
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 5,
-      "total_delta": -1.855
+      "total_delta": -1.909
     },
     {
       "stock_id": "2368",
       "stock_name": "金像電",
       "etf_count": 3,
-      "total_delta": -1.523
+      "total_delta": -1.524
     },
     {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 3,
-      "total_delta": -1.44
+      "stock_id": "2383",
+      "stock_name": "台光電",
+      "etf_count": 5,
+      "total_delta": -1.462
     }
   ]
 }
