@@ -3,83 +3,12 @@
   "as_of_baseline": "2026-06-30",
   "is_stale": false,
   "by_etf": {
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2317",
-          "stock_name": "鴻海",
-          "shares_now": 1000,
-          "shares_prev": 5114000,
-          "shares_delta": -5113000
-        },
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 3808000,
-          "shares_prev": 4481000,
-          "shares_delta": -673000
-        },
-        {
-          "stock_id": "8358",
-          "stock_name": "金居",
-          "shares_now": 490000,
-          "shares_prev": 980000,
-          "shares_delta": -490000
-        },
-        {
-          "stock_id": "4966",
-          "stock_name": "譜瑞-KY",
-          "shares_now": 140000,
-          "shares_prev": 624000,
-          "shares_delta": -484000
-        },
-        {
-          "stock_id": "3533",
-          "stock_name": "嘉澤",
-          "shares_now": 416000,
-          "shares_prev": 652000,
-          "shares_delta": -236000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 5160000,
-          "shares_prev": 5058000,
-          "shares_delta": 102000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 900000,
-          "shares_prev": 850000,
-          "shares_delta": 50000
-        }
-      ]
-    },
     "00982A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00990A": {
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -438,6 +367,77 @@
           "shares_delta": 308
         }
       ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2317",
+          "stock_name": "鴻海",
+          "shares_now": 1000,
+          "shares_prev": 5114000,
+          "shares_delta": -5113000
+        },
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 3808000,
+          "shares_prev": 4481000,
+          "shares_delta": -673000
+        },
+        {
+          "stock_id": "8358",
+          "stock_name": "金居",
+          "shares_now": 490000,
+          "shares_prev": 980000,
+          "shares_delta": -490000
+        },
+        {
+          "stock_id": "4966",
+          "stock_name": "譜瑞-KY",
+          "shares_now": 140000,
+          "shares_prev": 624000,
+          "shares_delta": -484000
+        },
+        {
+          "stock_id": "3533",
+          "stock_name": "嘉澤",
+          "shares_now": 416000,
+          "shares_prev": 652000,
+          "shares_delta": -236000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿",
+          "shares_now": 5160000,
+          "shares_prev": 5058000,
+          "shares_delta": 102000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 900000,
+          "shares_prev": 850000,
+          "shares_delta": 50000
+        }
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
