@@ -3,16 +3,6 @@
   "as_of_baseline": "2026-06-30",
   "is_stale": false,
   "by_etf": {
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "0050": {
       "added": [
         {
@@ -368,6 +358,39 @@
         }
       ]
     },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 900000,
+          "shares_prev": 850000,
+          "shares_delta": 50000
+        }
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -415,29 +438,6 @@
           "shares_delta": 102000
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 900000,
-          "shares_prev": 850000,
-          "shares_delta": 50000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     }
   }
 }
