@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-01",
-  "as_of_baseline": "2026-06-24",
+  "as_of_today": "2026-07-02",
+  "as_of_baseline": "2026-06-25",
   "top_added": [
     {
-      "stock_id": "2327",
-      "stock_name": "國巨*",
-      "etf_count": 4,
-      "total_delta": 3.557
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 6,
+      "total_delta": 2.809
     },
     {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": 2.763
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "etf_count": 2,
+      "total_delta": 1.37
+    },
+    {
+      "stock_id": "2404",
+      "stock_name": "漢唐集成",
+      "etf_count": 1,
+      "total_delta": 1.173
     },
     {
       "stock_id": "8046",
       "stock_name": "南電",
       "etf_count": 3,
-      "total_delta": 1.688
+      "total_delta": 0.976
     },
     {
-      "stock_id": "4958",
-      "stock_name": "臻鼎-KY",
-      "etf_count": 1,
-      "total_delta": 1.475
-    },
-    {
-      "stock_id": "3653",
-      "stock_name": "健策",
-      "etf_count": 2,
-      "total_delta": 1.47
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 5,
+      "total_delta": 0.956
     }
   ],
   "top_removed": [
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 6,
-      "total_delta": -2.101
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "etf_count": 4,
+      "total_delta": -1.21
     },
     {
-      "stock_id": "5274",
-      "stock_name": "信驊科技",
+      "stock_id": "2408",
+      "stock_name": "南亞科技",
       "etf_count": 3,
-      "total_delta": -1.872
+      "total_delta": -1.13
+    },
+    {
+      "stock_id": "2317",
+      "stock_name": "鴻海",
+      "etf_count": 3,
+      "total_delta": -1.05
     },
     {
       "stock_id": "8299",
       "stock_name": "群聯電子",
       "etf_count": 2,
-      "total_delta": -1.703
+      "total_delta": -0.752
     },
     {
       "stock_id": "2344",
-      "stock_name": "華邦電",
+      "stock_name": "華邦電子",
       "etf_count": 3,
-      "total_delta": -1.141
-    },
-    {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 3,
-      "total_delta": -1.06
+      "total_delta": -0.652
     }
   ]
 }
