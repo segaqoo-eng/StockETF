@@ -7,45 +7,51 @@
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 6,
-      "total_delta": 2.809
+      "total_delta": 3.081
+    },
+    {
+      "stock_id": "3017",
+      "stock_name": "奇鋐",
+      "etf_count": 5,
+      "total_delta": 3.041
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎科技",
+      "etf_count": 4,
+      "total_delta": 1.371
     },
     {
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
       "etf_count": 2,
-      "total_delta": 1.37
+      "total_delta": 1.352
     },
     {
       "stock_id": "2404",
       "stock_name": "漢唐集成",
       "etf_count": 1,
-      "total_delta": 1.173
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南電",
-      "etf_count": 3,
-      "total_delta": 0.976
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 5,
-      "total_delta": 0.956
+      "total_delta": 1.242
     }
   ],
   "top_removed": [
     {
       "stock_id": "2327",
-      "stock_name": "國巨*",
+      "stock_name": "國巨股份",
       "etf_count": 4,
-      "total_delta": -1.21
+      "total_delta": -1.992
+    },
+    {
+      "stock_id": "2344",
+      "stock_name": "華邦電子",
+      "etf_count": 3,
+      "total_delta": -1.549
     },
     {
       "stock_id": "2408",
       "stock_name": "南亞科技",
       "etf_count": 3,
-      "total_delta": -1.13
+      "total_delta": -1.336
     },
     {
       "stock_id": "2317",
@@ -57,13 +63,7 @@
       "stock_id": "8299",
       "stock_name": "群聯電子",
       "etf_count": 2,
-      "total_delta": -0.752
-    },
-    {
-      "stock_id": "2344",
-      "stock_name": "華邦電子",
-      "etf_count": 3,
-      "total_delta": -0.652
+      "total_delta": -0.843
     }
   ]
 }
