@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-03",
-  "as_of_baseline": "2026-06-26",
+  "as_of_today": "2026-07-04",
+  "as_of_baseline": "2026-06-27",
   "top_added": [
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐",
+      "stock_name": "奇鋐科技",
       "etf_count": 5,
-      "total_delta": 4.261
+      "total_delta": 4.259
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電",
+      "stock_name": "台光電子材料",
       "etf_count": 6,
-      "total_delta": 2.398
+      "total_delta": 2.236
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技服務",
       "etf_count": 4,
-      "total_delta": 2.022
+      "total_delta": 2.006
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽科技",
       "etf_count": 6,
-      "total_delta": 1.834
+      "total_delta": 1.927
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦",
+      "stock_name": "智邦科技",
       "etf_count": 6,
-      "total_delta": 1.619
+      "total_delta": 1.884
     }
   ],
   "top_removed": [
     {
       "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_name": "台灣積體電路製造",
       "etf_count": 6,
-      "total_delta": -2.237
+      "total_delta": -1.929
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨",
+      "etf_count": 3,
+      "total_delta": -1.726
     },
     {
       "stock_id": "2344",
-      "stock_name": "華邦電",
+      "stock_name": "華邦電子",
       "etf_count": 3,
-      "total_delta": -1.619
-    },
-    {
-      "stock_id": "2408",
-      "stock_name": "\"南亞科\")",
-      "etf_count": 3,
-      "total_delta": -1.423
+      "total_delta": -1.527
     },
     {
       "stock_id": "8996",
       "stock_name": "高力熱處理工業",
       "etf_count": 3,
-      "total_delta": -1.373
+      "total_delta": -1.395
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨*",
+      "stock_id": "2408",
+      "stock_name": "南亞科技",
       "etf_count": 3,
-      "total_delta": -1.182
+      "total_delta": -1.368
     }
   ]
 }
