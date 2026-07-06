@@ -16,6 +16,139 @@
         }
       ]
     },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "3026",
+          "stock_name": "禾伸堂企",
+          "shares": 900000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電信",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares_now": 9000,
+          "shares_prev": 1500000,
+          "shares_delta": -1491000
+        },
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨股份",
+          "shares_now": 6400000,
+          "shares_prev": 6150000,
+          "shares_delta": 250000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電子",
+          "shares_now": 1000000,
+          "shares_prev": 850000,
+          "shares_delta": 150000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力熱處",
+          "shares_now": 1000,
+          "shares_prev": 121000,
+          "shares_delta": -120000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 3000000,
+          "shares_prev": 2900000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 2400000,
+          "shares_prev": 2300000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 2000000,
+          "shares_prev": 1900000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興電子",
+          "shares_now": 3900000,
+          "shares_prev": 3800000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 930000,
+          "shares_prev": 900000,
+          "shares_delta": 30000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 660000,
+          "shares_prev": 640000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 520000,
+          "shares_prev": 500000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 350000,
+          "shares_prev": 340000,
+          "shares_delta": 10000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 115000,
+          "shares_prev": 120000,
+          "shares_delta": -5000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [
+        {
+          "stock_id": "3026",
+          "stock_name": "禾伸堂企業",
+          "shares": 134000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電子材料",
+          "shares_now": 151000,
+          "shares_prev": 134000,
+          "shares_delta": 17000
+        }
+      ]
+    },
     "0050": {
       "added": [],
       "removed": [
@@ -371,145 +504,12 @@
         }
       ]
     },
-    "00991A": {
-      "added": [
-        {
-          "stock_id": "3026",
-          "stock_name": "禾伸堂企",
-          "shares": 900000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2412",
-          "stock_name": "中華電信",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares_now": 9000,
-          "shares_prev": 1500000,
-          "shares_delta": -1491000
-        },
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨股份",
-          "shares_now": 6400000,
-          "shares_prev": 6150000,
-          "shares_delta": 250000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電子",
-          "shares_now": 1000000,
-          "shares_prev": 850000,
-          "shares_delta": 150000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力熱處",
-          "shares_now": 1000,
-          "shares_prev": 121000,
-          "shares_delta": -120000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 2000000,
-          "shares_prev": 1900000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 3000000,
-          "shares_prev": 2900000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 2400000,
-          "shares_prev": 2300000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興電子",
-          "shares_now": 3900000,
-          "shares_prev": 3800000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 930000,
-          "shares_prev": 900000,
-          "shares_delta": 30000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 660000,
-          "shares_prev": 640000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 520000,
-          "shares_prev": 500000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 350000,
-          "shares_prev": 340000,
-          "shares_delta": 10000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 115000,
-          "shares_prev": 120000,
-          "shares_delta": -5000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00982A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00980A": {
-      "added": [
-        {
-          "stock_id": "3026",
-          "stock_name": "禾伸堂企業",
-          "shares": 134000
-        }
-      ],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電子材料",
-          "shares_now": 151000,
-          "shares_prev": 134000,
-          "shares_delta": 17000
-        }
-      ]
-    },
-    "00990A": {
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": []
