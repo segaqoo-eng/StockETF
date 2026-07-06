@@ -3,27 +3,16 @@
   "as_of_baseline": "2026-07-05",
   "is_stale": false,
   "by_etf": {
-    "00982A": {
+    "00981A": {
       "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
-      "added": [
-        {
-          "stock_id": "3026",
-          "stock_name": "禾伸堂企業",
-          "shares": 134000
-        }
-      ],
       "removed": [],
       "changed": [
         {
-          "stock_id": "2383",
-          "stock_name": "台光電子材料",
-          "shares_now": 151000,
-          "shares_prev": 134000,
-          "shares_delta": 17000
+          "stock_id": "1590",
+          "stock_name": "亞德客-KY",
+          "shares_now": 528000,
+          "shares_prev": 530000,
+          "shares_delta": -2000
         }
       ]
     },
@@ -382,11 +371,6 @@
         }
       ]
     },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00991A": {
       "added": [
         {
@@ -432,13 +416,6 @@
           "shares_delta": -120000
         },
         {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 2400000,
-          "shares_prev": 2300000,
-          "shares_delta": 100000
-        },
-        {
           "stock_id": "6274",
           "stock_name": "台燿科技",
           "shares_now": 2000000,
@@ -450,6 +427,13 @@
           "stock_name": "日月光投",
           "shares_now": 3000000,
           "shares_prev": 2900000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 2400000,
+          "shares_prev": 2300000,
           "shares_delta": 100000
         },
         {
@@ -501,18 +485,34 @@
       "removed": [],
       "changed": []
     },
-    "00981A": {
+    "00982A": {
       "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [
+        {
+          "stock_id": "3026",
+          "stock_name": "禾伸堂企業",
+          "shares": 134000
+        }
+      ],
       "removed": [],
       "changed": [
         {
-          "stock_id": "1590",
-          "stock_name": "亞德客-KY",
-          "shares_now": 528000,
-          "shares_prev": 530000,
-          "shares_delta": -2000
+          "stock_id": "2383",
+          "stock_name": "台光電子材料",
+          "shares_now": 151000,
+          "shares_prev": 134000,
+          "shares_delta": 17000
         }
       ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
