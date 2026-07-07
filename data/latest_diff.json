@@ -3,6 +3,100 @@
   "as_of_baseline": "2026-07-06",
   "is_stale": false,
   "by_etf": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 14300,
+          "shares_prev": 13000,
+          "shares_delta": 1300
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "8210",
+          "stock_name": "勤誠興業",
+          "shares_now": 1000,
+          "shares_prev": 410000,
+          "shares_delta": -409000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 3800000,
+          "shares_prev": 3500000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 2600000,
+          "shares_prev": 2400000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 3200000,
+          "shares_prev": 3000000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電子",
+          "shares_now": 1100000,
+          "shares_prev": 1000000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1100000,
+          "shares_prev": 1000000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 950000,
+          "shares_prev": 930000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 126500,
+          "shares_prev": 115000,
+          "shares_delta": 11500
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴科技",
+          "shares_now": 220000,
+          "shares_prev": 210000,
+          "shares_delta": 10000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 530000,
+          "shares_prev": 520000,
+          "shares_delta": 10000
+        }
+      ]
+    },
     "0050": {
       "added": [
         {
@@ -358,102 +452,27 @@
         }
       ]
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": [
+    "00990A": {
+      "added": [
         {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 14300,
-          "shares_prev": 13000,
-          "shares_delta": 1300
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "8210",
-          "stock_name": "勤誠興業",
-          "shares_now": 1000,
-          "shares_prev": 410000,
-          "shares_delta": -409000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台灣積體",
-          "shares_now": 3800000,
-          "shares_prev": 3500000,
-          "shares_delta": 300000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 2600000,
-          "shares_prev": 2400000,
-          "shares_delta": 200000
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares": 834000
         },
         {
           "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 3200000,
-          "shares_prev": 3000000,
-          "shares_delta": 200000
-        },
+          "stock_name": "日月光投控",
+          "shares": 455000
+        }
+      ],
+      "removed": [],
+      "changed": [
         {
-          "stock_id": "2383",
-          "stock_name": "台光電子",
-          "shares_now": 1100000,
-          "shares_prev": 1000000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1100000,
-          "shares_prev": 1000000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 950000,
-          "shares_prev": 930000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 126500,
-          "shares_prev": 115000,
-          "shares_delta": 11500
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴科技",
-          "shares_now": 220000,
-          "shares_prev": 210000,
-          "shares_delta": 10000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 530000,
-          "shares_prev": 520000,
-          "shares_delta": 10000
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 565000,
+          "shares_prev": 744000,
+          "shares_delta": -179000
         }
       ]
     },
@@ -498,29 +517,22 @@
         }
       ]
     },
-    "00990A": {
+    "00992A": {
       "added": [
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares": 834000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares": 455000
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares": 406000
         }
       ],
-      "removed": [],
-      "changed": [
+      "removed": [
         {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 565000,
-          "shares_prev": 744000,
-          "shares_delta": -179000
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 420000
         }
-      ]
+      ],
+      "changed": []
     }
   }
 }
