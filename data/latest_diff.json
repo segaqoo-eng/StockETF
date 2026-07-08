@@ -16,14 +16,15 @@
         }
       ]
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "0050": {
       "added": [],
-      "removed": [],
+      "removed": [
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電",
+          "shares": 82481236
+        }
+      ],
       "changed": [
         {
           "stock_id": "2887",
@@ -66,13 +67,6 @@
           "shares_now": 239434035,
           "shares_prev": 239087328,
           "shares_delta": 346707
-        },
-        {
-          "stock_id": "2412",
-          "stock_name": "中華電",
-          "shares_now": 82181265,
-          "shares_prev": 82481236,
-          "shares_delta": -299971
         },
         {
           "stock_id": "2890",
@@ -377,17 +371,54 @@
         }
       ]
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00991A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "3026",
+          "stock_name": "禾伸堂企",
+          "shares_now": 1800000,
+          "shares_prev": 900000,
+          "shares_delta": 900000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 3900000,
+          "shares_prev": 3800000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1160000,
+          "shares_prev": 1100000,
+          "shares_delta": 60000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 330000,
+          "shares_prev": 310000,
+          "shares_delta": 20000
+        }
+      ]
     },
     "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares_now": 2443000,
+          "shares_prev": 2382000,
+          "shares_delta": 61000
+        }
+      ]
+    },
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -395,6 +426,23 @@
     "00982A": {
       "added": [],
       "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 420000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares": 406000
+        }
+      ],
       "changed": []
     }
   }
