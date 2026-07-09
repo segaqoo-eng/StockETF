@@ -3,6 +3,74 @@
   "as_of_baseline": "2026-07-08",
   "is_stale": false,
   "by_etf": {
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "shares": 2066000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 420000
+        }
+      ],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 14770000,
+          "shares_prev": 12742000,
+          "shares_delta": 2028000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 15779000,
+          "shares_prev": 15203000,
+          "shares_delta": 576000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 9149000,
+          "shares_prev": 8949000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 4653000,
+          "shares_prev": 4597000,
+          "shares_delta": 56000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "6488",
+          "stock_name": "環球晶",
+          "shares": 1134000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 823000
+        }
+      ],
+      "changed": []
+    },
     "00991A": {
       "added": [
         {
@@ -20,17 +88,17 @@
       ],
       "changed": [
         {
-          "stock_id": "2408",
-          "stock_name": "南亞科技",
-          "shares_now": 9500000,
-          "shares_prev": 9000000,
-          "shares_delta": 500000
-        },
-        {
           "stock_id": "2327",
           "stock_name": "國巨股份",
           "shares_now": 6900000,
           "shares_prev": 6400000,
+          "shares_delta": 500000
+        },
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科技",
+          "shares_now": 9500000,
+          "shares_prev": 9000000,
           "shares_delta": 500000
         },
         {
@@ -70,21 +138,20 @@
         }
       ]
     },
-    "00982A": {
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
       "added": [
         {
-          "stock_id": "6488",
-          "stock_name": "環球晶",
-          "shares": 1134000
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares": 144000
         }
       ],
-      "removed": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 823000
-        }
-      ],
+      "removed": [],
       "changed": []
     },
     "0050": {
@@ -308,17 +375,17 @@
           "shares_delta": 32292
         },
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 23595716,
-          "shares_prev": 23564936,
-          "shares_delta": 30780
-        },
-        {
           "stock_id": "2603",
           "stock_name": "長榮",
           "shares_now": 23574490,
           "shares_prev": 23543710,
+          "shares_delta": 30780
+        },
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 23595716,
+          "shares_prev": 23564936,
           "shares_delta": 30780
         },
         {
@@ -441,73 +508,6 @@
           "shares_delta": 1512
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 14770000,
-          "shares_prev": 12742000,
-          "shares_delta": 2028000
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "shares_now": 15779000,
-          "shares_prev": 15203000,
-          "shares_delta": 576000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南電",
-          "shares_now": 9149000,
-          "shares_prev": 8949000,
-          "shares_delta": 200000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 4653000,
-          "shares_prev": 4597000,
-          "shares_delta": 56000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares": 144000
-        }
-      ],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨*",
-          "shares": 2066000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 420000
-        }
-      ],
-      "changed": []
     }
   }
 }
