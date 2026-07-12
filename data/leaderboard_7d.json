@@ -1,7 +1,7 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-11",
-  "as_of_baseline": "2026-07-04",
+  "as_of_today": "2026-07-12",
+  "as_of_baseline": "2026-07-05",
   "top_added": [
     {
       "stock_id": "2330",
@@ -17,7 +17,7 @@
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨",
+      "stock_name": "國巨*",
       "etf_count": 5,
       "total_delta": 2.988
     },
@@ -43,13 +43,13 @@
     },
     {
       "stock_id": "2360",
-      "stock_name": "致茂電子",
+      "stock_name": "致茂",
       "etf_count": 3,
       "total_delta": -3.791
     },
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐科技",
+      "stock_name": "奇鋐",
       "etf_count": 5,
       "total_delta": -1.614
     },
@@ -61,7 +61,7 @@
     },
     {
       "stock_id": "6515",
-      "stock_name": "穎崴科技",
+      "stock_name": "穎崴",
       "etf_count": 3,
       "total_delta": -1.239
     }
