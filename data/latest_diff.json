@@ -3,6 +3,121 @@
   "as_of_baseline": "2026-07-12",
   "is_stale": false,
   "by_etf": {
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 641000,
+          "shares_prev": 455000,
+          "shares_delta": 186000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 420000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "shares": 2066000
+        }
+      ],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 16333000,
+          "shares_prev": 15779000,
+          "shares_delta": 554000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 15139000,
+          "shares_prev": 14770000,
+          "shares_delta": 369000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 9231000,
+          "shares_prev": 9149000,
+          "shares_delta": 82000
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 4200000,
+          "shares_prev": 3900000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1200000,
+          "shares_prev": 1160000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電子",
+          "shares_now": 1200000,
+          "shares_prev": 1160000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 62500,
+          "shares_prev": 100500,
+          "shares_delta": -38000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 360000,
+          "shares_prev": 330000,
+          "shares_delta": 30000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 550000,
+          "shares_prev": 530000,
+          "shares_delta": 20000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "0050": {
       "added": [],
       "removed": [],
@@ -358,121 +473,6 @@
           "shares_delta": 3773
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "shares_now": 16333000,
-          "shares_prev": 15779000,
-          "shares_delta": 554000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 15139000,
-          "shares_prev": 14770000,
-          "shares_delta": 369000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南電",
-          "shares_now": 9231000,
-          "shares_prev": 9149000,
-          "shares_delta": 82000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 641000,
-          "shares_prev": 455000,
-          "shares_delta": 186000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2330",
-          "stock_name": "台灣積體",
-          "shares_now": 4200000,
-          "shares_prev": 3900000,
-          "shares_delta": 300000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1200000,
-          "shares_prev": 1160000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電子",
-          "shares_now": 1200000,
-          "shares_prev": 1160000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 62500,
-          "shares_prev": 100500,
-          "shares_delta": -38000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 360000,
-          "shares_prev": 330000,
-          "shares_delta": 30000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 550000,
-          "shares_prev": 530000,
-          "shares_delta": 20000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 420000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨*",
-          "shares": 2066000
-        }
-      ],
-      "changed": []
     }
   }
 }
