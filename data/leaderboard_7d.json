@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-12",
-  "as_of_baseline": "2026-07-05",
+  "as_of_today": "2026-07-13",
+  "as_of_baseline": "2026-07-06",
   "top_added": [
-    {
-      "stock_id": "2330",
-      "stock_name": "台灣積體",
-      "etf_count": 7,
-      "total_delta": 4.38
-    },
-    {
-      "stock_id": "3026",
-      "stock_name": "禾伸堂企",
-      "etf_count": 2,
-      "total_delta": 3.478
-    },
-    {
-      "stock_id": "2327",
-      "stock_name": "國巨股份",
-      "etf_count": 5,
-      "total_delta": 2.988
-    },
     {
       "stock_id": "6488",
       "stock_name": "環球晶",
       "etf_count": 1,
-      "total_delta": 2.97
+      "total_delta": 2.98
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 7,
+      "total_delta": 2.86
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電子",
-      "etf_count": 7,
-      "total_delta": 1.943
+      "stock_name": "台光電",
+      "etf_count": 5,
+      "total_delta": 2.668
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "etf_count": 5,
+      "total_delta": 2.302
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南亞電路",
+      "etf_count": 3,
+      "total_delta": 2.039
     }
   ],
   "top_removed": [
     {
       "stock_id": "3008",
       "stock_name": "大立光",
-      "etf_count": 1,
-      "total_delta": -4.0
+      "etf_count": 2,
+      "total_delta": -3.92
     },
     {
       "stock_id": "2360",
       "stock_name": "致茂電子",
       "etf_count": 3,
-      "total_delta": -3.791
+      "total_delta": -3.621
     },
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐科技",
+      "stock_name": "奇鋐",
       "etf_count": 5,
-      "total_delta": -1.614
+      "total_delta": -1.788
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電子",
-      "etf_count": 4,
-      "total_delta": -1.373
+      "etf_count": 2,
+      "total_delta": -1.132
     },
     {
-      "stock_id": "6515",
-      "stock_name": "穎崴科技",
-      "etf_count": 3,
-      "total_delta": -1.239
+      "stock_id": "5536",
+      "stock_name": "聖暉*",
+      "etf_count": 1,
+      "total_delta": -1.07
     }
   ]
 }
