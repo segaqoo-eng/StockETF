@@ -1,13 +1,13 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-13",
-  "as_of_baseline": "2026-07-06",
+  "as_of_today": "2026-07-14",
+  "as_of_baseline": "2026-07-07",
   "top_added": [
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": 4.917
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "etf_count": 2,
+      "total_delta": 4.55
     },
     {
       "stock_id": "6488",
@@ -16,54 +16,54 @@
       "total_delta": 3.31
     },
     {
+      "stock_id": "8046",
+      "stock_name": "南電",
+      "etf_count": 4,
+      "total_delta": 2.03
+    },
+    {
       "stock_id": "2383",
       "stock_name": "台光電",
-      "etf_count": 6,
-      "total_delta": 2.514
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南亞電路板",
       "etf_count": 4,
-      "total_delta": 2.295
+      "total_delta": 1.79
     },
     {
-      "stock_id": "3711",
-      "stock_name": "日月光投控",
-      "etf_count": 3,
-      "total_delta": 1.893
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 6,
+      "total_delta": 1.757
     }
   ],
   "top_removed": [
     {
+      "stock_id": "2454",
+      "stock_name": "聯發科",
+      "etf_count": 7,
+      "total_delta": -5.645
+    },
+    {
       "stock_id": "2360",
-      "stock_name": "致茂電子",
-      "etf_count": 3,
-      "total_delta": -3.611
+      "stock_name": "致茂",
+      "etf_count": 2,
+      "total_delta": -3.261
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨",
+      "stock_name": "國巨*",
       "etf_count": 4,
-      "total_delta": -2.951
+      "total_delta": -1.619
+    },
+    {
+      "stock_id": "5274",
+      "stock_name": "信驊",
+      "etf_count": 3,
+      "total_delta": -1.617
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
       "etf_count": 5,
-      "total_delta": -2.152
-    },
-    {
-      "stock_id": "5274",
-      "stock_name": "信驊科技",
-      "etf_count": 3,
-      "total_delta": -1.528
-    },
-    {
-      "stock_id": "2454",
-      "stock_name": "聯發科",
-      "etf_count": 5,
-      "total_delta": -1.23
+      "total_delta": -1.46
     }
   ]
 }
