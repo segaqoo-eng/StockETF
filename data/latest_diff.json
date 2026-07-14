@@ -37,6 +37,47 @@
         }
       ]
     },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "5536",
+          "stock_name": "聖暉*",
+          "shares_now": 3729000,
+          "shares_prev": 3716000,
+          "shares_delta": 13000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 798000,
+          "shares_prev": 794000,
+          "shares_delta": 4000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 861000,
+          "shares_prev": 857000,
+          "shares_delta": 4000
+        },
+        {
+          "stock_id": "6488",
+          "stock_name": "環球晶",
+          "shares_now": 1137000,
+          "shares_prev": 1134000,
+          "shares_delta": 3000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 327000,
+          "shares_prev": 326000,
+          "shares_delta": 1000
+        }
+      ]
+    },
     "00991A": {
       "added": [],
       "removed": [],
@@ -84,24 +125,6 @@
           "shares_delta": 253
         }
       ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares_now": 1002000,
-          "shares_prev": 1009000,
-          "shares_delta": -7000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     },
     "0050": {
       "added": [],
@@ -459,44 +482,21 @@
         }
       ]
     },
-    "00982A": {
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "5536",
-          "stock_name": "聖暉*",
-          "shares_now": 3729000,
-          "shares_prev": 3716000,
-          "shares_delta": 13000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares_now": 798000,
-          "shares_prev": 794000,
-          "shares_delta": 4000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 861000,
-          "shares_prev": 857000,
-          "shares_delta": 4000
-        },
-        {
-          "stock_id": "6488",
-          "stock_name": "環球晶",
-          "shares_now": 1137000,
-          "shares_prev": 1134000,
-          "shares_delta": 3000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 327000,
-          "shares_prev": 326000,
-          "shares_delta": 1000
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 1002000,
+          "shares_prev": 1009000,
+          "shares_delta": -7000
         }
       ]
     },
