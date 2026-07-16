@@ -3,17 +3,7 @@
   "as_of_baseline": "2026-07-15",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -45,7 +35,12 @@
         }
       ]
     },
-    "00980A": {
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "0050": {
       "added": [],
       "removed": [],
       "changed": []
@@ -53,11 +48,82 @@
     "00981A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 5193000,
+          "shares_prev": 4119000,
+          "shares_delta": 1074000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 16135000,
+          "shares_prev": 15770000,
+          "shares_delta": 365000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 130000,
+          "shares_prev": 204000,
+          "shares_delta": -74000
+        },
+        {
+          "stock_id": "6488",
+          "stock_name": "環球晶",
+          "shares_now": 1000,
+          "shares_prev": 50000,
+          "shares_delta": -49000
+        }
+      ]
     },
-    "00992A": {
+    "00991A": {
       "added": [],
       "removed": [],
+      "changed": [
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 1100000,
+          "shares_prev": 1500000,
+          "shares_delta": -400000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 390000,
+          "shares_prev": 380000,
+          "shares_delta": 10000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 823000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 183000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 4143000
+        },
+        {
+          "stock_id": "6488",
+          "stock_name": "環球晶",
+          "shares": 1137000
+        }
+      ],
       "changed": []
     }
   }
