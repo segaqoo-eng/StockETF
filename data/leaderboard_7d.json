@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-15",
-  "as_of_baseline": "2026-07-08",
+  "as_of_today": "2026-07-16",
+  "as_of_baseline": "2026-07-09",
   "top_added": [
     {
-      "stock_id": "6488",
-      "stock_name": "環球晶",
+      "stock_id": "3008",
+      "stock_name": "大立光電",
       "etf_count": 1,
-      "total_delta": 3.31
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南亞電路",
-      "etf_count": 4,
-      "total_delta": 2.931
+      "total_delta": 4.12
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興電子",
-      "etf_count": 5,
-      "total_delta": 2.153
+      "etf_count": 6,
+      "total_delta": 2.351
     },
     {
-      "stock_id": "3711",
-      "stock_name": "日月光投",
-      "etf_count": 5,
-      "total_delta": 1.875
-    },
-    {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
+      "stock_id": "8046",
+      "stock_name": "南亞電路",
       "etf_count": 3,
-      "total_delta": 1.755
+      "total_delta": 2.033
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體",
+      "etf_count": 6,
+      "total_delta": 1.461
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
+      "etf_count": 3,
+      "total_delta": 0.961
     }
   ],
   "top_removed": [
     {
-      "stock_id": "2360",
-      "stock_name": "致茂電子",
-      "etf_count": 2,
-      "total_delta": -2.901
+      "stock_id": "2327",
+      "stock_name": "國巨股份",
+      "etf_count": 5,
+      "total_delta": -6.645
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽科技",
+      "etf_count": 5,
+      "total_delta": -2.254
     },
     {
       "stock_id": "2454",
       "stock_name": "聯發科技",
       "etf_count": 6,
-      "total_delta": -2.273
+      "total_delta": -1.976
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨股份",
+      "stock_id": "2383",
+      "stock_name": "台光電子",
+      "etf_count": 7,
+      "total_delta": -1.055
+    },
+    {
+      "stock_id": "3017",
+      "stock_name": "奇鋐科技",
       "etf_count": 4,
-      "total_delta": -1.614
-    },
-    {
-      "stock_id": "6274",
-      "stock_name": "台燿科技",
-      "etf_count": 4,
-      "total_delta": -1.303
-    },
-    {
-      "stock_id": "5274",
-      "stock_name": "信驊科技",
-      "etf_count": 2,
-      "total_delta": -1.141
+      "total_delta": -1.015
     }
   ]
 }
