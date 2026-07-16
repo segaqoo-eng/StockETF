@@ -3,11 +3,6 @@
   "as_of_baseline": "2026-07-15",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00990A": {
       "added": [],
       "removed": [],
@@ -35,14 +30,31 @@
         }
       ]
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 823000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 183000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 4143000
+        },
+        {
+          "stock_id": "6488",
+          "stock_name": "環球晶",
+          "shares": 1137000
+        }
+      ],
       "changed": []
     },
     "00981A": {
@@ -79,6 +91,21 @@
         }
       ]
     },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "0050": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00991A": {
       "added": [],
       "removed": [],
@@ -98,33 +125,6 @@
           "shares_delta": 10000
         }
       ]
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 823000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 183000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 4143000
-        },
-        {
-          "stock_id": "6488",
-          "stock_name": "環球晶",
-          "shares": 1137000
-        }
-      ],
-      "changed": []
     }
   }
 }
