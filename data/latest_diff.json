@@ -3,6 +3,78 @@
   "as_of_baseline": "2026-07-19",
   "is_stale": false,
   "by_etf": {
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 4000000,
+          "shares_prev": 3400000,
+          "shares_delta": 600000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1500000,
+          "shares_prev": 1300000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "3189",
+          "stock_name": "景碩科技",
+          "shares_now": 3000000,
+          "shares_prev": 2800000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 2900000,
+          "shares_prev": 2800000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 420000,
+          "shares_prev": 350000,
+          "shares_delta": 70000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 800000,
+          "shares_prev": 730000,
+          "shares_delta": 70000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 360000,
+          "shares_prev": 340000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 400000,
+          "shares_prev": 390000,
+          "shares_delta": 10000
+        }
+      ]
+    },
     "00982A": {
       "added": [
         {
@@ -460,16 +532,6 @@
         }
       ]
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00992A": {
       "added": [],
       "removed": [],
@@ -480,68 +542,6 @@
           "shares_now": 1080000,
           "shares_prev": 977000,
           "shares_delta": 103000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 4000000,
-          "shares_prev": 3400000,
-          "shares_delta": 600000
-        },
-        {
-          "stock_id": "3189",
-          "stock_name": "景碩科技",
-          "shares_now": 3000000,
-          "shares_prev": 2800000,
-          "shares_delta": 200000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1500000,
-          "shares_prev": 1300000,
-          "shares_delta": 200000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 2900000,
-          "shares_prev": 2800000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 420000,
-          "shares_prev": 350000,
-          "shares_delta": 70000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 800000,
-          "shares_prev": 730000,
-          "shares_delta": 70000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 360000,
-          "shares_prev": 340000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 400000,
-          "shares_prev": 390000,
-          "shares_delta": 10000
         }
       ]
     }
