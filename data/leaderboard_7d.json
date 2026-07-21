@@ -4,34 +4,34 @@
   "as_of_baseline": "2026-07-14",
   "top_added": [
     {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 2,
-      "total_delta": 3.701
-    },
-    {
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 2,
-      "total_delta": 3.104
+      "total_delta": 3.899
+    },
+    {
+      "stock_id": "2360",
+      "stock_name": "致茂",
+      "etf_count": 3,
+      "total_delta": 3.741
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
-      "etf_count": 4,
-      "total_delta": 1.591
+      "etf_count": 5,
+      "total_delta": 2.421
     },
     {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
       "etf_count": 4,
-      "total_delta": 1.484
+      "total_delta": 1.897
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": 1.292
+      "stock_id": "2308",
+      "stock_name": "台達電",
+      "etf_count": 2,
+      "total_delta": 1.36
     }
   ],
   "top_removed": [
@@ -51,19 +51,19 @@
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 4,
-      "total_delta": -1.697
+      "total_delta": -2.187
     },
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 6,
-      "total_delta": -1.517
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "etf_count": 4,
+      "total_delta": -1.878
     },
     {
-      "stock_id": "8299",
-      "stock_name": "群聯電子",
-      "etf_count": 2,
-      "total_delta": -1.462
+      "stock_id": "2492",
+      "stock_name": "華新科技",
+      "etf_count": 1,
+      "total_delta": -1.864
     }
   ]
 }

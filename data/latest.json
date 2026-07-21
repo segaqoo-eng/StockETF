@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-21T16:04:42+08:00",
+  "updated_at": "2026-07-21T18:20:37+08:00",
   "etfs": [
     {
       "ticker": "0050",
@@ -15,360 +15,360 @@
         {
           "stock_id": "2330",
           "stock_name": "台積電",
-          "weight_pct": 59.62,
-          "shares": 540957151,
+          "weight_pct": 59.6,
+          "shares": 546190306,
           "market": "TW"
         },
         {
           "stock_id": "2454",
           "stock_name": "聯發科",
-          "weight_pct": 5.18,
-          "shares": 32621906,
+          "weight_pct": 5.47,
+          "shares": 32938063,
           "market": "TW"
         },
         {
           "stock_id": "2308",
           "stock_name": "台達電",
-          "weight_pct": 3.46,
-          "shares": 42682818,
+          "weight_pct": 3.58,
+          "shares": 43097544,
           "market": "TW"
         },
         {
           "stock_id": "2317",
           "stock_name": "鴻海",
-          "weight_pct": 3.01,
-          "shares": 270105459,
+          "weight_pct": 3.04,
+          "shares": 272728376,
           "market": "TW"
         },
         {
           "stock_id": "3711",
           "stock_name": "日月光投控",
-          "weight_pct": 2.08,
-          "shares": 73440464,
+          "weight_pct": 2.13,
+          "shares": 74152942,
           "market": "TW"
         },
         {
           "stock_id": "2303",
           "stock_name": "聯電",
-          "weight_pct": 1.6,
-          "shares": 258723709,
+          "weight_pct": 1.59,
+          "shares": 261229243,
           "market": "TW"
         },
         {
           "stock_id": "2383",
           "stock_name": "台光電",
-          "weight_pct": 1.34,
-          "shares": 6435537,
+          "weight_pct": 1.42,
+          "shares": 6497705,
           "market": "TW"
         },
         {
           "stock_id": "2891",
           "stock_name": "中信金",
-          "weight_pct": 1.15,
-          "shares": 393058334,
+          "weight_pct": 1.13,
+          "shares": 396830480,
           "market": "TW"
         },
         {
           "stock_id": "2345",
           "stock_name": "智邦",
-          "weight_pct": 1.09,
-          "shares": 10993118,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2881",
-          "stock_name": "富邦金",
-          "weight_pct": 1.08,
-          "shares": 184565541,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨*",
-          "weight_pct": 1.05,
-          "shares": 34921089,
+          "weight_pct": 1.12,
+          "shares": 11099458,
           "market": "TW"
         },
         {
           "stock_id": "3037",
           "stock_name": "欣興",
+          "weight_pct": 1.1,
+          "shares": 29465559,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "weight_pct": 1.07,
+          "shares": 35259332,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2881",
+          "stock_name": "富邦金",
           "weight_pct": 1.04,
-          "shares": 29182531,
+          "shares": 186335061,
           "market": "TW"
         },
         {
           "stock_id": "1303",
           "stock_name": "南亞",
           "weight_pct": 0.97,
-          "shares": 109084687,
+          "shares": 110142770,
           "market": "TW"
         },
         {
           "stock_id": "2882",
           "stock_name": "國泰金",
-          "weight_pct": 0.94,
-          "shares": 210810518,
+          "weight_pct": 0.92,
+          "shares": 212858790,
           "market": "TW"
         },
         {
           "stock_id": "2382",
           "stock_name": "廣達",
-          "weight_pct": 0.88,
-          "shares": 58504597,
+          "weight_pct": 0.87,
+          "shares": 59072289,
           "market": "TW"
         },
         {
           "stock_id": "2887",
           "stock_name": "台新新光金",
-          "weight_pct": 0.86,
-          "shares": 513480880,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2885",
-          "stock_name": "元大金",
-          "weight_pct": 0.73,
-          "shares": 244122543,
-          "market": "TW"
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "weight_pct": 0.72,
-          "shares": 7086602,
+          "weight_pct": 0.82,
+          "shares": 523649603,
           "market": "TW"
         },
         {
           "stock_id": "2360",
           "stock_name": "致茂",
-          "weight_pct": 0.71,
-          "shares": 8147675,
+          "weight_pct": 0.75,
+          "shares": 8226612,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "weight_pct": 0.75,
+          "shares": 7155314,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2885",
+          "stock_name": "元大金",
+          "weight_pct": 0.68,
+          "shares": 246490653,
           "market": "TW"
         },
         {
           "stock_id": "2886",
           "stock_name": "兆豐金",
-          "weight_pct": 0.6,
-          "shares": 261257122,
+          "weight_pct": 0.58,
+          "shares": 263795785,
           "market": "TW"
         },
         {
           "stock_id": "2884",
           "stock_name": "玉山金",
           "weight_pct": 0.57,
-          "shares": 336029736,
+          "shares": 339295192,
           "market": "TW"
         },
         {
           "stock_id": "\"2412\")",
           "stock_name": "中華電",
-          "weight_pct": 0.56,
-          "shares": 84333639,
-          "market": "OTHER"
-        },
-        {
-          "stock_id": "2890",
-          "stock_name": "永豐金",
           "weight_pct": 0.54,
-          "shares": 284668130,
-          "market": "TW"
+          "shares": 85152866,
+          "market": "OTHER"
         },
         {
           "stock_id": "6669",
           "stock_name": "緯穎",
-          "weight_pct": 0.51,
-          "shares": 2303618,
+          "weight_pct": 0.53,
+          "shares": 2325704,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金",
+          "weight_pct": 0.52,
+          "shares": 286939146,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2357",
+          "stock_name": "華碩",
+          "weight_pct": 0.5,
+          "shares": 15063209,
           "market": "TW"
         },
         {
           "stock_id": "2344",
           "stock_name": "華邦電",
           "weight_pct": 0.49,
-          "shares": 68379970,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2357",
-          "stock_name": "華碩",
-          "weight_pct": 0.49,
-          "shares": 14918423,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2883",
-          "stock_name": "凱基金",
-          "weight_pct": 0.49,
-          "shares": 348399661,
+          "shares": 69044186,
           "market": "TW"
         },
         {
           "stock_id": "2408",
           "stock_name": "南亞科",
-          "weight_pct": 0.46,
-          "shares": 25217129,
+          "weight_pct": 0.47,
+          "shares": 25462120,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2883",
+          "stock_name": "凱基金",
+          "weight_pct": 0.47,
+          "shares": 351782500,
           "market": "TW"
         },
         {
           "stock_id": "3231",
           "stock_name": "緯創",
           "weight_pct": 0.46,
-          "shares": 66746291,
+          "shares": 67394556,
           "market": "TW"
         },
         {
           "stock_id": "2059",
           "stock_name": "川湖",
-          "weight_pct": 0.45,
-          "shares": 1219232,
-          "market": "TW"
-        },
-        {
-          "stock_id": "1216",
-          "stock_name": "統一",
-          "weight_pct": 0.42,
-          "shares": 109226520,
+          "weight_pct": 0.44,
+          "shares": 1230684,
           "market": "TW"
         },
         {
           "stock_id": "2301",
           "stock_name": "光寶科",
+          "weight_pct": 0.41,
+          "shares": 43651393,
+          "market": "TW"
+        },
+        {
+          "stock_id": "1216",
+          "stock_name": "統一",
           "weight_pct": 0.4,
-          "shares": 43231350,
+          "shares": 110287875,
           "market": "TW"
         },
         {
           "stock_id": "2892",
           "stock_name": "第一金",
-          "weight_pct": 0.4,
-          "shares": 247565699,
+          "weight_pct": 0.39,
+          "shares": 249971437,
+          "market": "TW"
+        },
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "weight_pct": 0.39,
+          "shares": 17035626,
           "market": "TW"
         },
         {
           "stock_id": "2880",
           "stock_name": "華南金",
-          "weight_pct": 0.39,
-          "shares": 203204911,
+          "weight_pct": 0.38,
+          "shares": 205179563,
           "market": "TW"
         },
         {
           "stock_id": "3008",
           "stock_name": "大立光",
           "weight_pct": 0.38,
-          "shares": 2074589,
-          "market": "TW"
-        },
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "weight_pct": 0.38,
-          "shares": 16872026,
+          "shares": 2094630,
           "market": "TW"
         },
         {
           "stock_id": "7769",
           "stock_name": "鴻勁",
-          "weight_pct": 0.36,
-          "shares": 1261089,
+          "weight_pct": 0.37,
+          "shares": 1272950,
           "market": "TW"
         },
         {
           "stock_id": "3665",
           "stock_name": "貿聯-KY",
-          "weight_pct": 0.34,
-          "shares": 3952263,
+          "weight_pct": 0.36,
+          "shares": 3990300,
           "market": "TW"
         },
         {
           "stock_id": "2368",
           "stock_name": "金像電",
-          "weight_pct": 0.33,
-          "shares": 7597364,
+          "weight_pct": 0.34,
+          "shares": 7670984,
           "market": "TW"
         },
         {
           "stock_id": "3443",
           "stock_name": "創意",
-          "weight_pct": 0.32,
-          "shares": 1775022,
+          "weight_pct": 0.33,
+          "shares": 1792200,
           "market": "TW"
         },
         {
           "stock_id": "2449",
           "stock_name": "京元電子",
           "weight_pct": 0.31,
-          "shares": 24034346,
+          "shares": 24267885,
           "market": "TW"
         },
         {
           "stock_id": "3653",
           "stock_name": "健策",
-          "weight_pct": 0.29,
-          "shares": 1925690,
+          "weight_pct": 0.31,
+          "shares": 1944095,
           "market": "TW"
         },
         {
           "stock_id": "3661",
           "stock_name": "世芯-KY",
           "weight_pct": 0.28,
-          "shares": 1742857,
+          "shares": 1759626,
           "market": "TW"
         },
         {
           "stock_id": "5880",
           "stock_name": "合庫金",
-          "weight_pct": 0.28,
-          "shares": 231396421,
+          "weight_pct": 0.27,
+          "shares": 233645103,
           "market": "TW"
         },
         {
           "stock_id": "2395",
           "stock_name": "研華",
-          "weight_pct": 0.25,
-          "shares": 10191082,
+          "weight_pct": 0.26,
+          "shares": 10290060,
           "market": "TW"
         },
         {
           "stock_id": "8046",
           "stock_name": "南電",
-          "weight_pct": 0.25,
-          "shares": 4734392,
+          "weight_pct": 0.26,
+          "shares": 4780200,
           "market": "TW"
         },
         {
           "stock_id": "2603",
           "stock_name": "長榮",
           "weight_pct": 0.22,
-          "shares": 24012660,
+          "shares": 24245790,
           "market": "TW"
         },
         {
           "stock_id": "4904",
           "stock_name": "遠傳",
-          "weight_pct": 0.19,
-          "shares": 39213041,
+          "weight_pct": 0.18,
+          "shares": 39593820,
           "market": "TW"
         },
         {
           "stock_id": "3045",
           "stock_name": "台灣大",
-          "weight_pct": 0.17,
-          "shares": 31236105,
+          "weight_pct": 0.16,
+          "shares": 31539583,
           "market": "TW"
         },
         {
           "stock_id": "6505",
           "stock_name": "台塑化",
-          "weight_pct": 0.09,
-          "shares": 25361979,
+          "weight_pct": 0.1,
+          "shares": 25608197,
           "market": "TW"
         }
       ],
       "url": "https://www.yuantaetfs.com/product/detail/0050/ratio",
       "fund_meta": {
-        "as_of_date": "2026-07-20T16:55:38",
-        "nav_total": 2112402474580.0,
-        "units_outstanding": 21492000000.0,
-        "p_unit": 98.29
+        "as_of_date": "2026-07-21T16:34:08",
+        "nav_total": 2219910617432.0,
+        "units_outstanding": 21600500000.0,
+        "p_unit": 102.77
       }
     },
     {
@@ -748,127 +748,134 @@
         {
           "stock_id": "2330",
           "stock_name": "台積電",
-          "weight_pct": 11.06,
+          "weight_pct": 10.74,
           "shares": 11960000,
           "market": "TW"
         },
         {
           "stock_id": "2383",
           "stock_name": "台光電",
-          "weight_pct": 8.15,
+          "weight_pct": 8.37,
           "shares": 4653000,
           "market": "TW"
         },
         {
           "stock_id": "2454",
           "stock_name": "聯發科",
-          "weight_pct": 6.83,
+          "weight_pct": 7.01,
           "shares": 5131000,
           "market": "TW"
         },
         {
           "stock_id": "2327",
           "stock_name": "國巨*",
-          "weight_pct": 6.3,
+          "weight_pct": 6.26,
           "shares": 25098000,
           "market": "TW"
         },
         {
           "stock_id": "6223",
           "stock_name": "旺矽",
-          "weight_pct": 5.31,
+          "weight_pct": 5.35,
           "shares": 2443000,
           "market": "TW"
         },
         {
           "stock_id": "2345",
           "stock_name": "智邦",
-          "weight_pct": 5.28,
+          "weight_pct": 5.24,
           "shares": 6334000,
           "market": "TW"
         },
         {
           "stock_id": "3037",
           "stock_name": "欣興",
-          "weight_pct": 4.97,
-          "shares": 16607000,
+          "weight_pct": 5.21,
+          "shares": 16971000,
           "market": "TW"
         },
         {
           "stock_id": "3017",
           "stock_name": "奇鋐",
-          "weight_pct": 4.51,
-          "shares": 5295000,
+          "weight_pct": 4.69,
+          "shares": 5423000,
           "market": "TW"
         },
         {
           "stock_id": "6669",
           "stock_name": "緯穎",
-          "weight_pct": 4.51,
+          "weight_pct": 4.5,
           "shares": 2417000,
           "market": "TW"
         },
         {
           "stock_id": "2303",
           "stock_name": "聯電",
-          "weight_pct": 4.49,
+          "weight_pct": 4.34,
           "shares": 86550000,
           "market": "TW"
         },
         {
           "stock_id": "8046",
           "stock_name": "南電",
-          "weight_pct": 4.19,
+          "weight_pct": 4.22,
           "shares": 9519000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "weight_pct": 3.84,
-          "shares": 16135000,
           "market": "TW"
         },
         {
           "stock_id": "2308",
           "stock_name": "台達電",
-          "weight_pct": 3.57,
-          "shares": 5247000,
+          "weight_pct": 3.8,
+          "shares": 5567000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "weight_pct": 3.8,
+          "shares": 16135000,
           "market": "TW"
         },
         {
           "stock_id": "3665",
           "stock_name": "貿聯-KY",
-          "weight_pct": 3.51,
+          "weight_pct": 3.6,
           "shares": 4833848,
           "market": "TW"
         },
         {
           "stock_id": "2368",
           "stock_name": "金像電",
-          "weight_pct": 3.07,
+          "weight_pct": 3.04,
           "shares": 8315000,
           "market": "TW"
         },
         {
           "stock_id": "3653",
           "stock_name": "健策",
-          "weight_pct": 2.89,
+          "weight_pct": 2.97,
           "shares": 2267000,
           "market": "TW"
         },
         {
           "stock_id": "6274",
           "stock_name": "台燿",
-          "weight_pct": 2.31,
+          "weight_pct": 2.37,
           "shares": 5160000,
           "market": "TW"
         },
         {
           "stock_id": "5274",
           "stock_name": "信驊",
-          "weight_pct": 2.31,
+          "weight_pct": 2.36,
           "shares": 448900,
+          "market": "TW"
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達",
+          "weight_pct": 0.99,
+          "shares": 1881000,
           "market": "TW"
         },
         {
@@ -879,16 +886,9 @@
           "market": "TW"
         },
         {
-          "stock_id": "6805",
-          "stock_name": "富世達",
-          "weight_pct": 0.94,
-          "shares": 1811000,
-          "market": "TW"
-        },
-        {
           "stock_id": "2449",
           "stock_name": "京元電子",
-          "weight_pct": 0.67,
+          "weight_pct": 0.64,
           "shares": 6197000,
           "market": "TW"
         },
@@ -902,36 +902,29 @@
         {
           "stock_id": "6147",
           "stock_name": "頎邦",
-          "weight_pct": 0.41,
-          "shares": 6275000,
+          "weight_pct": 0.37,
+          "shares": 5752000,
           "market": "TW"
         },
         {
           "stock_id": "6510",
           "stock_name": "精測",
-          "weight_pct": 0.36,
+          "weight_pct": 0.34,
           "shares": 349000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "5439",
-          "stock_name": "高技",
-          "weight_pct": 0.32,
-          "shares": 3234000,
           "market": "TW"
         },
         {
           "stock_id": "6515",
           "stock_name": "穎崴",
-          "weight_pct": 0.31,
+          "weight_pct": 0.32,
           "shares": 130000,
           "market": "TW"
         },
         {
-          "stock_id": "1590",
-          "stock_name": "亞德客-KY",
+          "stock_id": "5439",
+          "stock_name": "高技",
           "weight_pct": 0.28,
-          "shares": 528000,
+          "shares": 2940000,
           "market": "TW"
         },
         {
@@ -942,24 +935,24 @@
           "market": "TW"
         },
         {
+          "stock_id": "1590",
+          "stock_name": "亞德客-KY",
+          "weight_pct": 0.27,
+          "shares": 528000,
+          "market": "TW"
+        },
+        {
           "stock_id": "6271",
           "stock_name": "同欣電",
-          "weight_pct": 0.23,
+          "weight_pct": 0.22,
           "shares": 2966000,
           "market": "TW"
         },
         {
           "stock_id": "6191",
           "stock_name": "精成科",
-          "weight_pct": 0.14,
-          "shares": 3988000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "3376",
-          "stock_name": "新日興",
           "weight_pct": 0.13,
-          "shares": 1741000,
+          "shares": 3988000,
           "market": "TW"
         },
         {
@@ -967,6 +960,13 @@
           "stock_name": "欣銓",
           "weight_pct": 0.12,
           "shares": 1508000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3376",
+          "stock_name": "新日興",
+          "weight_pct": 0.12,
+          "shares": 1741000,
           "market": "TW"
         },
         {
@@ -1008,7 +1008,7 @@
           "stock_id": "1815",
           "stock_name": "富喬",
           "weight_pct": 0.0,
-          "shares": 107000,
+          "shares": 1000,
           "market": "TW"
         },
         {
@@ -1098,30 +1098,30 @@
       ],
       "url": "https://www.ezmoney.com.tw/ETF/Fund/Info?FundCode=49YTW",
       "fund_meta": {
-        "as_of_date": "2026-07-20T16:30:35",
-        "nav_total": 250810228113.0,
-        "units_outstanding": 9703209000.0,
-        "p_unit": 25.85,
+        "as_of_date": "2026-07-21T16:31:10",
+        "nav_total": 268484242156.0,
+        "units_outstanding": 9725209000.0,
+        "p_unit": 27.61,
         "asset_breakdown": {
           "股票": {
-            "value": 232897212810.0,
-            "pct": 92.86
+            "value": 251063168300.0,
+            "pct": 93.51
           },
           "現金": {
-            "value": 10296209189.0,
-            "pct": 4.11
+            "value": 13633958027.0,
+            "pct": 5.08
           },
           "期貨保證金": {
             "value": 500781127.0,
-            "pct": 0.2
+            "pct": 0.19
           },
           "附買回債券": {
             "value": 3155719590.0,
-            "pct": 1.26
+            "pct": 1.18
           },
           "應收付證券款": {
-            "value": -540036522.0,
-            "pct": -0.22
+            "value": -1632025085.0,
+            "pct": -0.61
           }
         }
       }
@@ -1582,194 +1582,187 @@
         "台股型"
       ],
       "color": "#60a5fa",
-      "holdings_count": 50,
+      "holdings_count": 49,
       "holdings": [
         {
           "stock_id": "2330",
           "stock_name": "台灣積體",
-          "weight_pct": 13.229,
+          "weight_pct": 13.538,
           "shares": 4200000,
           "market": "TW"
         },
         {
           "stock_id": "2383",
           "stock_name": "台光電子",
-          "weight_pct": 7.728,
-          "shares": 1250000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2327",
-          "stock_name": "國巨股份",
-          "weight_pct": 6.922,
-          "shares": 7200000,
+          "weight_pct": 8.398,
+          "shares": 1300000,
           "market": "TW"
         },
         {
           "stock_id": "2408",
           "stock_name": "南亞科技",
-          "weight_pct": 5.494,
-          "shares": 10100000,
+          "weight_pct": 6.5,
+          "shares": 12000000,
           "market": "TW"
         },
         {
-          "stock_id": "3037",
-          "stock_name": "欣興電子",
-          "weight_pct": 4.642,
-          "shares": 4250000,
+          "stock_id": "2327",
+          "stock_name": "國巨股份",
+          "weight_pct": 6.452,
+          "shares": 7200000,
           "market": "TW"
         },
         {
           "stock_id": "2454",
           "stock_name": "聯發科技",
-          "weight_pct": 4.635,
+          "weight_pct": 4.909,
           "shares": 1000000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "weight_pct": 4.468,
-          "shares": 580000,
           "market": "TW"
         },
         {
           "stock_id": "8046",
           "stock_name": "南亞電路",
-          "weight_pct": 4.429,
-          "shares": 2800000,
+          "weight_pct": 4.775,
+          "shares": 3000000,
           "market": "TW"
         },
         {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "weight_pct": 4.232,
-          "shares": 390000,
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "weight_pct": 4.715,
+          "shares": 600000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興電子",
+          "weight_pct": 4.69,
+          "shares": 4250000,
           "market": "TW"
         },
         {
           "stock_id": "2345",
           "stock_name": "智邦科技",
-          "weight_pct": 3.737,
-          "shares": 1300000,
+          "weight_pct": 4.454,
+          "shares": 1500000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "weight_pct": 4.267,
+          "shares": 400000,
           "market": "TW"
         },
         {
           "stock_id": "6274",
           "stock_name": "台燿科技",
-          "weight_pct": 3.38,
+          "weight_pct": 3.469,
           "shares": 2100000,
           "market": "TW"
         },
         {
           "stock_id": "3711",
           "stock_name": "日月光投",
-          "weight_pct": 2.871,
-          "shares": 3400000,
+          "weight_pct": 3.387,
+          "shares": 4000000,
           "market": "TW"
         },
         {
           "stock_id": "7769",
           "stock_name": "鴻勁精密",
-          "weight_pct": 2.839,
-          "shares": 340000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2303",
-          "stock_name": "聯華電子",
-          "weight_pct": 2.773,
-          "shares": 14000000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "weight_pct": 2.701,
-          "shares": 1100000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "3189",
-          "stock_name": "景碩科技",
-          "weight_pct": 2.669,
-          "shares": 2800000,
+          "weight_pct": 3.13,
+          "shares": 360000,
           "market": "TW"
         },
         {
           "stock_id": "6669",
           "stock_name": "緯穎科技",
-          "weight_pct": 2.224,
-          "shares": 350000,
+          "weight_pct": 3.009,
+          "shares": 450000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3189",
+          "stock_name": "景碩科技",
+          "weight_pct": 2.993,
+          "shares": 3000000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "weight_pct": 2.729,
+          "shares": 1100000,
           "market": "TW"
         },
         {
           "stock_id": "3017",
           "stock_name": "奇鋐科技",
-          "weight_pct": 2.209,
-          "shares": 730000,
+          "weight_pct": 2.669,
+          "shares": 860000,
           "market": "TW"
         },
         {
           "stock_id": "3026",
           "stock_name": "禾伸堂企",
-          "weight_pct": 2.088,
-          "shares": 2200000,
+          "weight_pct": 2.463,
+          "shares": 2700000,
           "market": "TW"
         },
         {
           "stock_id": "6515",
           "stock_name": "穎崴科技",
-          "weight_pct": 1.832,
-          "shares": 220000,
+          "weight_pct": 1.869,
+          "shares": 210000,
           "market": "TW"
         },
         {
-          "stock_id": "2492",
-          "stock_name": "華新科技",
-          "weight_pct": 1.523,
-          "shares": 3600000,
+          "stock_id": "2303",
+          "stock_name": "聯華電子",
+          "weight_pct": 1.799,
+          "shares": 10000000,
           "market": "TW"
         },
         {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "weight_pct": 1.117,
-          "shares": 460000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "weight_pct": 1.113,
-          "shares": 62500,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2404",
-          "stock_name": "漢唐集成",
-          "weight_pct": 1.037,
-          "shares": 650000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2344",
-          "stock_name": "華邦電子",
-          "weight_pct": 1.023,
+          "stock_id": "1303",
+          "stock_name": "南亞塑膠",
+          "weight_pct": 1.255,
           "shares": 4800000,
           "market": "TW"
         },
         {
           "stock_id": "2308",
           "stock_name": "台達電子",
-          "weight_pct": 0.022,
-          "shares": 9000,
+          "weight_pct": 1.252,
+          "shares": 510000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2404",
+          "stock_name": "漢唐集成",
+          "weight_pct": 1.23,
+          "shares": 800000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "weight_pct": 1.23,
+          "shares": 460000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "weight_pct": 1.179,
+          "shares": 62500,
           "market": "TW"
         },
         {
           "stock_id": "2368",
           "stock_name": "金像電子",
-          "weight_pct": 0.011,
+          "weight_pct": 0.012,
           "shares": 9000,
           "market": "TW"
         },
@@ -1783,20 +1776,13 @@
         {
           "stock_id": "3653",
           "stock_name": "健策精密",
-          "weight_pct": 0.004,
+          "weight_pct": 0.005,
           "shares": 1000,
           "market": "TW"
         },
         {
           "stock_id": "2382",
           "stock_name": "廣達電腦",
-          "weight_pct": 0.004,
-          "shares": 9000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
           "weight_pct": 0.004,
           "shares": 9000,
           "market": "TW"
@@ -1809,17 +1795,17 @@
           "market": "TW"
         },
         {
-          "stock_id": "2317",
-          "stock_name": "鴻海精密",
+          "stock_id": "2449",
+          "stock_name": "京元電子",
           "weight_pct": 0.003,
           "shares": 9000,
           "market": "TW"
         },
         {
-          "stock_id": "2313",
-          "stock_name": "華通電腦",
+          "stock_id": "2317",
+          "stock_name": "鴻海精密",
           "weight_pct": 0.003,
-          "shares": 9253,
+          "shares": 9000,
           "market": "TW"
         },
         {
@@ -1830,15 +1816,15 @@
           "market": "TW"
         },
         {
-          "stock_id": "2603",
-          "stock_name": "長榮海運",
-          "weight_pct": 0.002,
-          "shares": 9000,
+          "stock_id": "2313",
+          "stock_name": "華通電腦",
+          "weight_pct": 0.003,
+          "shares": 9253,
           "market": "TW"
         },
         {
-          "stock_id": "3042",
-          "stock_name": "台灣晶技",
+          "stock_id": "2603",
+          "stock_name": "長榮海運",
           "weight_pct": 0.002,
           "shares": 9000,
           "market": "TW"
@@ -1860,22 +1846,15 @@
         {
           "stock_id": "2881",
           "stock_name": "富邦金融",
-          "weight_pct": 0.002,
+          "weight_pct": 0.001,
           "shares": 9000,
           "market": "TW"
         },
         {
           "stock_id": "2337",
           "stock_name": "旺宏電子",
-          "weight_pct": 0.002,
+          "weight_pct": 0.001,
           "shares": 9000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "8210",
-          "stock_name": "勤誠興業",
-          "weight_pct": 0.002,
-          "shares": 1000,
           "market": "TW"
         },
         {
@@ -1914,10 +1893,24 @@
           "market": "TW"
         },
         {
+          "stock_id": "2886",
+          "stock_name": "兆豐金融",
+          "weight_pct": 0.001,
+          "shares": 9000,
+          "market": "TW"
+        },
+        {
           "stock_id": "3044",
           "stock_name": "健鼎科技",
           "weight_pct": 0.001,
           "shares": 1000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2880",
+          "stock_name": "華南金融",
+          "weight_pct": 0.0,
+          "shares": 9000,
           "market": "TW"
         },
         {
@@ -1937,10 +1930,10 @@
       ],
       "url": "https://www.fhtrust.com.tw/ETF/etf_detail/ETF23",
       "fund_meta": {
-        "as_of_date": "2026-07-17",
-        "nav_total": 72702354161.0,
-        "units_outstanding": 4305916000.0,
-        "p_unit": 16.88
+        "as_of_date": "2026-07-21",
+        "nav_total": 74767355500.0,
+        "units_outstanding": 4482916000.0,
+        "p_unit": 16.68
       }
     },
     {
@@ -1957,79 +1950,79 @@
         {
           "stock_id": "2330",
           "stock_name": "台積電",
-          "weight_pct": 9.05,
+          "weight_pct": 8.9,
           "shares": 1406000,
           "market": "TW"
         },
         {
           "stock_id": "2383",
           "stock_name": "台光電",
-          "weight_pct": 6.87,
+          "weight_pct": 7.14,
           "shares": 563000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "weight_pct": 6.3,
-          "shares": 293000,
           "market": "TW"
         },
         {
           "stock_id": "2345",
           "stock_name": "智邦",
-          "weight_pct": 6.27,
+          "weight_pct": 6.29,
           "shares": 1080000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "weight_pct": 6.13,
+          "shares": 293000,
           "market": "TW"
         },
         {
           "stock_id": "3017",
           "stock_name": "奇鋐",
-          "weight_pct": 5.94,
+          "weight_pct": 6.1,
           "shares": 1002000,
           "market": "TW"
         },
         {
           "stock_id": "6223",
           "stock_name": "旺矽",
-          "weight_pct": 4.94,
+          "weight_pct": 5.03,
           "shares": 326000,
           "market": "TW"
         },
         {
           "stock_id": "3665",
           "stock_name": "貿聯-KY",
-          "weight_pct": 4.82,
+          "weight_pct": 5.01,
           "shares": 955000,
+          "market": "TW"
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "weight_pct": 4.54,
+          "shares": 2097000,
           "market": "TW"
         },
         {
           "stock_id": "3008",
           "stock_name": "大立光",
-          "weight_pct": 4.52,
+          "weight_pct": 4.39,
           "shares": 420000,
           "market": "TW"
         },
         {
           "stock_id": "8996",
           "stock_name": "高力",
-          "weight_pct": 4.39,
+          "weight_pct": 4.21,
           "shares": 1630000,
-          "market": "TW"
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "weight_pct": 4.37,
-          "shares": 2097000,
           "market": "TW"
         }
       ],
       "url": "https://www.capitalfund.com.tw/etf/product/detail/500/portfolio",
       "fund_meta": {
-        "nav_total": 36025598168.0,
-        "p_unit": 14.87,
-        "units_outstanding": 2422955000.0,
+        "nav_total": 38089662376.0,
+        "p_unit": 15.7,
+        "units_outstanding": 2425455000.0,
         "as_of_date": "2026-07-21"
       }
     }
@@ -2047,17 +2040,17 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 59.62,
-          "shares": 540957151
+          "weight_pct": 59.6,
+          "shares": 546190306
         },
         {
           "etf": "00991A",
-          "weight_pct": 13.229,
+          "weight_pct": 13.538,
           "shares": 4200000
         },
         {
           "etf": "00981A",
-          "weight_pct": 11.06,
+          "weight_pct": 10.74,
           "shares": 11960000
         },
         {
@@ -2072,7 +2065,7 @@
         },
         {
           "etf": "00992A",
-          "weight_pct": 9.05,
+          "weight_pct": 8.9,
           "shares": 1406000
         },
         {
@@ -2093,18 +2086,18 @@
       ],
       "held_by": [
         {
+          "etf": "00991A",
+          "weight_pct": 8.398,
+          "shares": 1300000
+        },
+        {
           "etf": "00981A",
-          "weight_pct": 8.15,
+          "weight_pct": 8.37,
           "shares": 4653000
         },
         {
-          "etf": "00991A",
-          "weight_pct": 7.728,
-          "shares": 1250000
-        },
-        {
           "etf": "00992A",
-          "weight_pct": 6.87,
+          "weight_pct": 7.14,
           "shares": 563000
         },
         {
@@ -2124,8 +2117,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 1.34,
-          "shares": 6435537
+          "weight_pct": 1.42,
+          "shares": 6497705
         }
       ]
     },
@@ -2141,7 +2134,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 6.83,
+          "weight_pct": 7.01,
           "shares": 5131000
         },
         {
@@ -2156,12 +2149,12 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 5.18,
-          "shares": 32621906
+          "weight_pct": 5.47,
+          "shares": 32938063
         },
         {
           "etf": "00991A",
-          "weight_pct": 4.635,
+          "weight_pct": 4.909,
           "shares": 1000000
         },
         {
@@ -2183,18 +2176,18 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 6.27,
+          "weight_pct": 6.29,
           "shares": 1080000
         },
         {
           "etf": "00981A",
-          "weight_pct": 5.28,
+          "weight_pct": 5.24,
           "shares": 6334000
         },
         {
           "etf": "00991A",
-          "weight_pct": 3.737,
-          "shares": 1300000
+          "weight_pct": 4.454,
+          "shares": 1500000
         },
         {
           "etf": "00982A",
@@ -2208,8 +2201,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 1.09,
-          "shares": 10993118
+          "weight_pct": 1.12,
+          "shares": 11099458
         }
       ]
     },
@@ -2224,18 +2217,18 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 5.31,
+          "weight_pct": 5.35,
           "shares": 2443000
         },
         {
           "etf": "00992A",
-          "weight_pct": 4.94,
+          "weight_pct": 5.03,
           "shares": 326000
         },
         {
           "etf": "00991A",
-          "weight_pct": 4.468,
-          "shares": 580000
+          "weight_pct": 4.715,
+          "shares": 600000
         },
         {
           "etf": "00982A",
@@ -2265,17 +2258,17 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 4.97,
-          "shares": 16607000
+          "weight_pct": 5.21,
+          "shares": 16971000
         },
         {
           "etf": "00991A",
-          "weight_pct": 4.642,
+          "weight_pct": 4.69,
           "shares": 4250000
         },
         {
           "etf": "00992A",
-          "weight_pct": 4.37,
+          "weight_pct": 4.54,
           "shares": 2097000
         },
         {
@@ -2290,8 +2283,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 1.04,
-          "shares": 29182531
+          "weight_pct": 1.1,
+          "shares": 29465559
         }
       ]
     },
@@ -2320,8 +2313,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.38,
-          "shares": 16872026
+          "weight_pct": 0.39,
+          "shares": 17035626
         },
         {
           "etf": "00991A",
@@ -2347,18 +2340,18 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 5.94,
+          "weight_pct": 6.1,
           "shares": 1002000
         },
         {
           "etf": "00981A",
-          "weight_pct": 4.51,
-          "shares": 5295000
+          "weight_pct": 4.69,
+          "shares": 5423000
         },
         {
           "etf": "00991A",
-          "weight_pct": 2.209,
-          "shares": 730000
+          "weight_pct": 2.669,
+          "shares": 860000
         },
         {
           "etf": "00980A",
@@ -2367,8 +2360,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.72,
-          "shares": 7086602
+          "weight_pct": 0.75,
+          "shares": 7155314
         }
       ]
     },
@@ -2388,13 +2381,13 @@
         },
         {
           "etf": "00981A",
-          "weight_pct": 3.57,
-          "shares": 5247000
+          "weight_pct": 3.8,
+          "shares": 5567000
         },
         {
           "etf": "0050",
-          "weight_pct": 3.46,
-          "shares": 42682818
+          "weight_pct": 3.58,
+          "shares": 43097544
         },
         {
           "etf": "00990A",
@@ -2403,8 +2396,8 @@
         },
         {
           "etf": "00991A",
-          "weight_pct": 0.022,
-          "shares": 9000
+          "weight_pct": 1.252,
+          "shares": 510000
         }
       ]
     },
@@ -2416,17 +2409,17 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 4.82,
+          "weight_pct": 5.01,
           "shares": 955000
         },
         {
           "etf": "00981A",
-          "weight_pct": 3.51,
+          "weight_pct": 3.6,
           "shares": 4833848
         },
         {
           "etf": "00991A",
-          "weight_pct": 1.117,
+          "weight_pct": 1.23,
           "shares": 460000
         },
         {
@@ -2436,8 +2429,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.34,
-          "shares": 3952263
+          "weight_pct": 0.36,
+          "shares": 3990300
         }
       ]
     },
@@ -2453,7 +2446,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 4.51,
+          "weight_pct": 4.5,
           "shares": 2417000
         },
         {
@@ -2463,8 +2456,8 @@
         },
         {
           "etf": "00991A",
-          "weight_pct": 2.224,
-          "shares": 350000
+          "weight_pct": 3.009,
+          "shares": 450000
         },
         {
           "etf": "00980A",
@@ -2473,8 +2466,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.51,
-          "shares": 2303618
+          "weight_pct": 0.53,
+          "shares": 2325704
         }
       ]
     },
@@ -2489,18 +2482,18 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 3.84,
+          "weight_pct": 3.8,
           "shares": 16135000
         },
         {
           "etf": "00991A",
-          "weight_pct": 2.871,
-          "shares": 3400000
+          "weight_pct": 3.387,
+          "shares": 4000000
         },
         {
           "etf": "0050",
-          "weight_pct": 2.08,
-          "shares": 73440464
+          "weight_pct": 2.13,
+          "shares": 74152942
         },
         {
           "etf": "00980A",
@@ -2522,12 +2515,12 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 6.922,
+          "weight_pct": 6.452,
           "shares": 7200000
         },
         {
           "etf": "00981A",
-          "weight_pct": 6.3,
+          "weight_pct": 6.26,
           "shares": 25098000
         },
         {
@@ -2537,8 +2530,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 1.05,
-          "shares": 34921089
+          "weight_pct": 1.07,
+          "shares": 35259332
         }
       ]
     },
@@ -2553,7 +2546,7 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 6.3,
+          "weight_pct": 6.13,
           "shares": 293000
         },
         {
@@ -2563,13 +2556,43 @@
         },
         {
           "etf": "00991A",
-          "weight_pct": 4.232,
-          "shares": 390000
+          "weight_pct": 4.267,
+          "shares": 400000
         },
         {
           "etf": "0050",
-          "weight_pct": 0.45,
-          "shares": 1219232
+          "weight_pct": 0.44,
+          "shares": 1230684
+        }
+      ]
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南電",
+      "industry": "電子零組件業",
+      "tags": [
+        "PCB"
+      ],
+      "held_by": [
+        {
+          "etf": "00991A",
+          "weight_pct": 4.775,
+          "shares": 3000000
+        },
+        {
+          "etf": "00981A",
+          "weight_pct": 4.22,
+          "shares": 9519000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 1.65,
+          "shares": 219000
+        },
+        {
+          "etf": "0050",
+          "weight_pct": 0.26,
+          "shares": 4780200
         }
       ]
     },
@@ -2581,7 +2604,7 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 4.52,
+          "weight_pct": 4.39,
           "shares": 420000
         },
         {
@@ -2592,7 +2615,7 @@
         {
           "etf": "0050",
           "weight_pct": 0.38,
-          "shares": 2074589
+          "shares": 2094630
         },
         {
           "etf": "00981A",
@@ -2611,53 +2634,23 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 4.49,
+          "weight_pct": 4.34,
           "shares": 86550000
         },
         {
           "etf": "00991A",
-          "weight_pct": 2.773,
-          "shares": 14000000
+          "weight_pct": 1.799,
+          "shares": 10000000
         },
         {
           "etf": "0050",
-          "weight_pct": 1.6,
-          "shares": 258723709
+          "weight_pct": 1.59,
+          "shares": 261229243
         },
         {
           "etf": "00990A",
           "weight_pct": 1.1,
           "shares": 3265000
-        }
-      ]
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南電",
-      "industry": "電子零組件業",
-      "tags": [
-        "PCB"
-      ],
-      "held_by": [
-        {
-          "etf": "00991A",
-          "weight_pct": 4.429,
-          "shares": 2800000
-        },
-        {
-          "etf": "00981A",
-          "weight_pct": 4.19,
-          "shares": 9519000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 1.65,
-          "shares": 219000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.25,
-          "shares": 4734392
         }
       ]
     },
@@ -2672,7 +2665,7 @@
       "held_by": [
         {
           "etf": "00992A",
-          "weight_pct": 4.39,
+          "weight_pct": 4.21,
           "shares": 1630000
         },
         {
@@ -2689,6 +2682,36 @@
           "etf": "00981A",
           "weight_pct": 0.0,
           "shares": 1000
+        }
+      ]
+    },
+    {
+      "stock_id": "6274",
+      "stock_name": "台燿",
+      "industry": "電子零組件業",
+      "tags": [
+        "PCB"
+      ],
+      "held_by": [
+        {
+          "etf": "00991A",
+          "weight_pct": 3.469,
+          "shares": 2100000
+        },
+        {
+          "etf": "00981A",
+          "weight_pct": 2.37,
+          "shares": 5160000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 1.01,
+          "shares": 130000
+        },
+        {
+          "etf": "00990A",
+          "weight_pct": 0.78,
+          "shares": 268000
         }
       ]
     },
@@ -2710,43 +2733,13 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.71,
-          "shares": 8147675
+          "weight_pct": 0.75,
+          "shares": 8226612
         },
         {
           "etf": "00991A",
           "weight_pct": 0.003,
           "shares": 1000
-        }
-      ]
-    },
-    {
-      "stock_id": "6274",
-      "stock_name": "台燿",
-      "industry": "電子零組件業",
-      "tags": [
-        "PCB"
-      ],
-      "held_by": [
-        {
-          "etf": "00991A",
-          "weight_pct": 3.38,
-          "shares": 2100000
-        },
-        {
-          "etf": "00981A",
-          "weight_pct": 2.31,
-          "shares": 5160000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 1.01,
-          "shares": 130000
-        },
-        {
-          "etf": "00990A",
-          "weight_pct": 0.78,
-          "shares": 268000
         }
       ]
     },
@@ -2766,48 +2759,18 @@
         },
         {
           "etf": "00981A",
-          "weight_pct": 2.89,
+          "weight_pct": 2.97,
           "shares": 2267000
         },
         {
           "etf": "0050",
-          "weight_pct": 0.29,
-          "shares": 1925690
+          "weight_pct": 0.31,
+          "shares": 1944095
         },
         {
           "etf": "00991A",
-          "weight_pct": 0.004,
+          "weight_pct": 0.005,
           "shares": 1000
-        }
-      ]
-    },
-    {
-      "stock_id": "2368",
-      "stock_name": "金像電",
-      "industry": "電子零組件業",
-      "tags": [
-        "PCB"
-      ],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 3.07,
-          "shares": 8315000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 2.43,
-          "shares": 393000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.33,
-          "shares": 7597364
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 0.011,
-          "shares": 9000
         }
       ]
     },
@@ -2822,8 +2785,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 3.01,
-          "shares": 270105459
+          "weight_pct": 3.04,
+          "shares": 272728376
         },
         {
           "etf": "00980A",
@@ -2843,6 +2806,36 @@
       ]
     },
     {
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "industry": "電子零組件業",
+      "tags": [
+        "PCB"
+      ],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 3.04,
+          "shares": 8315000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 2.43,
+          "shares": 393000
+        },
+        {
+          "etf": "0050",
+          "weight_pct": 0.34,
+          "shares": 7670984
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 0.012,
+          "shares": 9000
+        }
+      ]
+    },
+    {
       "stock_id": "2382",
       "stock_name": "廣達",
       "industry": "電腦及週邊設備業",
@@ -2858,8 +2851,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.88,
-          "shares": 58504597
+          "weight_pct": 0.87,
+          "shares": 59072289
         },
         {
           "etf": "00991A",
@@ -2883,7 +2876,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.67,
+          "weight_pct": 0.64,
           "shares": 6197000
         },
         {
@@ -2894,11 +2887,11 @@
         {
           "etf": "0050",
           "weight_pct": 0.31,
-          "shares": 24034346
+          "shares": 24267885
         },
         {
           "etf": "00991A",
-          "weight_pct": 0.004,
+          "weight_pct": 0.003,
           "shares": 9000
         }
       ]
@@ -2914,8 +2907,8 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 5.494,
-          "shares": 10100000
+          "weight_pct": 6.5,
+          "shares": 12000000
         },
         {
           "etf": "00980A",
@@ -2924,8 +2917,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.46,
-          "shares": 25217129
+          "weight_pct": 0.47,
+          "shares": 25462120
         }
       ]
     },
@@ -2942,13 +2935,40 @@
         },
         {
           "etf": "00991A",
-          "weight_pct": 2.839,
-          "shares": 340000
+          "weight_pct": 3.13,
+          "shares": 360000
         },
         {
           "etf": "0050",
-          "weight_pct": 0.36,
-          "shares": 1261089
+          "weight_pct": 0.37,
+          "shares": 1272950
+        }
+      ]
+    },
+    {
+      "stock_id": "5274",
+      "stock_name": "信驊",
+      "industry": "半導體業",
+      "tags": [
+        "AI",
+        "伺服器",
+        "IC設計"
+      ],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 2.36,
+          "shares": 448900
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 1.27,
+          "shares": 14300
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 1.179,
+          "shares": 62500
         }
       ]
     },
@@ -2968,40 +2988,13 @@
         },
         {
           "etf": "00991A",
-          "weight_pct": 1.832,
-          "shares": 220000
+          "weight_pct": 1.869,
+          "shares": 210000
         },
         {
           "etf": "00981A",
-          "weight_pct": 0.31,
+          "weight_pct": 0.32,
           "shares": 130000
-        }
-      ]
-    },
-    {
-      "stock_id": "5274",
-      "stock_name": "信驊",
-      "industry": "半導體業",
-      "tags": [
-        "AI",
-        "伺服器",
-        "IC設計"
-      ],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 2.31,
-          "shares": 448900
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 1.27,
-          "shares": 14300
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 1.113,
-          "shares": 62500
         }
       ]
     },
@@ -3021,8 +3014,8 @@
         },
         {
           "etf": "0050",
-          "weight_pct": 0.32,
-          "shares": 1775022
+          "weight_pct": 0.33,
+          "shares": 1792200
         },
         {
           "etf": "00981A",
@@ -3041,8 +3034,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 1.15,
-          "shares": 393058334
+          "weight_pct": 1.13,
+          "shares": 396830480
         },
         {
           "etf": "00980A",
@@ -3053,31 +3046,6 @@
           "etf": "00991A",
           "weight_pct": 0.001,
           "shares": 9000
-        }
-      ]
-    },
-    {
-      "stock_id": "2344",
-      "stock_name": "華邦電",
-      "industry": "半導體業",
-      "tags": [
-        "記憶體"
-      ],
-      "held_by": [
-        {
-          "etf": "00980A",
-          "weight_pct": 1.13,
-          "shares": 1153000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 1.023,
-          "shares": 4800000
-        },
-        {
-          "etf": "0050",
-          "weight_pct": 0.49,
-          "shares": 68379970
         }
       ]
     },
@@ -3107,32 +3075,6 @@
       ]
     },
     {
-      "stock_id": "8210",
-      "stock_name": "勤誠",
-      "industry": "電腦及週邊設備業",
-      "tags": [
-        "AI",
-        "伺服器"
-      ],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 0.98,
-          "shares": 2267000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 0.82,
-          "shares": 112000
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 0.002,
-          "shares": 1000
-        }
-      ]
-    },
-    {
       "stock_id": "3231",
       "stock_name": "緯創",
       "industry": "電腦及週邊設備業",
@@ -3149,32 +3091,12 @@
         {
           "etf": "0050",
           "weight_pct": 0.46,
-          "shares": 66746291
+          "shares": 67394556
         },
         {
           "etf": "00991A",
           "weight_pct": 0.002,
           "shares": 9000
-        }
-      ]
-    },
-    {
-      "stock_id": "8299",
-      "stock_name": "群聯",
-      "industry": "半導體業",
-      "tags": [
-        "記憶體"
-      ],
-      "held_by": [
-        {
-          "etf": "00991A",
-          "weight_pct": 2.701,
-          "shares": 1100000
-        },
-        {
-          "etf": "00980A",
-          "weight_pct": 0.93,
-          "shares": 79000
         }
       ]
     },
@@ -3188,13 +3110,33 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 2.669,
-          "shares": 2800000
+          "weight_pct": 2.993,
+          "shares": 3000000
         },
         {
           "etf": "00980A",
           "weight_pct": 0.66,
           "shares": 139000
+        }
+      ]
+    },
+    {
+      "stock_id": "8299",
+      "stock_name": "群聯",
+      "industry": "半導體業",
+      "tags": [
+        "記憶體"
+      ],
+      "held_by": [
+        {
+          "etf": "00991A",
+          "weight_pct": 2.729,
+          "shares": 1100000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 0.93,
+          "shares": 79000
         }
       ]
     },
@@ -3206,8 +3148,8 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 2.088,
-          "shares": 2200000
+          "weight_pct": 2.463,
+          "shares": 2700000
         },
         {
           "etf": "00980A",
@@ -3235,6 +3177,44 @@
       ]
     },
     {
+      "stock_id": "1303",
+      "stock_name": "南亞",
+      "industry": "塑膠工業",
+      "tags": [],
+      "held_by": [
+        {
+          "etf": "00991A",
+          "weight_pct": 1.255,
+          "shares": 4800000
+        },
+        {
+          "etf": "0050",
+          "weight_pct": 0.97,
+          "shares": 110142770
+        }
+      ]
+    },
+    {
+      "stock_id": "2344",
+      "stock_name": "華邦電",
+      "industry": "半導體業",
+      "tags": [
+        "記憶體"
+      ],
+      "held_by": [
+        {
+          "etf": "00980A",
+          "weight_pct": 1.13,
+          "shares": 1153000
+        },
+        {
+          "etf": "0050",
+          "weight_pct": 0.49,
+          "shares": 69044186
+        }
+      ]
+    },
+    {
       "stock_id": "2881",
       "stock_name": "富邦金",
       "industry": "金融保險業",
@@ -3244,28 +3224,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 1.08,
-          "shares": 184565541
-        },
-        {
-          "etf": "00991A",
-          "weight_pct": 0.002,
-          "shares": 9000
-        }
-      ]
-    },
-    {
-      "stock_id": "2882",
-      "stock_name": "國泰金",
-      "industry": "金融保險業",
-      "tags": [
-        "金融"
-      ],
-      "held_by": [
-        {
-          "etf": "0050",
-          "weight_pct": 0.94,
-          "shares": 210810518
+          "weight_pct": 1.04,
+          "shares": 186335061
         },
         {
           "etf": "00991A",
@@ -3284,13 +3244,54 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.94,
-          "shares": 1811000
+          "weight_pct": 0.99,
+          "shares": 1881000
         },
         {
           "etf": "00980A",
           "weight_pct": 0.48,
           "shares": 54000
+        }
+      ]
+    },
+    {
+      "stock_id": "8210",
+      "stock_name": "勤誠",
+      "industry": "電腦及週邊設備業",
+      "tags": [
+        "AI",
+        "伺服器"
+      ],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 0.98,
+          "shares": 2267000
+        },
+        {
+          "etf": "00980A",
+          "weight_pct": 0.82,
+          "shares": 112000
+        }
+      ]
+    },
+    {
+      "stock_id": "2882",
+      "stock_name": "國泰金",
+      "industry": "金融保險業",
+      "tags": [
+        "金融"
+      ],
+      "held_by": [
+        {
+          "etf": "0050",
+          "weight_pct": 0.92,
+          "shares": 212858790
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 0.001,
+          "shares": 9000
         }
       ]
     },
@@ -3310,7 +3311,7 @@
         {
           "etf": "0050",
           "weight_pct": 0.57,
-          "shares": 336029736
+          "shares": 339295192
         }
       ]
     },
@@ -3324,8 +3325,28 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.73,
-          "shares": 244122543
+          "weight_pct": 0.68,
+          "shares": 246490653
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 0.001,
+          "shares": 9000
+        }
+      ]
+    },
+    {
+      "stock_id": "2886",
+      "stock_name": "兆豐金",
+      "industry": "金融保險業",
+      "tags": [
+        "金融"
+      ],
+      "held_by": [
+        {
+          "etf": "0050",
+          "weight_pct": 0.58,
+          "shares": 263795785
         },
         {
           "etf": "00991A",
@@ -3344,8 +3365,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.49,
-          "shares": 348399661
+          "weight_pct": 0.47,
+          "shares": 351782500
         },
         {
           "etf": "00991A",
@@ -3375,6 +3396,26 @@
       ]
     },
     {
+      "stock_id": "2880",
+      "stock_name": "華南金",
+      "industry": "金融保險業",
+      "tags": [
+        "金融"
+      ],
+      "held_by": [
+        {
+          "etf": "0050",
+          "weight_pct": 0.38,
+          "shares": 205179563
+        },
+        {
+          "etf": "00991A",
+          "weight_pct": 0.0,
+          "shares": 9000
+        }
+      ]
+    },
+    {
       "stock_id": "6510",
       "stock_name": "精測",
       "industry": "半導體業",
@@ -3386,7 +3427,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.36,
+          "weight_pct": 0.34,
           "shares": 349000
         },
         {
@@ -3408,7 +3449,7 @@
         {
           "etf": "0050",
           "weight_pct": 0.28,
-          "shares": 1742857
+          "shares": 1759626
         },
         {
           "etf": "00981A",
@@ -3446,7 +3487,7 @@
         {
           "etf": "0050",
           "weight_pct": 0.22,
-          "shares": 24012660
+          "shares": 24245790
         },
         {
           "etf": "00991A",
@@ -3536,19 +3577,6 @@
       ]
     },
     {
-      "stock_id": "2492",
-      "stock_name": "華新科技",
-      "industry": "",
-      "tags": [],
-      "held_by": [
-        {
-          "etf": "00991A",
-          "weight_pct": 1.523,
-          "shares": 3600000
-        }
-      ]
-    },
-    {
       "stock_id": "5904",
       "stock_name": "寶雅",
       "industry": "居家生活",
@@ -3569,21 +3597,8 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 1.037,
-          "shares": 650000
-        }
-      ]
-    },
-    {
-      "stock_id": "1303",
-      "stock_name": "南亞",
-      "industry": "塑膠工業",
-      "tags": [],
-      "held_by": [
-        {
-          "etf": "0050",
-          "weight_pct": 0.97,
-          "shares": 109084687
+          "weight_pct": 1.23,
+          "shares": 800000
         }
       ]
     },
@@ -3629,23 +3644,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.86,
-          "shares": 513480880
-        }
-      ]
-    },
-    {
-      "stock_id": "2886",
-      "stock_name": "兆豐金",
-      "industry": "金融保險業",
-      "tags": [
-        "金融"
-      ],
-      "held_by": [
-        {
-          "etf": "0050",
-          "weight_pct": 0.6,
-          "shares": 261257122
+          "weight_pct": 0.82,
+          "shares": 523649603
         }
       ]
     },
@@ -3672,8 +3672,21 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.54,
-          "shares": 284668130
+          "weight_pct": 0.52,
+          "shares": 286939146
+        }
+      ]
+    },
+    {
+      "stock_id": "2357",
+      "stock_name": "華碩",
+      "industry": "電腦及週邊設備業",
+      "tags": [],
+      "held_by": [
+        {
+          "etf": "0050",
+          "weight_pct": 0.5,
+          "shares": 15063209
         }
       ]
     },
@@ -3691,15 +3704,17 @@
       ]
     },
     {
-      "stock_id": "2357",
-      "stock_name": "華碩",
+      "stock_id": "2301",
+      "stock_name": "光寶科",
       "industry": "電腦及週邊設備業",
-      "tags": [],
+      "tags": [
+        "網通"
+      ],
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.49,
-          "shares": 14918423
+          "weight_pct": 0.41,
+          "shares": 43651393
         }
       ]
     },
@@ -3711,38 +3726,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.42,
-          "shares": 109226520
-        }
-      ]
-    },
-    {
-      "stock_id": "6147",
-      "stock_name": "頎邦",
-      "industry": "半導體業",
-      "tags": [
-        "封裝測試"
-      ],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 0.41,
-          "shares": 6275000
-        }
-      ]
-    },
-    {
-      "stock_id": "2301",
-      "stock_name": "光寶科",
-      "industry": "電腦及週邊設備業",
-      "tags": [
-        "網通"
-      ],
-      "held_by": [
-        {
-          "etf": "0050",
           "weight_pct": 0.4,
-          "shares": 43231350
+          "shares": 110287875
         }
       ]
     },
@@ -3756,36 +3741,23 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.4,
-          "shares": 247565699
+          "weight_pct": 0.39,
+          "shares": 249971437
         }
       ]
     },
     {
-      "stock_id": "2880",
-      "stock_name": "華南金",
-      "industry": "金融保險業",
+      "stock_id": "6147",
+      "stock_name": "頎邦",
+      "industry": "半導體業",
       "tags": [
-        "金融"
+        "封裝測試"
       ],
       "held_by": [
         {
-          "etf": "0050",
-          "weight_pct": 0.39,
-          "shares": 203204911
-        }
-      ]
-    },
-    {
-      "stock_id": "5439",
-      "stock_name": "高技",
-      "industry": "電子零組件業",
-      "tags": [],
-      "held_by": [
-        {
           "etf": "00981A",
-          "weight_pct": 0.32,
-          "shares": 3234000
+          "weight_pct": 0.37,
+          "shares": 5752000
         }
       ]
     },
@@ -3818,6 +3790,19 @@
       ]
     },
     {
+      "stock_id": "5439",
+      "stock_name": "高技",
+      "industry": "電子零組件業",
+      "tags": [],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 0.28,
+          "shares": 2940000
+        }
+      ]
+    },
+    {
       "stock_id": "5880",
       "stock_name": "合庫金",
       "industry": "金融保險業",
@@ -3827,21 +3812,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.28,
-          "shares": 231396421
-        }
-      ]
-    },
-    {
-      "stock_id": "1590",
-      "stock_name": "亞德客-KY",
-      "industry": "電機機械",
-      "tags": [],
-      "held_by": [
-        {
-          "etf": "00981A",
-          "weight_pct": 0.28,
-          "shares": 528000
+          "weight_pct": 0.27,
+          "shares": 233645103
         }
       ]
     },
@@ -3859,6 +3831,19 @@
       ]
     },
     {
+      "stock_id": "1590",
+      "stock_name": "亞德客-KY",
+      "industry": "電機機械",
+      "tags": [],
+      "held_by": [
+        {
+          "etf": "00981A",
+          "weight_pct": 0.27,
+          "shares": 528000
+        }
+      ]
+    },
+    {
       "stock_id": "2395",
       "stock_name": "研華",
       "industry": "電腦及週邊設備業",
@@ -3866,8 +3851,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.25,
-          "shares": 10191082
+          "weight_pct": 0.26,
+          "shares": 10290060
         }
       ]
     },
@@ -3879,7 +3864,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.23,
+          "weight_pct": 0.22,
           "shares": 2966000
         }
       ]
@@ -3894,8 +3879,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.19,
-          "shares": 39213041
+          "weight_pct": 0.18,
+          "shares": 39593820
         }
       ]
     },
@@ -3909,8 +3894,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.17,
-          "shares": 31236105
+          "weight_pct": 0.16,
+          "shares": 31539583
         }
       ]
     },
@@ -3924,7 +3909,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.14,
+          "weight_pct": 0.13,
           "shares": 3988000
         }
       ]
@@ -3937,7 +3922,7 @@
       "held_by": [
         {
           "etf": "00981A",
-          "weight_pct": 0.13,
+          "weight_pct": 0.12,
           "shares": 1741000
         }
       ]
@@ -3950,8 +3935,8 @@
       "held_by": [
         {
           "etf": "0050",
-          "weight_pct": 0.09,
-          "shares": 25361979
+          "weight_pct": 0.1,
+          "shares": 25608197
         }
       ]
     },
@@ -3986,19 +3971,6 @@
       ]
     },
     {
-      "stock_id": "3042",
-      "stock_name": "台灣晶技",
-      "industry": "",
-      "tags": [],
-      "held_by": [
-        {
-          "etf": "00991A",
-          "weight_pct": 0.002,
-          "shares": 9000
-        }
-      ]
-    },
-    {
       "stock_id": "2337",
       "stock_name": "旺宏",
       "industry": "半導體業",
@@ -4008,7 +3980,7 @@
       "held_by": [
         {
           "etf": "00991A",
-          "weight_pct": 0.002,
+          "weight_pct": 0.001,
           "shares": 9000
         }
       ]
@@ -4050,7 +4022,7 @@
         {
           "etf": "00981A",
           "weight_pct": 0.0,
-          "shares": 107000
+          "shares": 1000
         }
       ]
     },
