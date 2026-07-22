@@ -5,9 +5,9 @@
   "top_added": [
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技",
       "etf_count": 4,
-      "total_delta": 4.588
+      "total_delta": 4.755
     },
     {
       "stock_id": "2360",
@@ -17,30 +17,24 @@
     },
     {
       "stock_id": "1303",
-      "stock_name": "南亞塑膠工業",
+      "stock_name": "南亞塑膠",
       "etf_count": 3,
-      "total_delta": 2.145
+      "total_delta": 2.171
     },
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐",
+      "stock_name": "奇鋐科技",
       "etf_count": 4,
-      "total_delta": 1.656
+      "total_delta": 1.487
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦",
+      "stock_name": "智邦科技",
       "etf_count": 4,
-      "total_delta": 1.38
+      "total_delta": 1.324
     }
   ],
   "top_removed": [
-    {
-      "stock_id": "6488",
-      "stock_name": "環球晶",
-      "etf_count": 1,
-      "total_delta": -3.33
-    },
     {
       "stock_id": "3105",
       "stock_name": "穩懋",
@@ -48,16 +42,22 @@
       "total_delta": -3.13
     },
     {
+      "stock_id": "6488",
+      "stock_name": "環球晶圓",
+      "etf_count": 2,
+      "total_delta": -2.853
+    },
+    {
       "stock_id": "2303",
-      "stock_name": "聯電",
+      "stock_name": "聯華電子",
       "etf_count": 4,
-      "total_delta": -2.441
+      "total_delta": -2.456
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨*",
+      "stock_name": "國巨股份",
       "etf_count": 4,
-      "total_delta": -2.135
+      "total_delta": -1.821
     },
     {
       "stock_id": "2492",
