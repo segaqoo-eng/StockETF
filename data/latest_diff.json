@@ -3,6 +3,103 @@
   "as_of_baseline": "2026-07-28",
   "is_stale": false,
   "by_etf": {
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金融",
+          "shares": 9000
+        },
+        {
+          "stock_id": "2884",
+          "stock_name": "玉山金融",
+          "shares": 9000
+        },
+        {
+          "stock_id": "2379",
+          "stock_name": "瑞昱半導",
+          "shares": 1000
+        },
+        {
+          "stock_id": "2912",
+          "stock_name": "統一超商",
+          "shares": 1000
+        },
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電信",
+          "shares": 1000
+        },
+        {
+          "stock_id": "1216",
+          "stock_name": "統一企業",
+          "shares": 1000
+        },
+        {
+          "stock_id": "3045",
+          "stock_name": "台灣大哥",
+          "shares": 1000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2303",
+          "stock_name": "聯華電子",
+          "shares": 10000000
+        },
+        {
+          "stock_id": "1303",
+          "stock_name": "南亞塑膠",
+          "shares": 6000000
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電子",
+          "shares": 9000
+        },
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 9000
+        },
+        {
+          "stock_id": "2337",
+          "stock_name": "旺宏電子",
+          "shares": 9000
+        },
+        {
+          "stock_id": "6510",
+          "stock_name": "中華精測",
+          "shares": 1000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力熱處",
+          "shares": 1000
+        },
+        {
+          "stock_id": "1519",
+          "stock_name": "華城電機",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴科技",
+          "shares_now": 140000,
+          "shares_prev": 210000,
+          "shares_delta": -70000
+        },
+        {
+          "stock_id": "2404",
+          "stock_name": "漢唐集成",
+          "shares_now": 799000,
+          "shares_prev": 800000,
+          "shares_delta": -1000
+        }
+      ]
+    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -43,6 +140,11 @@
           "shares_delta": -30000
         }
       ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "00990A": {
       "added": [],
@@ -103,6 +205,11 @@
           "shares_delta": 5000
         }
       ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "0050": {
       "added": [],
@@ -459,113 +566,6 @@
           "shares_delta": 16820
         }
       ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [
-        {
-          "stock_id": "2890",
-          "stock_name": "永豐金融",
-          "shares": 9000
-        },
-        {
-          "stock_id": "2884",
-          "stock_name": "玉山金融",
-          "shares": 9000
-        },
-        {
-          "stock_id": "2379",
-          "stock_name": "瑞昱半導",
-          "shares": 1000
-        },
-        {
-          "stock_id": "2912",
-          "stock_name": "統一超商",
-          "shares": 1000
-        },
-        {
-          "stock_id": "2412",
-          "stock_name": "中華電信",
-          "shares": 1000
-        },
-        {
-          "stock_id": "1216",
-          "stock_name": "統一企業",
-          "shares": 1000
-        },
-        {
-          "stock_id": "3045",
-          "stock_name": "台灣大哥",
-          "shares": 1000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2303",
-          "stock_name": "聯華電子",
-          "shares": 10000000
-        },
-        {
-          "stock_id": "1303",
-          "stock_name": "南亞塑膠",
-          "shares": 6000000
-        },
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電子",
-          "shares": 9000
-        },
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares": 9000
-        },
-        {
-          "stock_id": "2337",
-          "stock_name": "旺宏電子",
-          "shares": 9000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "中華精測",
-          "shares": 1000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力熱處",
-          "shares": 1000
-        },
-        {
-          "stock_id": "1519",
-          "stock_name": "華城電機",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴科技",
-          "shares_now": 140000,
-          "shares_prev": 210000,
-          "shares_delta": -70000
-        },
-        {
-          "stock_id": "2404",
-          "stock_name": "漢唐集成",
-          "shares_now": 799000,
-          "shares_prev": 800000,
-          "shares_delta": -1000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     }
   }
 }
