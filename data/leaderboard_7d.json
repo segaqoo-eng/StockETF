@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-29",
-  "as_of_baseline": "2026-07-22",
+  "as_of_today": "2026-07-30",
+  "as_of_baseline": "2026-07-23",
   "top_added": [
     {
       "stock_id": "2330",
       "stock_name": "台灣積體",
       "etf_count": 7,
-      "total_delta": 4.511
+      "total_delta": 4.793
     },
     {
       "stock_id": "2059",
       "stock_name": "川湖科技",
-      "etf_count": 4,
-      "total_delta": 2.932
+      "etf_count": 3,
+      "total_delta": 3.72
     },
     {
       "stock_id": "6669",
       "stock_name": "緯穎科技",
       "etf_count": 4,
-      "total_delta": 2.931
+      "total_delta": 2.726
     },
     {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
-      "etf_count": 4,
-      "total_delta": 1.867
+      "etf_count": 3,
+      "total_delta": 0.916
     },
     {
-      "stock_id": "3017",
-      "stock_name": "奇鋐科技",
-      "etf_count": 4,
-      "total_delta": 1.287
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "etf_count": 1,
+      "total_delta": 0.53
     }
   ],
   "top_removed": [
     {
-      "stock_id": "3037",
-      "stock_name": "欣興電子",
-      "etf_count": 6,
-      "total_delta": -4.172
-    },
-    {
       "stock_id": "4958",
       "stock_name": "臻鼎-KY",
-      "etf_count": 4,
-      "total_delta": -3.826
+      "etf_count": 2,
+      "total_delta": -3.346
     },
     {
       "stock_id": "2303",
       "stock_name": "聯華電子",
       "etf_count": 4,
-      "total_delta": -2.874
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南亞電路",
-      "etf_count": 4,
-      "total_delta": -2.498
+      "total_delta": -2.879
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨股份",
       "etf_count": 4,
-      "total_delta": -2.426
+      "total_delta": -2.384
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽科技",
+      "etf_count": 5,
+      "total_delta": -2.127
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興電子",
+      "etf_count": 6,
+      "total_delta": -1.906
     }
   ]
 }
