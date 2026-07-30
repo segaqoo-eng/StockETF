@@ -5,65 +5,65 @@
   "top_added": [
     {
       "stock_id": "2330",
-      "stock_name": "台灣積體",
+      "stock_name": "台灣積體電路製造",
       "etf_count": 7,
-      "total_delta": 4.793
+      "total_delta": 4.839
     },
     {
       "stock_id": "2059",
       "stock_name": "川湖科技",
       "etf_count": 3,
-      "total_delta": 3.72
+      "total_delta": 4.119
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科",
+      "etf_count": 6,
+      "total_delta": 3.361
+    },
+    {
+      "stock_id": "2360",
+      "stock_name": "致茂電子",
+      "etf_count": 3,
+      "total_delta": 2.248
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎科技",
+      "stock_name": "緯穎科技服務",
       "etf_count": 4,
-      "total_delta": 2.726
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 3,
-      "total_delta": 0.916
-    },
-    {
-      "stock_id": "3008",
-      "stock_name": "大立光",
-      "etf_count": 1,
-      "total_delta": 0.53
+      "total_delta": 2.093
     }
   ],
   "top_removed": [
     {
-      "stock_id": "4958",
-      "stock_name": "臻鼎-KY",
+      "stock_id": "8996",
+      "stock_name": "高力熱處理工業",
       "etf_count": 2,
-      "total_delta": -3.346
-    },
-    {
-      "stock_id": "2303",
-      "stock_name": "聯華電子",
-      "etf_count": 4,
-      "total_delta": -2.879
+      "total_delta": -4.611
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨股份",
+      "stock_name": "國巨",
       "etf_count": 4,
-      "total_delta": -2.384
+      "total_delta": -3.652
     },
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽科技",
-      "etf_count": 5,
-      "total_delta": -2.127
+      "stock_id": "4958",
+      "stock_name": "臻鼎科技控股",
+      "etf_count": 3,
+      "total_delta": -3.396
     },
     {
-      "stock_id": "3037",
-      "stock_name": "欣興電子",
-      "etf_count": 6,
-      "total_delta": -1.906
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "etf_count": 4,
+      "total_delta": -2.539
+    },
+    {
+      "stock_id": "8046",
+      "stock_name": "南亞電路板",
+      "etf_count": 4,
+      "total_delta": -2.231
     }
   ]
 }
