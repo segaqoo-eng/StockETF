@@ -1,23 +1,23 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-07-31",
-  "as_of_baseline": "2026-07-24",
+  "as_of_today": "2026-08-01",
+  "as_of_baseline": "2026-07-25",
   "top_added": [
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 7,
-      "total_delta": 3.064
+      "total_delta": 3.424
     },
     {
       "stock_id": "2059",
-      "stock_name": "川湖",
+      "stock_name": "川湖科技",
       "etf_count": 4,
-      "total_delta": 2.909
+      "total_delta": 2.881
     },
     {
       "stock_id": "2360",
-      "stock_name": "致茂",
+      "stock_name": "致茂電子",
       "etf_count": 3,
       "total_delta": 2.066
     },
@@ -31,7 +31,7 @@
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 4,
-      "total_delta": 0.462
+      "total_delta": 0.789
     }
   ],
   "top_removed": [
@@ -45,7 +45,7 @@
       "stock_id": "2327",
       "stock_name": "國巨*",
       "etf_count": 4,
-      "total_delta": -4.36
+      "total_delta": -4.551
     },
     {
       "stock_id": "4958",
@@ -57,13 +57,13 @@
       "stock_id": "8046",
       "stock_name": "南電",
       "etf_count": 3,
-      "total_delta": -2.583
+      "total_delta": -2.818
     },
     {
       "stock_id": "2303",
       "stock_name": "聯電",
       "etf_count": 4,
-      "total_delta": -2.561
+      "total_delta": -2.609
     }
   ]
 }
