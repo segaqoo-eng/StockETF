@@ -4,66 +4,66 @@
   "as_of_baseline": "2026-07-28",
   "top_added": [
     {
-      "stock_id": "2454",
-      "stock_name": "聯發科技",
-      "etf_count": 7,
-      "total_delta": 1.907
+      "stock_id": "3037",
+      "stock_name": "欣興電子",
+      "etf_count": 6,
+      "total_delta": 3.059
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎科技服務",
-      "etf_count": 4,
-      "total_delta": 1.768
+      "stock_name": "緯穎",
+      "etf_count": 5,
+      "total_delta": 2.988
     },
     {
-      "stock_id": "2360",
-      "stock_name": "致茂電子",
-      "etf_count": 4,
-      "total_delta": 1.286
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 5,
+      "total_delta": 2.328
     },
     {
-      "stock_id": "6139",
-      "stock_name": "亞翔",
-      "etf_count": 1,
-      "total_delta": 0.95
+      "stock_id": "3231",
+      "stock_name": "緯創資通",
+      "etf_count": 3,
+      "total_delta": 1.981
     },
     {
-      "stock_id": "3008",
-      "stock_name": "大立光電",
-      "etf_count": 2,
-      "total_delta": 0.485
+      "stock_id": "3653",
+      "stock_name": "健策精密工業",
+      "etf_count": 3,
+      "total_delta": 1.667
     }
   ],
   "top_removed": [
     {
-      "stock_id": "8996",
-      "stock_name": "高力熱處理工業",
-      "etf_count": 2,
-      "total_delta": -4.231
-    },
-    {
       "stock_id": "2330",
-      "stock_name": "台灣積體電路製造",
+      "stock_name": "台積電",
       "etf_count": 6,
-      "total_delta": -3.611
+      "total_delta": -4.522
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨",
+      "stock_id": "2308",
+      "stock_name": "台達電子工業",
       "etf_count": 4,
-      "total_delta": -3.019
-    },
-    {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
-      "etf_count": 3,
-      "total_delta": -2.346
+      "total_delta": -2.537
     },
     {
       "stock_id": "2303",
       "stock_name": "聯華電子",
       "etf_count": 3,
-      "total_delta": -2.233
+      "total_delta": -2.163
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨",
+      "etf_count": 3,
+      "total_delta": -2.107
+    },
+    {
+      "stock_id": "6515",
+      "stock_name": "穎崴科技",
+      "etf_count": 2,
+      "total_delta": -2.064
     }
   ]
 }
