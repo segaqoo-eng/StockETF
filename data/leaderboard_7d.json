@@ -1,37 +1,37 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-03",
-  "as_of_baseline": "2026-07-27",
+  "as_of_today": "2026-08-04",
+  "as_of_baseline": "2026-07-28",
   "top_added": [
+    {
+      "stock_id": "2454",
+      "stock_name": "聯發科技",
+      "etf_count": 7,
+      "total_delta": 1.907
+    },
     {
       "stock_id": "6669",
       "stock_name": "緯穎科技服務",
-      "etf_count": 3,
-      "total_delta": 1.729
-    },
-    {
-      "stock_id": "2454",
-      "stock_name": "聯發科",
-      "etf_count": 7,
-      "total_delta": 1.625
+      "etf_count": 4,
+      "total_delta": 1.768
     },
     {
       "stock_id": "2360",
       "stock_name": "致茂電子",
-      "etf_count": 5,
-      "total_delta": 1.24
-    },
-    {
-      "stock_id": "3231",
-      "stock_name": "緯創資通",
-      "etf_count": 2,
-      "total_delta": 1.163
+      "etf_count": 4,
+      "total_delta": 1.286
     },
     {
       "stock_id": "6139",
       "stock_name": "亞翔",
       "etf_count": 1,
-      "total_delta": 0.85
+      "total_delta": 0.95
+    },
+    {
+      "stock_id": "3008",
+      "stock_name": "大立光電",
+      "etf_count": 2,
+      "total_delta": 0.485
     }
   ],
   "top_removed": [
@@ -39,31 +39,31 @@
       "stock_id": "8996",
       "stock_name": "高力熱處理工業",
       "etf_count": 2,
-      "total_delta": -4.401
+      "total_delta": -4.231
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體電路製造",
+      "etf_count": 6,
+      "total_delta": -3.611
     },
     {
       "stock_id": "2327",
       "stock_name": "國巨",
       "etf_count": 4,
-      "total_delta": -3.352
-    },
-    {
-      "stock_id": "2303",
-      "stock_name": "聯電",
-      "etf_count": 4,
-      "total_delta": -2.635
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南亞電路板",
-      "etf_count": 3,
-      "total_delta": -2.307
+      "total_delta": -3.019
     },
     {
       "stock_id": "2408",
       "stock_name": "南亞科技",
-      "etf_count": 2,
-      "total_delta": -2.121
+      "etf_count": 3,
+      "total_delta": -2.346
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯華電子",
+      "etf_count": 3,
+      "total_delta": -2.233
     }
   ]
 }
