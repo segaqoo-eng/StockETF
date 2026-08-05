@@ -3,6 +3,127 @@
   "as_of_baseline": "2026-08-04",
   "is_stale": false,
   "by_etf": {
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 5556000,
+          "shares_prev": 7579000,
+          "shares_delta": -2023000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 17439000,
+          "shares_prev": 16327000,
+          "shares_delta": 1112000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力",
+          "shares_now": 712000,
+          "shares_prev": 412000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 12134000,
+          "shares_prev": 11959000,
+          "shares_delta": 175000
+        }
+      ]
+    },
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares": 245000
+        }
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 4226000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 837000
+        }
+      ],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3231",
+          "stock_name": "緯創資通",
+          "shares_now": 9000000,
+          "shares_prev": 8000000,
+          "shares_delta": 1000000
+        },
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科技",
+          "shares_now": 14000000,
+          "shares_prev": 13500000,
+          "shares_delta": 500000
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策精密",
+          "shares_now": 325000,
+          "shares_prev": 260000,
+          "shares_delta": 65000
+        },
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 760000,
+          "shares_prev": 700000,
+          "shares_delta": 60000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 1200000,
+          "shares_prev": 1150000,
+          "shares_delta": 50000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 466000,
+          "shares_prev": 563000,
+          "shares_delta": -97000
+        }
+      ]
+    },
     "0050": {
       "added": [
         {
@@ -329,17 +450,17 @@
           "shares_delta": 225
         },
         {
-          "stock_id": "3661",
-          "stock_name": "世芯-KY",
-          "shares_now": 1844421,
-          "shares_prev": 1844216,
-          "shares_delta": 205
-        },
-        {
           "stock_id": "3443",
           "stock_name": "創意",
           "shares_now": 1877995,
           "shares_prev": 1877790,
+          "shares_delta": 205
+        },
+        {
+          "stock_id": "3661",
+          "stock_name": "世芯-KY",
+          "shares_now": 1844421,
+          "shares_prev": 1844216,
           "shares_delta": 205
         },
         {
@@ -357,127 +478,6 @@
           "shares_delta": 140
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares": 245000
-        }
-      ],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 466000,
-          "shares_prev": 563000,
-          "shares_delta": -97000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 5556000,
-          "shares_prev": 7579000,
-          "shares_delta": -2023000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 17439000,
-          "shares_prev": 16327000,
-          "shares_delta": 1112000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力",
-          "shares_now": 712000,
-          "shares_prev": 412000,
-          "shares_delta": 300000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 12134000,
-          "shares_prev": 11959000,
-          "shares_delta": 175000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3231",
-          "stock_name": "緯創資通",
-          "shares_now": 9000000,
-          "shares_prev": 8000000,
-          "shares_delta": 1000000
-        },
-        {
-          "stock_id": "2408",
-          "stock_name": "南亞科技",
-          "shares_now": 14000000,
-          "shares_prev": 13500000,
-          "shares_delta": 500000
-        },
-        {
-          "stock_id": "3653",
-          "stock_name": "健策精密",
-          "shares_now": 325000,
-          "shares_prev": 260000,
-          "shares_delta": 65000
-        },
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares_now": 760000,
-          "shares_prev": 700000,
-          "shares_delta": 60000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 1200000,
-          "shares_prev": 1150000,
-          "shares_delta": 50000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 4226000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 837000
-        }
-      ],
-      "changed": []
     }
   }
 }
