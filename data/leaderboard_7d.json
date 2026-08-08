@@ -1,19 +1,19 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-07",
-  "as_of_baseline": "2026-07-31",
+  "as_of_today": "2026-08-08",
+  "as_of_baseline": "2026-08-01",
   "top_added": [
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 5,
-      "total_delta": 6.038
-    },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
       "etf_count": 6,
-      "total_delta": 5.722
+      "total_delta": 5.692
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 5,
+      "total_delta": 5.322
     },
     {
       "stock_id": "8996",
@@ -22,16 +22,16 @@
       "total_delta": 4.33
     },
     {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": 2.872
-    },
-    {
       "stock_id": "6274",
       "stock_name": "台燿",
       "etf_count": 4,
-      "total_delta": 2.834
+      "total_delta": 2.975
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎",
+      "etf_count": 5,
+      "total_delta": 2.882
     }
   ],
   "top_removed": [
@@ -39,7 +39,7 @@
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 6,
-      "total_delta": -5.924
+      "total_delta": -5.761
     },
     {
       "stock_id": "2308",
@@ -63,7 +63,7 @@
       "stock_id": "5347",
       "stock_name": "世界",
       "etf_count": 1,
-      "total_delta": -0.961
+      "total_delta": -0.96
     }
   ]
 }
