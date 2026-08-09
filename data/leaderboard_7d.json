@@ -1,19 +1,19 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-08",
-  "as_of_baseline": "2026-08-01",
+  "as_of_today": "2026-08-09",
+  "as_of_baseline": "2026-08-02",
   "top_added": [
-    {
-      "stock_id": "3037",
-      "stock_name": "欣興電子",
-      "etf_count": 6,
-      "total_delta": 5.692
-    },
     {
       "stock_id": "2059",
       "stock_name": "川湖科技",
       "etf_count": 5,
-      "total_delta": 5.322
+      "total_delta": 6.038
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興電子",
+      "etf_count": 6,
+      "total_delta": 5.722
     },
     {
       "stock_id": "8996",
@@ -22,16 +22,16 @@
       "total_delta": 4.33
     },
     {
-      "stock_id": "6274",
-      "stock_name": "台燿科技",
-      "etf_count": 4,
-      "total_delta": 2.975
-    },
-    {
       "stock_id": "6669",
       "stock_name": "緯穎科技服務",
       "etf_count": 5,
-      "total_delta": 2.882
+      "total_delta": 2.872
+    },
+    {
+      "stock_id": "6274",
+      "stock_name": "台燿科技",
+      "etf_count": 4,
+      "total_delta": 2.834
     }
   ],
   "top_removed": [
@@ -39,7 +39,7 @@
       "stock_id": "2330",
       "stock_name": "台灣積體電路製造",
       "etf_count": 6,
-      "total_delta": -5.761
+      "total_delta": -5.924
     },
     {
       "stock_id": "2308",
@@ -61,9 +61,9 @@
     },
     {
       "stock_id": "5347",
-      "stock_name": "世界",
+      "stock_name": "世界先進",
       "etf_count": 1,
-      "total_delta": -0.96
+      "total_delta": -0.961
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "as_of_today": "2026-08-08",
-  "as_of_baseline": "2026-08-07",
+  "as_of_today": "2026-08-09",
+  "as_of_baseline": "2026-08-08",
   "is_stale": false,
   "by_etf": {
     "00980A": {
@@ -8,12 +8,7 @@
       "removed": [],
       "changed": []
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -23,7 +18,7 @@
       "removed": [],
       "changed": []
     },
-    "00992A": {
+    "00981A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -35,11 +30,16 @@
         {
           "stock_id": "2330",
           "stock_name": "台灣積體",
-          "shares_now": 5400000,
-          "shares_prev": 5200000,
-          "shares_delta": 200000
+          "shares_now": 5200000,
+          "shares_prev": 5400000,
+          "shares_delta": -200000
         }
       ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "00990A": {
       "added": [],
