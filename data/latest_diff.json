@@ -3,12 +3,124 @@
   "as_of_baseline": "2026-08-11",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "3081",
+          "stock_name": "聯亞光電",
+          "shares": 208000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3045",
+          "stock_name": "台灣大哥",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 1000,
+          "shares_prev": 450000,
+          "shares_delta": -449000
+        },
+        {
+          "stock_id": "2885",
+          "stock_name": "元大金融",
+          "shares_now": 9000,
+          "shares_prev": 381000,
+          "shares_delta": -372000
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "4979",
+          "stock_name": "華星光",
+          "shares_now": 2424000,
+          "shares_prev": 2174000,
+          "shares_delta": 250000
+        },
+        {
+          "stock_id": "6510",
+          "stock_name": "精測",
+          "shares_now": 478000,
+          "shares_prev": 361000,
+          "shares_delta": 117000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 9634000,
+          "shares_prev": 9519000,
+          "shares_delta": 115000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 5900000,
+          "shares_prev": 5801000,
+          "shares_delta": 99000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力",
+          "shares_now": 802000,
+          "shares_prev": 712000,
+          "shares_delta": 90000
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達",
+          "shares_now": 2265000,
+          "shares_prev": 2215000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares_now": 622000,
+          "shares_prev": 572000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊",
+          "shares_now": 484900,
+          "shares_prev": 454900,
+          "shares_delta": 30000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 4025000,
+          "shares_prev": 3875000,
+          "shares_delta": 150000
+        }
+      ]
+    },
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": []
     },
     "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -339,17 +451,17 @@
           "shares_delta": -90
         },
         {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 1872747,
-          "shares_prev": 1872829,
-          "shares_delta": -82
-        },
-        {
           "stock_id": "3661",
           "stock_name": "世芯-KY",
           "shares_now": 1847173,
           "shares_prev": 1847255,
+          "shares_delta": -82
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 1872747,
+          "shares_prev": 1872829,
           "shares_delta": -82
         },
         {
@@ -365,118 +477,6 @@
           "shares_now": 1286960,
           "shares_prev": 1287016,
           "shares_delta": -56
-        }
-      ]
-    },
-    "00991A": {
-      "added": [
-        {
-          "stock_id": "3081",
-          "stock_name": "聯亞光電",
-          "shares": 208000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3045",
-          "stock_name": "台灣大哥",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares_now": 1000,
-          "shares_prev": 450000,
-          "shares_delta": -449000
-        },
-        {
-          "stock_id": "2885",
-          "stock_name": "元大金融",
-          "shares_now": 9000,
-          "shares_prev": 381000,
-          "shares_delta": -372000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 4025000,
-          "shares_prev": 3875000,
-          "shares_delta": 150000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "4979",
-          "stock_name": "華星光",
-          "shares_now": 2424000,
-          "shares_prev": 2174000,
-          "shares_delta": 250000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "精測",
-          "shares_now": 478000,
-          "shares_prev": 361000,
-          "shares_delta": 117000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南電",
-          "shares_now": 9634000,
-          "shares_prev": 9519000,
-          "shares_delta": 115000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares_now": 5900000,
-          "shares_prev": 5801000,
-          "shares_delta": 99000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力",
-          "shares_now": 802000,
-          "shares_prev": 712000,
-          "shares_delta": 90000
-        },
-        {
-          "stock_id": "6805",
-          "stock_name": "富世達",
-          "shares_now": 2265000,
-          "shares_prev": 2215000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 622000,
-          "shares_prev": 572000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊",
-          "shares_now": 484900,
-          "shares_prev": 454900,
-          "shares_delta": 30000
         }
       ]
     }
