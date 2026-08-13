@@ -6,14 +6,14 @@
     {
       "stock_id": "2454",
       "stock_name": "聯發科技",
-      "etf_count": 5,
-      "total_delta": 5.119
+      "etf_count": 6,
+      "total_delta": 5.303
     },
     {
       "stock_id": "2059",
       "stock_name": "川湖科技",
       "etf_count": 5,
-      "total_delta": 3.782
+      "total_delta": 3.783
     },
     {
       "stock_id": "3105",
@@ -23,47 +23,47 @@
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電子",
+      "stock_name": "台光電子材料",
       "etf_count": 6,
-      "total_delta": 2.34
+      "total_delta": 2.14
     },
     {
-      "stock_id": "6274",
-      "stock_name": "台燿科技",
-      "etf_count": 3,
-      "total_delta": 1.202
+      "stock_id": "3081",
+      "stock_name": "聯亞光電工業",
+      "etf_count": 2,
+      "total_delta": 1.606
     }
   ],
   "top_removed": [
     {
       "stock_id": "6223",
       "stock_name": "旺矽科技",
-      "etf_count": 4,
-      "total_delta": -4.483
+      "etf_count": 3,
+      "total_delta": -4.646
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦科技",
       "etf_count": 7,
-      "total_delta": -4.286
+      "total_delta": -4.246
     },
     {
       "stock_id": "3665",
-      "stock_name": "貿聯-KY",
+      "stock_name": "貿聯控股（BizLink Holding In",
       "etf_count": 5,
       "total_delta": -4.242
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體電路製造",
+      "etf_count": 7,
+      "total_delta": -1.495
     },
     {
       "stock_id": "5536",
       "stock_name": "聖暉*",
       "etf_count": 1,
       "total_delta": -1.42
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎科技",
-      "etf_count": 5,
-      "total_delta": -1.337
     }
   ]
 }

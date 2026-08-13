@@ -3,10 +3,113 @@
   "as_of_baseline": "2026-08-12",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
+    },
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares": 172000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares": 160000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2303",
+          "stock_name": "聯電",
+          "shares_now": 1606000,
+          "shares_prev": 2612000,
+          "shares_delta": -1006000
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 5918000,
+          "shares_prev": 3080000,
+          "shares_delta": 2838000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 6594000,
+          "shares_prev": 6419000,
+          "shares_delta": 175000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 13000,
+          "shares_prev": 23000,
+          "shares_delta": -10000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 4809000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares": 817000
+        }
+      ],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 3400000,
+          "shares_prev": 4600000,
+          "shares_delta": -1200000
+        },
+        {
+          "stock_id": "3081",
+          "stock_name": "聯亞光電",
+          "shares_now": 500000,
+          "shares_prev": 208000,
+          "shares_delta": 292000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 5000000,
+          "shares_prev": 5200000,
+          "shares_delta": -200000
+        },
+        {
+          "stock_id": "2880",
+          "stock_name": "華南金融",
+          "shares_now": 9090,
+          "shares_prev": 9000,
+          "shares_delta": 90
+        }
+      ]
     },
     "0050": {
       "added": [
@@ -334,17 +437,17 @@
           "shares_delta": 45
         },
         {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 1872788,
-          "shares_prev": 1872747,
-          "shares_delta": 41
-        },
-        {
           "stock_id": "3661",
           "stock_name": "世芯-KY",
           "shares_now": 1847214,
           "shares_prev": 1847173,
+          "shares_delta": 41
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 1872788,
+          "shares_prev": 1872747,
           "shares_delta": 41
         },
         {
@@ -363,11 +466,6 @@
         }
       ]
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00992A": {
       "added": [
         {
@@ -384,75 +482,6 @@
         }
       ],
       "changed": []
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 4809000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares": 817000
-        }
-      ],
-      "changed": []
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares": 172000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares": 160000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2303",
-          "stock_name": "聯電",
-          "shares_now": 1606000,
-          "shares_prev": 2612000,
-          "shares_delta": -1006000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 5918000,
-          "shares_prev": 3080000,
-          "shares_delta": 2838000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares_now": 6594000,
-          "shares_prev": 6419000,
-          "shares_delta": 175000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴",
-          "shares_now": 13000,
-          "shares_prev": 23000,
-          "shares_delta": -10000
-        }
-      ]
     }
   }
 }
