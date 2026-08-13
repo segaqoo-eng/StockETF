@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-12",
-  "as_of_baseline": "2026-08-05",
+  "as_of_today": "2026-08-13",
+  "as_of_baseline": "2026-08-06",
   "top_added": [
     {
       "stock_id": "2059",
-      "stock_name": "川湖科技",
+      "stock_name": "川湖",
       "etf_count": 5,
-      "total_delta": 4.841
-    },
-    {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 4,
-      "total_delta": 3.93
+      "total_delta": 3.812
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電子",
+      "stock_name": "台光電",
       "etf_count": 7,
-      "total_delta": 2.937
+      "total_delta": 2.91
     },
     {
       "stock_id": "6274",
       "stock_name": "台燿科技",
       "etf_count": 3,
-      "total_delta": 1.794
+      "total_delta": 1.272
     },
     {
       "stock_id": "8046",
-      "stock_name": "南亞電路",
+      "stock_name": "南電",
       "etf_count": 3,
-      "total_delta": 1.449
+      "total_delta": 1.177
+    },
+    {
+      "stock_id": "3081",
+      "stock_name": "聯亞光電工業",
+      "etf_count": 2,
+      "total_delta": 0.895
     }
   ],
   "top_removed": [
     {
-      "stock_id": "3105",
-      "stock_name": "穩懋",
-      "etf_count": 1,
-      "total_delta": -3.14
-    },
-    {
       "stock_id": "3665",
       "stock_name": "貿聯-KY",
-      "etf_count": 4,
-      "total_delta": -2.485
-    },
-    {
-      "stock_id": "2345",
-      "stock_name": "智邦科技",
-      "etf_count": 6,
-      "total_delta": -1.985
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台灣積體",
       "etf_count": 5,
-      "total_delta": -1.937
+      "total_delta": -4.282
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎科技",
+      "stock_name": "緯穎",
       "etf_count": 4,
-      "total_delta": -1.202
+      "total_delta": -1.247
+    },
+    {
+      "stock_id": "5536",
+      "stock_name": "聖暉*",
+      "etf_count": 1,
+      "total_delta": -1.23
+    },
+    {
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "etf_count": 2,
+      "total_delta": -1.13
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 7,
+      "total_delta": -0.996
     }
   ]
 }
