@@ -3,38 +3,6 @@
   "as_of_baseline": "2026-08-16",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares": 4809000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 307000
-        }
-      ],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "0050": {
       "added": [],
       "removed": [
@@ -390,11 +358,6 @@
         }
       ]
     },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00980A": {
       "added": [],
       "removed": [],
@@ -524,6 +487,123 @@
           "shares_now": 72000,
           "shares_prev": 76000,
           "shares_delta": -4000
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 3500000,
+          "shares_prev": 4000000,
+          "shares_delta": -500000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力",
+          "shares_now": 1102000,
+          "shares_prev": 802000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 20330000,
+          "shares_prev": 20210000,
+          "shares_delta": 120000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 1000,
+          "shares_prev": 13000,
+          "shares_delta": -12000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 260000,
+          "shares_prev": 293000,
+          "shares_delta": -33000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 465000,
+          "shares_prev": 466000,
+          "shares_delta": -1000
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3231",
+          "stock_name": "緯創資通",
+          "shares_now": 9000,
+          "shares_prev": 9000000,
+          "shares_delta": -8991000
+        },
+        {
+          "stock_id": "3081",
+          "stock_name": "聯亞光電",
+          "shares_now": 580000,
+          "shares_prev": 500000,
+          "shares_delta": 80000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares": 4809000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 307000
+        }
+      ],
+      "changed": []
+    },
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares": 155000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 406000,
+          "shares_prev": 492000,
+          "shares_delta": -86000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares_now": 90000,
+          "shares_prev": 75000,
+          "shares_delta": 15000
         }
       ]
     }
