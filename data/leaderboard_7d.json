@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-20",
-  "as_of_baseline": "2026-08-13",
+  "as_of_today": "2026-08-21",
+  "as_of_baseline": "2026-08-14",
   "top_added": [
     {
       "stock_id": "3037",
       "stock_name": "欣興電子",
       "etf_count": 6,
-      "total_delta": 4.919
+      "total_delta": 4.549
     },
     {
-      "stock_id": "2345",
-      "stock_name": "智邦科技",
-      "etf_count": 5,
-      "total_delta": 3.283
-    },
-    {
-      "stock_id": "2383",
-      "stock_name": "台光電子材料",
-      "etf_count": 7,
-      "total_delta": 3.262
+      "stock_id": "3105",
+      "stock_name": "穩懋",
+      "etf_count": 1,
+      "total_delta": 3.68
     },
     {
       "stock_id": "2059",
-      "stock_name": "川湖科技",
+      "stock_name": "川湖",
       "etf_count": 5,
-      "total_delta": 2.968
+      "total_delta": 2.531
     },
     {
       "stock_id": "3653",
       "stock_name": "健策精密工業",
       "etf_count": 4,
-      "total_delta": 2.643
+      "total_delta": 2.346
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 6,
+      "total_delta": 2.206
     }
   ],
   "top_removed": [
     {
       "stock_id": "2454",
-      "stock_name": "聯發科技",
+      "stock_name": "聯發科",
       "etf_count": 7,
-      "total_delta": -7.868
+      "total_delta": -8.9
     },
     {
       "stock_id": "5536",
       "stock_name": "聖暉*",
       "etf_count": 1,
-      "total_delta": -6.32
+      "total_delta": -6.46
     },
     {
       "stock_id": "3231",
       "stock_name": "緯創資通",
-      "etf_count": 2,
-      "total_delta": -2.022
+      "etf_count": 1,
+      "total_delta": -1.952
     },
     {
       "stock_id": "3711",
       "stock_name": "日月光投資控股",
-      "etf_count": 4,
-      "total_delta": -1.924
+      "etf_count": 3,
+      "total_delta": -1.447
     },
     {
-      "stock_id": "8299",
-      "stock_name": "群聯電子",
-      "etf_count": 2,
-      "total_delta": -1.648
+      "stock_id": "5274",
+      "stock_name": "信驊科技",
+      "etf_count": 3,
+      "total_delta": -0.745
     }
   ]
 }
