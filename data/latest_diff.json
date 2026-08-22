@@ -1,88 +1,14 @@
 {
-  "as_of_today": "2026-08-21",
-  "as_of_baseline": "2026-08-20",
+  "as_of_today": "2026-08-22",
+  "as_of_baseline": "2026-08-21",
   "is_stale": false,
   "by_etf": {
-    "00992A": {
+    "00982A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 1000,
-          "shares_prev": 294000,
-          "shares_delta": -293000
-        },
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 1957000,
-          "shares_prev": 2000000,
-          "shares_delta": -43000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1750000,
-          "shares_prev": 1800000,
-          "shares_delta": -50000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電子",
-          "shares_now": 1400000,
-          "shares_prev": 1430000,
-          "shares_delta": -30000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 380000,
-          "shares_prev": 400000,
-          "shares_delta": -20000
-        }
-      ]
-    },
     "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 376000,
-          "shares_prev": 255000,
-          "shares_delta": 121000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 142000,
-          "shares_prev": 245000,
-          "shares_delta": -103000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 212000,
-          "shares_prev": 181000,
-          "shares_delta": 31000
-        }
-      ]
-    },
-    "00982A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -93,20 +19,45 @@
       "changed": []
     },
     "0050": {
-      "added": [
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
         {
-          "stock_id": "2408",
-          "stock_name": "南亞科",
-          "shares": 26544828
-        }
-      ],
-      "removed": [
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1800000,
+          "shares_prev": 1750000,
+          "shares_delta": 50000
+        },
         {
-          "stock_id": "2395",
-          "stock_name": "研華",
-          "shares": 10741852
+          "stock_id": "2383",
+          "stock_name": "台光電子",
+          "shares_now": 1430000,
+          "shares_prev": 1400000,
+          "shares_delta": 30000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 400000,
+          "shares_prev": 380000,
+          "shares_delta": 20000
         }
-      ],
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
       "changed": []
     }
   }
