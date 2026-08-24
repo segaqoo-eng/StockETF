@@ -7,31 +7,31 @@
       "stock_id": "6223",
       "stock_name": "旺矽",
       "etf_count": 5,
-      "total_delta": 6.784
+      "total_delta": 7.16
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 7,
-      "total_delta": 4.003
+      "total_delta": 3.537
     },
     {
-      "stock_id": "3653",
-      "stock_name": "健策",
-      "etf_count": 3,
-      "total_delta": 1.434
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
+      "etf_count": 5,
+      "total_delta": 2.144
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
       "etf_count": 5,
-      "total_delta": 1.377
+      "total_delta": 1.384
     },
     {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 2,
-      "total_delta": 1.361
+      "stock_id": "3653",
+      "stock_name": "健策",
+      "etf_count": 3,
+      "total_delta": 1.136
     }
   ],
   "top_removed": [
@@ -44,26 +44,26 @@
     {
       "stock_id": "2454",
       "stock_name": "聯發科",
-      "etf_count": 7,
-      "total_delta": -5.971
-    },
-    {
-      "stock_id": "3711",
-      "stock_name": "日月光投控",
-      "etf_count": 3,
-      "total_delta": -1.775
-    },
-    {
-      "stock_id": "2345",
-      "stock_name": "智邦",
       "etf_count": 6,
-      "total_delta": -1.191
+      "total_delta": -5.931
     },
     {
       "stock_id": "2383",
       "stock_name": "台光電",
       "etf_count": 7,
-      "total_delta": -1.18
+      "total_delta": -2.204
+    },
+    {
+      "stock_id": "3711",
+      "stock_name": "日月光投控",
+      "etf_count": 2,
+      "total_delta": -1.625
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 5,
+      "total_delta": -1.191
     }
   ]
 }
