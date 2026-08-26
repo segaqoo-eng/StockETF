@@ -4,34 +4,34 @@
   "as_of_baseline": "2026-08-19",
   "top_added": [
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 6,
-      "total_delta": 3.023
-    },
-    {
       "stock_id": "3008",
       "stock_name": "大立光",
       "etf_count": 4,
-      "total_delta": 2.77
+      "total_delta": 2.771
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 6,
+      "total_delta": 1.935
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 5,
-      "total_delta": 2.026
+      "total_delta": 1.107
     },
     {
-      "stock_id": "3443",
-      "stock_name": "創意",
+      "stock_id": "3081",
+      "stock_name": "聯亞光電",
       "etf_count": 2,
-      "total_delta": 0.94
+      "total_delta": 1.052
     },
     {
       "stock_id": "6274",
-      "stock_name": "台燿科技",
+      "stock_name": "台燿",
       "etf_count": 3,
-      "total_delta": 0.839
+      "total_delta": 0.954
     }
   ],
   "top_removed": [
@@ -39,7 +39,7 @@
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 6,
-      "total_delta": -4.39
+      "total_delta": -4.637
     },
     {
       "stock_id": "5536",
@@ -51,7 +51,7 @@
       "stock_id": "2454",
       "stock_name": "聯發科",
       "etf_count": 4,
-      "total_delta": -1.727
+      "total_delta": -1.619
     },
     {
       "stock_id": "3665",
