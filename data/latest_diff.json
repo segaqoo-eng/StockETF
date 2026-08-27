@@ -3,6 +3,89 @@
   "as_of_baseline": "2026-08-26",
   "is_stale": false,
   "by_etf": {
+    "0050": {
+      "added": [
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科",
+          "shares": 26558536
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電",
+          "shares": 88822205
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金",
+          "shares_now": 304748760,
+          "shares_prev": 304816535,
+          "shares_delta": -67775
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "4979",
+          "stock_name": "華星光",
+          "shares_now": 3173000,
+          "shares_prev": 2424000,
+          "shares_delta": 749000
+        },
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 11775450,
+          "shares_prev": 11275450,
+          "shares_delta": 500000
+        },
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 7250000,
+          "shares_prev": 7040000,
+          "shares_delta": 210000
+        },
+        {
+          "stock_id": "6187",
+          "stock_name": "萬潤",
+          "shares_now": 283000,
+          "shares_prev": 483000,
+          "shares_delta": -200000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊",
+          "shares_now": 341900,
+          "shares_prev": 383900,
+          "shares_delta": -42000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 4807000,
+          "shares_prev": 4843000,
+          "shares_delta": -36000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00982A": {
       "added": [
         {
@@ -57,89 +140,6 @@
       ]
     },
     "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "4979",
-          "stock_name": "華星光",
-          "shares_now": 3173000,
-          "shares_prev": 2424000,
-          "shares_delta": 749000
-        },
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 11775450,
-          "shares_prev": 11275450,
-          "shares_delta": 500000
-        },
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 7250000,
-          "shares_prev": 7040000,
-          "shares_delta": 210000
-        },
-        {
-          "stock_id": "6187",
-          "stock_name": "萬潤",
-          "shares_now": 283000,
-          "shares_prev": 483000,
-          "shares_delta": -200000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊",
-          "shares_now": 341900,
-          "shares_prev": 383900,
-          "shares_delta": -42000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 4807000,
-          "shares_prev": 4843000,
-          "shares_delta": -36000
-        }
-      ]
-    },
-    "0050": {
-      "added": [
-        {
-          "stock_id": "2408",
-          "stock_name": "南亞科",
-          "shares": 26558536
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2412",
-          "stock_name": "中華電",
-          "shares": 88822205
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2890",
-          "stock_name": "永豐金",
-          "shares_now": 304748760,
-          "shares_prev": 304816535,
-          "shares_delta": -67775
-        }
-      ]
-    },
-    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
