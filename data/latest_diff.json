@@ -56,57 +56,15 @@
         }
       ]
     },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "6584",
-          "stock_name": "南俊國際",
-          "shares": 2231000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 268000
-        }
-      ],
-      "changed": []
-    },
     "00990A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "0050": {
-      "added": [
-        {
-          "stock_id": "2408",
-          "stock_name": "南亞科",
-          "shares": 26558536
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2412",
-          "stock_name": "中華電",
-          "shares": 88822205
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2890",
-          "stock_name": "永豐金",
-          "shares_now": 304748760,
-          "shares_prev": 304816535,
-          "shares_delta": -67775
-        }
-      ]
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "00981A": {
       "added": [],
@@ -156,9 +114,51 @@
         }
       ]
     },
-    "00991A": {
+    "0050": {
+      "added": [
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科",
+          "shares": 26558536
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電",
+          "shares": 88822205
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金",
+          "shares_now": 304748760,
+          "shares_prev": 304816535,
+          "shares_delta": -67775
+        }
+      ]
+    },
+    "00980A": {
       "added": [],
       "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "6584",
+          "stock_name": "南俊國際",
+          "shares": 2231000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 268000
+        }
+      ],
       "changed": []
     }
   }
