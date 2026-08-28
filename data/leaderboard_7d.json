@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-28",
-  "as_of_baseline": "2026-08-21",
+  "as_of_today": "2026-08-29",
+  "as_of_baseline": "2026-08-22",
   "top_added": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
+      "stock_name": "大立光電",
       "etf_count": 4,
-      "total_delta": 4.5
+      "total_delta": 4.611
     },
     {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": 3.3
+      "total_delta": 3.46
     },
     {
       "stock_id": "6584",
       "stock_name": "南俊國際",
       "etf_count": 1,
-      "total_delta": 3.16
+      "total_delta": 3.45
     },
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐",
+      "stock_name": "奇鋐科技",
       "etf_count": 5,
-      "total_delta": 2.323
+      "total_delta": 2.198
     },
     {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 6,
-      "total_delta": 1.397
+      "stock_id": "6669",
+      "stock_name": "緯穎科技",
+      "etf_count": 5,
+      "total_delta": 1.653
     }
   ],
   "top_removed": [
     {
       "stock_id": "6223",
-      "stock_name": "旺矽",
+      "stock_name": "旺矽科技",
       "etf_count": 6,
-      "total_delta": -8.702
+      "total_delta": -8.834
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦",
-      "etf_count": 3,
-      "total_delta": -3.657
+      "stock_name": "智邦科技",
+      "etf_count": 2,
+      "total_delta": -3.742
     },
     {
       "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": -2.845
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 2,
-      "total_delta": -1.401
+      "stock_name": "台灣積體",
+      "etf_count": 6,
+      "total_delta": -3.389
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 5,
-      "total_delta": -1.2
+      "stock_name": "台光電子",
+      "etf_count": 6,
+      "total_delta": -2.17
+    },
+    {
+      "stock_id": "2408",
+      "stock_name": "南亞科技",
+      "etf_count": 3,
+      "total_delta": -0.642
     }
   ]
 }
