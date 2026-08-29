@@ -3,45 +3,46 @@
   "as_of_baseline": "2026-08-28",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
+    "00981A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "3105",
-          "stock_name": "穩懋",
-          "shares_now": 5709000,
-          "shares_prev": 4809000,
-          "shares_delta": 900000
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 12668450,
+          "shares_prev": 11775450,
+          "shares_delta": 893000
         },
         {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 742000,
-          "shares_prev": 872000,
-          "shares_delta": -130000
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 11264000,
+          "shares_prev": 11884000,
+          "shares_delta": -620000
+        },
+        {
+          "stock_id": "6187",
+          "stock_name": "萬潤",
+          "shares_now": 88000,
+          "shares_prev": 283000,
+          "shares_delta": -195000
+        },
+        {
+          "stock_id": "4966",
+          "stock_name": "譜瑞-KY",
+          "shares_now": 1000,
+          "shares_prev": 140000,
+          "shares_delta": -139000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊",
+          "shares_now": 313900,
+          "shares_prev": 341900,
+          "shares_delta": -28000
         }
       ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     },
     "0050": {
       "added": [
@@ -397,46 +398,67 @@
         }
       ]
     },
-    "00981A": {
+    "00982A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 12668450,
-          "shares_prev": 11775450,
-          "shares_delta": 893000
+          "stock_id": "3105",
+          "stock_name": "穩懋",
+          "shares_now": 5709000,
+          "shares_prev": 4809000,
+          "shares_delta": 900000
         },
         {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 11264000,
-          "shares_prev": 11884000,
-          "shares_delta": -620000
-        },
-        {
-          "stock_id": "6187",
-          "stock_name": "萬潤",
-          "shares_now": 88000,
-          "shares_prev": 283000,
-          "shares_delta": -195000
-        },
-        {
-          "stock_id": "4966",
-          "stock_name": "譜瑞-KY",
-          "shares_now": 1000,
-          "shares_prev": 140000,
-          "shares_delta": -139000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊",
-          "shares_now": 313900,
-          "shares_prev": 341900,
-          "shares_delta": -28000
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 742000,
+          "shares_prev": 872000,
+          "shares_delta": -130000
         }
       ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 4000000,
+          "shares_prev": 4200000,
+          "shares_delta": -200000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 380000,
+          "shares_prev": 560000,
+          "shares_delta": -180000
+        },
+        {
+          "stock_id": "3081",
+          "stock_name": "聯亞光電",
+          "shares_now": 800000,
+          "shares_prev": 700000,
+          "shares_delta": 100000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
