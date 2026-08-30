@@ -1,13 +1,13 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-29",
-  "as_of_baseline": "2026-08-22",
+  "as_of_today": "2026-08-30",
+  "as_of_baseline": "2026-08-23",
   "top_added": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
+      "stock_name": "大立光電",
       "etf_count": 4,
-      "total_delta": 4.612
+      "total_delta": 4.611
     },
     {
       "stock_id": "3491",
@@ -23,47 +23,47 @@
     },
     {
       "stock_id": "3017",
-      "stock_name": "奇鋐",
+      "stock_name": "奇鋐科技",
       "etf_count": 5,
-      "total_delta": 2.512
+      "total_delta": 2.577
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技服務",
       "etf_count": 5,
-      "total_delta": 1.959
+      "total_delta": 1.895
     }
   ],
   "top_removed": [
     {
       "stock_id": "6223",
-      "stock_name": "旺矽",
+      "stock_name": "旺矽科技",
       "etf_count": 6,
-      "total_delta": -9.887
+      "total_delta": -9.855
     },
     {
       "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_name": "台灣積體電路製造",
       "etf_count": 6,
-      "total_delta": -3.891
+      "total_delta": -4.397
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦",
-      "etf_count": 2,
-      "total_delta": -3.59
+      "stock_name": "智邦科技",
+      "etf_count": 1,
+      "total_delta": -3.435
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電",
+      "stock_name": "台光電子材料",
       "etf_count": 6,
-      "total_delta": -2.801
+      "total_delta": -2.341
     },
     {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 2,
-      "total_delta": -0.59
+      "stock_id": "2408",
+      "stock_name": "南亞科技",
+      "etf_count": 3,
+      "total_delta": -0.637
     }
   ]
 }
