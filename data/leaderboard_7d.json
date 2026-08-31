@@ -1,37 +1,37 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-08-30",
-  "as_of_baseline": "2026-08-23",
+  "as_of_today": "2026-08-31",
+  "as_of_baseline": "2026-08-24",
   "top_added": [
     {
       "stock_id": "3008",
       "stock_name": "大立光",
       "etf_count": 4,
-      "total_delta": 4.611
-    },
-    {
-      "stock_id": "3491",
-      "stock_name": "昇達科",
-      "etf_count": 1,
-      "total_delta": 3.46
-    },
-    {
-      "stock_id": "6584",
-      "stock_name": "南俊國際",
-      "etf_count": 1,
-      "total_delta": 3.45
+      "total_delta": 5.963
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐",
       "etf_count": 5,
-      "total_delta": 2.577
+      "total_delta": 3.765
     },
     {
-      "stock_id": "6669",
-      "stock_name": "緯穎",
-      "etf_count": 5,
-      "total_delta": 1.895
+      "stock_id": "6584",
+      "stock_name": "南俊國際",
+      "etf_count": 1,
+      "total_delta": 3.28
+    },
+    {
+      "stock_id": "3491",
+      "stock_name": "昇達科",
+      "etf_count": 1,
+      "total_delta": 3.2
+    },
+    {
+      "stock_id": "3081",
+      "stock_name": "聯亞光電",
+      "etf_count": 2,
+      "total_delta": 2.347
     }
   ],
   "top_removed": [
@@ -39,31 +39,31 @@
       "stock_id": "6223",
       "stock_name": "旺矽",
       "etf_count": 6,
-      "total_delta": -9.855
+      "total_delta": -9.835
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
-      "etf_count": 6,
-      "total_delta": -4.397
+      "etf_count": 7,
+      "total_delta": -4.798
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦",
-      "etf_count": 1,
-      "total_delta": -3.435
+      "etf_count": 7,
+      "total_delta": -3.944
     },
     {
-      "stock_id": "2383",
-      "stock_name": "台光電",
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 4,
+      "total_delta": -1.965
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興",
       "etf_count": 6,
-      "total_delta": -2.341
-    },
-    {
-      "stock_id": "2408",
-      "stock_name": "南亞科",
-      "etf_count": 3,
-      "total_delta": -0.637
+      "total_delta": -1.851
     }
   ]
 }
