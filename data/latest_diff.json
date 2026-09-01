@@ -3,6 +3,11 @@
   "as_of_baseline": "2026-08-31",
   "is_stale": false,
   "by_etf": {
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00991A": {
       "added": [
         {
@@ -20,22 +25,32 @@
       ],
       "changed": []
     },
-    "00982A": {
-      "added": [
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
         {
           "stock_id": "4958",
           "stock_name": "臻鼎-KY",
-          "shares": 3178000
-        }
-      ],
-      "removed": [
+          "shares_now": 2157000,
+          "shares_prev": 1644000,
+          "shares_delta": 513000
+        },
         {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 837000
+          "stock_id": "4979",
+          "stock_name": "華星光",
+          "shares_now": 2838000,
+          "shares_prev": 3173000,
+          "shares_delta": -335000
+        },
+        {
+          "stock_id": "6515",
+          "stock_name": "穎崴",
+          "shares_now": 54000,
+          "shares_prev": 1000,
+          "shares_delta": 53000
         }
-      ],
-      "changed": []
+      ]
     },
     "0050": {
       "added": [],
@@ -245,17 +260,17 @@
           "shares_delta": 599
         },
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 26605433,
-          "shares_prev": 26604837,
-          "shares_delta": 596
-        },
-        {
           "stock_id": "2408",
           "stock_name": "南亞科",
           "shares_now": 26579992,
           "shares_prev": 26579396,
+          "shares_delta": 596
+        },
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 26605433,
+          "shares_prev": 26604837,
           "shares_delta": 596
         },
         {
@@ -357,17 +372,17 @@
           "shares_delta": 45
         },
         {
-          "stock_id": "3661",
-          "stock_name": "世芯-KY",
-          "shares_now": 1841515,
-          "shares_prev": 1841474,
-          "shares_delta": 41
-        },
-        {
           "stock_id": "3443",
           "stock_name": "創意",
           "shares_now": 1867089,
           "shares_prev": 1867048,
+          "shares_delta": 41
+        },
+        {
+          "stock_id": "3661",
+          "stock_name": "世芯-KY",
+          "shares_now": 1841515,
+          "shares_prev": 1841474,
           "shares_delta": 41
         },
         {
@@ -391,41 +406,26 @@
       "removed": [],
       "changed": []
     },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares_now": 2157000,
-          "shares_prev": 1644000,
-          "shares_delta": 513000
-        },
-        {
-          "stock_id": "4979",
-          "stock_name": "華星光",
-          "shares_now": 2838000,
-          "shares_prev": 3173000,
-          "shares_delta": -335000
-        },
-        {
-          "stock_id": "6515",
-          "stock_name": "穎崴",
-          "shares_now": 54000,
-          "shares_prev": 1000,
-          "shares_delta": 53000
-        }
-      ]
-    },
     "00980A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 3178000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 837000
+        }
+      ],
       "changed": []
     }
   }
