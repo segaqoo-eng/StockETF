@@ -3,115 +3,6 @@
   "as_of_baseline": "2026-09-01",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 1730020,
-          "shares_prev": 580000,
-          "shares_delta": 1150020
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 1800000,
-          "shares_prev": 2000000,
-          "shares_delta": -200000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1450000,
-          "shares_prev": 1600000,
-          "shares_delta": -150000
-        },
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "shares_now": 780000,
-          "shares_prev": 880000,
-          "shares_delta": -100000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 280000,
-          "shares_prev": 300000,
-          "shares_delta": -20000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 140500,
-          "shares_prev": 120500,
-          "shares_delta": 20000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 6490561,
-          "shares_prev": 2176000,
-          "shares_delta": 4314561
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 16811000,
-          "shares_prev": 18679000,
-          "shares_delta": -1868000
-        },
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 5028000,
-          "shares_prev": 5916000,
-          "shares_delta": -888000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "精測",
-          "shares_now": 561000,
-          "shares_prev": 477000,
-          "shares_delta": 84000
-        },
-        {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares_now": 4750000,
-          "shares_prev": 4757000,
-          "shares_delta": -7000
-        },
-        {
-          "stock_id": "6187",
-          "stock_name": "萬潤",
-          "shares_now": 1000,
-          "shares_prev": 8000,
-          "shares_delta": -7000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎科技服務",
-          "shares_now": 155105,
-          "shares_prev": 52000,
-          "shares_delta": 103105
-        }
-      ]
-    },
     "00982A": {
       "added": [
         {
@@ -157,67 +48,127 @@
           "shares_delta": -2000
         },
         {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares_now": 254000,
-          "shares_prev": 255000,
-          "shares_delta": -1000
-        },
-        {
           "stock_id": "2059",
           "stock_name": "川湖",
           "shares_now": 183000,
           "shares_prev": 184000,
           "shares_delta": -1000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "2455",
-          "stock_name": "全新",
-          "shares": 2753000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "6584",
-          "stock_name": "南俊國際",
-          "shares": 2231000
-        }
-      ],
-      "changed": [
+        },
         {
           "stock_id": "3008",
           "stock_name": "大立光",
-          "shares_now": 293000,
-          "shares_prev": 343000,
-          "shares_delta": -50000
+          "shares_now": 254000,
+          "shares_prev": 255000,
+          "shares_delta": -1000
         }
       ]
     },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares": 158000
-        },
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares": 94000
-        }
-      ],
+    "00981A": {
+      "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 1665000,
-          "shares_prev": 1008000,
-          "shares_delta": 657000
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 6490561,
+          "shares_prev": 2176000,
+          "shares_delta": 4314561
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 16811000,
+          "shares_prev": 18679000,
+          "shares_delta": -1868000
+        },
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 5028000,
+          "shares_prev": 5916000,
+          "shares_delta": -888000
+        },
+        {
+          "stock_id": "6510",
+          "stock_name": "精測",
+          "shares_now": 561000,
+          "shares_prev": 477000,
+          "shares_delta": 84000
+        },
+        {
+          "stock_id": "6187",
+          "stock_name": "萬潤",
+          "shares_now": 1000,
+          "shares_prev": 8000,
+          "shares_delta": -7000
+        },
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares_now": 4750000,
+          "shares_prev": 4757000,
+          "shares_delta": -7000
+        }
+      ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技服務",
+          "shares_now": 155105,
+          "shares_prev": 52000,
+          "shares_delta": 103105
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 1730020,
+          "shares_prev": 580000,
+          "shares_delta": 1150020
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 1800000,
+          "shares_prev": 2000000,
+          "shares_delta": -200000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1450000,
+          "shares_prev": 1600000,
+          "shares_delta": -150000
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 780000,
+          "shares_prev": 880000,
+          "shares_delta": -100000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 280000,
+          "shares_prev": 300000,
+          "shares_delta": -20000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊科技",
+          "shares_now": 140500,
+          "shares_prev": 120500,
+          "shares_delta": 20000
         }
       ]
     },
@@ -573,6 +524,55 @@
           "shares_now": 1281360,
           "shares_prev": 1283096,
           "shares_delta": -1736
+        }
+      ]
+    },
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares": 158000
+        },
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares": 94000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 1665000,
+          "shares_prev": 1008000,
+          "shares_delta": 657000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2455",
+          "stock_name": "全新",
+          "shares": 2753000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6584",
+          "stock_name": "南俊國際",
+          "shares": 2231000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares_now": 293000,
+          "shares_prev": 343000,
+          "shares_delta": -50000
         }
       ]
     }
