@@ -3,10 +3,33 @@
   "as_of_baseline": "2026-09-02",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": []
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 205000,
+          "shares_prev": 235000,
+          "shares_delta": -30000
+        }
+      ]
     },
     "0050": {
       "added": [
@@ -363,11 +386,6 @@
         }
       ]
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -409,25 +427,7 @@
         }
       ]
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares_now": 205000,
-          "shares_prev": 235000,
-          "shares_delta": -30000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
+    "00990A": {
       "added": [],
       "removed": [],
       "changed": []
