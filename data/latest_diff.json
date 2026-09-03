@@ -3,71 +3,7 @@
   "as_of_baseline": "2026-09-02",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 219000,
-          "shares_prev": 1457000,
-          "shares_delta": -1238000
-        },
-        {
-          "stock_id": "4979",
-          "stock_name": "華星光",
-          "shares_now": 2184000,
-          "shares_prev": 2838000,
-          "shares_delta": -654000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南電",
-          "shares_now": 9426000,
-          "shares_prev": 9474000,
-          "shares_delta": -48000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 372000,
-          "shares_prev": 325000,
-          "shares_delta": 47000
-        },
-        {
-          "stock_id": "3653",
-          "stock_name": "健策",
-          "shares_now": 2427000,
-          "shares_prev": 2397000,
-          "shares_delta": 30000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares_now": 205000,
-          "shares_prev": 235000,
-          "shares_delta": -30000
-        }
-      ]
-    },
-    "00991A": {
+    "00990A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -427,7 +363,71 @@
         }
       ]
     },
-    "00990A": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 219000,
+          "shares_prev": 1457000,
+          "shares_delta": -1238000
+        },
+        {
+          "stock_id": "4979",
+          "stock_name": "華星光",
+          "shares_now": 2184000,
+          "shares_prev": 2838000,
+          "shares_delta": -654000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 9426000,
+          "shares_prev": 9474000,
+          "shares_delta": -48000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 372000,
+          "shares_prev": 325000,
+          "shares_delta": 47000
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策",
+          "shares_now": 2427000,
+          "shares_prev": 2397000,
+          "shares_delta": 30000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 205000,
+          "shares_prev": 235000,
+          "shares_delta": -30000
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
