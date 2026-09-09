@@ -3,98 +3,30 @@
   "as_of_baseline": "2026-09-08",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
+    "00982A": {
       "added": [
         {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares": 85000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁",
-          "shares": 41000
-        },
-        {
-          "stock_id": "3529",
-          "stock_name": "力旺",
-          "shares": 22000
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 253000
         }
       ],
       "removed": [
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares": 1665000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares": 641000
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares": 313000
         }
       ],
       "changed": [
         {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 236000,
-          "shares_prev": 376000,
-          "shares_delta": -140000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科",
-          "shares_now": 243000,
-          "shares_prev": 183000,
-          "shares_delta": 60000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿科技",
-          "shares_now": 1500000,
-          "shares_prev": 1800000,
-          "shares_delta": -300000
-        },
-        {
           "stock_id": "6669",
-          "stock_name": "緯穎科技",
-          "shares_now": 1500020,
-          "shares_prev": 1730020,
-          "shares_delta": -230000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1350000,
-          "shares_prev": 1450000,
-          "shares_delta": -100000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 1000000,
-          "shares_prev": 900000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 450000,
-          "shares_prev": 380000,
-          "shares_delta": 70000
+          "stock_name": "緯穎",
+          "shares_now": 1171225,
+          "shares_prev": 1391225,
+          "shares_delta": -220000
         }
       ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     },
     "00980A": {
       "added": [],
@@ -207,28 +139,55 @@
         }
       ]
     },
-    "00982A": {
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
       "added": [
         {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 253000
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares": 85000
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁",
+          "shares": 41000
+        },
+        {
+          "stock_id": "3529",
+          "stock_name": "力旺",
+          "shares": 22000
         }
       ],
       "removed": [
         {
-          "stock_id": "2383",
-          "stock_name": "台光電",
-          "shares": 313000
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares": 1665000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares": 641000
         }
       ],
       "changed": [
         {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 1171225,
-          "shares_prev": 1391225,
-          "shares_delta": -220000
+          "stock_id": "6274",
+          "stock_name": "台燿",
+          "shares_now": 236000,
+          "shares_prev": 376000,
+          "shares_delta": -140000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 243000,
+          "shares_prev": 183000,
+          "shares_delta": 60000
         }
       ]
     },
@@ -247,6 +206,47 @@
       "added": [],
       "removed": [],
       "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿科技",
+          "shares_now": 1500000,
+          "shares_prev": 1800000,
+          "shares_delta": -300000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎科技",
+          "shares_now": 1500020,
+          "shares_prev": 1730020,
+          "shares_delta": -230000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 1000000,
+          "shares_prev": 900000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1350000,
+          "shares_prev": 1450000,
+          "shares_delta": -100000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 450000,
+          "shares_prev": 380000,
+          "shares_delta": 70000
+        }
+      ]
     }
   }
 }
