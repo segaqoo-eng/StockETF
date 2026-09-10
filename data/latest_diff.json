@@ -3,96 +3,6 @@
   "as_of_baseline": "2026-09-09",
   "is_stale": false,
   "by_etf": {
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "6531",
-          "stock_name": "愛普*",
-          "shares": 2040000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3491",
-          "stock_name": "昇達科",
-          "shares": 1180000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 3721000,
-          "shares_prev": 3745000,
-          "shares_delta": -24000
-        },
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 819000,
-          "shares_prev": 824000,
-          "shares_delta": -5000
-        },
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares_now": 252000,
-          "shares_prev": 253000,
-          "shares_delta": -1000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares_now": 180000,
-          "shares_prev": 181000,
-          "shares_delta": -1000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 250000,
-          "shares_prev": 280000,
-          "shares_delta": -30000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00990A": {
-      "added": [
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares": 1665000
-        }
-      ],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3529",
-          "stock_name": "力旺",
-          "shares_now": 73000,
-          "shares_prev": 22000,
-          "shares_delta": 51000
-        },
-        {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 130000,
-          "shares_prev": 85000,
-          "shares_delta": 45000
-        }
-      ]
-    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -132,6 +42,91 @@
       "removed": [],
       "changed": []
     },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁精密",
+          "shares_now": 250000,
+          "shares_prev": 280000,
+          "shares_delta": -30000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "6531",
+          "stock_name": "愛普*",
+          "shares": 2040000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3491",
+          "stock_name": "昇達科",
+          "shares": 1180000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 3721000,
+          "shares_prev": 3745000,
+          "shares_delta": -24000
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares_now": 819000,
+          "shares_prev": 824000,
+          "shares_delta": -5000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 180000,
+          "shares_prev": 181000,
+          "shares_delta": -1000
+        },
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares_now": 252000,
+          "shares_prev": 253000,
+          "shares_delta": -1000
+        }
+      ]
+    },
+    "00990A": {
+      "added": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares": 1665000
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3529",
+          "stock_name": "力旺",
+          "shares_now": 73000,
+          "shares_prev": 22000,
+          "shares_delta": 51000
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares_now": 130000,
+          "shares_prev": 85000,
+          "shares_delta": 45000
+        }
+      ]
+    },
     "0050": {
       "added": [
         {
@@ -140,6 +135,11 @@
           "shares": 10612492
         }
       ],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
       "removed": [],
       "changed": []
     }
