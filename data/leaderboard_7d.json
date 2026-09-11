@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-09-10",
-  "as_of_baseline": "2026-09-03",
+  "as_of_today": "2026-09-11",
+  "as_of_baseline": "2026-09-04",
   "top_added": [
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
-      "etf_count": 5,
-      "total_delta": 8.486
+      "etf_count": 6,
+      "total_delta": 9.011
     },
     {
       "stock_id": "2454",
       "stock_name": "聯發科",
       "etf_count": 6,
-      "total_delta": 4.167
+      "total_delta": 4.212
     },
     {
       "stock_id": "6531",
       "stock_name": "愛普*",
       "etf_count": 1,
-      "total_delta": 4.14
+      "total_delta": 4.06
     },
     {
-      "stock_id": "2360",
-      "stock_name": "致茂",
-      "etf_count": 3,
-      "total_delta": 1.18
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 7,
+      "total_delta": 2.44
     },
     {
-      "stock_id": "2327",
-      "stock_name": "國巨*",
-      "etf_count": 4,
-      "total_delta": 1.082
+      "stock_id": "3711",
+      "stock_name": "日月光投控",
+      "etf_count": 5,
+      "total_delta": 1.734
     }
   ],
   "top_removed": [
     {
       "stock_id": "2383",
       "stock_name": "台光電",
+      "etf_count": 7,
+      "total_delta": -4.245
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
       "etf_count": 5,
-      "total_delta": -3.556
+      "total_delta": -3.522
     },
     {
       "stock_id": "2455",
       "stock_name": "全新",
       "etf_count": 1,
-      "total_delta": -3.51
+      "total_delta": -3.44
     },
     {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": -3.29
+      "total_delta": -3.44
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技服務",
       "etf_count": 5,
-      "total_delta": -3.167
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
-      "etf_count": 5,
-      "total_delta": -2.899
+      "total_delta": -3.263
     }
   ]
 }
