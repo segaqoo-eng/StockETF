@@ -3,87 +3,6 @@
   "as_of_baseline": "2026-09-10",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3529",
-          "stock_name": "力旺",
-          "shares_now": 106000,
-          "shares_prev": 73000,
-          "shares_delta": 33000
-        }
-      ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 2500000,
-          "shares_prev": 9000,
-          "shares_delta": 2491000
-        },
-        {
-          "stock_id": "8299",
-          "stock_name": "群聯電子",
-          "shares_now": 1000,
-          "shares_prev": 780000,
-          "shares_delta": -779000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 1100000,
-          "shares_prev": 1350000,
-          "shares_delta": -250000
-        },
-        {
-          "stock_id": "3189",
-          "stock_name": "景碩科技",
-          "shares_now": 4250000,
-          "shares_prev": 4100000,
-          "shares_delta": 150000
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興電子",
-          "shares_now": 5100000,
-          "shares_prev": 5000000,
-          "shares_delta": 100000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南亞電路",
-          "shares_now": 3300000,
-          "shares_prev": 3250000,
-          "shares_delta": 50000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "0050": {
       "added": [],
       "removed": [
@@ -436,6 +355,87 @@
           "shares_now": 1265008,
           "shares_prev": 1266352,
           "shares_delta": -1344
+        }
+      ]
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3529",
+          "stock_name": "力旺",
+          "shares_now": 106000,
+          "shares_prev": 73000,
+          "shares_delta": 33000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 2500000,
+          "shares_prev": 9000,
+          "shares_delta": 2491000
+        },
+        {
+          "stock_id": "8299",
+          "stock_name": "群聯電子",
+          "shares_now": 1000,
+          "shares_prev": 780000,
+          "shares_delta": -779000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 1100000,
+          "shares_prev": 1350000,
+          "shares_delta": -250000
+        },
+        {
+          "stock_id": "3189",
+          "stock_name": "景碩科技",
+          "shares_now": 4250000,
+          "shares_prev": 4100000,
+          "shares_delta": 150000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興電子",
+          "shares_now": 5100000,
+          "shares_prev": 5000000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南亞電路",
+          "shares_now": 3300000,
+          "shares_prev": 3250000,
+          "shares_delta": 50000
         }
       ]
     }
