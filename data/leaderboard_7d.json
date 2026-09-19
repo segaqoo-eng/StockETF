@@ -1,7 +1,7 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-09-18",
-  "as_of_baseline": "2026-09-11",
+  "as_of_today": "2026-09-19",
+  "as_of_baseline": "2026-09-12",
   "top_added": [
     {
       "stock_id": "3491",
@@ -11,15 +11,15 @@
     },
     {
       "stock_id": "2303",
-      "stock_name": "聯華電子",
+      "stock_name": "聯電",
       "etf_count": 3,
-      "total_delta": 2.65
+      "total_delta": 2.615
     },
     {
       "stock_id": "1303",
-      "stock_name": "南亞塑膠",
+      "stock_name": "南亞",
       "etf_count": 1,
-      "total_delta": 2.006
+      "total_delta": 2.069
     },
     {
       "stock_id": "3665",
@@ -28,42 +28,42 @@
       "total_delta": 1.471
     },
     {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
+      "stock_id": "2454",
+      "stock_name": "聯發科",
       "etf_count": 3,
-      "total_delta": 0.696
+      "total_delta": 0.615
     }
   ],
   "top_removed": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光電",
+      "stock_name": "大立光",
       "etf_count": 3,
       "total_delta": -3.721
     },
     {
       "stock_id": "6274",
-      "stock_name": "台燿科技",
+      "stock_name": "台燿",
       "etf_count": 2,
       "total_delta": -3.606
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎科技",
+      "stock_name": "緯穎",
       "etf_count": 5,
-      "total_delta": -3.062
+      "total_delta": -2.944
     },
     {
       "stock_id": "2383",
-      "stock_name": "台光電子",
+      "stock_name": "台光電",
       "etf_count": 6,
-      "total_delta": -1.923
+      "total_delta": -1.937
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦科技",
+      "stock_name": "智邦",
       "etf_count": 4,
-      "total_delta": -1.838
+      "total_delta": -1.82
     }
   ]
 }
