@@ -10,42 +10,42 @@
       "total_delta": 3.52
     },
     {
-      "stock_id": "2303",
-      "stock_name": "聯電",
-      "etf_count": 3,
-      "total_delta": 2.47
+      "stock_id": "2308",
+      "stock_name": "台達電子工業",
+      "etf_count": 5,
+      "total_delta": 3.382
     },
     {
       "stock_id": "2454",
-      "stock_name": "聯發科",
+      "stock_name": "聯發科技",
       "etf_count": 5,
-      "total_delta": 2.181
+      "total_delta": 2.556
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "etf_count": 3,
+      "total_delta": 2.471
     },
     {
       "stock_id": "1303",
-      "stock_name": "南亞",
+      "stock_name": "南亞塑膠工業",
       "etf_count": 2,
-      "total_delta": 1.946
-    },
-    {
-      "stock_id": "3665",
-      "stock_name": "貿聯-KY",
-      "etf_count": 4,
-      "total_delta": 1.32
+      "total_delta": 1.947
     }
   ],
   "top_removed": [
     {
       "stock_id": "2383",
-      "stock_name": "台光電",
+      "stock_name": "台光電子材料",
       "etf_count": 7,
-      "total_delta": -7.139
+      "total_delta": -7.178
     },
     {
       "stock_id": "6669",
-      "stock_name": "緯穎",
+      "stock_name": "緯穎科技服務",
       "etf_count": 5,
-      "total_delta": -3.206
+      "total_delta": -3.209
     },
     {
       "stock_id": "6274",
@@ -54,16 +54,16 @@
       "total_delta": -2.765
     },
     {
-      "stock_id": "2345",
-      "stock_name": "智邦",
-      "etf_count": 5,
-      "total_delta": -1.215
+      "stock_id": "7769",
+      "stock_name": "鴻勁精密",
+      "etf_count": 2,
+      "total_delta": -2.287
     },
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
+      "stock_id": "2345",
+      "stock_name": "智邦科技",
       "etf_count": 5,
-      "total_delta": -0.869
+      "total_delta": -1.242
     }
   ]
 }
