@@ -3,18 +3,35 @@
   "as_of_baseline": "2026-09-21",
   "is_stale": false,
   "by_etf": {
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 252000
+        }
+      ],
+      "removed": [
         {
           "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 300000,
-          "shares_prev": 450000,
-          "shares_delta": -150000
+          "stock_name": "旺矽",
+          "shares": 307000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 1016225,
+          "shares_prev": 1136225,
+          "shares_delta": -120000
         }
       ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     },
     "0050": {
       "added": [],
@@ -441,10 +458,18 @@
         }
       ]
     },
-    "00980A": {
+    "00991A": {
       "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 300000,
+          "shares_prev": 450000,
+          "shares_delta": -150000
+        }
+      ]
     },
     "00992A": {
       "added": [],
@@ -468,31 +493,6 @@
           "shares_now": 173000,
           "shares_prev": 212000,
           "shares_delta": -39000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 252000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 307000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 1016225,
-          "shares_prev": 1136225,
-          "shares_delta": -120000
         }
       ]
     }
