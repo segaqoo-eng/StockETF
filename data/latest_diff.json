@@ -3,53 +3,7 @@
   "as_of_baseline": "2026-09-22",
   "is_stale": false,
   "by_etf": {
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 15466000,
-          "shares_prev": 16811000,
-          "shares_delta": -1345000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 5138561,
-          "shares_prev": 5582561,
-          "shares_delta": -444000
-        },
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 1663000,
-          "shares_prev": 1363000,
-          "shares_delta": 300000
-        },
-        {
-          "stock_id": "6274",
-          "stock_name": "台燿",
-          "shares_now": 5936000,
-          "shares_prev": 5696000,
-          "shares_delta": 240000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "精測",
-          "shares_now": 256000,
-          "shares_prev": 400000,
-          "shares_delta": -144000
-        }
-      ]
-    },
-    "00990A": {
+    "0050": {
       "added": [],
       "removed": [],
       "changed": []
@@ -67,21 +21,9 @@
         }
       ]
     },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 301000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 252000
-        }
-      ],
+    "00990A": {
+      "added": [],
+      "removed": [],
       "changed": []
     },
     "00991A": {
@@ -132,7 +74,65 @@
         }
       ]
     },
-    "0050": {
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 301000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 252000
+        }
+      ],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 15466000,
+          "shares_prev": 16811000,
+          "shares_delta": -1345000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 5138561,
+          "shares_prev": 5582561,
+          "shares_delta": -444000
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 1663000,
+          "shares_prev": 1363000,
+          "shares_delta": 300000
+        },
+        {
+          "stock_id": "6274",
+          "stock_name": "台燿",
+          "shares_now": 5936000,
+          "shares_prev": 5696000,
+          "shares_delta": 240000
+        },
+        {
+          "stock_id": "6510",
+          "stock_name": "精測",
+          "shares_now": 256000,
+          "shares_prev": 400000,
+          "shares_delta": -144000
+        }
+      ]
+    },
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
