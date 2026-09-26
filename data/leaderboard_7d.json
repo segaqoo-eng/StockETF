@@ -1,17 +1,17 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-09-25",
-  "as_of_baseline": "2026-09-18",
+  "as_of_today": "2026-09-26",
+  "as_of_baseline": "2026-09-19",
   "top_added": [
     {
       "stock_id": "3037",
       "stock_name": "欣興電子",
       "etf_count": 6,
-      "total_delta": 4.472
+      "total_delta": 4.496
     },
     {
       "stock_id": "2308",
-      "stock_name": "台達電子",
+      "stock_name": "台達電子工業",
       "etf_count": 5,
       "total_delta": 4.097
     },
@@ -19,19 +19,19 @@
       "stock_id": "2454",
       "stock_name": "聯發科技",
       "etf_count": 6,
-      "total_delta": 3.669
+      "total_delta": 3.712
     },
     {
       "stock_id": "3653",
-      "stock_name": "健策精密",
+      "stock_name": "健策精密工業",
       "etf_count": 4,
-      "total_delta": 2.048
+      "total_delta": 2.032
     },
     {
       "stock_id": "3189",
       "stock_name": "景碩科技",
       "etf_count": 2,
-      "total_delta": 1.02
+      "total_delta": 0.993
     }
   ],
   "top_removed": [
@@ -39,31 +39,31 @@
       "stock_id": "7769",
       "stock_name": "鴻勁精密",
       "etf_count": 2,
-      "total_delta": -2.561
+      "total_delta": -2.509
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽科技",
       "etf_count": 6,
-      "total_delta": -2.507
+      "total_delta": -2.46
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體電路製造",
+      "etf_count": 6,
+      "total_delta": -1.954
+    },
+    {
+      "stock_id": "6669",
+      "stock_name": "緯穎科技服務",
+      "etf_count": 4,
+      "total_delta": -1.807
     },
     {
       "stock_id": "2408",
       "stock_name": "南亞科技",
       "etf_count": 3,
-      "total_delta": -1.803
-    },
-    {
-      "stock_id": "6669",
-      "stock_name": "緯穎科技",
-      "etf_count": 4,
-      "total_delta": -1.689
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台灣積體",
-      "etf_count": 5,
-      "total_delta": -1.656
+      "total_delta": -1.492
     }
   ]
 }
