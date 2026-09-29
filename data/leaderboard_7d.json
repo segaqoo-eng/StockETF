@@ -4,66 +4,66 @@
   "as_of_baseline": "2026-09-22",
   "top_added": [
     {
-      "stock_id": "6223",
-      "stock_name": "旺矽科技",
-      "etf_count": 4,
-      "total_delta": 3.524
+      "stock_id": "4958",
+      "stock_name": "臻鼎-KY",
+      "etf_count": 1,
+      "total_delta": 3.21
+    },
+    {
+      "stock_id": "2330",
+      "stock_name": "台積電",
+      "etf_count": 6,
+      "total_delta": 2.073
     },
     {
       "stock_id": "3653",
-      "stock_name": "健策精密工業",
+      "stock_name": "健策",
       "etf_count": 4,
-      "total_delta": 1.782
+      "total_delta": 1.969
     },
     {
       "stock_id": "3037",
-      "stock_name": "欣興電子",
+      "stock_name": "欣興",
       "etf_count": 6,
-      "total_delta": 1.687
-    },
-    {
-      "stock_id": "3017",
-      "stock_name": "奇鋐科技",
-      "etf_count": 4,
-      "total_delta": 1.158
+      "total_delta": 1.868
     },
     {
       "stock_id": "8046",
-      "stock_name": "南亞電路板",
+      "stock_name": "南電",
       "etf_count": 4,
-      "total_delta": 0.768
+      "total_delta": 1.426
     }
   ],
   "top_removed": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光電",
+      "stock_name": "大立光",
       "etf_count": 2,
-      "total_delta": -3.29
+      "total_delta": -3.42
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 4,
+      "total_delta": -1.608
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "etf_count": 2,
+      "total_delta": -1.395
     },
     {
       "stock_id": "3711",
-      "stock_name": "日月光投資控股",
+      "stock_name": "日月光投控",
       "etf_count": 2,
-      "total_delta": -1.017
+      "total_delta": -1.265
     },
     {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
-      "etf_count": 2,
-      "total_delta": -0.941
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖科技",
-      "etf_count": 4,
-      "total_delta": -0.836
-    },
-    {
-      "stock_id": "5274",
-      "stock_name": "信驊科技",
-      "etf_count": 3,
-      "total_delta": -0.642
+      "stock_id": "2454",
+      "stock_name": "聯發科",
+      "etf_count": 6,
+      "total_delta": -1.022
     }
   ]
 }
