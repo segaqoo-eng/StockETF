@@ -3,6 +3,31 @@
   "as_of_baseline": "2026-09-29",
   "is_stale": false,
   "by_etf": {
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 2483000,
+          "shares_prev": 2022000,
+          "shares_delta": 461000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 12526000,
+          "shares_prev": 12966000,
+          "shares_delta": -440000
+        }
+      ]
+    },
     "0050": {
       "added": [],
       "removed": [],
@@ -359,72 +384,6 @@
         }
       ]
     },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 2483000,
-          "shares_prev": 2022000,
-          "shares_delta": 461000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 12526000,
-          "shares_prev": 12966000,
-          "shares_delta": -440000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [
-        {
-          "stock_id": "6505",
-          "stock_name": "台塑石化",
-          "shares": 4000000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "1216",
-          "stock_name": "統一企業",
-          "shares": 1000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "1303",
-          "stock_name": "南亞塑膠",
-          "shares_now": 8000000,
-          "shares_prev": 7000000,
-          "shares_delta": 1000000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 200000,
-          "shares_prev": 430000,
-          "shares_delta": -230000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台灣積體",
-          "shares_now": 4200000,
-          "shares_prev": 4000000,
-          "shares_delta": 200000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 1000,
-          "shares_prev": 150000,
-          "shares_delta": -149000
-        }
-      ]
-    },
     "00980A": {
       "added": [
         {
@@ -579,11 +538,6 @@
         }
       ]
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00990A": {
       "added": [],
       "removed": [
@@ -605,7 +559,53 @@
       ],
       "changed": []
     },
-    "00992A": {
+    "00991A": {
+      "added": [
+        {
+          "stock_id": "6505",
+          "stock_name": "台塑石化",
+          "shares": 4000000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "1216",
+          "stock_name": "統一企業",
+          "shares": 1000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "1303",
+          "stock_name": "南亞塑膠",
+          "shares_now": 8000000,
+          "shares_prev": 7000000,
+          "shares_delta": 1000000
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦科技",
+          "shares_now": 200000,
+          "shares_prev": 430000,
+          "shares_delta": -230000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台灣積體",
+          "shares_now": 4200000,
+          "shares_prev": 4000000,
+          "shares_delta": 200000
+        },
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽科技",
+          "shares_now": 1000,
+          "shares_prev": 150000,
+          "shares_delta": -149000
+        }
+      ]
+    },
+    "00982A": {
       "added": [],
       "removed": [],
       "changed": []
