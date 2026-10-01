@@ -6,32 +6,32 @@
     {
       "stock_id": "4958",
       "stock_name": "臻鼎科技控股",
-      "etf_count": 3,
-      "total_delta": 2.55
+      "etf_count": 2,
+      "total_delta": 2.53
     },
     {
       "stock_id": "2330",
-      "stock_name": "台灣積體",
-      "etf_count": 5,
-      "total_delta": 2.299
+      "stock_name": "台灣積體電路製造",
+      "etf_count": 6,
+      "total_delta": 2.343
     },
     {
       "stock_id": "8046",
-      "stock_name": "南亞電路",
-      "etf_count": 3,
-      "total_delta": 1.243
+      "stock_name": "南亞電路板",
+      "etf_count": 4,
+      "total_delta": 1.843
     },
     {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
-      "etf_count": 3,
-      "total_delta": 1.099
+      "stock_id": "2303",
+      "stock_name": "聯華電子",
+      "etf_count": 4,
+      "total_delta": 1.135
     },
     {
-      "stock_id": "1303",
-      "stock_name": "南亞塑膠",
-      "etf_count": 3,
-      "total_delta": 0.919
+      "stock_id": "6505",
+      "stock_name": "台塑石化",
+      "etf_count": 1,
+      "total_delta": 1.018
     }
   ],
   "top_removed": [
@@ -39,7 +39,7 @@
       "stock_id": "6223",
       "stock_name": "旺矽科技",
       "etf_count": 6,
-      "total_delta": -6.089
+      "total_delta": -6.43
     },
     {
       "stock_id": "2454",
@@ -48,22 +48,22 @@
       "total_delta": -2.099
     },
     {
-      "stock_id": "2345",
-      "stock_name": "智邦科技",
-      "etf_count": 5,
-      "total_delta": -1.942
-    },
-    {
-      "stock_id": "2327",
-      "stock_name": "國巨股份",
-      "etf_count": 3,
-      "total_delta": -1.011
-    },
-    {
       "stock_id": "3017",
       "stock_name": "奇鋐科技",
+      "etf_count": 3,
+      "total_delta": -1.508
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦科技",
+      "etf_count": 1,
+      "total_delta": -1.299
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
       "etf_count": 4,
-      "total_delta": -0.639
+      "total_delta": -1.02
     }
   ]
 }
