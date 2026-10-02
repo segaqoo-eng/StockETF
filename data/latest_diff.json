@@ -3,6 +3,58 @@
   "as_of_baseline": "2026-10-01",
   "is_stale": false,
   "by_etf": {
+    "0050": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 10276000,
+          "shares_prev": 12526000,
+          "shares_delta": -2250000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 4315561,
+          "shares_prev": 4662561,
+          "shares_delta": -347000
+        },
+        {
+          "stock_id": "8210",
+          "stock_name": "勤誠",
+          "shares_now": 949000,
+          "shares_prev": 1044000,
+          "shares_delta": -95000
+        }
+      ]
+    },
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares_now": 845000,
+          "shares_prev": 815000,
+          "shares_delta": 30000
+        },
+        {
+          "stock_id": "6139",
+          "stock_name": "亞翔",
+          "shares_now": 3715000,
+          "shares_prev": 3700000,
+          "shares_delta": 15000
+        }
+      ]
+    },
     "00980A": {
       "added": [],
       "removed": [],
@@ -92,10 +144,10 @@
           "shares_delta": 13000
         },
         {
-          "stock_id": "3008",
-          "stock_name": "大立光電",
-          "shares_now": 38000,
-          "shares_prev": 26000,
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 79000,
+          "shares_prev": 67000,
           "shares_delta": 12000
         },
         {
@@ -106,10 +158,10 @@
           "shares_delta": 12000
         },
         {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 79000,
-          "shares_prev": 67000,
+          "stock_id": "3008",
+          "stock_name": "大立光電",
+          "shares_now": 38000,
+          "shares_prev": 26000,
           "shares_delta": 12000
         },
         {
@@ -120,11 +172,6 @@
           "shares_delta": 10000
         }
       ]
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
-      "changed": []
     },
     "00992A": {
       "added": [],
@@ -146,23 +193,16 @@
         }
       ]
     },
-    "00982A": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "2360",
-          "stock_name": "致茂",
-          "shares_now": 845000,
-          "shares_prev": 815000,
-          "shares_delta": 30000
-        },
-        {
-          "stock_id": "6139",
-          "stock_name": "亞翔",
-          "shares_now": 3715000,
-          "shares_prev": 3700000,
-          "shares_delta": 15000
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 1700000,
+          "shares_prev": 2030000,
+          "shares_delta": -330000
         }
       ]
     },
@@ -188,46 +228,6 @@
           "shares_now": 165000,
           "shares_prev": 243000,
           "shares_delta": -78000
-        }
-      ]
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 10276000,
-          "shares_prev": 12526000,
-          "shares_delta": -2250000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 4315561,
-          "shares_prev": 4662561,
-          "shares_delta": -347000
-        },
-        {
-          "stock_id": "8210",
-          "stock_name": "勤誠",
-          "shares_now": 949000,
-          "shares_prev": 1044000,
-          "shares_delta": -95000
-        }
-      ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 1700000,
-          "shares_prev": 2030000,
-          "shares_delta": -330000
         }
       ]
     }
