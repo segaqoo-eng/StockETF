@@ -6,64 +6,64 @@
     {
       "stock_id": "2383",
       "stock_name": "台光電",
-      "etf_count": 7,
-      "total_delta": 8.466
+      "etf_count": 6,
+      "total_delta": 5.215
     },
     {
       "stock_id": "3037",
-      "stock_name": "欣興電子",
+      "stock_name": "欣興",
       "etf_count": 6,
-      "total_delta": 2.294
+      "total_delta": 2.513
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦科技",
+      "stock_name": "智邦",
       "etf_count": 6,
-      "total_delta": 1.748
-    },
-    {
-      "stock_id": "8046",
-      "stock_name": "南亞電路板",
-      "etf_count": 4,
-      "total_delta": 1.181
+      "total_delta": 1.648
     },
     {
       "stock_id": "1303",
       "stock_name": "南亞塑膠工業",
       "etf_count": 3,
-      "total_delta": 0.911
+      "total_delta": 1.587
+    },
+    {
+      "stock_id": "2327",
+      "stock_name": "國巨*",
+      "etf_count": 4,
+      "total_delta": 1.27
     }
   ],
   "top_removed": [
     {
-      "stock_id": "4958",
-      "stock_name": "臻鼎-KY",
-      "etf_count": 3,
-      "total_delta": -3.23
-    },
-    {
-      "stock_id": "2303",
-      "stock_name": "聯華電子",
-      "etf_count": 4,
-      "total_delta": -2.627
-    },
-    {
       "stock_id": "2454",
       "stock_name": "聯發科",
       "etf_count": 6,
-      "total_delta": -2.589
+      "total_delta": -2.885
+    },
+    {
+      "stock_id": "2303",
+      "stock_name": "聯電",
+      "etf_count": 4,
+      "total_delta": -2.517
     },
     {
       "stock_id": "3665",
-      "stock_name": "貿聯控股（BizLink Holding In",
+      "stock_name": "貿聯-KY",
       "etf_count": 4,
-      "total_delta": -2.21
+      "total_delta": -2.44
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 4,
+      "total_delta": -1.635
+    },
+    {
+      "stock_id": "5274",
+      "stock_name": "信驊",
       "etf_count": 3,
-      "total_delta": -1.336
+      "total_delta": -1.202
     }
   ]
 }
