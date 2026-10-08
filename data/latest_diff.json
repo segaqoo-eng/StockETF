@@ -3,6 +3,11 @@
   "as_of_baseline": "2026-10-07",
   "is_stale": false,
   "by_etf": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00990A": {
       "added": [],
       "removed": [
@@ -13,6 +18,77 @@
         }
       ],
       "changed": []
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 8456450,
+          "shares_prev": 12938450,
+          "shares_delta": -4482000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 8348000,
+          "shares_prev": 9276000,
+          "shares_delta": -928000
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 18721000,
+          "shares_prev": 19300000,
+          "shares_delta": -579000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 11824000,
+          "shares_prev": 11464000,
+          "shares_delta": 360000
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 3741000,
+          "shares_prev": 3420000,
+          "shares_delta": 321000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 684000,
+          "shares_prev": 616000,
+          "shares_delta": 68000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 1050000,
+          "shares_prev": 1100000,
+          "shares_delta": -50000
+        }
+      ]
     },
     "0050": {
       "added": [
@@ -368,82 +444,6 @@
           "shares_delta": 336
         }
       ]
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 1050000,
-          "shares_prev": 1100000,
-          "shares_delta": -50000
-        }
-      ]
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares_now": 8456450,
-          "shares_prev": 12938450,
-          "shares_delta": -4482000
-        },
-        {
-          "stock_id": "3711",
-          "stock_name": "日月光投控",
-          "shares_now": 8348000,
-          "shares_prev": 9276000,
-          "shares_delta": -928000
-        },
-        {
-          "stock_id": "3037",
-          "stock_name": "欣興",
-          "shares_now": 18721000,
-          "shares_prev": 19300000,
-          "shares_delta": -579000
-        },
-        {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 11824000,
-          "shares_prev": 11464000,
-          "shares_delta": 360000
-        },
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 3741000,
-          "shares_prev": 3420000,
-          "shares_delta": 321000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 684000,
-          "shares_prev": 616000,
-          "shares_delta": 68000
-        }
-      ]
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
     }
   }
 }
