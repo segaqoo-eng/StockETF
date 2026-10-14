@@ -3,18 +3,27 @@
   "as_of_baseline": "2026-10-13",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
+    "00980A": {
       "added": [],
       "removed": [],
-      "changed": [
+      "changed": []
+    },
+    "00982A": {
+      "added": [
         {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 420000,
-          "shares_prev": 633000,
-          "shares_delta": -213000
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 3158000
         }
-      ]
+      ],
+      "removed": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 179000
+        }
+      ],
+      "changed": []
     },
     "00981A": {
       "added": [],
@@ -75,6 +84,24 @@
           "shares_now": 186900,
           "shares_prev": 157900,
           "shares_delta": 29000
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光電",
+          "shares_now": 130000,
+          "shares_prev": 110000,
+          "shares_delta": 20000
         }
       ]
     },
@@ -433,45 +460,18 @@
         }
       ]
     },
-    "00991A": {
+    "00990A": {
       "added": [],
       "removed": [],
       "changed": [
         {
-          "stock_id": "3008",
-          "stock_name": "大立光電",
-          "shares_now": 130000,
-          "shares_prev": 110000,
-          "shares_delta": 20000
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 420000,
+          "shares_prev": 633000,
+          "shares_delta": -213000
         }
       ]
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares": 3158000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 179000
-        }
-      ],
-      "changed": []
     }
   }
 }
