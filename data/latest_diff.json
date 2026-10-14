@@ -25,85 +25,10 @@
       ],
       "changed": []
     },
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares_now": 5423000,
-          "shares_prev": 3741000,
-          "shares_delta": 1682000
-        },
-        {
-          "stock_id": "3264",
-          "stock_name": "欣銓",
-          "shares_now": 1257000,
-          "shares_prev": 1000,
-          "shares_delta": 1256000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 3281561,
-          "shares_prev": 4315561,
-          "shares_delta": -1034000
-        },
-        {
-          "stock_id": "4979",
-          "stock_name": "華星光",
-          "shares_now": 957000,
-          "shares_prev": 1000,
-          "shares_delta": 956000
-        },
-        {
-          "stock_id": "8996",
-          "stock_name": "高力",
-          "shares_now": 696000,
-          "shares_prev": 576000,
-          "shares_delta": 120000
-        },
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 751000,
-          "shares_prev": 684000,
-          "shares_delta": 67000
-        },
-        {
-          "stock_id": "6510",
-          "stock_name": "精測",
-          "shares_now": 470000,
-          "shares_prev": 420000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊",
-          "shares_now": 186900,
-          "shares_prev": 157900,
-          "shares_delta": 29000
-        }
-      ]
-    },
     "00992A": {
       "added": [],
       "removed": [],
       "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光電",
-          "shares_now": 130000,
-          "shares_prev": 110000,
-          "shares_delta": 20000
-        }
-      ]
     },
     "0050": {
       "added": [
@@ -460,6 +385,68 @@
         }
       ]
     },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 5423000,
+          "shares_prev": 3741000,
+          "shares_delta": 1682000
+        },
+        {
+          "stock_id": "3264",
+          "stock_name": "欣銓",
+          "shares_now": 1257000,
+          "shares_prev": 1000,
+          "shares_delta": 1256000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 3281561,
+          "shares_prev": 4315561,
+          "shares_delta": -1034000
+        },
+        {
+          "stock_id": "4979",
+          "stock_name": "華星光",
+          "shares_now": 957000,
+          "shares_prev": 1000,
+          "shares_delta": 956000
+        },
+        {
+          "stock_id": "8996",
+          "stock_name": "高力",
+          "shares_now": 696000,
+          "shares_prev": 576000,
+          "shares_delta": 120000
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 751000,
+          "shares_prev": 684000,
+          "shares_delta": 67000
+        },
+        {
+          "stock_id": "6510",
+          "stock_name": "精測",
+          "shares_now": 470000,
+          "shares_prev": 420000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "5274",
+          "stock_name": "信驊",
+          "shares_now": 186900,
+          "shares_prev": 157900,
+          "shares_delta": 29000
+        }
+      ]
+    },
     "00990A": {
       "added": [],
       "removed": [],
@@ -470,6 +457,19 @@
           "shares_now": 420000,
           "shares_prev": 633000,
           "shares_delta": -213000
+        }
+      ]
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光電",
+          "shares_now": 130000,
+          "shares_prev": 110000,
+          "shares_delta": 20000
         }
       ]
     }
