@@ -6,35 +6,41 @@
     {
       "stock_id": "3008",
       "stock_name": "大立光",
-      "etf_count": 5,
-      "total_delta": 5.223
+      "etf_count": 4,
+      "total_delta": 4.964
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
       "etf_count": 4,
-      "total_delta": 4.771
+      "total_delta": 4.541
+    },
+    {
+      "stock_id": "2368",
+      "stock_name": "金像電",
+      "etf_count": 3,
+      "total_delta": 1.58
+    },
+    {
+      "stock_id": "1303",
+      "stock_name": "南亞",
+      "etf_count": 3,
+      "total_delta": 1.442
     },
     {
       "stock_id": "3653",
       "stock_name": "健策",
       "etf_count": 3,
-      "total_delta": 0.877
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": 0.695
-    },
-    {
-      "stock_id": "3443",
-      "stock_name": "創意",
-      "etf_count": 2,
-      "total_delta": 0.69
+      "total_delta": 0.984
     }
   ],
   "top_removed": [
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 5,
+      "total_delta": -5.94
+    },
     {
       "stock_id": "3491",
       "stock_name": "昇達科",
@@ -42,28 +48,22 @@
       "total_delta": -3.84
     },
     {
-      "stock_id": "4958",
-      "stock_name": "臻鼎-KY",
-      "etf_count": 1,
-      "total_delta": -3.57
+      "stock_id": "2308",
+      "stock_name": "台達電",
+      "etf_count": 5,
+      "total_delta": -3.81
     },
     {
       "stock_id": "3037",
       "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": -2.141
+      "etf_count": 6,
+      "total_delta": -2.359
     },
     {
-      "stock_id": "2308",
-      "stock_name": "台達電",
-      "etf_count": 4,
-      "total_delta": -2.092
-    },
-    {
-      "stock_id": "2059",
-      "stock_name": "川湖",
+      "stock_id": "2383",
+      "stock_name": "台光電",
       "etf_count": 5,
-      "total_delta": -2.091
+      "total_delta": -2.055
     }
   ]
 }
