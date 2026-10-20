@@ -3,14 +3,402 @@
   "as_of_baseline": "2026-10-19",
   "is_stale": false,
   "by_etf": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 183000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 364000
+        }
+      ],
+      "changed": []
+    },
     "00980A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00981A": {
+    "0050": {
       "added": [],
-      "removed": [],
+      "removed": [
+        {
+          "stock_id": "2383",
+          "stock_name": "台光電",
+          "shares": 6918166
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 585224774,
+          "shares_prev": 581853709,
+          "shares_delta": 3371065
+        },
+        {
+          "stock_id": "2887",
+          "stock_name": "台新新光金",
+          "shares_now": 560795473,
+          "shares_prev": 557552668,
+          "shares_delta": 3242805
+        },
+        {
+          "stock_id": "2891",
+          "stock_name": "中信金",
+          "shares_now": 423450776,
+          "shares_prev": 421039658,
+          "shares_delta": 2411118
+        },
+        {
+          "stock_id": "2884",
+          "stock_name": "玉山金",
+          "shares_now": 382624918,
+          "shares_prev": 380413493,
+          "shares_delta": 2211425
+        },
+        {
+          "stock_id": "2883",
+          "stock_name": "凱基金",
+          "shares_now": 376917966,
+          "shares_prev": 374738871,
+          "shares_delta": 2179095
+        },
+        {
+          "stock_id": "2317",
+          "stock_name": "鴻海",
+          "shares_now": 292265100,
+          "shares_prev": 290575460,
+          "shares_delta": 1689640
+        },
+        {
+          "stock_id": "2886",
+          "stock_name": "兆豐金",
+          "shares_now": 283115050,
+          "shares_prev": 281479735,
+          "shares_delta": 1635315
+        },
+        {
+          "stock_id": "2303",
+          "stock_name": "聯電",
+          "shares_now": 279129593,
+          "shares_prev": 277515478,
+          "shares_delta": 1614115
+        },
+        {
+          "stock_id": "2885",
+          "stock_name": "元大金",
+          "shares_now": 274580577,
+          "shares_prev": 272994022,
+          "shares_delta": 1586555
+        },
+        {
+          "stock_id": "2892",
+          "stock_name": "第一金",
+          "shares_now": 268326466,
+          "shares_prev": 266776746,
+          "shares_delta": 1549720
+        },
+        {
+          "stock_id": "5880",
+          "stock_name": "合庫金",
+          "shares_now": 257799946,
+          "shares_prev": 256315151,
+          "shares_delta": 1484795
+        },
+        {
+          "stock_id": "2882",
+          "stock_name": "國泰金",
+          "shares_now": 228331095,
+          "shares_prev": 227011395,
+          "shares_delta": 1319700
+        },
+        {
+          "stock_id": "2880",
+          "stock_name": "華南金",
+          "shares_now": 222439128,
+          "shares_prev": 221154408,
+          "shares_delta": 1284720
+        },
+        {
+          "stock_id": "2881",
+          "stock_name": "富邦金",
+          "shares_now": 199671548,
+          "shares_prev": 198517473,
+          "shares_delta": 1154075
+        },
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金",
+          "shares_now": 316175160,
+          "shares_prev": 315042760,
+          "shares_delta": 1132400
+        },
+        {
+          "stock_id": "1216",
+          "stock_name": "統一",
+          "shares_now": 118574474,
+          "shares_prev": 117890774,
+          "shares_delta": 683700
+        },
+        {
+          "stock_id": "1303",
+          "stock_name": "南亞",
+          "shares_now": 117932040,
+          "shares_prev": 117250460,
+          "shares_delta": 681580
+        },
+        {
+          "stock_id": "2412",
+          "stock_name": "中華電",
+          "shares_now": 91406199,
+          "shares_prev": 90878319,
+          "shares_delta": 527880
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投控",
+          "shares_now": 79409438,
+          "shares_prev": 78950458,
+          "shares_delta": 458980
+        },
+        {
+          "stock_id": "2344",
+          "stock_name": "華邦電",
+          "shares_now": 74068868,
+          "shares_prev": 73640893,
+          "shares_delta": 427975
+        },
+        {
+          "stock_id": "3231",
+          "stock_name": "緯創",
+          "shares_now": 72305002,
+          "shares_prev": 71887362,
+          "shares_delta": 417640
+        },
+        {
+          "stock_id": "2382",
+          "stock_name": "廣達",
+          "shares_now": 63314121,
+          "shares_prev": 62948421,
+          "shares_delta": 365700
+        },
+        {
+          "stock_id": "2301",
+          "stock_name": "光寶科",
+          "shares_now": 46839509,
+          "shares_prev": 46568944,
+          "shares_delta": 270565
+        },
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 46212100,
+          "shares_prev": 45944980,
+          "shares_delta": 267120
+        },
+        {
+          "stock_id": "4904",
+          "stock_name": "遠傳",
+          "shares_now": 42509851,
+          "shares_prev": 42264461,
+          "shares_delta": 245390
+        },
+        {
+          "stock_id": "2327",
+          "stock_name": "國巨*",
+          "shares_now": 37697792,
+          "shares_prev": 37479962,
+          "shares_delta": 217830
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科",
+          "shares_now": 35227556,
+          "shares_prev": 35024036,
+          "shares_delta": 203520
+        },
+        {
+          "stock_id": "3045",
+          "stock_name": "台灣大",
+          "shares_now": 33947739,
+          "shares_prev": 33752434,
+          "shares_delta": 195305
+        },
+        {
+          "stock_id": "3037",
+          "stock_name": "欣興",
+          "shares_now": 31571600,
+          "shares_prev": 31389280,
+          "shares_delta": 182320
+        },
+        {
+          "stock_id": "2408",
+          "stock_name": "南亞科",
+          "shares_now": 30895884,
+          "shares_prev": 30717539,
+          "shares_delta": 178345
+        },
+        {
+          "stock_id": "6505",
+          "stock_name": "台塑化",
+          "shares_now": 27657937,
+          "shares_prev": 27493415,
+          "shares_delta": 164522
+        },
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 27387560,
+          "shares_prev": 27229620,
+          "shares_delta": 157940
+        },
+        {
+          "stock_id": "2603",
+          "stock_name": "長榮",
+          "shares_now": 26115154,
+          "shares_prev": 25964899,
+          "shares_delta": 150255
+        },
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares_now": 18908953,
+          "shares_prev": 18799773,
+          "shares_delta": 109180
+        },
+        {
+          "stock_id": "2357",
+          "stock_name": "華碩",
+          "shares_now": 16155328,
+          "shares_prev": 16062048,
+          "shares_delta": 93280
+        },
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares_now": 11862337,
+          "shares_prev": 11793967,
+          "shares_delta": 68370
+        },
+        {
+          "stock_id": "2395",
+          "stock_name": "研華",
+          "shares_now": 11043355,
+          "shares_prev": 10979755,
+          "shares_delta": 63600
+        },
+        {
+          "stock_id": "2360",
+          "stock_name": "致茂",
+          "shares_now": 8823868,
+          "shares_prev": 8772988,
+          "shares_delta": 50880
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares_now": 8334571,
+          "shares_prev": 8286606,
+          "shares_delta": 47965
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 7657495,
+          "shares_prev": 7613240,
+          "shares_delta": 44255
+        },
+        {
+          "stock_id": "6446",
+          "stock_name": "藥華藥",
+          "shares_now": 7499364,
+          "shares_prev": 7455904,
+          "shares_delta": 43460
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 7421565,
+          "shares_prev": 7378900,
+          "shares_delta": 42665
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 6000911,
+          "shares_prev": 5966461,
+          "shares_delta": 34450
+        },
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 4282299,
+          "shares_prev": 4257654,
+          "shares_delta": 24645
+        },
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares_now": 2250737,
+          "shares_prev": 2237752,
+          "shares_delta": 12985
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策",
+          "shares_now": 2086030,
+          "shares_prev": 2074105,
+          "shares_delta": 11925
+        },
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 1923946,
+          "shares_prev": 1913081,
+          "shares_delta": 10865
+        },
+        {
+          "stock_id": "7769",
+          "stock_name": "鴻勁",
+          "shares_now": 1363197,
+          "shares_prev": 1355512,
+          "shares_delta": 7685
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares_now": 1318888,
+          "shares_prev": 1311468,
+          "shares_delta": 7420
+        }
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares": 967000
+        },
+        {
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 364000
+        }
+      ],
       "changed": []
     },
     "00991A": {
@@ -18,47 +406,67 @@
       "removed": [],
       "changed": [
         {
-          "stock_id": "2327",
-          "stock_name": "國巨股份",
-          "shares_now": 5800000,
-          "shares_prev": 5400000,
-          "shares_delta": 400000
+          "stock_id": "3008",
+          "stock_name": "大立光電",
+          "shares_now": 170000,
+          "shares_prev": 150000,
+          "shares_delta": 20000
         },
         {
-          "stock_id": "3026",
-          "stock_name": "禾伸堂企",
-          "shares_now": 2800000,
-          "shares_prev": 3000000,
-          "shares_delta": -200000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 1250000,
-          "shares_prev": 1350000,
-          "shares_delta": -100000
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 482000,
+          "shares_prev": 470000,
+          "shares_delta": 12000
         }
       ]
     },
-    "00990A": {
-      "added": [],
+    "00981A": {
+      "added": [
+        {
+          "stock_id": "3231",
+          "stock_name": "緯創",
+          "shares": 4703000
+        }
+      ],
       "removed": [],
-      "changed": []
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 6351450,
+          "shares_prev": 5151450,
+          "shares_delta": 1200000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 12671000,
+          "shares_prev": 12392000,
+          "shares_delta": 279000
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達",
+          "shares_now": 819000,
+          "shares_prev": 769000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 6343000,
+          "shares_prev": 6303000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策",
+          "shares_now": 2512000,
+          "shares_prev": 2502000,
+          "shares_delta": 10000
+        }
+      ]
     }
   }
 }
