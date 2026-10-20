@@ -8,27 +8,52 @@
       "removed": [],
       "changed": []
     },
-    "00992A": {
+    "00981A": {
       "added": [
         {
-          "stock_id": "2059",
-          "stock_name": "川湖",
-          "shares": 183000
+          "stock_id": "3231",
+          "stock_name": "緯創",
+          "shares": 4703000
         }
       ],
-      "removed": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 364000
-        }
-      ],
-      "changed": []
-    },
-    "00980A": {
-      "added": [],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2449",
+          "stock_name": "京元電子",
+          "shares_now": 6351450,
+          "shares_prev": 5151450,
+          "shares_delta": 1200000
+        },
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 12671000,
+          "shares_prev": 12392000,
+          "shares_delta": 279000
+        },
+        {
+          "stock_id": "6805",
+          "stock_name": "富世達",
+          "shares_now": 819000,
+          "shares_prev": 769000,
+          "shares_delta": 50000
+        },
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐",
+          "shares_now": 6343000,
+          "shares_prev": 6303000,
+          "shares_delta": 40000
+        },
+        {
+          "stock_id": "3653",
+          "stock_name": "健策",
+          "shares_now": 2512000,
+          "shares_prev": 2502000,
+          "shares_delta": 10000
+        }
+      ]
     },
     "0050": {
       "added": [],
@@ -385,17 +410,18 @@
         }
       ]
     },
-    "00990A": {
-      "added": [],
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖",
+          "shares": 183000
+        }
+      ],
       "removed": [
         {
-          "stock_id": "2449",
-          "stock_name": "京元電子",
-          "shares": 967000
-        },
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
+          "stock_id": "6223",
+          "stock_name": "旺矽",
           "shares": 364000
         }
       ],
@@ -421,52 +447,26 @@
         }
       ]
     },
-    "00981A": {
-      "added": [
-        {
-          "stock_id": "3231",
-          "stock_name": "緯創",
-          "shares": 4703000
-        }
-      ],
+    "00980A": {
+      "added": [],
       "removed": [],
-      "changed": [
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [
         {
           "stock_id": "2449",
           "stock_name": "京元電子",
-          "shares_now": 6351450,
-          "shares_prev": 5151450,
-          "shares_delta": 1200000
+          "shares": 967000
         },
         {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 12671000,
-          "shares_prev": 12392000,
-          "shares_delta": 279000
-        },
-        {
-          "stock_id": "6805",
-          "stock_name": "富世達",
-          "shares_now": 819000,
-          "shares_prev": 769000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐",
-          "shares_now": 6343000,
-          "shares_prev": 6303000,
-          "shares_delta": 40000
-        },
-        {
-          "stock_id": "3653",
-          "stock_name": "健策",
-          "shares_now": 2512000,
-          "shares_prev": 2502000,
-          "shares_delta": 10000
+          "stock_id": "4958",
+          "stock_name": "臻鼎-KY",
+          "shares": 364000
         }
-      ]
+      ],
+      "changed": []
     }
   }
 }
