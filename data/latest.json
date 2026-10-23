@@ -308,7 +308,7 @@
         },
         {
           "stock_id": "2395",
-          "stock_name": "研華",
+          "stock_name": "\"研華\")",
           "weight_pct": 0.3,
           "shares": 11088715,
           "market": "TW"
@@ -1230,8 +1230,7 @@
       "fund_meta": {
         "nav_total": 45940715407.0,
         "p_unit": 21.32,
-        "units_outstanding": 2154436000.0,
-        "as_of_date": "2026-10-22"
+        "units_outstanding": 2154436000.0
       }
     },
     {
@@ -2005,8 +2004,7 @@
       "fund_meta": {
         "nav_total": 44993823193.0,
         "p_unit": 16.86,
-        "units_outstanding": 2668455000.0,
-        "as_of_date": "2026-10-22"
+        "units_outstanding": 2668455000.0
       }
     }
   ],
