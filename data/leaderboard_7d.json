@@ -1,69 +1,69 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-10-25",
-  "as_of_baseline": "2026-10-18",
+  "as_of_today": "2026-10-26",
+  "as_of_baseline": "2026-10-19",
   "top_added": [
     {
-      "stock_id": "2383",
-      "stock_name": "台光電",
-      "etf_count": 5,
-      "total_delta": 2.564
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "etf_count": 3,
+      "total_delta": 4.555
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖",
+      "etf_count": 2,
+      "total_delta": 4.232
+    },
+    {
+      "stock_id": "2317",
+      "stock_name": "鴻海",
+      "etf_count": 2,
+      "total_delta": 1.32
+    },
+    {
+      "stock_id": "3231",
+      "stock_name": "緯創",
+      "etf_count": 2,
+      "total_delta": 1.281
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
       "etf_count": 6,
-      "total_delta": 1.646
-    },
-    {
-      "stock_id": "3231",
-      "stock_name": "緯創資通",
-      "etf_count": 2,
-      "total_delta": 1.261
-    },
-    {
-      "stock_id": "2317",
-      "stock_name": "鴻海精密工業",
-      "etf_count": 2,
-      "total_delta": 1.25
-    },
-    {
-      "stock_id": "3008",
-      "stock_name": "大立光",
-      "etf_count": 3,
-      "total_delta": 1.166
+      "total_delta": 0.879
     }
   ],
   "top_removed": [
     {
+      "stock_id": "1815",
+      "stock_name": "富喬",
+      "etf_count": 1,
+      "total_delta": -4.25
+    },
+    {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": -3.62
-    },
-    {
-      "stock_id": "2327",
-      "stock_name": "國巨股份",
-      "etf_count": 4,
-      "total_delta": -1.712
-    },
-    {
-      "stock_id": "3653",
-      "stock_name": "健策精密",
-      "etf_count": 3,
-      "total_delta": -1.46
+      "total_delta": -3.48
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 5,
-      "total_delta": -1.31
+      "total_delta": -1.66
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
-      "etf_count": 2,
-      "total_delta": -0.98
+      "etf_count": 3,
+      "total_delta": -1.13
+    },
+    {
+      "stock_id": "3653",
+      "stock_name": "健策",
+      "etf_count": 3,
+      "total_delta": -1.071
     }
   ]
 }
