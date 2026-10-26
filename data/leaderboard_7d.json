@@ -1,37 +1,37 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-10-26",
-  "as_of_baseline": "2026-10-19",
+  "as_of_today": "2026-10-27",
+  "as_of_baseline": "2026-10-20",
   "top_added": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
-      "etf_count": 3,
-      "total_delta": 4.555
+      "stock_name": "大立光電",
+      "etf_count": 4,
+      "total_delta": 4.603
     },
     {
-      "stock_id": "2059",
-      "stock_name": "川湖",
+      "stock_id": "6223",
+      "stock_name": "旺矽",
       "etf_count": 2,
-      "total_delta": 4.232
+      "total_delta": 3.34
+    },
+    {
+      "stock_id": "2383",
+      "stock_name": "台光電子",
+      "etf_count": 7,
+      "total_delta": 1.759
     },
     {
       "stock_id": "2317",
-      "stock_name": "鴻海",
+      "stock_name": "鴻海精密工業",
       "etf_count": 2,
-      "total_delta": 1.32
+      "total_delta": 1.22
     },
     {
-      "stock_id": "3231",
-      "stock_name": "緯創",
-      "etf_count": 2,
-      "total_delta": 1.281
-    },
-    {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 6,
-      "total_delta": 0.879
+      "stock_id": "3037",
+      "stock_name": "欣興電子",
+      "etf_count": 5,
+      "total_delta": 0.985
     }
   ],
   "top_removed": [
@@ -39,31 +39,31 @@
       "stock_id": "1815",
       "stock_name": "富喬",
       "etf_count": 1,
-      "total_delta": -4.25
+      "total_delta": -4.3
     },
     {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": -3.48
+      "total_delta": -3.39
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 5,
-      "total_delta": -1.66
-    },
-    {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 3,
-      "total_delta": -1.13
+      "total_delta": -1.64
     },
     {
       "stock_id": "3653",
-      "stock_name": "健策",
+      "stock_name": "健策精密",
       "etf_count": 3,
-      "total_delta": -1.071
+      "total_delta": -1.542
+    },
+    {
+      "stock_id": "3017",
+      "stock_name": "奇鋐科技",
+      "etf_count": 6,
+      "total_delta": -1.072
     }
   ]
 }
