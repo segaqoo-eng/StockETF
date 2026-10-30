@@ -3,23 +3,6 @@
   "as_of_baseline": "2026-10-29",
   "is_stale": false,
   "by_etf": {
-    "00982A": {
-      "added": [
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽",
-          "shares": 301000
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 253000
-        }
-      ],
-      "changed": []
-    },
     "0050": {
       "added": [],
       "removed": [],
@@ -376,14 +359,40 @@
         }
       ]
     },
-    "00980A": {
+    "00990A": {
       "added": [],
-      "removed": [],
-      "changed": []
+      "removed": [
+        {
+          "stock_id": "2345",
+          "stock_name": "智邦",
+          "shares": 193000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 176000,
+          "shares_prev": 420000,
+          "shares_delta": -244000
+        }
+      ]
     },
-    "00992A": {
-      "added": [],
-      "removed": [],
+    "00982A": {
+      "added": [
+        {
+          "stock_id": "6223",
+          "stock_name": "旺矽",
+          "shares": 301000
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 253000
+        }
+      ],
       "changed": []
     },
     "00981A": {
@@ -424,25 +433,6 @@
           "shares_now": 5367000,
           "shares_prev": 5306000,
           "shares_delta": 61000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦",
-          "shares": 193000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 176000,
-          "shares_prev": 420000,
-          "shares_delta": -244000
         }
       ]
     },
@@ -507,6 +497,16 @@
           "shares_delta": 3000
         }
       ]
+    },
+    "00980A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
     }
   }
 }
