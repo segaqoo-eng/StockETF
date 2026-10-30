@@ -7,63 +7,63 @@
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": 3.24
+      "total_delta": 3.26
     },
     {
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 1,
-      "total_delta": 2.9
+      "total_delta": 2.95
+    },
+    {
+      "stock_id": "6223",
+      "stock_name": "旺矽",
+      "etf_count": 4,
+      "total_delta": 2.61
     },
     {
       "stock_id": "3711",
       "stock_name": "日月光投控",
       "etf_count": 4,
-      "total_delta": 1.289
-    },
-    {
-      "stock_id": "2408",
-      "stock_name": "南亞科技",
-      "etf_count": 3,
-      "total_delta": 1.091
+      "total_delta": 2.385
     },
     {
       "stock_id": "2330",
       "stock_name": "台積電",
-      "etf_count": 5,
-      "total_delta": 0.713
+      "etf_count": 7,
+      "total_delta": 2.323
     }
   ],
   "top_removed": [
     {
+      "stock_id": "3008",
+      "stock_name": "大立光",
+      "etf_count": 5,
+      "total_delta": -5.662
+    },
+    {
       "stock_id": "6669",
       "stock_name": "緯穎",
       "etf_count": 1,
-      "total_delta": -3.67
-    },
-    {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": -0.913
-    },
-    {
-      "stock_id": "3008",
-      "stock_name": "大立光",
-      "etf_count": 3,
-      "total_delta": -0.804
+      "total_delta": -3.72
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電",
       "etf_count": 4,
-      "total_delta": -0.77
+      "total_delta": -2.63
     },
     {
-      "stock_id": "2303",
-      "stock_name": "聯電",
-      "etf_count": 3,
-      "total_delta": -0.63
+      "stock_id": "3037",
+      "stock_name": "欣興",
+      "etf_count": 5,
+      "total_delta": -1.68
+    },
+    {
+      "stock_id": "2345",
+      "stock_name": "智邦",
+      "etf_count": 4,
+      "total_delta": -1.501
     }
   ]
 }
