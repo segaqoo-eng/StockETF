@@ -1,7 +1,7 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-10-30",
-  "as_of_baseline": "2026-10-23",
+  "as_of_today": "2026-10-31",
+  "as_of_baseline": "2026-10-24",
   "top_added": [
     {
       "stock_id": "3491",
@@ -23,7 +23,7 @@
     },
     {
       "stock_id": "3711",
-      "stock_name": "日月光投控",
+      "stock_name": "日月光投",
       "etf_count": 4,
       "total_delta": 2.385
     },
@@ -37,7 +37,7 @@
   "top_removed": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
+      "stock_name": "大立光電",
       "etf_count": 5,
       "total_delta": -5.662
     },
