@@ -4,66 +4,66 @@
   "as_of_baseline": "2026-10-26",
   "top_added": [
     {
+      "stock_id": "1815",
+      "stock_name": "富喬",
+      "etf_count": 1,
+      "total_delta": 3.96
+    },
+    {
       "stock_id": "3491",
       "stock_name": "昇達科",
       "etf_count": 1,
-      "total_delta": 3.26
+      "total_delta": 3.38
     },
     {
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 1,
-      "total_delta": 2.95
-    },
-    {
-      "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 4,
-      "total_delta": 2.61
+      "total_delta": 3.1
     },
     {
       "stock_id": "3711",
       "stock_name": "日月光投控",
       "etf_count": 4,
-      "total_delta": 2.385
+      "total_delta": 2.986
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": 2.323
+      "stock_id": "2408",
+      "stock_name": "南亞科",
+      "etf_count": 3,
+      "total_delta": 1.15
     }
   ],
   "top_removed": [
     {
       "stock_id": "3008",
       "stock_name": "大立光",
-      "etf_count": 5,
-      "total_delta": -5.662
+      "etf_count": 4,
+      "total_delta": -5.622
     },
     {
       "stock_id": "6669",
       "stock_name": "緯穎",
-      "etf_count": 1,
-      "total_delta": -3.72
+      "etf_count": 2,
+      "total_delta": -3.75
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電",
       "etf_count": 4,
-      "total_delta": -2.63
-    },
-    {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": -1.68
+      "total_delta": -2.59
     },
     {
       "stock_id": "2345",
       "stock_name": "智邦",
       "etf_count": 4,
-      "total_delta": -1.501
+      "total_delta": -1.591
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興",
+      "etf_count": 5,
+      "total_delta": -1.56
     }
   ]
 }
