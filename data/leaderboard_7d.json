@@ -1,8 +1,14 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-11-03",
-  "as_of_baseline": "2026-10-27",
+  "as_of_today": "2026-11-04",
+  "as_of_baseline": "2026-10-28",
   "top_added": [
+    {
+      "stock_id": "2330",
+      "stock_name": "台灣積體",
+      "etf_count": 7,
+      "total_delta": 5.735
+    },
     {
       "stock_id": "1815",
       "stock_name": "富喬",
@@ -10,60 +16,54 @@
       "total_delta": 3.97
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台積電",
-      "etf_count": 7,
-      "total_delta": 3.678
-    },
-    {
-      "stock_id": "3711",
-      "stock_name": "日月光投控",
-      "etf_count": 2,
-      "total_delta": 2.567
-    },
-    {
       "stock_id": "3105",
       "stock_name": "穩懋",
       "etf_count": 1,
-      "total_delta": 2.54
+      "total_delta": 2.21
     },
     {
-      "stock_id": "3653",
-      "stock_name": "健策",
+      "stock_id": "3711",
+      "stock_name": "日月光投",
       "etf_count": 3,
-      "total_delta": 1.439
+      "total_delta": 1.834
+    },
+    {
+      "stock_id": "2059",
+      "stock_name": "川湖科技",
+      "etf_count": 2,
+      "total_delta": 1.214
     }
   ],
   "top_removed": [
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
+      "stock_name": "大立光電",
       "etf_count": 5,
-      "total_delta": -5.617
-    },
-    {
-      "stock_id": "3037",
-      "stock_name": "欣興",
-      "etf_count": 5,
-      "total_delta": -2.4
+      "total_delta": -5.728
     },
     {
       "stock_id": "2308",
       "stock_name": "台達電",
       "etf_count": 4,
-      "total_delta": -2.38
+      "total_delta": -2.13
+    },
+    {
+      "stock_id": "3037",
+      "stock_name": "欣興電子",
+      "etf_count": 6,
+      "total_delta": -2.07
     },
     {
       "stock_id": "2345",
-      "stock_name": "智邦",
+      "stock_name": "智邦科技",
       "etf_count": 5,
-      "total_delta": -2.131
+      "total_delta": -1.931
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽",
       "etf_count": 4,
-      "total_delta": -1.45
+      "total_delta": -1.61
     }
   ]
 }
