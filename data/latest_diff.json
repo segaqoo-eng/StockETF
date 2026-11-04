@@ -3,6 +3,53 @@
   "as_of_baseline": "2026-11-03",
   "is_stale": false,
   "by_etf": {
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3017",
+          "stock_name": "奇鋐科技",
+          "shares_now": 1500000,
+          "shares_prev": 1480000,
+          "shares_delta": 20000
+        },
+        {
+          "stock_id": "2454",
+          "stock_name": "聯發科技",
+          "shares_now": 1080000,
+          "shares_prev": 1065000,
+          "shares_delta": 15000
+        },
+        {
+          "stock_id": "2059",
+          "stock_name": "川湖科技",
+          "shares_now": 495000,
+          "shares_prev": 485000,
+          "shares_delta": 10000
+        },
+        {
+          "stock_id": "2890",
+          "stock_name": "永豐金融",
+          "shares_now": 9311,
+          "shares_prev": 9000,
+          "shares_delta": 311
+        }
+      ]
+    },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "3665",
+          "stock_name": "貿聯-KY",
+          "shares_now": 1581000,
+          "shares_prev": 1341000,
+          "shares_delta": 240000
+        }
+      ]
+    },
     "0050": {
       "added": [],
       "removed": [],
@@ -405,6 +452,26 @@
         }
       ]
     },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "2308",
+          "stock_name": "台達電",
+          "shares_now": 106000,
+          "shares_prev": 176000,
+          "shares_delta": -70000
+        },
+        {
+          "stock_id": "8046",
+          "stock_name": "南電",
+          "shares_now": 141000,
+          "shares_prev": 201000,
+          "shares_delta": -60000
+        }
+      ]
+    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -460,77 +527,10 @@
         }
       ]
     },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 1500000,
-          "shares_prev": 1480000,
-          "shares_delta": 20000
-        },
-        {
-          "stock_id": "2454",
-          "stock_name": "聯發科技",
-          "shares_now": 1080000,
-          "shares_prev": 1065000,
-          "shares_delta": 15000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 495000,
-          "shares_prev": 485000,
-          "shares_delta": 10000
-        },
-        {
-          "stock_id": "2890",
-          "stock_name": "永豐金融",
-          "shares_now": 9311,
-          "shares_prev": 9000,
-          "shares_delta": 311
-        }
-      ]
-    },
     "00980A": {
       "added": [],
       "removed": [],
       "changed": []
-    },
-    "00992A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "3665",
-          "stock_name": "貿聯-KY",
-          "shares_now": 1581000,
-          "shares_prev": 1341000,
-          "shares_delta": 240000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2308",
-          "stock_name": "台達電",
-          "shares_now": 106000,
-          "shares_prev": 176000,
-          "shares_delta": -70000
-        },
-        {
-          "stock_id": "8046",
-          "stock_name": "南電",
-          "shares_now": 141000,
-          "shares_prev": 201000,
-          "shares_delta": -60000
-        }
-      ]
     }
   }
 }
