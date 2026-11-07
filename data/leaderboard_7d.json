@@ -1,13 +1,13 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-11-07",
-  "as_of_baseline": "2026-10-31",
+  "as_of_today": "2026-11-08",
+  "as_of_baseline": "2026-11-01",
   "top_added": [
     {
       "stock_id": "2330",
-      "stock_name": "台積電",
+      "stock_name": "台灣積體電路製造",
       "etf_count": 7,
-      "total_delta": 7.398
+      "total_delta": 7.623
     },
     {
       "stock_id": "1815",
@@ -17,33 +17,33 @@
     },
     {
       "stock_id": "3008",
-      "stock_name": "大立光",
+      "stock_name": "大立光電",
       "etf_count": 3,
       "total_delta": 2.82
     },
     {
       "stock_id": "2454",
-      "stock_name": "聯發科",
+      "stock_name": "聯發科技",
       "etf_count": 4,
-      "total_delta": 1.917
+      "total_delta": 2.204
     },
     {
       "stock_id": "3711",
-      "stock_name": "日月光投",
+      "stock_name": "日月光投資控股",
       "etf_count": 4,
-      "total_delta": 0.878
+      "total_delta": 0.801
     }
   ],
   "top_removed": [
     {
       "stock_id": "6223",
-      "stock_name": "旺矽",
-      "etf_count": 4,
-      "total_delta": -7.681
+      "stock_name": "旺矽科技",
+      "etf_count": 5,
+      "total_delta": -7.206
     },
     {
       "stock_id": "3081",
-      "stock_name": "聯亞光電",
+      "stock_name": "聯亞光電工業",
       "etf_count": 2,
       "total_delta": -3.055
     },
@@ -51,19 +51,19 @@
       "stock_id": "3037",
       "stock_name": "欣興電子",
       "etf_count": 5,
-      "total_delta": -2.693
+      "total_delta": -2.937
     },
     {
       "stock_id": "3017",
       "stock_name": "奇鋐科技",
-      "etf_count": 4,
-      "total_delta": -2.375
+      "etf_count": 5,
+      "total_delta": -2.44
     },
     {
       "stock_id": "8046",
-      "stock_name": "南亞電路",
+      "stock_name": "南亞電路板",
       "etf_count": 4,
-      "total_delta": -2.103
+      "total_delta": -2.351
     }
   ]
 }
