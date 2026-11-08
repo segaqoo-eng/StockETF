@@ -1,81 +1,9 @@
 {
-  "as_of_today": "2026-11-08",
-  "as_of_baseline": "2026-11-07",
+  "as_of_today": "2026-11-09",
+  "as_of_baseline": "2026-11-08",
   "is_stale": false,
   "by_etf": {
-    "00981A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00991A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6505",
-          "stock_name": "台塑石化",
-          "shares_now": 3100000,
-          "shares_prev": 8769000,
-          "shares_delta": -5669000
-        },
-        {
-          "stock_id": "2345",
-          "stock_name": "智邦科技",
-          "shares_now": 210000,
-          "shares_prev": 1000,
-          "shares_delta": 209000
-        },
-        {
-          "stock_id": "6223",
-          "stock_name": "旺矽科技",
-          "shares_now": 77000,
-          "shares_prev": 1000,
-          "shares_delta": 76000
-        },
-        {
-          "stock_id": "7769",
-          "stock_name": "鴻勁精密",
-          "shares_now": 72000,
-          "shares_prev": 1000,
-          "shares_delta": 71000
-        },
-        {
-          "stock_id": "3017",
-          "stock_name": "奇鋐科技",
-          "shares_now": 1550000,
-          "shares_prev": 1500000,
-          "shares_delta": 50000
-        },
-        {
-          "stock_id": "4958",
-          "stock_name": "臻鼎-KY",
-          "shares_now": 720000,
-          "shares_prev": 690000,
-          "shares_delta": 30000
-        },
-        {
-          "stock_id": "2059",
-          "stock_name": "川湖科技",
-          "shares_now": 510000,
-          "shares_prev": 495000,
-          "shares_delta": 15000
-        },
-        {
-          "stock_id": "5274",
-          "stock_name": "信驊科技",
-          "shares_now": 125500,
-          "shares_prev": 115500,
-          "shares_delta": 10000
-        }
-      ]
-    },
-    "0050": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
+    "00992A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -85,12 +13,27 @@
       "removed": [],
       "changed": []
     },
+    "00981A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00991A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "0050": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00990A": {
       "added": [],
       "removed": [],
       "changed": []
     },
-    "00992A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
