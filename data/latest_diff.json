@@ -3,6 +3,24 @@
   "as_of_baseline": "2026-11-10",
   "is_stale": false,
   "by_etf": {
+    "00982A": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "stock_id": "6531",
+          "stock_name": "愛普*",
+          "shares_now": 4637000,
+          "shares_prev": 3687000,
+          "shares_delta": 950000
+        }
+      ]
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
     "00991A": {
       "added": [],
       "removed": [],
@@ -57,17 +75,17 @@
           "shares_delta": 195000
         },
         {
-          "stock_id": "3711",
-          "stock_name": "日月光投",
-          "shares_now": 4200000,
-          "shares_prev": 4100000,
-          "shares_delta": 100000
-        },
-        {
           "stock_id": "2345",
           "stock_name": "智邦科技",
           "shares_now": 390000,
           "shares_prev": 290000,
+          "shares_delta": 100000
+        },
+        {
+          "stock_id": "3711",
+          "stock_name": "日月光投",
+          "shares_now": 4200000,
+          "shares_prev": 4100000,
           "shares_delta": 100000
         },
         {
@@ -99,23 +117,6 @@
           "shares_delta": 20000
         }
       ]
-    },
-    "00992A": {
-      "added": [
-        {
-          "stock_id": "1815",
-          "stock_name": "富喬",
-          "shares": 12620868
-        }
-      ],
-      "removed": [
-        {
-          "stock_id": "3008",
-          "stock_name": "大立光",
-          "shares": 323000
-        }
-      ],
-      "changed": []
     },
     "0050": {
       "added": [
@@ -477,24 +478,6 @@
       "removed": [],
       "changed": []
     },
-    "00982A": {
-      "added": [],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "6531",
-          "stock_name": "愛普*",
-          "shares_now": 4637000,
-          "shares_prev": 3687000,
-          "shares_delta": 950000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00981A": {
       "added": [],
       "removed": [],
@@ -563,6 +546,23 @@
           "shares_delta": 65000
         }
       ]
+    },
+    "00992A": {
+      "added": [
+        {
+          "stock_id": "1815",
+          "stock_name": "富喬",
+          "shares": 12620868
+        }
+      ],
+      "removed": [
+        {
+          "stock_id": "3008",
+          "stock_name": "大立光",
+          "shares": 323000
+        }
+      ],
+      "changed": []
     }
   }
 }
