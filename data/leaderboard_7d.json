@@ -1,37 +1,37 @@
 {
   "window_days": 7,
-  "as_of_today": "2026-11-12",
-  "as_of_baseline": "2026-11-05",
+  "as_of_today": "2026-11-13",
+  "as_of_baseline": "2026-11-06",
   "top_added": [
     {
       "stock_id": "3443",
       "stock_name": "創意電子",
       "etf_count": 6,
-      "total_delta": 8.256
+      "total_delta": 7.877
     },
     {
       "stock_id": "6223",
       "stock_name": "旺矽科技",
       "etf_count": 4,
-      "total_delta": 5.227
+      "total_delta": 5.229
     },
     {
       "stock_id": "6531",
       "stock_name": "愛普*",
       "etf_count": 1,
-      "total_delta": 3.36
+      "total_delta": 3.42
     },
     {
       "stock_id": "1303",
-      "stock_name": "南亞塑膠",
+      "stock_name": "南亞塑膠工業",
       "etf_count": 3,
-      "total_delta": 2.251
+      "total_delta": 2.211
     },
     {
-      "stock_id": "2330",
-      "stock_name": "台灣積體",
-      "etf_count": 6,
-      "total_delta": 1.483
+      "stock_id": "3017",
+      "stock_name": "奇鋐科技",
+      "etf_count": 5,
+      "total_delta": 1.913
     }
   ],
   "top_removed": [
@@ -39,19 +39,19 @@
       "stock_id": "3008",
       "stock_name": "大立光電",
       "etf_count": 3,
-      "total_delta": -6.34
+      "total_delta": -6.79
     },
     {
       "stock_id": "2408",
       "stock_name": "南亞科技",
       "etf_count": 2,
-      "total_delta": -3.069
+      "total_delta": -3.189
     },
     {
       "stock_id": "2327",
-      "stock_name": "國巨股份",
+      "stock_name": "國巨",
       "etf_count": 2,
-      "total_delta": -1.526
+      "total_delta": -1.449
     },
     {
       "stock_id": "6505",
@@ -63,7 +63,7 @@
       "stock_id": "3037",
       "stock_name": "欣興電子",
       "etf_count": 4,
-      "total_delta": -1.306
+      "total_delta": -1.175
     }
   ]
 }
