@@ -3,16 +3,6 @@
   "as_of_baseline": "2026-11-18",
   "is_stale": false,
   "by_etf": {
-    "00990A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
-    "00980A": {
-      "added": [],
-      "removed": [],
-      "changed": []
-    },
     "00992A": {
       "added": [],
       "removed": [],
@@ -23,12 +13,22 @@
       "removed": [],
       "changed": []
     },
-    "00982A": {
+    "00980A": {
       "added": [],
       "removed": [],
       "changed": []
     },
     "0050": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00982A": {
       "added": [],
       "removed": [],
       "changed": []
@@ -64,17 +64,17 @@
           "shares_delta": 400000
         },
         {
-          "stock_id": "2368",
-          "stock_name": "金像電子",
-          "shares_now": 690000,
-          "shares_prev": 720000,
-          "shares_delta": -30000
-        },
-        {
           "stock_id": "3008",
           "stock_name": "大立光電",
           "shares_now": 1000,
           "shares_prev": 31000,
+          "shares_delta": -30000
+        },
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電子",
+          "shares_now": 690000,
+          "shares_prev": 720000,
           "shares_delta": -30000
         },
         {
