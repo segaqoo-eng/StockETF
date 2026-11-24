@@ -3,62 +3,10 @@
   "as_of_baseline": "2026-11-24",
   "is_stale": false,
   "by_etf": {
-    "00992A": {
+    "00991A": {
       "added": [],
       "removed": [],
       "changed": []
-    },
-    "00981A": {
-      "added": [
-        {
-          "stock_id": "2618",
-          "stock_name": "長榮航",
-          "shares": 9527000
-        }
-      ],
-      "removed": [],
-      "changed": [
-        {
-          "stock_id": "2330",
-          "stock_name": "台積電",
-          "shares_now": 19847000,
-          "shares_prev": 19303000,
-          "shares_delta": 544000
-        },
-        {
-          "stock_id": "1590",
-          "stock_name": "亞德客-KY",
-          "shares_now": 78000,
-          "shares_prev": 1000,
-          "shares_delta": 77000
-        },
-        {
-          "stock_id": "6669",
-          "stock_name": "緯穎",
-          "shares_now": 2379561,
-          "shares_prev": 2361561,
-          "shares_delta": 18000
-        }
-      ]
-    },
-    "00990A": {
-      "added": [],
-      "removed": [
-        {
-          "stock_id": "2368",
-          "stock_name": "金像電",
-          "shares": 332000
-        }
-      ],
-      "changed": [
-        {
-          "stock_id": "3443",
-          "stock_name": "創意",
-          "shares_now": 57000,
-          "shares_prev": 109000,
-          "shares_delta": -52000
-        }
-      ]
     },
     "0050": {
       "added": [],
@@ -409,6 +357,30 @@
         }
       ]
     },
+    "00992A": {
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "00990A": {
+      "added": [],
+      "removed": [
+        {
+          "stock_id": "2368",
+          "stock_name": "金像電",
+          "shares": 332000
+        }
+      ],
+      "changed": [
+        {
+          "stock_id": "3443",
+          "stock_name": "創意",
+          "shares_now": 57000,
+          "shares_prev": 109000,
+          "shares_delta": -52000
+        }
+      ]
+    },
     "00982A": {
       "added": [],
       "removed": [],
@@ -419,10 +391,38 @@
       "removed": [],
       "changed": []
     },
-    "00991A": {
-      "added": [],
+    "00981A": {
+      "added": [
+        {
+          "stock_id": "2618",
+          "stock_name": "長榮航",
+          "shares": 9527000
+        }
+      ],
       "removed": [],
-      "changed": []
+      "changed": [
+        {
+          "stock_id": "2330",
+          "stock_name": "台積電",
+          "shares_now": 19847000,
+          "shares_prev": 19303000,
+          "shares_delta": 544000
+        },
+        {
+          "stock_id": "1590",
+          "stock_name": "亞德客-KY",
+          "shares_now": 78000,
+          "shares_prev": 1000,
+          "shares_delta": 77000
+        },
+        {
+          "stock_id": "6669",
+          "stock_name": "緯穎",
+          "shares_now": 2379561,
+          "shares_prev": 2361561,
+          "shares_delta": 18000
+        }
+      ]
     }
   }
 }
